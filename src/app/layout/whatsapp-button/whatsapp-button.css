@@ -1,0 +1,108 @@
+/* El propio host es el elemento fijo: no ocupa espacio en el flujo, así que no altera el layout. */
+:host {
+  position: fixed;
+  right: max(16px, env(safe-area-inset-right));
+  bottom: max(16px, env(safe-area-inset-bottom));
+  /* Por encima del menú (2000) y el banner (1500); por debajo del modal de la galería (1000000). */
+  z-index: 3000;
+}
+
+.whatsapp {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  /* Verde oscuro de WhatsApp: contraste ≥ 4:1 con el icono blanco y con fondos claros. */
+  background: #128c7e;
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  font: inherit;
+  text-decoration: none;
+  transition:
+    background-color 0.2s,
+    transform 0.2s;
+}
+
+.whatsapp__icon {
+  width: 30px;
+  height: 30px;
+}
+
+.whatsapp:hover {
+  background: #075e54;
+  transform: scale(1.06);
+}
+
+.whatsapp:focus-visible {
+  outline: 3px solid #111;
+  outline-offset: 3px;
+  box-shadow:
+    0 0 0 3px #fff,
+    0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* Estado pendiente: gris y sin acción, pero enfocable para poder leer la explicación. */
+.whatsapp--pending,
+.whatsapp--pending:hover {
+  background: #5f6368;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.whatsapp__tooltip {
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  width: max-content;
+  max-width: min(240px, calc(100vw - 100px));
+  padding: 6px 10px;
+  border-radius: 4px;
+  background: #222;
+  color: #fff;
+  font-size: 0.8rem;
+  line-height: 1.3;
+  text-align: left;
+  white-space: normal;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s;
+}
+
+.whatsapp:hover .whatsapp__tooltip,
+.whatsapp:focus-visible .whatsapp__tooltip,
+/* En pantallas táctiles no hay hover: al tocar el botón pendiente se muestra la explicación. */
+.whatsapp--pending:focus .whatsapp__tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+@media screen and (min-width: 1024px) {
+  .whatsapp {
+    width: 58px;
+    height: 58px;
+  }
+
+  .whatsapp__icon {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp,
+  .whatsapp__tooltip {
+    transition: none;
+  }
+
+  .whatsapp:hover {
+    transform: none;
+  }
+}

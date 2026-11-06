@@ -94,7 +94,8 @@ npm start           # terminal 2
         ├── core/                # Datos del sitio (contacto), navegación, destino del formulario
         │   └── seo/             # public-pages.ts (títulos/descripciones), site-url.ts (dominio),
         │                        # seo-title-strategy.ts (metadatos), seo-files.ts (robots/sitemap)
-        ├── layout/              # Encabezado, menú principal (móvil) y pie de página
+        │   └── whatsapp.config.ts   # Número y mensaje del botón de WhatsApp
+        ├── layout/              # Encabezado, menú principal (móvil), pie y botón de WhatsApp
         ├── shared/
         │   ├── models/          # Tipos: CatalogItem, CatalogSection, GalleryImage
         │   ├── images/          # Manifiesto de imágenes optimizadas, pipe y loader de banners
@@ -329,6 +330,33 @@ location / {
   barra final. Lo recomendable es la redirección 301 en el servidor de los ejemplos.
 - **`/index.html`:** no se prerenderiza como redirección porque ese archivo es el propio inicio.
 
+## Botón flotante de WhatsApp
+
+`app-whatsapp-button` se incluye una sola vez en el componente raíz (`app.ts`), así que aparece en
+todas las rutas, también en el HTML prerenderizado. Queda fijo en la esquina inferior derecha, por
+encima del contenido y por debajo del modal de la galería, y no ocupa espacio en el layout. Es un
+enlace o botón nativo: se puede usar con teclado, tiene foco y hover visibles y su icono SVG está en
+línea, sin dependencias. **No requiere backend**: solo abre `https://wa.me/...`.
+
+La configuración está en `src/app/core/whatsapp.config.ts`:
+
+```ts
+export const WHATSAPP_CONFIG: WhatsAppConfig = {
+  phone: null, // PENDIENTE: código de país + número, solo dígitos (p. ej. '57' + número colombiano)
+  message: 'Hola, quisiera recibir información sobre sus productos y servicios.',
+};
+```
+
+- **`phone`:** mientras sea `null`, o no tenga entre 8 y 15 dígitos sin `+`, espacios ni guiones,
+  el botón se ve en gris con `aria-disabled="true"`, no abre ninguna conversación y explica
+  "Número de WhatsApp pendiente de configurar" (al pasar el cursor, enfocar o tocar). No se usó el
+  teléfono fijo del sitio.
+- **Para activarlo:** escribe el número confirmado, por ejemplo `phone: '57XXXXXXXXXX'`, y ejecuta
+  `npm run build`. El botón pasa a ser un enlace `https://wa.me/{phone}?text={mensaje codificado}`
+  que se abre en una pestaña nueva con `rel="noopener noreferrer"`.
+- **`message`:** el texto inicial de la conversación. Se puede cambiar libremente; se codifica
+  automáticamente en la URL.
+
 ## Backend PHP (`php/`)
 
 Se mantiene separado y no está integrado con ningún otro backend. Cambios realizados:
@@ -369,6 +397,8 @@ repositorio.
 
 ## Datos pendientes por confirmar
 
+- **Número de WhatsApp.** `phone: null` en `src/app/core/whatsapp.config.ts`; el botón está
+  desactivado hasta definirlo. Ver [Botón flotante de WhatsApp](#botón-flotante-de-whatsapp).
 - **Dominio público.** Sin él no hay canónica, `og:url`, `og:image` ni `sitemap.xml`. Ver
   [Dominio](#dominio-pendiente).
 - **Datos estructurados `LocalBusiness`.** No se publicaron porque varios datos del sitio podrían
