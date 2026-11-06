@@ -7,8 +7,8 @@ describe('ImageGallery', () => {
     const fixture = TestBed.createComponent(ImageGallery);
     fixture.componentRef.setInput('columns', [
       [
-        { src: 'img/a.jpg', size: 'big' },
-        { src: 'img/b.jpg', size: 'small' },
+        { src: 'img/productos/construccion.jpg', size: 'big', alt: 'Imagen A' },
+        { src: 'img/productos/2.jpg', size: 'small', alt: 'Imagen B' },
       ],
     ]);
     await fixture.whenStable();
@@ -23,7 +23,9 @@ describe('ImageGallery', () => {
     images[1].click();
     await fixture.whenStable();
     expect(modal.classList).toContain('modal--open');
-    expect(el.querySelector('.modal__img')?.getAttribute('src')).toBe('img/b.jpg');
+    const modalImg = el.querySelector('.modal__img');
+    expect(modalImg?.getAttribute('src')).toBe('img/webp/productos/2.webp');
+    expect(modalImg?.getAttribute('alt')).toBe('Imagen B');
 
     el.querySelector<HTMLElement>('.modal__boton')!.click();
     await fixture.whenStable();

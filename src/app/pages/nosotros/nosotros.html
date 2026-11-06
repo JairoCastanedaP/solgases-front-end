@@ -1,6 +1,8 @@
 <app-page-banner image="img/almacen.jpg" />
 
 <main class="main">
+  <!-- El banner de esta página no tiene texto visible: el encabezado principal es solo para lectores de pantalla y buscadores. -->
+  <h1 class="visually-hidden">Nosotros</h1>
   <app-intro-section
     title="Solgases"
     [paragraphs]="[
@@ -16,7 +18,14 @@
       @for (highlight of highlights; track highlight.title) {
         <div class="column--33">
           <h3 class="our-team__title">{{ highlight.title }}</h3>
-          <img [src]="highlight.image" alt="" class="our-team__img" />
+          @let img = highlight.image | optimizedImage;
+          <img
+            [ngSrc]="img.src"
+            [width]="img.width"
+            [height]="img.height"
+            [alt]="highlight.imageAlt"
+            class="our-team__img"
+          />
           <!-- Se conserva la clase original (our--team__txt), que no tiene estilos asociados. -->
           <p class="our--team__txt">{{ highlight.text }}</p>
         </div>
@@ -35,8 +44,15 @@
     <div class="container container--flex">
       @for (column of brandColumns; track $index) {
         <div class="column--50-25">
-          @for (logo of column; track logo) {
-            <img [src]="logo" class="gallery__img gallery__img--big" alt="" />
+          @for (logo of column; track logo.image) {
+            @let img = logo.image | optimizedImage;
+            <img
+              [ngSrc]="img.src"
+              [width]="img.width"
+              [height]="img.height"
+              class="gallery__img gallery__img--big"
+              [alt]="logo.name"
+            />
           }
         </div>
       }

@@ -4,12 +4,15 @@ Sitio informativo de Solgases (seguridad industrial, Sogamoso). Antes era un sit
 estático y se migró a **Angular 22**, conservando las páginas, los textos, las imágenes y el diseño.
 El pequeño script PHP del formulario de contacto se mantiene **separado y sin cambios** en `php/`.
 
+Las páginas públicas se **prerenderizan en el build** (HTML estático con contenido y metadatos por
+ruta), así que el sitio se publica en un hosting estático sin servidor Node.
+
 ## Requisitos
 
-| Herramienta | Versión                                                  | Motivo                                                                  |
-| ----------- | -------------------------------------------------------- | ----------------------------------------------------------------------- |
-| Node.js     | `^22.22.3` o `^24.15.0` (o `>=26`)                        | Requisito oficial de Angular 22 (verificado con Node 24.21.0)           |
-| npm         | 11 (incluido con Node 24)                                 | Gestor de paquetes (`packageManager` en `package.json`)                 |
+| Herramienta | Versión                                                                              | Motivo                                                                 |
+| ----------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
+| Node.js     | `^22.22.3` o `^24.15.0` (o `>=26`)                                                   | Requisito oficial de Angular 22 (verificado con Node 24.21.0)          |
+| npm         | 11 (incluido con Node 24)                                                            | Gestor de paquetes (`packageManager` en `package.json`)                |
 | PHP         | 5.5+ (requisito de la PHPMailer 6.0.7 incluida); se recomienda una versión soportada | Ejecutar `php/enviar-prueba.php` (no forma parte del build de Angular) |
 
 Versiones elegidas (según <https://angular.dev/reference/versions> y
@@ -27,13 +30,23 @@ Versiones elegidas (según <https://angular.dev/reference/versions> y
 ```bash
 npm install          # instala las dependencias (usa package-lock.json)
 npm start            # servidor de desarrollo en http://localhost:4200
-npm run build        # build de producción en dist/solgases/browser
+npm run build        # build + prerenderizado en dist/solgases/browser, y después robots.txt/sitemap.xml
 npm test             # pruebas unitarias (Vitest, una sola ejecución)
 npm run test:watch   # pruebas en modo observación
-npm run check:assets # verifica que toda imagen referenciada exista en public/
+npm run check:assets # verifica imágenes referenciadas y sus versiones optimizadas
 npm run verify       # check:assets + test + build (verificación completa)
 npm run php:serve    # servidor PHP local en :8000 (requiere PHP instalado)
+npm run optimize:images  # regenera WebP, imágenes Open Graph y el manifiesto (tras añadir o cambiar imágenes)
+npm run optimize:fonts   # regenera las fuentes WOFF2 a partir de los TTF
 ```
+
+`npm run build` falla si alguna página pública no se prerenderizó con su título, su descripción y un
+único `<h1>`.
+
+Al añadir o cambiar una imagen en `public/img`, ejecuta `npm run optimize:images`.
+`check:assets` falla si una imagen referenciada no tiene versión optimizada. Los resultados
+(`public/img/webp`, `public/img/og`, `src/app/shared/images/optimized-images.json` y los `.woff2`)
+se guardan en el repositorio, así que el build no necesita `sharp` ni `subset-font`.
 
 > npm 11 puede avisar de que no ejecutó los scripts de instalación de `esbuild`, `lmdb`,
 > `msgpackr-extract` y `@parcel/watcher`. El build y las pruebas funcionan igual (se usan los
@@ -59,10 +72,17 @@ npm start           # terminal 2
 ├── public/                      # Archivos estáticos copiados tal cual al build
 │   ├── img/                     # Imágenes originales (mismas rutas relativas: img/...)
 │   └── icons/
-├── scripts/check-assets.mjs     # Verificación de rutas de imágenes
+│       ├── webp/                # Versiones WebP generadas (mismo subdirectorio que el original)
+│       └── og/                  # Imágenes para compartir (1200×630) generadas
+├── scripts/
+│   ├── check-assets.mjs         # Verificación de rutas de imágenes y del manifiesto
+│   ├── optimize-images.mjs      # WebP + Open Graph + manifiesto (sharp)
+│   ├── optimize-fonts.mjs       # TTF -> WOFF2 con subconjunto latino (subset-font)
+│   └── generate-seo-files.mjs   # robots.txt / sitemap.xml y verificación del prerenderizado
 ├── proxy.conf.json              # Proxy /php -> servidor PHP local (solo ng serve)
 └── src/
     ├── index.html, main.ts
+    ├── main.server.ts           # Entrada usada solo en el build para prerenderizar
     ├── styles.css               # Punto de entrada de estilos globales
     ├── styles/
     │   ├── base.css             # Antes css/estilos.css (rutas de fuentes ajustadas)
@@ -70,10 +90,14 @@ npm start           # terminal 2
     │   └── sw/                  # Fuente de iconos Fontastic (.icon-*) y su referencia
     └── app/
         ├── app.ts, app.config.ts, app.routes.ts
+        ├── app.config.server.ts, app.routes.server.ts   # Prerenderizado
         ├── core/                # Datos del sitio (contacto), navegación, destino del formulario
+        │   └── seo/             # public-pages.ts (títulos/descripciones), site-url.ts (dominio),
+        │                        # seo-title-strategy.ts (metadatos), seo-files.ts (robots/sitemap)
         ├── layout/              # Encabezado, menú principal (móvil) y pie de página
         ├── shared/
         │   ├── models/          # Tipos: CatalogItem, CatalogSection, GalleryImage
+        │   ├── images/          # Manifiesto de imágenes optimizadas, pipe y loader de banners
         │   └── components/      # Banner, franja de título, cuadrícula de productos,
         │                        # galería con modal y botón "Contáctanos"
         └── pages/               # Una carpeta por página, con sus datos (*.data.ts) y estilos
@@ -95,37 +119,215 @@ Criterios usados:
 
 ## Páginas y rutas
 
-| Ruta            | Origen              | Notas                                                        |
-| --------------- | ------------------- | ------------------------------------------------------------ |
-| `/`             | `index.html`        | Productos y servicios relevantes                             |
-| `/nosotros`     | `nosotros.html`     | Equipo, resumen de servicios y logos de marcas               |
-| `/productos`    | `productos.html`    | Galería con modal y 10 categorías (76 productos)             |
-| `/servicios`    | `servicios.html`    | 18 servicios                                                 |
-| `/bioseguridad` | `bioseguridad.html` | 20 productos                                                 |
-| `/contacto`     | `contacto.html`     | Horario, mapa de Google y formulario (POST a PHP)            |
+| Ruta            | Origen              | Título (`<title>`)                            | Notas                                   |
+| --------------- | ------------------- | --------------------------------------------- | --------------------------------------- |
+| `/`             | `index.html`        | Solgases \| Seguridad industrial en Sogamoso  | Productos y servicios relevantes        |
+| `/nosotros`     | `nosotros.html`     | Nosotros \| Solgases                          | Equipo, resumen de servicios, marcas    |
+| `/productos`    | `productos.html`    | Productos de seguridad industrial \| Solgases | Galería con modal y 10 categorías (76)  |
+| `/servicios`    | `servicios.html`    | Recarga de extintores y gases \| Solgases     | 18 servicios                            |
+| `/bioseguridad` | `bioseguridad.html` | Productos de bioseguridad \| Solgases         | 20 productos                            |
+| `/contacto`     | `contacto.html`     | Contacto \| Solgases                          | Horario, mapa y formulario (POST a PHP) |
 
-Las URLs antiguas (`/productos.html`, `/index.html`, etc.) redirigen a las nuevas.
-`galeria.html` estaba vacío (0 bytes) y no tenía enlaces, así que no se migró. Cualquier ruta
-desconocida redirige al inicio.
+Las URLs antiguas (`/productos.html`, etc.) redirigen a las nuevas (ver
+[Rutas heredadas](#rutas-heredadas-html)). `galeria.html` estaba vacío (0 bytes) y no tenía
+enlaces, así que no se migró. Cualquier ruta desconocida redirige al inicio en el navegador.
+
+## SEO
+
+Fuente única: `src/app/core/seo/public-pages.ts`. Contiene el título, la descripción y la imagen
+para compartir de cada página, y lo usan las rutas, el prerenderizado, el sitemap y las pruebas.
+Los textos se redactaron a partir del contenido existente, sin añadir datos nuevos.
+
+- **Títulos y descripciones únicos por ruta.** Las pruebas verifican que no se repitan, que el
+  título tenga como máximo 60 caracteres y que la descripción tenga entre 70 y 160.
+- **Metadatos.** `SeoTitleStrategy` (un `TitleStrategy` del router con `Title` y `Meta` de
+  `@angular/platform-browser`) aplica en cada navegación, y también al prerenderizar:
+  - `description`
+  - Open Graph: `og:type`, `og:site_name`, `og:locale` (`es_CO`), `og:title`, `og:description`
+  - Twitter: `twitter:card`, `twitter:title`, `twitter:description`
+  - Con dominio confirmado, además: `<link rel="canonical">`, `og:url`, `og:image` (1200×630,
+    `public/img/og/*.jpg`, recortes de los banners existentes), `og:image:alt` y `twitter:image`.
+- **Encabezados.** Cada página tiene exactamente un `<h1>`: el texto del banner. Nosotros, cuyo
+  banner no tiene texto visible, usa un `<h1>` oculto visualmente. El logo del encabezado dejó de
+  ser `<h1>` (era el mismo en todas las páginas) y ahora es un `<p class="logo">`, con el mismo
+  aspecto.
+- **Textos `alt`.**
+  - Las imágenes informativas tienen `alt` descriptivo: fotos de la galería, del equipo y de
+    Sogamoso, logos (nombre de la marca) y productos (su nombre).
+  - Los banners usan `alt=""` porque son decorativos y su texto equivalente es el `<h1>`.
+- **`robots.txt`.** Se genera en el build. Permite todo salvo `/php/`, el script del formulario,
+  que no es una página. Solo incluye `Sitemap:` cuando hay dominio.
+- **`sitemap.xml`.** Solo se genera si hay dominio. Contiene las 6 páginas públicas, sin rutas
+  heredadas, sin PHP y sin `lastmod` (no hay fechas fiables). Las pruebas verifican que cada URL
+  corresponde a una página real y prerenderizada.
+- **Datos estructurados (`LocalBusiness`): no se añadieron.** Ver
+  [Datos pendientes por confirmar](#datos-pendientes-por-confirmar).
+
+### Dominio (pendiente)
+
+El dominio no aparece en el repositorio ni en la documentación, así que no se inventó.
+`src/app/core/seo/site-url.ts` tiene `SITE_URL = null`. Mientras sea `null`, el build avisa y omite
+la canónica, `og:url`, `og:image`, `twitter:image` y `sitemap.xml`, porque todos exigen URL
+absolutas. Para activarlos:
+
+```ts
+export const SITE_URL: string | null = 'https://dominio-confirmado.example'; // sin barra final
+```
+
+Después, `npm run build`. La URL canónica de cada página no lleva barra final (`/productos`), igual
+que los enlaces del sitio. El servidor debe servir esas URL sin redirigir a `/productos/` (ver
+[Despliegue](#despliegue)).
+
+## Prerenderizado (SSG)
+
+Se usa el mecanismo oficial de Angular 22: `@angular/ssr` con `"outputMode": "static"` y
+`"server": "src/main.server.ts"` en `angular.json`, y `RenderMode.Prerender` en
+`src/app/app.routes.server.ts`. Con `outputMode: "static"` no se genera servidor: el resultado es
+HTML estático, compatible con el hosting estático y el PHP actuales.
+
+Salida de `npm run build` en `dist/solgases/browser/`, que es la carpeta que se publica:
+
+| Archivo                                     | Contenido                                                        |
+| ------------------------------------------- | ---------------------------------------------------------------- |
+| `index.html`                                | `/` prerenderizado                                               |
+| `<ruta>/index.html`                         | `nosotros`, `productos`, `servicios`, `bioseguridad`, `contacto` |
+| `<pagina>.html/index.html`                  | Redirección `meta refresh` desde cada URL heredada (5)           |
+| `index.csr.html`                            | Shell sin prerenderizar para rutas desconocidas (fallback)       |
+| `robots.txt`, `sitemap.xml` (con dominio)   | Generados por `scripts/generate-seo-files.mjs`                   |
+| `img/`, `icons/`, `media/`, `*.js`, `*.css` | Recursos                                                         |
+
+`dist/solgases/prerendered-routes.json` lista las 11 rutas prerenderizadas.
+
+Cada HTML contiene el contenido completo de la página, su `<title>` y sus metadatos, el CSS crítico
+en línea (Angular lo extrae automáticamente), precargas de fuentes y de la imagen del banner, y el
+formulario de Contacto apuntando a `php/enviar-prueba.php`. Al cargar, Angular **hidrata** ese HTML
+(`provideClientHydration(withEventReplay())`) en lugar de volver a crearlo. `npm start` también
+renderiza en el servidor de desarrollo.
+
+## Rendimiento
+
+### Implementado
+
+- **Imágenes.**
+  - `scripts/optimize-images.mjs` (con `sharp`) genera WebP a partir de los originales, que no se
+    modifican: banners en variantes de 640, 1280 y 1920 px; galería hasta 1280 px, porque también
+    se ve ampliada en el modal; el resto hasta 800 px, porque se muestran a 690 px CSS como máximo.
+  - Si el WebP no mejora a un original de tamaño adecuado, se usa el original (5 casos).
+- **`NgOptimizedImage`** en todas las imágenes salvo la del modal, con el ancho y alto reales del
+  archivo servido para reservar espacio y evitar saltos de layout.
+  - El banner, que es la imagen principal visible, usa `priority` (`fetchpriority="high"`, carga
+    inmediata y `<link rel="preload">` en el HTML prerenderizado) y `srcset` responsivo con
+    `sizes="100vw"` mediante un loader propio (`bannerImageLoader`).
+  - El resto de imágenes usa `loading="lazy"`.
+  - Se añadió `height: auto` a `img` en `base.css`, como recomienda la guía de NgOptimizedImage,
+    para que los atributos `width`/`height` no deformen las imágenes que el CSS no dimensiona.
+- **Fuentes.**
+  - Montserrat y Pacifico pasan a WOFF2 con subconjunto latino (Latin-1 y la puntuación usada) y
+    `font-display: swap`. Se verificó que todos los caracteres de los textos están en el subconjunto.
+    El TTF queda como respaldo.
+  - La fuente de iconos usa solo WOFF y TTF, y `font-display: block` para no mostrar letras en
+    lugar de iconos.
+- **Carga por ruta.** Las páginas siguen cargándose de forma diferida (`loadComponent`). El
+  manifiesto de imágenes está en un chunk diferido compartido, no en `main`.
+- No se añadieron CDN ni servicios externos. El único recurso externo sigue siendo el mapa de Google
+  en Contacto.
+
+### Resultados medidos (2026-11-06)
+
+Imágenes referenciadas por el sitio (146 originales): **20,85 MB → 2,57 MB** en WebP. Los banners
+se cuentan en su variante de 1920 px.
+
+Carga inicial con caché vacía, medida con un servidor estático local que registra los bytes de
+cada petición, sin compresión HTTP, cargando cada página en Firefox headless hasta el evento `load`:
+
+| Página       | Antes (1280×800) | Después 1280×800 | Después 400×800 |
+| ------------ | ---------------- | ---------------- | --------------- |
+| Inicio       | 8 599 KB         | 557 KB           | 507 KB          |
+| Nosotros     | 5 613 KB         | 663 KB           | 474 KB          |
+| Productos    | 9 679 KB         | 1 006 KB         | 555 KB          |
+| Servicios    | 2 460 KB         | 589 KB           | 479 KB          |
+| Bioseguridad | 8 948 KB         | 615 KB           | 458 KB          |
+| Contacto     | 1 203 KB         | 491 KB           | 443 KB          |
+
+Antes, la carga era la misma en cualquier viewport porque todas las imágenes se cargaban de
+inmediato. No incluye el iframe de Google Maps. Las imágenes diferidas que se piden después del
+evento `load` (al hacer scroll) no están en "después".
+
+| Build                     | Antes        | Después                                                    |
+| ------------------------- | ------------ | ---------------------------------------------------------- |
+| `main` (gzip -9)          | 71 KB        | 89 KB (+18 KB: hidratación, NgOptimizedImage, Meta)        |
+| Fuentes descargadas       | 815 KB (TTF) | 93 KB (WOFF2) + 2 KB de iconos                             |
+| HTML inicial de `/`       | 1 KB (shell) | 23 KB (contenido prerenderizado)                           |
+| Carpeta publicada (total) | 26,7 MB      | 30,2 MB (se conservan los originales y se suman WebP y OG) |
+
+No se midieron tiempos (LCP, FCP) ni se ejecutó Lighthouse, así que no se afirman mejoras de
+velocidad concretas: solo la reducción de bytes medida.
 
 ## Despliegue
 
-1. `npm run build` y publicar el contenido de `dist/solgases/browser/` en la raíz del sitio.
-2. Publicar la carpeta `php/` **junto a** ese contenido, de modo que exista
-   `/php/enviar-prueba.php`. El formulario apunta a `php/enviar-prueba.php`, relativo a
-   `<base href="/">` (configurable en `src/app/core/contact-form.config.ts`).
-3. Configurar en el servidor un _fallback_ de SPA: las rutas que no correspondan a un archivo
-   existente deben servir `index.html`. Sin esto, recargar `/productos` o volver desde el PHP
-   (que ejecuta `history.go(-1)`) daría 404. Ejemplo orientativo para Apache (`.htaccess`), que
-   no se incluye en el repo porque depende del hosting:
+1. `npm run build` (con `SITE_URL` definido si el dominio ya está confirmado).
+2. Publicar el **contenido** de `dist/solgases/browser/` en la raíz del sitio.
+3. Publicar la carpeta `php/` del repositorio **junto a** ese contenido, de modo que exista
+   `/php/enviar-prueba.php`. Ningún archivo del build se llama `php`, así que no hay conflicto. El
+   formulario apunta a `php/enviar-prueba.php`, relativo a `<base href="/">`.
+4. Configurar el servidor:
+   - Servir `/<ruta>` desde `/<ruta>/index.html` **sin redirigir** a `/<ruta>/`. Muchos servidores
+     (Apache con `DirectorySlash`, el servidor de prueba de Python) redirigen con 301 a la URL con
+     barra, lo que no coincide con la URL canónica.
+   - Servir los archivos existentes tal cual, incluido `php/`, que lo ejecuta el PHP del hosting.
+   - Fallback: cualquier otra ruta debe servir `index.csr.html`. Recargar una página o volver desde
+     el PHP (que ejecuta `history.go(-1)`) a `/contacto` funciona sin fallback porque esas rutas están
+     prerenderizadas.
+   - Recomendado: redirección **301** de las URL heredadas `.html` (ver abajo).
 
-   ```apache
-   RewriteEngine On
-   RewriteCond %{REQUEST_FILENAME} -f [OR]
-   RewriteCond %{REQUEST_FILENAME} -d
-   RewriteRule ^ - [L]
-   RewriteRule ^ index.html [L]
-   ```
+Ejemplos orientativos, **no probados** en este entorno (no hay Apache ni nginx). Ajustar al
+hosting real.
+
+Apache (`.htaccess` en la raíz publicada):
+
+```apache
+Options -Indexes
+DirectorySlash Off
+RewriteEngine On
+RewriteBase /
+
+# URL heredadas del sitio estático anterior: redirección permanente.
+RewriteRule ^(nosotros|productos|servicios|bioseguridad|contacto)\.html$ /$1 [R=301,L]
+
+# Páginas prerenderizadas: /productos -> productos/index.html (sin redirección).
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteCond %{REQUEST_FILENAME}/index.html -f
+RewriteRule ^(.*?)/?$ $1/index.html [L]
+
+# Archivos existentes (incluido php/enviar-prueba.php) se sirven tal cual.
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# Resto de rutas: la aplicación en el navegador.
+RewriteRule ^ index.csr.html [L]
+```
+
+nginx:
+
+```nginx
+location ~ ^/(nosotros|productos|servicios|bioseguridad|contacto)\.html$ {
+  return 301 /$1;
+}
+location / {
+  try_files $uri $uri/index.html /index.csr.html;
+}
+# location ~ ^/php/.+\.php$ { ... }  # según la configuración PHP-FPM del hosting
+```
+
+### Rutas heredadas `.html`
+
+- **En la aplicación:** el router redirige `/index.html` y `/<pagina>.html` a la ruta nueva, igual
+  que antes.
+- **En el HTML estático:** el build genera `<pagina>.html/index.html` con
+  `<meta http-equiv="refresh">`, que es como Angular implementa las redirecciones al prerenderizar.
+  Así funcionan aun sin configurar el servidor, pero con un salto extra si el servidor añade la
+  barra final. Lo recomendable es la redirección 301 en el servidor de los ejemplos.
+- **`/index.html`:** no se prerenderiza como redirección porque ese archivo es el propio inicio.
 
 ## Backend PHP (`php/`)
 
@@ -162,5 +364,33 @@ repositorio.
   alcance de esta fase.
 - El envío real del formulario no se probó de extremo a extremo: no hay PHP en el entorno de
   desarrollo usado y las credenciales SMTP están vacías.
-- La fuente de iconos incluye formatos antiguos (`.eot`, `.svg`). Se conservan tal cual.
-- Las imágenes ocupan unos 27 MB sin optimizar; queda como posible mejora futura.
+- Las imágenes WebP no tienen alternativa JPEG/PNG para navegadores sin soporte de WebP (todos los
+  actuales lo soportan).
+
+## Datos pendientes por confirmar
+
+- **Dominio público.** Sin él no hay canónica, `og:url`, `og:image` ni `sitemap.xml`. Ver
+  [Dominio](#dominio-pendiente).
+- **Datos estructurados `LocalBusiness`.** No se publicaron porque varios datos del sitio podrían
+  estar desactualizados y no hay forma de verificarlos desde el repositorio:
+  - El teléfono `(038) 772 86 66` usa el formato de marcación anterior a 2021; Colombia cambió la
+    numeración fija ese año.
+  - El horario y el texto del sitio son de 2020 ("2020 | Todos los derechos reservados").
+  - No hay dominio para `url`.
+  - Las coordenadas del mapa embebido son el centro del mapa, no necesariamente la ubicación exacta.
+    Una vez confirmados (nombre, dirección, teléfono, horario, dominio), se puede añadir un bloque
+    JSON-LD con solo esos campos.
+- **Perfiles sociales.** No hay ninguno en el sitio; no se añadieron `sameAs` ni `twitter:site`.
+
+## Recomendaciones futuras
+
+- Medir con Lighthouse o PageSpeed una vez desplegado (LCP, CLS, INP) con el hosting real y
+  compresión HTTP activada.
+- Activar en el servidor la compresión (gzip/brotli) y la caché larga para `*.js`, `*.css` y
+  `media/*`, que tienen hash en el nombre.
+- Configurar las redirecciones 301 de las URL `.html` en el servidor.
+- Revisar en modo desarrollo (`npm start`, consola del navegador) las advertencias de
+  NgOptimizedImage sobre proporciones, ya que las imágenes con `object-fit: cover` se recortan a
+  propósito.
+- Decidir si se retiran de `public/img` los originales que ya no se referencian, o se mantienen por
+  enlaces externos antiguos.

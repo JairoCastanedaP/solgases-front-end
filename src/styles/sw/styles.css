@@ -2,11 +2,11 @@
 
 @font-face {
   font-family: "sw";
-  src:url("fonts/sw.eot");
-  src:url("fonts/sw.eot?#iefix") format("embedded-opentype"),
-    url("fonts/sw.woff") format("woff"),
-    url("fonts/sw.ttf") format("truetype"),
-    url("fonts/sw.svg#sw") format("svg");
+  /* Solo formatos que usan los navegadores actuales (antes también .eot y .svg, para IE y
+     Safari antiguos). Los archivos originales se conservan en fonts/. */
+  src: url("fonts/sw.woff") format("woff"),
+    url("fonts/sw.ttf") format("truetype");
+  font-display: block;
   font-weight: normal;
   font-style: normal;
 

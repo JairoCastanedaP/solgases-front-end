@@ -1,4 +1,6 @@
+import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, input, signal } from '@angular/core';
+import { OptimizedImagePipe } from '../../images/optimized-image';
 import { GalleryImage } from '../../models/gallery-image';
 
 /**
@@ -7,6 +9,7 @@ import { GalleryImage } from '../../models/gallery-image';
  */
 @Component({
   selector: 'app-image-gallery',
+  imports: [NgOptimizedImage, OptimizedImagePipe],
   templateUrl: './image-gallery.html',
   styleUrl: './image-gallery.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -15,10 +18,10 @@ export class ImageGallery {
   /** Cada elemento es una columna con sus imágenes en orden vertical. */
   readonly columns = input.required<readonly (readonly GalleryImage[])[]>();
 
-  protected readonly selectedImage = signal<string | null>(null);
+  protected readonly selectedImage = signal<GalleryImage | null>(null);
 
-  protected open(src: string): void {
-    this.selectedImage.set(src);
+  protected open(image: GalleryImage): void {
+    this.selectedImage.set(image);
   }
 
   protected close(): void {

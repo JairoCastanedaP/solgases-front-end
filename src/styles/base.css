@@ -1,15 +1,18 @@
 @font-face {
     font-family:"Pacifico";
-    src: url(./fonts/Pacifico-Regular.ttf);
+    src: url(./fonts/Pacifico-Regular.woff2) format("woff2"), url(./fonts/Pacifico-Regular.ttf) format("truetype");
+    font-display: swap;
 }
 @font-face {
     font-family:"Montserrat";
-    src: url(./fonts/Montserrat-Regular.ttf);
+    src: url(./fonts/Montserrat-Regular.woff2) format("woff2"), url(./fonts/Montserrat-Regular.ttf) format("truetype");
+    font-display: swap;
 }
 @font-face {
     font-family:"Montserrat";
     font-weight:bold;
-    src: url(./fonts/Montserrat-Bold.ttf);
+    src: url(./fonts/Montserrat-Bold.woff2) format("woff2"), url(./fonts/Montserrat-Bold.ttf) format("truetype");
+    font-display: swap;
 }
 *{box-sizing: border-box;}
 
@@ -17,7 +20,7 @@ body{font-family: 'Montserrat', sans-serif; margin: 0;}
 
 /*--------------Estilos Base---------------*/
 
-img{ display: block; width: 100%;max-width: 100%;}
+img{ display: block; width: 100%;max-width: 100%; height: auto;}
 
 
 h1,h2,h3,h4,h5,h6{margin: 0%;}
@@ -31,7 +34,7 @@ h1,h2,h3,h4,h5,h6{margin: 0%;}
 
 /*----------------Estilos del HEADER-----------*/
 .main-header{ width: 100%;}
-.logo{ font-size: 1.8em; color: #DE423A;padding: 10px;font-family: 'Pacifico', cursive; font-weight: 100;}
+.logo{ font-size: 1.8em; color: #DE423A;padding: 10px;font-family: 'Pacifico', cursive; font-weight: 100; margin: 0;}
 .main-header__contactInfo__phone{ background-color: #DE423A;color: white;margin: 0 auto; padding: 10px; }
 .main-header__contactInfo__address{ padding: 10px; margin:0;}
 .main-header[class*="icon-"]:before{ position: relative; top: 2px;right: 5px}
