@@ -1,0 +1,21 @@
+<app-page-banner image="img/architecture-blur-bright-1329061 (1).jpg" text="Nuestros Productos" />
+
+<main class="main">
+  <app-intro-section
+    title="Elementos de Protección Personal"
+    [paragraphs]="[
+      'Manejamos las mejores marcas y los mejores precios en dotaciones, botas de caucho y cuero , guantes, tapaiodios, gafas, caretas y mascarillas',
+      'También tenemos repuestos para equipos de corte, reguladores, flujometros Tuercas, Niples, Uniones dobles, Válvulas de aguja “Y” doble, “Y” sencilla, Cuerpos para reguladores, Asientos, Resortes para válvula, Palanca alta presión, Cabezales, Filtros para reguladores, Diafragmas, Perillas, Acoples y añadiduras especiales',
+    ]"
+  />
+
+  <app-image-gallery [columns]="gallery">
+    <app-contact-button />
+    <h2 class="group__title">Te asesoramos según tus necesidades y la normativa</h2>
+  </app-image-gallery>
+
+  @for (category of categories; track category.title) {
+    <app-intro-section [title]="category.title" />
+    <app-product-grid [items]="category.items" />
+  }
+</main>

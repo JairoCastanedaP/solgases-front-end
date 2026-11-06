@@ -1,0 +1,29 @@
+/*
+ * Estilos globales del sitio.
+ * - sw/styles.css: fuente de iconos (Fontastic) usada por las clases .icon-*.
+ * - base.css: estilos generales migrados de css/estilos.css (layout, header,
+ *   menú, banner, secciones, footer y media queries).
+ * Los estilos propios de cada página o componente viven junto a su componente.
+ */
+@import './styles/sw/styles.css';
+@import './styles/base.css';
+
+/* Los elementos host de Angular son inline por defecto; se comportan como bloques
+   para que el layout sea equivalente al del HTML original. */
+app-root,
+app-site-header,
+app-main-nav,
+app-site-footer,
+app-page-banner,
+app-intro-section,
+app-product-grid,
+app-image-gallery,
+app-contact-button,
+app-home-page,
+app-nosotros-page,
+app-productos-page,
+app-servicios-page,
+app-bioseguridad-page,
+app-contacto-page {
+  display: block;
+}
