@@ -1,0 +1,757 @@
+{
+  "img/almacen.jpg": {
+    "src": "img/webp/almacen-{w}.webp",
+    "width": 1920,
+    "height": 1541,
+    "widths": [
+      640,
+      1280,
+      1920
+    ]
+  },
+  "img/architecture-blur-bright-1329061 (1).jpg": {
+    "src": "img/webp/architecture-blur-bright-1329061 (1)-{w}.webp",
+    "width": 1920,
+    "height": 1281,
+    "widths": [
+      640,
+      1280,
+      1920
+    ]
+  },
+  "img/bioseguridad/coronavirus.jpg": {
+    "src": "img/webp/bioseguridad/coronavirus-{w}.webp",
+    "width": 1280,
+    "height": 853,
+    "widths": [
+      640,
+      1280
+    ]
+  },
+  "img/camioneta2.jpg": {
+    "src": "img/webp/camioneta2.webp",
+    "width": 592,
+    "height": 1141
+  },
+  "img/construction-857143_640.jpg": {
+    "src": "img/webp/construction-857143_640-{w}.webp",
+    "width": 640,
+    "height": 457,
+    "widths": [
+      640
+    ]
+  },
+  "img/extintores.jpg": {
+    "src": "img/webp/extintores-{w}.webp",
+    "width": 1280,
+    "height": 856,
+    "widths": [
+      640,
+      1280
+    ]
+  },
+  "img/galeria/galeria1.jpg": {
+    "src": "img/webp/galeria/galeria1.webp",
+    "width": 1280,
+    "height": 857
+  },
+  "img/guantes.jpg": {
+    "src": "img/webp/guantes-{w}.webp",
+    "width": 1280,
+    "height": 424,
+    "widths": [
+      640,
+      1280
+    ]
+  },
+  "img/marcas/3M.png": {
+    "src": "img/marcas/3M.png",
+    "width": 300,
+    "height": 168
+  },
+  "img/marcas/arseg.png": {
+    "src": "img/webp/marcas/arseg.webp",
+    "width": 287,
+    "height": 175
+  },
+  "img/marcas/croydon.png": {
+    "src": "img/marcas/croydon.png",
+    "width": 251,
+    "height": 201
+  },
+  "img/marcas/du pont.png": {
+    "src": "img/webp/marcas/du pont.webp",
+    "width": 544,
+    "height": 220
+  },
+  "img/marcas/EPI.png": {
+    "src": "img/webp/marcas/EPI.webp",
+    "width": 347,
+    "height": 145
+  },
+  "img/marcas/kondor.png": {
+    "src": "img/marcas/kondor.png",
+    "width": 409,
+    "height": 123
+  },
+  "img/marcas/link tech.png": {
+    "src": "img/webp/marcas/link tech.webp",
+    "width": 395,
+    "height": 212
+  },
+  "img/marcas/MSA.png": {
+    "src": "img/marcas/MSA.png",
+    "width": 311,
+    "height": 162
+  },
+  "img/marcas/noth.jpg": {
+    "src": "img/webp/marcas/noth.webp",
+    "width": 800,
+    "height": 389
+  },
+  "img/marcas/robusta.jfif": {
+    "src": "img/webp/marcas/robusta.webp",
+    "width": 240,
+    "height": 127
+  },
+  "img/marcas/saga.png": {
+    "src": "img/webp/marcas/saga.webp",
+    "width": 332,
+    "height": 152
+  },
+  "img/marcas/steelpro.png": {
+    "src": "img/webp/marcas/steelpro.webp",
+    "width": 359,
+    "height": 140
+  },
+  "img/marcas/terrano.jfif": {
+    "src": "img/webp/marcas/terrano.webp",
+    "width": 666,
+    "height": 372
+  },
+  "img/marcas/victor.png": {
+    "src": "img/webp/marcas/victor.webp",
+    "width": 671,
+    "height": 447
+  },
+  "img/marcas/westland.jfif": {
+    "src": "img/webp/marcas/westland.webp",
+    "width": 249,
+    "height": 128
+  },
+  "img/marcas/zubi-ola.jfif": {
+    "src": "img/webp/marcas/zubi-ola.webp",
+    "width": 238,
+    "height": 124
+  },
+  "img/productos/2.jpg": {
+    "src": "img/webp/productos/2.webp",
+    "width": 1280,
+    "height": 856
+  },
+  "img/productos/3.jpg": {
+    "src": "img/webp/productos/3.webp",
+    "width": 1280,
+    "height": 856
+  },
+  "img/productos/5.jpg": {
+    "src": "img/webp/productos/5.webp",
+    "width": 1280,
+    "height": 853
+  },
+  "img/productos/alcohol.jpg": {
+    "src": "img/webp/productos/alcohol.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/amonio cuaternario.jpg": {
+    "src": "img/webp/productos/amonio cuaternario.webp",
+    "width": 194,
+    "height": 259
+  },
+  "img/productos/arnés.jpg": {
+    "src": "img/webp/productos/arnés.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/avisos de desinfección.jpg": {
+    "src": "img/webp/productos/avisos de desinfección.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/barbuquejo-3-puntos.jpg": {
+    "src": "img/webp/productos/barbuquejo-3-puntos.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/bota kondor teni amarilla.PNG": {
+    "src": "img/webp/productos/bota kondor teni amarilla.webp",
+    "width": 461,
+    "height": 352
+  },
+  "img/productos/bota-caucho-amarilla.jpg": {
+    "src": "img/webp/productos/bota-caucho-amarilla.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/bota-caucho-argyll-rojo.jpg": {
+    "src": "img/webp/productos/bota-caucho-argyll-rojo.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/bota-caucho-negra.jpg": {
+    "src": "img/webp/productos/bota-caucho-negra.webp",
+    "width": 300,
+    "height": 168
+  },
+  "img/productos/bota-croydon-machita.jpg": {
+    "src": "img/webp/productos/bota-croydon-machita.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/bota-ingeniera-dama.jpg": {
+    "src": "img/webp/productos/bota-ingeniera-dama.webp",
+    "width": 520,
+    "height": 520
+  },
+  "img/productos/bota-kondor-soldar.jpg": {
+    "src": "img/webp/productos/bota-kondor-soldar.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/bota-machita-negra.jpg": {
+    "src": "img/webp/productos/bota-machita-negra.webp",
+    "width": 197,
+    "height": 256
+  },
+  "img/productos/bota-saga-ingeniero.jpg": {
+    "src": "img/webp/productos/bota-saga-ingeniero.webp",
+    "width": 276,
+    "height": 183
+  },
+  "img/productos/bota-saga-seguridad.jpg": {
+    "src": "img/webp/productos/bota-saga-seguridad.webp",
+    "width": 276,
+    "height": 183
+  },
+  "img/productos/bota-terrano-ingeniero.jpg": {
+    "src": "img/webp/productos/bota-terrano-ingeniero.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/botas-caucho-argyll.jpg": {
+    "src": "img/webp/productos/botas-caucho-argyll.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/botas-caucho-blancas.jpg": {
+    "src": "img/webp/productos/botas-caucho-blancas.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/botas-ingeniero-seguridad.jpg": {
+    "src": "img/webp/productos/botas-ingeniero-seguridad.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/botas-macha-negra.jpg": {
+    "src": "img/webp/productos/botas-macha-negra.webp",
+    "width": 493,
+    "height": 408
+  },
+  "img/productos/botas-terrano-ingeniero.jpg": {
+    "src": "img/webp/productos/botas-terrano-ingeniero.webp",
+    "width": 224,
+    "height": 224
+  },
+  "img/productos/BOTIQUIN-25-elementos.jpg": {
+    "src": "img/webp/productos/BOTIQUIN-25-elementos.webp",
+    "width": 714,
+    "height": 1024
+  },
+  "img/productos/botiquin-metalico.jpg": {
+    "src": "img/webp/productos/botiquin-metalico.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/camisa jean sogamoso.jpg": {
+    "src": "img/webp/productos/camisa jean sogamoso.webp",
+    "width": 800,
+    "height": 1200
+  },
+  "img/productos/camisa-azul.jpg": {
+    "src": "img/webp/productos/camisa-azul.webp",
+    "width": 203,
+    "height": 248
+  },
+  "img/productos/camisa-jean-hombre-somgamoso.jpg": {
+    "src": "img/webp/productos/camisa-jean-hombre-somgamoso.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/careta acrilico.jpg": {
+    "src": "img/webp/productos/careta acrilico.webp",
+    "width": 640,
+    "height": 427
+  },
+  "img/productos/careta guadañar.jpg": {
+    "src": "img/webp/productos/careta guadañar.webp",
+    "width": 640,
+    "height": 426
+  },
+  "img/productos/careta-altas-temperaturas.jpg": {
+    "src": "img/webp/productos/careta-altas-temperaturas.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/careta-pulir-sogamoso.jpg": {
+    "src": "img/webp/productos/careta-pulir-sogamoso.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/Careta-soldar-corriente.jpg": {
+    "src": "img/webp/productos/Careta-soldar-corriente.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/careta-soldar-inteligente-calabera.jpg": {
+    "src": "img/webp/productos/careta-soldar-inteligente-calabera.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/casco de seguridad sogamoso.jpg": {
+    "src": "img/webp/productos/casco de seguridad sogamoso.webp",
+    "width": 800,
+    "height": 532
+  },
+  "img/productos/casco-alturas-sogamoso.jpg": {
+    "src": "img/webp/productos/casco-alturas-sogamoso.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/casco-economico-sogamoso.jpg": {
+    "src": "img/webp/productos/casco-economico-sogamoso.webp",
+    "width": 735,
+    "height": 667
+  },
+  "img/productos/casco-minero-armadura.jpg": {
+    "src": "img/webp/productos/casco-minero-armadura.webp",
+    "width": 193,
+    "height": 261
+  },
+  "img/productos/casco-safari-sogamoso.jpg": {
+    "src": "img/webp/productos/casco-safari-sogamoso.webp",
+    "width": 307,
+    "height": 164
+  },
+  "img/productos/casco-visor-sogamoso.jpg": {
+    "src": "img/webp/productos/casco-visor-sogamoso.webp",
+    "width": 207,
+    "height": 244
+  },
+  "img/productos/chaleco acolchado.jpg": {
+    "src": "img/webp/productos/chaleco acolchado.webp",
+    "width": 192,
+    "height": 263
+  },
+  "img/productos/chaleco-reflectivo.jpg": {
+    "src": "img/webp/productos/chaleco-reflectivo.webp",
+    "width": 228,
+    "height": 221
+  },
+  "img/productos/cinta de peligro.jpg": {
+    "src": "img/webp/productos/cinta de peligro.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/conjunto-impermeable.jpg": {
+    "src": "img/webp/productos/conjunto-impermeable.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/cono.jpg": {
+    "src": "img/webp/productos/cono.webp",
+    "width": 800,
+    "height": 1067
+  },
+  "img/productos/construccion.jpg": {
+    "src": "img/webp/productos/construccion.webp",
+    "width": 1280,
+    "height": 853
+  },
+  "img/productos/desinfectante.jpg": {
+    "src": "img/webp/productos/desinfectante.webp",
+    "width": 480,
+    "height": 720
+  },
+  "img/productos/dispensador de gel.jpg": {
+    "src": "img/webp/productos/dispensador de gel.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/equipo victor.jfif": {
+    "src": "img/webp/productos/equipo victor.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/eslinga.jpg": {
+    "src": "img/webp/productos/eslinga.webp",
+    "width": 640,
+    "height": 640
+  },
+  "img/productos/extintor 10 libras.jfif": {
+    "src": "img/webp/productos/extintor 10 libras.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/extintor 20 libras abc.jpg": {
+    "src": "img/webp/productos/extintor 20 libras abc.webp",
+    "width": 505,
+    "height": 563
+  },
+  "img/productos/extintor 20 libras H20.jfif": {
+    "src": "img/webp/productos/extintor 20 libras H20.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/extintor 5 libras.jfif": {
+    "src": "img/webp/productos/extintor 5 libras.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/extintor dioxido de carbono.jpg": {
+    "src": "img/webp/productos/extintor dioxido de carbono.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/extintor satelite.jpg": {
+    "src": "img/webp/productos/extintor satelite.webp",
+    "width": 259,
+    "height": 194
+  },
+  "img/productos/extintor solkaflam.jpg": {
+    "src": "img/webp/productos/extintor solkaflam.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/extintor tipo k.jpg": {
+    "src": "img/webp/productos/extintor tipo k.webp",
+    "width": 800,
+    "height": 1087
+  },
+  "img/productos/filtro-2097.jpg": {
+    "src": "img/webp/productos/filtro-2097.webp",
+    "width": 224,
+    "height": 225
+  },
+  "img/productos/filtro-3M-7093C.jpg": {
+    "src": "img/webp/productos/filtro-3M-7093C.webp",
+    "width": 224,
+    "height": 224
+  },
+  "img/productos/filtro-6003.jpg": {
+    "src": "img/webp/productos/filtro-6003.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/fumigadora.jpg": {
+    "src": "img/webp/productos/fumigadora.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/gafa-ambar-amarilla.jpg": {
+    "src": "img/webp/productos/gafa-ambar-amarilla.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/gafa-kim-malla.jpg": {
+    "src": "img/webp/productos/gafa-kim-malla.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/gafa-laboratorio.jpg": {
+    "src": "img/webp/productos/gafa-laboratorio.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/gafa-nemesis.jpg": {
+    "src": "img/webp/productos/gafa-nemesis.webp",
+    "width": 235,
+    "height": 215
+  },
+  "img/productos/gafa-radians-negra.jpg": {
+    "src": "img/webp/productos/gafa-radians-negra.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/gafa-top-gun.jpg": {
+    "src": "img/webp/productos/gafa-top-gun.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/gafas anti fog.jpg": {
+    "src": "img/webp/productos/gafas anti fog.webp",
+    "width": 640,
+    "height": 426
+  },
+  "img/productos/gafas bioseguridad.jpg": {
+    "src": "img/webp/productos/gafas bioseguridad.webp",
+    "width": 640,
+    "height": 427
+  },
+  "img/productos/gafas de seguridad sogamoso.jpg": {
+    "src": "img/webp/productos/gafas de seguridad sogamoso.webp",
+    "width": 640,
+    "height": 640
+  },
+  "img/productos/gel sogamoso.jpg": {
+    "src": "img/webp/productos/gel sogamoso.webp",
+    "width": 512,
+    "height": 640
+  },
+  "img/productos/guante-altas-temperaturas.jpg": {
+    "src": "img/webp/productos/guante-altas-temperaturas.webp",
+    "width": 173,
+    "height": 292
+  },
+  "img/productos/guante-carnaza-sogamoso.jpg": {
+    "src": "img/webp/productos/guante-carnaza-sogamoso.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/guante-kodiak.jpg": {
+    "src": "img/webp/productos/guante-kodiak.webp",
+    "width": 261,
+    "height": 193
+  },
+  "img/productos/guante-lana.jpg": {
+    "src": "img/webp/productos/guante-lana.webp",
+    "width": 223,
+    "height": 226
+  },
+  "img/productos/guante-latex-negro.jpg": {
+    "src": "img/webp/productos/guante-latex-negro.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/guantes caucho.jpg": {
+    "src": "img/webp/productos/guantes caucho.webp",
+    "width": 640,
+    "height": 462
+  },
+  "img/productos/guantes vaqueta.jpg": {
+    "src": "img/webp/productos/guantes vaqueta.webp",
+    "width": 237,
+    "height": 213
+  },
+  "img/productos/guantes_latex_sogamoso.jpg": {
+    "src": "img/webp/productos/guantes_latex_sogamoso.webp",
+    "width": 800,
+    "height": 533
+  },
+  "img/productos/guantes-mosquetero.jpg": {
+    "src": "img/webp/productos/guantes-mosquetero.webp",
+    "width": 185,
+    "height": 272
+  },
+  "img/productos/guantes-nitrilo.jpg": {
+    "src": "img/webp/productos/guantes-nitrilo.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/kit-carretera-automovil.jpg": {
+    "src": "img/webp/productos/kit-carretera-automovil.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/linterna-varta.jpg": {
+    "src": "img/webp/productos/linterna-varta.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/maleta-alfombra-carro.jpg": {
+    "src": "img/webp/productos/maleta-alfombra-carro.webp",
+    "width": 259,
+    "height": 194
+  },
+  "img/productos/manguera-oxicorte.jpg": {
+    "src": "img/webp/productos/manguera-oxicorte.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/manometro.jpg": {
+    "src": "img/webp/productos/manometro.webp",
+    "width": 640,
+    "height": 426
+  },
+  "img/productos/mascarilla 3m elastomero.PNG": {
+    "src": "img/webp/productos/mascarilla 3m elastomero.webp",
+    "width": 723,
+    "height": 486
+  },
+  "img/productos/mascarilla-economica.jpg": {
+    "src": "img/webp/productos/mascarilla-economica.webp",
+    "width": 222,
+    "height": 227
+  },
+  "img/productos/mascarilla-well-done.jpg": {
+    "src": "img/webp/productos/mascarilla-well-done.webp",
+    "width": 187,
+    "height": 270
+  },
+  "img/productos/mascarilla.jpg": {
+    "src": "img/webp/productos/mascarilla.webp",
+    "width": 800,
+    "height": 533
+  },
+  "img/productos/monogafa-everest.jpg": {
+    "src": "img/webp/productos/monogafa-everest.webp",
+    "width": 246,
+    "height": 204
+  },
+  "img/productos/nipleria.jpg": {
+    "src": "img/webp/productos/nipleria.webp",
+    "width": 465,
+    "height": 329
+  },
+  "img/productos/overol desechable.jpg": {
+    "src": "img/webp/productos/overol desechable.webp",
+    "width": 640,
+    "height": 426
+  },
+  "img/productos/overol-drill-dos-piezas.jpg": {
+    "src": "img/webp/productos/overol-drill-dos-piezas.webp",
+    "width": 158,
+    "height": 319
+  },
+  "img/productos/overol-drill-enterizo.jpg": {
+    "src": "img/webp/productos/overol-drill-enterizo.webp",
+    "width": 195,
+    "height": 259
+  },
+  "img/productos/pantalón jean sogamoso.jpg": {
+    "src": "img/webp/productos/pantalón jean sogamoso.webp",
+    "width": 217,
+    "height": 232
+  },
+  "img/productos/pinza-masa.jpg": {
+    "src": "img/webp/productos/pinza-masa.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/regulador victor.jfif": {
+    "src": "img/webp/productos/regulador victor.webp",
+    "width": 217,
+    "height": 233
+  },
+  "img/productos/regulador-acetileno.jpg": {
+    "src": "img/webp/productos/regulador-acetileno.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/reguladores.jfif": {
+    "src": "img/webp/productos/reguladores.webp",
+    "width": 480,
+    "height": 320
+  },
+  "img/productos/respirador-7501.jpg": {
+    "src": "img/webp/productos/respirador-7501.webp",
+    "width": 532,
+    "height": 373
+  },
+  "img/productos/señalización.PNG": {
+    "src": "img/webp/productos/señalización.webp",
+    "width": 577,
+    "height": 374
+  },
+  "img/productos/soporte-extintor.jpg": {
+    "src": "img/webp/productos/soporte-extintor.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/productos/tapabocas 3m.jpg": {
+    "src": "img/webp/productos/tapabocas 3m.webp",
+    "width": 800,
+    "height": 533
+  },
+  "img/productos/tapabocas sencillo.jpg": {
+    "src": "img/webp/productos/tapabocas sencillo.webp",
+    "width": 640,
+    "height": 427
+  },
+  "img/productos/tapaoidos-casco.jpg": {
+    "src": "img/webp/productos/tapaoidos-casco.webp",
+    "width": 231,
+    "height": 218
+  },
+  "img/productos/tapete covid.jpg": {
+    "src": "img/productos/tapete covid.jpg",
+    "width": 291,
+    "height": 173
+  },
+  "img/productos/termometro digital.jpg": {
+    "src": "img/webp/productos/termometro digital.webp",
+    "width": 800,
+    "height": 484
+  },
+  "img/productos/termometro sogamoso.jpg": {
+    "src": "img/webp/productos/termometro sogamoso.webp",
+    "width": 640,
+    "height": 426
+  },
+  "img/servicios/acetileno.jpg": {
+    "src": "img/webp/servicios/acetileno.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/servicios/acumulador.jpg": {
+    "src": "img/webp/servicios/acumulador.webp",
+    "width": 254,
+    "height": 198
+  },
+  "img/servicios/botella-mezcla.png": {
+    "src": "img/webp/servicios/botella-mezcla.webp",
+    "width": 225,
+    "height": 225
+  },
+  "img/servicios/botella-oxigeno.jpg": {
+    "src": "img/webp/servicios/botella-oxigeno.webp",
+    "width": 250,
+    "height": 201
+  },
+  "img/servicios/mezcla.PNG": {
+    "src": "img/webp/servicios/mezcla.webp",
+    "width": 433,
+    "height": 420
+  },
+  "img/servicios/nitrogeno-sogamoso.jpg": {
+    "src": "img/webp/servicios/nitrogeno-sogamoso.webp",
+    "width": 800,
+    "height": 600
+  },
+  "img/servicios/recarga.jpg": {
+    "src": "img/webp/servicios/recarga.webp",
+    "width": 640,
+    "height": 480
+  },
+  "img/servicios/soplete.jpg": {
+    "src": "img/webp/servicios/soplete.webp",
+    "width": 800,
+    "height": 533
+  },
+  "img/servicios/tanques1.jpg": {
+    "src": "img/webp/servicios/tanques1.webp",
+    "width": 800,
+    "height": 533
+  },
+  "img/socios.jpg": {
+    "src": "img/webp/socios.webp",
+    "width": 640,
+    "height": 403
+  },
+  "img/sogamoso.jpg": {
+    "src": "img/webp/sogamoso.webp",
+    "width": 640,
+    "height": 425
+  }
+}

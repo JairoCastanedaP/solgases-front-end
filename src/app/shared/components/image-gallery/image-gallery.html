@@ -4,13 +4,16 @@
     @for (column of columns(); track $index) {
       <div class="column--50-25">
         @for (image of column; track $index) {
+          @let img = image.src | optimizedImage;
           <img
-            [src]="image.src"
+            [ngSrc]="img.src"
+            [width]="img.width"
+            [height]="img.height"
             class="gallery__img"
             [class.gallery__img--big]="image.size === 'big'"
             [class.gallery__img--small]="image.size === 'small'"
-            alt=""
-            (click)="open(image.src)"
+            [alt]="image.alt"
+            (click)="open(image)"
           />
         }
       </div>
@@ -20,8 +23,8 @@
 
 <div class="modal" [class.modal--open]="selectedImage() !== null">
   <div class="modal__content">
-    @if (selectedImage(); as src) {
-      <img [src]="src" alt="" class="modal__img" />
+    @if (selectedImage(); as image) {
+      <img [src]="(image.src | optimizedImage).src" [alt]="image.alt" class="modal__img" />
     }
   </div>
   <div

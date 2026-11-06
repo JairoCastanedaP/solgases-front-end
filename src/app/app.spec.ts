@@ -4,6 +4,7 @@ import { provideRouter, Router, withInMemoryScrolling } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { App } from './app';
 import { routes } from './app.routes';
+import { PUBLIC_PAGES } from './core/seo/public-pages';
 
 describe('App', () => {
   beforeEach(() => {
@@ -25,22 +26,46 @@ describe('App', () => {
   });
 
   const pages: [path: string, banner: string, title: string][] = [
-    ['/', 'Su mejor opción en Seguridad Industrial en Sogamoso', 'Solgases'],
-    ['/nosotros', '', 'Nosotros | Solgases'],
-    ['/productos', 'Nuestros Productos', 'Productos | Solgases'],
-    ['/servicios', 'Nuestros Servicios', 'Servicios | Solgases'],
-    ['/bioseguridad', 'Bioseguridad', 'Bioseguridad | Solgases'],
-    ['/contacto', 'Dejanos un mensaje', 'Contacto | Solgases'],
+    ['/', 'Su mejor opción en Seguridad Industrial en Sogamoso', PUBLIC_PAGES.home.title],
+    ['/nosotros', '', PUBLIC_PAGES.nosotros.title],
+    ['/productos', 'Nuestros Productos', PUBLIC_PAGES.productos.title],
+    ['/servicios', 'Nuestros Servicios', PUBLIC_PAGES.servicios.title],
+    ['/bioseguridad', 'Bioseguridad', PUBLIC_PAGES.bioseguridad.title],
+    ['/contacto', 'Dejanos un mensaje', PUBLIC_PAGES.contacto.title],
   ];
 
   for (const [path, banner, title] of pages) {
-    it(`muestra la página ${path} con su banner y título`, async () => {
+    it(`muestra la página ${path} con su banner, título y un único <h1>`, async () => {
       const harness = await RouterTestingHarness.create(path);
-      const el = harness.routeNativeElement as HTMLElement;
+      const page = harness.routeNativeElement as HTMLElement;
+      const app = harness.fixture.nativeElement as HTMLElement;
 
-      expect(el.querySelector('.banner__content')?.textContent?.trim()).toBe(banner);
-      expect(el.querySelector('main.main')).not.toBeNull();
+      expect(page.querySelector('.banner__content')?.textContent?.trim()).toBe(banner);
+      expect(page.querySelector('main.main')).not.toBeNull();
       expect(TestBed.inject(Title).getTitle()).toBe(title);
+      expect(app.querySelectorAll('h1').length).toBe(1);
+    });
+
+    it(`en ${path} prioriza la imagen del banner y difiere el resto`, async () => {
+      const harness = await RouterTestingHarness.create(path);
+      const images = Array.from(
+        (harness.routeNativeElement as HTMLElement).querySelectorAll('img'),
+      );
+      const [banner, ...rest] = images;
+
+      expect(banner.classList).toContain('banner__img');
+      expect(banner.getAttribute('fetchpriority')).toBe('high');
+      expect(banner.getAttribute('loading')).toBe('eager');
+      expect(banner.getAttribute('srcset')).toMatch(/\.webp 640w/);
+      for (const img of [banner, ...rest]) {
+        expect(img.getAttribute('width'), img.src).toMatch(/^\d+$/);
+        expect(img.getAttribute('height'), img.src).toMatch(/^\d+$/);
+      }
+      for (const img of rest) {
+        expect(img.getAttribute('loading'), img.src).toBe('lazy');
+        // Solo el banner (con texto superpuesto) es decorativo.
+        expect(img.getAttribute('alt')?.trim(), img.src).toBeTruthy();
+      }
     });
   }
 
