@@ -1,0 +1,45 @@
+<app-page-banner image="img/almacen.jpg" />
+
+<main class="main">
+  <app-intro-section
+    title="Solgases"
+    [paragraphs]="[
+      'Somos una empresa sogamoseña con más de dos decadas colaborando con la protección personal de los trabajadores, prevención de riesgos viales y laborales',
+    ]"
+  />
+
+  <section class="group our-team">
+    <app-contact-button />
+    <h2 class="group__title">Te contamos un poco sobre nosotros</h2>
+
+    <div class="container container--flex">
+      @for (highlight of highlights; track highlight.title) {
+        <div class="column--33">
+          <h3 class="our-team__title">{{ highlight.title }}</h3>
+          <img [src]="highlight.image" alt="" class="our-team__img" />
+          <!-- Se conserva la clase original (our--team__txt), que no tiene estilos asociados. -->
+          <p class="our--team__txt">{{ highlight.text }}</p>
+        </div>
+      }
+    </div>
+  </section>
+
+  <app-intro-section [title]="summary.title" [paragraphs]="[summary.text]" />
+
+  <!--
+    En el original estos logos usaban clases gallery__img sin cargar sus estilos ni el modal,
+    por eso se muestran como imágenes simples (sin galería ni modal).
+  -->
+  <div class="group gallery">
+    <h2 class="group__title">Manejamos las mejores marcas</h2>
+    <div class="container container--flex">
+      @for (column of brandColumns; track $index) {
+        <div class="column--50-25">
+          @for (logo of column; track logo) {
+            <img [src]="logo" class="gallery__img gallery__img--big" alt="" />
+          }
+        </div>
+      }
+    </div>
+  </div>
+</main>

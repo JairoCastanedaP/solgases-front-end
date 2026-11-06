@@ -1,0 +1,34 @@
+<app-page-banner
+  image="img/construction-857143_640.jpg"
+  text="Su mejor opción en Seguridad Industrial en Sogamoso"
+/>
+
+<main class="main">
+  <app-intro-section
+    title="Bienvenido a Nuestro sitio web"
+    [paragraphs]="[
+      'Acá encontrarás un abrebocas de los productos y servicios que ofrecemos, también la información necesaria para contactar con nosotros y recibir una excelente asesoría',
+    ]"
+  />
+
+  <section class="group main__about__description">
+    <div class="container container--flex">
+      <div class="column column--50">
+        <img src="img/sogamoso.jpg" alt="" />
+      </div>
+      <div class="column column--50">
+        <h3 class="column__title">
+          Contamos con más de dos decadas de experiencia en seguridad Industrial en Sogamoso
+        </h3>
+        <p class="column__txt">
+          Nuestro objetivo es brindarle a nuestros clientes las mejores opciones para la prevención
+          de accidentes, seguridad en el trabajo y cumplimiento de las normas.
+        </p>
+        <app-contact-button />
+      </div>
+    </div>
+  </section>
+
+  <app-product-grid heading="Productos Relevantes" [items]="featuredProducts" />
+  <app-product-grid heading="Servicios Relevantes" [items]="featuredServices" />
+</main>
