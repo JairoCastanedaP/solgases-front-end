@@ -1,0 +1,414 @@
+{
+  "featured": [
+    "llenado-nitrogeno",
+    "recarga-extintor-5-libras",
+    "recarga-extintor-10-libras",
+    "recarga-acumulador",
+    "recarga-extintor-20-libras",
+    "recarga-extintor-5-libras",
+    "revision-equipos-soldar",
+    "llenado-argon",
+    "recarga-extintor-satelite",
+    "recarga-extintor-co2",
+    "recarga-extintor-solkaflam",
+    "recarga-extintor-tipo-k"
+  ],
+  "services": [
+    {
+      "id": "llenado-nitrogeno",
+      "slug": "llenado-nitrogeno",
+      "name": "Llenado de Nitrógeno(N)",
+      "summary": "Llenado de nitrógeno (N), uno de los servicios de gases que ofrece Solgases.",
+      "description": "Llenado de nitrógeno (N), uno de los servicios de gases que ofrece Solgases. Solgases realiza el mantenimiento y llenado de acumuladores y tanques de oxígeno, acetileno, nitrógeno y CO2.",
+      "image": {
+        "src": "img/servicios/nitrogeno-sogamoso.jpg",
+        "alt": "Dos cilindros negros de distinto tamaño con válvula en la parte superior"
+      },
+      "details": [
+        {
+          "label": "Tipo de servicio",
+          "value": "Llenado de gases"
+        },
+        {
+          "label": "Gas",
+          "value": "Nitrógeno (N)"
+        }
+      ],
+      "gallery": [
+        {
+          "src": "img/servicios/tanques1.jpg",
+          "alt": "Cilindros con válvulas y mangueras en un taller"
+        }
+      ],
+      "notes": [
+        "Para el transporte de tanques o gran cantidad de mercancía ofrecemos el domicilio sin ningún costo adicional siempre y cuando sea dentro del municipio"
+      ]
+    },
+    {
+      "id": "llenado-oxigeno-industrial",
+      "slug": "llenado-oxigeno-industrial",
+      "name": "Llenado Oxígeno(O) Industrial",
+      "summary": "Llenado de oxígeno (O) industrial, uno de los servicios de gases que ofrece Solgases.",
+      "description": "Llenado de oxígeno (O) industrial, uno de los servicios de gases que ofrece Solgases. Solgases realiza el mantenimiento y llenado de acumuladores y tanques de oxígeno, acetileno, nitrógeno y CO2.",
+      "image": {
+        "src": "img/servicios/botella-oxigeno.jpg",
+        "alt": "Tres cilindros verdes en fila con válvula en la parte superior"
+      },
+      "details": [
+        {
+          "label": "Tipo de servicio",
+          "value": "Llenado de gases"
+        },
+        {
+          "label": "Gas",
+          "value": "Oxígeno (O) industrial"
+        }
+      ],
+      "notes": [
+        "Para el transporte de tanques o gran cantidad de mercancía ofrecemos el domicilio sin ningún costo adicional siempre y cuando sea dentro del municipio"
+      ]
+    },
+    {
+      "id": "recarga-extintor-5-libras",
+      "slug": "recarga-extintor-5-libras",
+      "name": "Recarga de extintor de 5 libras",
+      "summary": "Recarga de extintores de 5 libras, uno de los servicios que ofrece Solgases.",
+      "description": "Recarga de extintores de 5 libras, uno de los servicios que ofrece Solgases. Solgases realiza la recarga de extintores ABC, agua a presión, CO2 y Solkaflam, entre otros.",
+      "image": {
+        "src": "img/productos/extintor 5 libras.jfif",
+        "alt": "Extintor amarillo con rótulo de químico seco, manija negra y manómetro"
+      },
+      "details": [
+        {
+          "label": "Tipo de servicio",
+          "value": "Recarga de extintores"
+        },
+        {
+          "label": "Extintor",
+          "value": "5 libras"
+        }
+      ]
+    },
+    {
+      "id": "reparacion-regulador-oxigeno",
+      "slug": "reparacion-regulador-oxigeno",
+      "name": "Reparación regulador Oxígeno",
+      "summary": "Reparación de reguladores de oxígeno, uno de los servicios que ofrece Solgases.",
+      "description": "Reparación de reguladores de oxígeno, uno de los servicios que ofrece Solgases. Solgases también realiza la reparación de reguladores y equipos de soldadura.",
+      "image": {
+        "src": "img/productos/regulador victor.jfif",
+        "alt": "Regulador de cuerpo verde con dos manómetros y conexión de bronce"
+      },
+      "details": [
+        {
+          "label": "Tipo de servicio",
+          "value": "Reparación de reguladores"
+        },
+        {
+          "label": "Regulador",
+          "value": "Oxígeno"
+        }
+      ]
+    },
+    {
+      "id": "recarga-extintor-10-libras",
+      "slug": "recarga-extintor-10-libras",
+      "name": "Recarga de extintor de 10 libras",
+      "summary": "Recarga de extintores de 10 libras, uno de los servicios que ofrece Solgases.",
+      "description": "Recarga de extintores de 10 libras, uno de los servicios que ofrece Solgases. Solgases realiza la recarga de extintores ABC, agua a presión, CO2 y Solkaflam, entre otros.",
+      "image": {
+        "src": "img/productos/extintor 10 libras.jfif",
+        "alt": "Extintor amarillo con rótulo frontal y manija negra"
+      },
+      "details": [
+        {
+          "label": "Tipo de servicio",
+          "value": "Recarga de extintores"
+        },
+        {
+          "label": "Extintor",
+          "value": "10 libras"
+        }
+      ]
+    },
+    {
+      "id": "recarga-acumulador",
+      "slug": "recarga-acumulador",
+      "name": "Recarga de Acumulador",
+      "summary": "Recarga de acumuladores, uno de los servicios que ofrece Solgases.",
+      "description": "Recarga de acumuladores, uno de los servicios que ofrece Solgases. Solgases realiza el mantenimiento y llenado de acumuladores y tanques de oxígeno, acetileno, nitrógeno y CO2.",
+      "image": {
+        "src": "img/servicios/acumulador.jpg",
+        "alt": "Grupo de acumuladores azules, uno de ellos con un corte que muestra su interior"
+      },
+      "details": [
+        {
+          "label": "Tipo de servicio",
+          "value": "Recarga de acumuladores"
+        }
+      ]
+    },
+    {
+      "id": "reparacion-regulador-acetileno",
+      "slug": "reparacion-regulador-acetileno",
+      "name": "Reparación regulador Acetileno",
+      "summary": "Reparación de reguladores de acetileno, uno de los servicios que ofrece Solgases.",
+      "description": "Reparación de reguladores de acetileno, uno de los servicios que ofrece Solgases. Solgases también realiza la reparación de reguladores y equipos de soldadura.",
+      "image": {
+        "src": "img/productos/regulador-acetileno.jpg",
+        "alt": "Regulador con perilla roja, dos manómetros y conexión de bronce"
+      },
+      "details": [
+        {
+          "label": "Tipo de servicio",
+          "value": "Reparación de reguladores"
+        },
+        {
+          "label": "Regulador",
+          "value": "Acetileno"
+        }
+      ]
+    },
+    {
+      "id": "recarga-extintor-agua-presion",
+      "slug": "recarga-extintor-agua-presion",
+      "name": "Recarga de extintor Agua a Presión",
+      "summary": "Recarga de extintores de agua a presión, uno de los servicios que ofrece Solgases.",
+      "description": "Recarga de extintores de agua a presión, uno de los servicios que ofrece Solgases. Solgases realiza la recarga de extintores ABC, agua a presión, CO2 y Solkaflam, entre otros.",
+      "image": {
+        "src": "img/productos/extintor 20 libras H20.jfif",
+        "alt": "Extintor verde con rótulo de agua a presión y manguera negra"
+      },
+      "details": [
+        {
+          "label": "Tipo de servicio",
+          "value": "Recarga de extintores"
+        },
+        {
+          "label": "Extintor",
+          "value": "Agua a presión"
+        }
+      ]
+    },
+    {
+      "id": "llenado-acetileno",
+      "slug": "llenado-acetileno",
+      "name": "Llenado de Acetileno",
+      "summary": "Llenado de acetileno, uno de los servicios de gases que ofrece Solgases.",
+      "description": "Llenado de acetileno, uno de los servicios de gases que ofrece Solgases. Solgases realiza el mantenimiento y llenado de acumuladores y tanques de oxígeno, acetileno, nitrógeno y CO2.",
+      "image": {
+        "src": "img/servicios/acetileno.jpg",
+        "alt": "Cilindro rojo con válvula en la parte superior"
+      },
+      "details": [
+        {
+          "label": "Tipo de servicio",
+          "value": "Llenado de gases"
+        },
+        {
+          "label": "Gas",
+          "value": "Acetileno"
+        }
+      ],
+      "notes": [
+        "Para el transporte de tanques o gran cantidad de mercancía ofrecemos el domicilio sin ningún costo adicional siempre y cuando sea dentro del municipio"
+      ]
+    },
+    {
+      "id": "recarga-extintor-20-libras",
+      "slug": "recarga-extintor-20-libras",
+      "name": "Recarga de extintor de 20 libras",
+      "summary": "Recarga de extintores de 20 libras, uno de los servicios que ofrece Solgases.",
+      "description": "Recarga de extintores de 20 libras, uno de los servicios que ofrece Solgases. Solgases realiza la recarga de extintores ABC, agua a presión, CO2 y Solkaflam, entre otros.",
+      "image": {
+        "src": "img/productos/extintor 20 libras abc.jpg",
+        "alt": "Extintor amarillo sin rótulo, con manija negra"
+      },
+      "details": [
+        {
+          "label": "Tipo de servicio",
+          "value": "Recarga de extintores"
+        },
+        {
+          "label": "Extintor",
+          "value": "20 libras"
+        }
+      ],
+      "gallery": [
+        {
+          "src": "img/productos/extintor 20 libras H20.jfif",
+          "alt": "Extintor verde con rótulo de agua a presión y manguera negra"
+        }
+      ]
+    },
+    {
+      "id": "revision-equipos-soldar",
+      "slug": "revision-equipos-soldar",
+      "name": "Revisión Equipos de soldar",
+      "summary": "Revisión de equipos de soldar, uno de los servicios que ofrece Solgases.",
+      "description": "Revisión de equipos de soldar, uno de los servicios que ofrece Solgases. Solgases también realiza la reparación de reguladores y equipos de soldadura.",
+      "image": {
+        "src": "img/servicios/soplete.jpg",
+        "alt": "Primer plano de un soplete de bronce con mangueras roja y azul"
+      },
+      "details": [
+        {
+          "label": "Tipo de servicio",
+          "value": "Revisión de equipos de soldar"
+        }
+      ]
+    },
+    {
+      "id": "llenado-argon",
+      "slug": "llenado-argon",
+      "name": "Llenado de Argón(Ar)",
+      "summary": "Llenado de argón (Ar), uno de los servicios de gases que ofrece Solgases.",
+      "description": "Llenado de argón (Ar), uno de los servicios de gases que ofrece Solgases.",
+      "image": {
+        "src": "img/servicios/recarga.jpg",
+        "alt": "Cilindros grises con válvulas en un taller"
+      },
+      "details": [
+        {
+          "label": "Tipo de servicio",
+          "value": "Llenado de gases"
+        },
+        {
+          "label": "Gas",
+          "value": "Argón (Ar)"
+        }
+      ],
+      "notes": [
+        "Para el transporte de tanques o gran cantidad de mercancía ofrecemos el domicilio sin ningún costo adicional siempre y cuando sea dentro del municipio"
+      ]
+    },
+    {
+      "id": "recarga-extintor-satelite",
+      "slug": "recarga-extintor-satelite",
+      "name": "Recarga de extintor satelite",
+      "summary": "Recarga de extintores satélite, uno de los servicios que ofrece Solgases.",
+      "description": "Recarga de extintores satélite, uno de los servicios que ofrece Solgases. Solgases realiza la recarga de extintores ABC, agua a presión, CO2 y Solkaflam, entre otros.",
+      "image": {
+        "src": "img/productos/extintor satelite.jpg",
+        "alt": "Extintor satélite amarillo y redondo sobre un carro con ruedas negras"
+      },
+      "details": [
+        {
+          "label": "Tipo de servicio",
+          "value": "Recarga de extintores"
+        },
+        {
+          "label": "Extintor",
+          "value": "Satélite"
+        }
+      ]
+    },
+    {
+      "id": "recarga-extintor-co2",
+      "slug": "recarga-extintor-co2",
+      "name": "Recarga de extintor de CO2",
+      "summary": "Recarga de extintores de CO2, uno de los servicios que ofrece Solgases.",
+      "description": "Recarga de extintores de CO2, uno de los servicios que ofrece Solgases. Solgases realiza la recarga de extintores ABC, agua a presión, CO2 y Solkaflam, entre otros.",
+      "image": {
+        "src": "img/productos/extintor dioxido de carbono.jpg",
+        "alt": "Extintor rojo de dióxido de carbono con manguera negra y boquilla"
+      },
+      "details": [
+        {
+          "label": "Tipo de servicio",
+          "value": "Recarga de extintores"
+        },
+        {
+          "label": "Extintor",
+          "value": "CO2"
+        }
+      ]
+    },
+    {
+      "id": "recarga-extintor-solkaflam",
+      "slug": "recarga-extintor-solkaflam",
+      "name": "Recarga de extintor de Solkaflam",
+      "summary": "Recarga de extintores de Solkaflam, uno de los servicios que ofrece Solgases.",
+      "description": "Recarga de extintores de Solkaflam, uno de los servicios que ofrece Solgases. Solgases realiza la recarga de extintores ABC, agua a presión, CO2 y Solkaflam, entre otros.",
+      "image": {
+        "src": "img/productos/extintor solkaflam.jpg",
+        "alt": "Extintor blanco con rótulo de Solkaflam y manguera negra"
+      },
+      "details": [
+        {
+          "label": "Tipo de servicio",
+          "value": "Recarga de extintores"
+        },
+        {
+          "label": "Extintor",
+          "value": "Solkaflam"
+        }
+      ]
+    },
+    {
+      "id": "recarga-extintor-tipo-k",
+      "slug": "recarga-extintor-tipo-k",
+      "name": "Recarga de extintor Tipo K",
+      "summary": "Recarga de extintores tipo K, uno de los servicios que ofrece Solgases.",
+      "description": "Recarga de extintores tipo K, uno de los servicios que ofrece Solgases. Solgases realiza la recarga de extintores ABC, agua a presión, CO2 y Solkaflam, entre otros.",
+      "image": {
+        "src": "img/productos/extintor tipo k.jpg",
+        "alt": "Extintor metálico plateado con rótulo de tipo K y manguera negra"
+      },
+      "details": [
+        {
+          "label": "Tipo de servicio",
+          "value": "Recarga de extintores"
+        },
+        {
+          "label": "Extintor",
+          "value": "Tipo K"
+        }
+      ]
+    },
+    {
+      "id": "llenado-mezcla-argon-co2",
+      "slug": "llenado-mezcla-argon-co2",
+      "name": "Llenado de Mezcla(Ar+Co2)",
+      "summary": "Llenado de mezcla de argón y CO2, uno de los servicios de gases que ofrece Solgases.",
+      "description": "Llenado de mezcla de argón y CO2, uno de los servicios de gases que ofrece Solgases.",
+      "image": {
+        "src": "img/servicios/botella-mezcla.png",
+        "alt": "Cilindro dorado alto con válvula verde en la parte superior"
+      },
+      "details": [
+        {
+          "label": "Tipo de servicio",
+          "value": "Llenado de gases"
+        },
+        {
+          "label": "Gas",
+          "value": "Mezcla de argón y CO2"
+        }
+      ],
+      "notes": [
+        "Para el transporte de tanques o gran cantidad de mercancía ofrecemos el domicilio sin ningún costo adicional siempre y cuando sea dentro del municipio"
+      ]
+    },
+    {
+      "id": "alquiler-cilindros",
+      "slug": "alquiler-cilindros",
+      "name": "Alquiler de Cilindros",
+      "summary": "Alquiler de cilindros, uno de los servicios que ofrece Solgases.",
+      "description": "Alquiler de cilindros, uno de los servicios que ofrece Solgases.",
+      "image": {
+        "src": "img/servicios/mezcla.PNG",
+        "alt": "Grupo de cilindros de varios colores y tamaños con sus válvulas"
+      },
+      "details": [
+        {
+          "label": "Tipo de servicio",
+          "value": "Alquiler"
+        }
+      ],
+      "notes": [
+        "Para el transporte de tanques o gran cantidad de mercancía ofrecemos el domicilio sin ningún costo adicional siempre y cuando sea dentro del municipio"
+      ]
+    }
+  ]
+}

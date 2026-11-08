@@ -93,6 +93,7 @@ npm start           # terminal 2
         ├── app.config.server.ts, app.routes.server.ts   # Prerenderizado
         ├── core/                # Datos del sitio (contacto), navegación, destino del formulario
         │   └── products/        # products.json (catálogo), su modelo, consultas y SEO por producto
+        │   └── site-services/   # site-services.json, su modelo, consultas y SEO por servicio
         │   └── seo/             # public-pages.ts (títulos/descripciones), site-url.ts (dominio),
         │                        # seo-title-strategy.ts (metadatos), seo-files.ts (robots/sitemap)
         │   └── whatsapp.config.ts   # Número y mensaje del botón de WhatsApp
@@ -103,7 +104,7 @@ npm start           # terminal 2
         │   └── components/      # Banner, franja de título, cuadrícula de productos,
         │                        # galería con modal y botón "Contáctanos"
         └── pages/               # Una carpeta por página, con sus datos (*.data.ts) y estilos
-            ├── home/  nosotros/  productos/  producto-detalle/  servicios/  bioseguridad/  contacto/
+            ├── home/  nosotros/  productos/  producto-detalle/  servicios/  servicio-detalle/  bioseguridad/  contacto/
 ```
 
 Criterios usados:
@@ -114,7 +115,8 @@ Criterios usados:
   repetir el marcado.
 - **Productos en un único JSON.** Inicio, Productos, Bioseguridad y el detalle leen
   `core/products/products.json` (ver [Catálogo de productos](#catálogo-de-productos)). Los servicios
-  no son productos: siguen en `servicios.data.ts` y en `home.data.ts`, y sus tarjetas no son enlaces.
+  tienen su propia fuente, `core/site-services/site-services.json` (ver
+  [Catálogo de servicios](#catálogo-de-servicios)).
 - **No hay servicios Angular de datos.** El contenido es estático y no hay API, así que un
   servicio solo envolvería constantes. Si en el futuro el contenido viene de un backend, el lugar
   natural para añadir ese servicio es `core/`, y las páginas no tendrían que cambiar su plantilla.
@@ -124,20 +126,22 @@ Criterios usados:
 
 ## Páginas y rutas
 
-| Ruta               | Origen                  | Título (`<title>`)                            | Notas                                   |
-| ------------------ | ----------------------- | --------------------------------------------- | --------------------------------------- |
-| `/`                | `index.html`            | Solgases \| Seguridad industrial en Sogamoso  | Productos y servicios relevantes        |
-| `/nosotros`        | `nosotros.html`         | Nosotros \| Solgases                          | Equipo, resumen de servicios, marcas    |
-| `/productos`       | `productos.html`        | Productos de seguridad industrial \| Solgases | Galería con modal y 10 categorías (76)  |
-| `/productos/:slug` | Nueva (`products.json`) | `<Nombre> \| Solgases`                        | Detalle de cada uno de los 94 productos |
-| `/servicios`       | `servicios.html`        | Recarga de extintores y gases \| Solgases     | 18 servicios                            |
-| `/bioseguridad`    | `bioseguridad.html`     | Productos de bioseguridad \| Solgases         | 20 productos                            |
-| `/contacto`        | `contacto.html`         | Contacto \| Solgases                          | Horario, mapa y formulario (POST a PHP) |
+| Ruta               | Origen                       | Título (`<title>`)                            | Notas                                   |
+| ------------------ | ---------------------------- | --------------------------------------------- | --------------------------------------- |
+| `/`                | `index.html`                 | Solgases \| Seguridad industrial en Sogamoso  | Productos y servicios relevantes        |
+| `/nosotros`        | `nosotros.html`              | Nosotros \| Solgases                          | Equipo, resumen de servicios, marcas    |
+| `/productos`       | `productos.html`             | Productos de seguridad industrial \| Solgases | Galería con modal y 10 categorías (76)  |
+| `/productos/:slug` | Nueva (`products.json`)      | `<Nombre> \| Solgases`                        | Detalle de cada uno de los 94 productos |
+| `/servicios`       | `servicios.html`             | Recarga de extintores y gases \| Solgases     | 18 servicios                            |
+| `/servicios/:slug` | Nueva (`site-services.json`) | `<Nombre> \| Solgases`                        | Detalle de cada uno de los 18 servicios |
+| `/bioseguridad`    | `bioseguridad.html`          | Productos de bioseguridad \| Solgases         | 20 productos                            |
+| `/contacto`        | `contacto.html`              | Contacto \| Solgases                          | Horario, mapa y formulario (POST a PHP) |
 
 Las URLs antiguas (`/productos.html`, etc.) redirigen a las nuevas (ver
 [Rutas heredadas](#rutas-heredadas-html)). `galeria.html` estaba vacío (0 bytes) y no tenía
 enlaces, así que no se migró. Cualquier ruta desconocida redirige al inicio en el navegador, salvo
-`/productos/<slug inexistente>`, que muestra "Producto no encontrado" con un enlace al catálogo.
+`/productos/<slug inexistente>` y `/servicios/<slug inexistente>`, que muestran un aviso de "no
+encontrado" con un enlace de regreso.
 
 ## Catálogo de productos
 
@@ -241,6 +245,72 @@ propósito y debe actualizarse.
 - Algunos textos de tarjeta originales se conservan con `label` (p. ej. "Chaleco Periodista" en el
   inicio, cuyo producto es Chaleco Acolchado).
 
+## Catálogo de servicios
+
+Fuente única: `src/app/core/site-services/site-services.json` (18 servicios). Lo usan las tarjetas de
+Inicio y Servicios, y la vista `/servicios/:slug`. `site-service-catalog.ts` ofrece las consultas.
+
+**A diferencia de los productos, no hay datos ficticios.** Por eso no existen campos de precio,
+disponibilidad ni aviso de demostración, y no deben añadirse cobertura, tiempos, certificaciones,
+garantías, marcas ni condiciones que el negocio no haya confirmado.
+
+### Formato del JSON
+
+```jsonc
+{
+  "featured": ["llenado-nitrogeno"], // destacados del inicio, por `id` y en orden
+  "services": [
+    // El orden de este arreglo es el de la página Servicios.
+    {
+      "id": "llenado-nitrogeno", // estable: `featured` lo referencia, no cambiarlo
+      "slug": "llenado-nitrogeno", // único: /servicios/llenado-nitrogeno
+      "name": "Llenado de Nitrógeno(N)", // nombre del sitio; "<name> | Solgases" (máximo 60 caracteres)
+      "summary": "...", // la descripción SEO añade "Consulta en Solgases, Sogamoso."
+      "description": "...", // debe incluir el resumen
+      "image": { "src": "img/servicios/nitrogeno-sogamoso.jpg", "alt": "..." },
+      "gallery": [{ "src": "img/servicios/tanques1.jpg", "alt": "..." }], // opcional
+      "details": [{ "label": "Tipo de servicio", "value": "Llenado de gases" }], // datos del nombre
+      "notes": ["..."], // opcional: condiciones ya publicadas en el sitio, textuales
+    },
+  ],
+}
+```
+
+### Agregar o actualizar un servicio
+
+1. Si usa una foto nueva, cópiala en `public/img/servicios/`.
+2. Añade o edita el registro en `services`. Para un servicio nuevo, usa `id` y `slug` nuevos
+   (minúsculas, números y guiones). Al editar uno existente, no cambies su `id`; si cambias el
+   `slug`, cambia también su URL publicada.
+3. Si debe aparecer en el inicio, añade su `id` a `featured`.
+4. Genera la versión WebP y el manifiesto: `npm run optimize:images`.
+5. Actualiza las pruebas de `site-service-catalog.spec.ts`, que fijan la lista de nombres.
+6. Comprueba todo con `npm run verify`, que incluye `check:assets` (rutas de imagen) y la revisión
+   del HTML prerenderizado de cada servicio.
+
+La ruta, el prerenderizado, el título, la descripción y el sitemap (con dominio confirmado) se
+generan a partir del JSON.
+
+### De dónde sale cada dato
+
+- **`name`:** texto original de la página Servicios, sin cambios, incluidas formas como
+  "Recarga de extintor satelite".
+- **`summary` y `details`:** se desprenden del nombre.
+- **`description`:** el resumen más, cuando existe, la frase correspondiente del resumen de servicios
+  del sitio (`SERVICES_SUMMARY`). Argón, mezcla y alquiler de cilindros no aparecen en ese texto, así
+  que su descripción se limita al resumen.
+- **`notes`:** la condición de domicilio de Nosotros, en los servicios de llenado y alquiler. Una
+  prueba verifica que siga siendo idéntica al texto de Nosotros.
+
+### Diferencias con el sitio anterior
+
+- **Fotos del inicio.** Dos tarjetas usaban una foto distinta a la de `/servicios`: Llenado de
+  Nitrógeno y Recarga de extintor de 20 libras. Ahora usan la de `/servicios`, y la otra pasa a la
+  galería de su detalle.
+- **Tarjeta repetida.** El inicio mostraba dos veces "Recarga de extintor de 5 libras". Se conserva y
+  ambas enlazan al mismo detalle; para quitarla, borra el `id` repetido de `featured` y ajusta las
+  pruebas que cuentan las tarjetas.
+
 ## SEO
 
 Fuente única: `src/app/core/seo/public-pages.ts`. Contiene el título, la descripción y la imagen
@@ -251,6 +321,9 @@ Los textos se redactaron a partir del contenido existente, sin añadir datos nue
   y llegan a `SeoTitleStrategy` por `data.seo`, mediante un resolver. La imagen para compartir es la
   general del catálogo, porque las fotos de producto no son de 1200×630. Un producto inexistente
   recibe `noindex` y no tiene URL canónica.
+- **Servicios.** Mismo mecanismo que los productos (`core/site-services/site-service-seo.ts`), con
+  la imagen general de Servicios para compartir. Un servicio inexistente recibe `noindex` y no tiene
+  URL canónica.
 - **Títulos y descripciones únicos por ruta.** Las pruebas verifican que no se repitan, que el
   título tenga como máximo 60 caracteres y que la descripción tenga entre 70 y 160.
 - **Metadatos.** `SeoTitleStrategy` (un `TitleStrategy` del router con `Title` y `Meta` de
@@ -270,8 +343,8 @@ Los textos se redactaron a partir del contenido existente, sin añadir datos nue
   - Los banners usan `alt=""` porque son decorativos y su texto equivalente es el `<h1>`.
 - **`robots.txt`.** Se genera en el build. Permite todo salvo `/php/`, el script del formulario,
   que no es una página. Solo incluye `Sitemap:` cuando hay dominio.
-- **`sitemap.xml`.** Solo se genera si hay dominio. Contiene las 6 páginas públicas y los 94
-  productos, sin rutas
+- **`sitemap.xml`.** Solo se genera si hay dominio. Contiene las 6 páginas públicas, los 94
+  productos y los 18 servicios, sin rutas
   heredadas, sin PHP y sin `lastmod` (no hay fechas fiables). Las pruebas verifican que cada URL
   corresponde a una página real y prerenderizada.
 - **Datos estructurados (`LocalBusiness`): no se añadieron.** Ver
@@ -307,15 +380,18 @@ Salida de `npm run build` en `dist/solgases/browser/`, que es la carpeta que se 
 | `<ruta>/index.html`                         | `nosotros`, `productos`, `servicios`, `bioseguridad`, `contacto` |
 | `<pagina>.html/index.html`                  | Redirección `meta refresh` desde cada URL heredada (5)           |
 | `productos/<slug>/index.html`               | Detalle de cada producto de `products.json` (94)                 |
+| `servicios/<slug>/index.html`               | Detalle de cada servicio de `site-services.json` (18)            |
 | `index.csr.html`                            | Shell sin prerenderizar para rutas desconocidas (fallback)       |
 | `robots.txt`, `sitemap.xml` (con dominio)   | Generados por `scripts/generate-seo-files.mjs`                   |
 | `img/`, `icons/`, `media/`, `*.js`, `*.css` | Recursos                                                         |
 
-`dist/solgases/prerendered-routes.json` lista las 105 rutas prerenderizadas.
+`dist/solgases/prerendered-routes.json` lista las 123 rutas prerenderizadas.
 `scripts/generate-seo-files.mjs` falla si a una página de producto le falta el título, la
 descripción, el `<h1>`, el contenido principal o el aviso de demostración.
 
-Un producto inexistente no tiene HTML propio: lo atiende el fallback `index.csr.html`, que muestra
+El script aplica la misma revisión a los servicios: título, descripción, `<h1>`, contenido y notas.
+
+Un producto o servicio inexistente no tiene HTML propio: lo atiende el fallback `index.csr.html`, que muestra
 el aviso en el navegador. El hosting estático responde entonces 200, no 404; por eso la página pide
 `noindex`.
 
@@ -480,10 +556,10 @@ export const WHATSAPP_CONFIG: WhatsAppConfig = {
 - **`message`:** el texto inicial de la conversación. Se puede cambiar libremente; se codifica
   automáticamente en la URL.
 
-### Consulta desde el detalle de un producto
+### Consulta desde el detalle de un producto o servicio
 
-La vista de detalle usa la misma configuración y la misma validación (`buildWhatsAppUrl`), con un
-mensaje que nombra el producto, sin precio. Con `phone: null` muestra un botón `aria-disabled`, el
+Las vistas de detalle usan la misma configuración y la misma validación (`buildWhatsAppUrl`), con un
+mensaje que nombra el producto (sin precio) o el servicio. Con `phone: null` muestra un botón `aria-disabled`, el
 texto "Número de WhatsApp pendiente de configurar" y el botón "Contáctanos".
 
 ## Backend PHP (`php/`)
@@ -528,6 +604,10 @@ repositorio.
 
 - **Datos reales del catálogo.** Precios, unidades, textos y fichas son ficticios. Ver
   [Catálogo de productos](#catálogo-de-productos).
+- **Información de los servicios.** El sitio no documenta precios, tiempos, cobertura, requisitos ni
+  condiciones de cada servicio, salvo el domicilio de Nosotros, un texto del sitio original que
+  conviene confirmar. Las descripciones son breves a propósito. Cuando el negocio confirme más
+  información, se puede añadir en `site-services.json`.
 - **Fotos por revisar:** Maleta Alfombra muestra un logotipo de Renault; Guante Kodiak lleva impresa
   otra marca en el puño; Eslingas y Manómetro son fotos de contexto, no del producto aislado.
 - **Número de WhatsApp.** `phone: null` en `src/app/core/whatsapp.config.ts`; el botón está

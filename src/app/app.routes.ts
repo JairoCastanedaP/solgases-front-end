@@ -1,5 +1,6 @@
 import { Route, Routes } from '@angular/router';
 import { productSeoResolver } from './core/products/product-seo.resolver';
+import { serviceSeoResolver } from './core/site-services/site-service-seo.resolver';
 import { LEGACY_REDIRECTS, PUBLIC_PAGES, PageSeo } from './core/seo/public-pages';
 
 /** Ruta pública con título y metadatos SEO (aplicados por SeoTitleStrategy). */
@@ -25,6 +26,13 @@ export const routes: Routes = [
   page(PUBLIC_PAGES.servicios, () =>
     import('./pages/servicios/servicios').then((m) => m.ServiciosPage),
   ),
+  // Sin `title`: SeoTitleStrategy toma el título de `data.seo`, que depende del servicio.
+  {
+    path: 'servicios/:slug',
+    resolve: { seo: serviceSeoResolver },
+    loadComponent: () =>
+      import('./pages/servicio-detalle/servicio-detalle').then((m) => m.ServicioDetallePage),
+  },
   page(PUBLIC_PAGES.bioseguridad, () =>
     import('./pages/bioseguridad/bioseguridad').then((m) => m.BioseguridadPage),
   ),
