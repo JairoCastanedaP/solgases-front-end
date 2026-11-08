@@ -1,0 +1,115 @@
+@if (service(); as service) {
+  <app-page-banner class="banner--compact" [image]="banner" [text]="service.name" />
+
+  <main class="main product-detail">
+    <nav class="breadcrumbs container" aria-label="Migas de pan">
+      <ol class="breadcrumbs__list">
+        <li><a routerLink="/">Inicio</a></li>
+        <li><a routerLink="/servicios">Servicios</a></li>
+        <li aria-current="page">{{ service.name }}</li>
+      </ol>
+    </nav>
+
+    <div class="container container--flex product-detail__summary">
+      <div class="column column--50">
+        @let img = service.image.src | optimizedImage;
+        <img
+          class="product-detail__img"
+          [ngSrc]="img.src"
+          [width]="img.width"
+          [height]="img.height"
+          [alt]="service.image.alt"
+          priority
+        />
+      </div>
+
+      <div class="column column--50">
+        <p class="product-detail__lead">{{ service.summary }}</p>
+        <p>Consulta directamente con Solgases las condiciones de este servicio.</p>
+
+        @if (whatsAppUrl(); as url) {
+          <a
+            class="product-detail__whatsapp"
+            [href]="url"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Consultar por WhatsApp
+            <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+          </a>
+        } @else {
+          <button
+            type="button"
+            class="product-detail__whatsapp product-detail__whatsapp--pending"
+            aria-disabled="true"
+            aria-describedby="servicio-whatsapp-pendiente"
+          >
+            Consultar por WhatsApp
+          </button>
+          <p id="servicio-whatsapp-pendiente" class="product-detail__pending">
+            Número de WhatsApp pendiente de configurar
+          </p>
+          <app-contact-button class="product-detail__contact" />
+        }
+
+        <a class="product-detail__back" routerLink="/servicios">Volver a Servicios</a>
+      </div>
+    </div>
+
+    <div class="container product-detail__info">
+      <section aria-labelledby="servicio-descripcion">
+        <h2 id="servicio-descripcion" class="product-detail__heading">Descripción</h2>
+        <p>{{ service.description }}</p>
+      </section>
+
+      <section aria-labelledby="servicio-detalles">
+        <h2 id="servicio-detalles" class="product-detail__heading">Detalles</h2>
+        <dl class="product-detail__specs">
+          @for (detail of service.details; track detail.label) {
+            <div>
+              <dt>{{ detail.label }}</dt>
+              <dd>{{ detail.value }}</dd>
+            </div>
+          }
+        </dl>
+      </section>
+
+      @if (service.notes?.length) {
+        <section aria-labelledby="servicio-notas">
+          <h2 id="servicio-notas" class="product-detail__heading">Información adicional</h2>
+          <ul>
+            @for (note of service.notes; track note) {
+              <li>{{ note }}</li>
+            }
+          </ul>
+        </section>
+      }
+
+      @if (service.gallery?.length) {
+        <section aria-labelledby="servicio-galeria">
+          <h2 id="servicio-galeria" class="product-detail__heading">Más imágenes</h2>
+          <div class="product-detail__gallery">
+            @for (image of service.gallery; track image.src) {
+              @let extra = image.src | optimizedImage;
+              <img
+                [ngSrc]="extra.src"
+                [width]="extra.width"
+                [height]="extra.height"
+                [alt]="image.alt"
+              />
+            }
+          </div>
+        </section>
+      }
+    </div>
+  </main>
+} @else {
+  <app-page-banner class="banner--compact" [image]="banner" text="Servicio no encontrado" />
+
+  <main class="main product-detail">
+    <div class="container product-detail__missing" role="alert">
+      <p>El servicio que buscas no existe o ya no está en el sitio.</p>
+      <a class="product-detail__back" routerLink="/servicios">Ir a Servicios</a>
+    </div>
+  </main>
+}

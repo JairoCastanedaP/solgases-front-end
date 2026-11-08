@@ -1,11 +1,13 @@
 import { RenderMode, ServerRoute } from '@angular/ssr';
 import { PRODUCT_CATALOG } from './core/products/product-catalog';
+import { SITE_SERVICE_CATALOG } from './core/site-services/site-service-catalog';
 import { LEGACY_REDIRECTS, PUBLIC_PAGES } from './core/seo/public-pages';
 
 /**
  * Prerenderizado estático (SSG, `outputMode: "static"` en angular.json):
  * - Cada página pública genera `<ruta>/index.html` con su contenido y metadatos.
  * - Cada producto de products.json genera `productos/<slug>/index.html`.
+ * - Cada servicio de site-services.json genera `servicios/<slug>/index.html`.
  * - Las URLs .html heredadas generan una página de redirección (`meta refresh`), salvo
  *   `index.html`, que no puede ser a la vez archivo y carpeta y ya sirve el inicio.
  * - Cualquier otra ruta se resuelve en el navegador desde `index.csr.html`
@@ -20,6 +22,11 @@ export const serverRoutes: ServerRoute[] = [
     path: 'productos/:slug',
     renderMode: RenderMode.Prerender,
     getPrerenderParams: async () => PRODUCT_CATALOG.products.map(({ slug }) => ({ slug })),
+  },
+  {
+    path: 'servicios/:slug',
+    renderMode: RenderMode.Prerender,
+    getPrerenderParams: async () => SITE_SERVICE_CATALOG.services.map(({ slug }) => ({ slug })),
   },
   ...Object.keys(LEGACY_REDIRECTS)
     .filter((path) => path !== 'index.html')

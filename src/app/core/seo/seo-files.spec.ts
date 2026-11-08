@@ -2,6 +2,7 @@ import { RenderMode, ServerRoutePrerenderWithParams } from '@angular/ssr';
 import { routes } from '../../app.routes';
 import { serverRoutes } from '../../app.routes.server';
 import { PRODUCT_CATALOG } from '../products/product-catalog';
+import { SITE_SERVICE_CATALOG } from '../site-services/site-service-catalog';
 import { LEGACY_REDIRECTS, PUBLIC_PAGES } from './public-pages';
 import { buildRobotsTxt, buildSitemapXml } from './seo-files';
 
@@ -49,6 +50,14 @@ describe('sitemap.xml y robots.txt', () => {
 
     const params = await (server as ServerRoutePrerenderWithParams).getPrerenderParams();
     expect(params.map((p) => p['slug'])).toEqual(PRODUCT_CATALOG.products.map((p) => p.slug));
+  });
+
+  it('prerenderiza el detalle de todos los servicios del JSON', async () => {
+    const server = serverRoutes.find((r) => r.path === 'servicios/:slug');
+    expect(server?.renderMode).toBe(RenderMode.Prerender);
+
+    const params = await (server as ServerRoutePrerenderWithParams).getPrerenderParams();
+    expect(params.map((p) => p['slug'])).toEqual(SITE_SERVICE_CATALOG.services.map((s) => s.slug));
   });
 
   it('las rutas heredadas .html redirigen a páginas públicas existentes', () => {

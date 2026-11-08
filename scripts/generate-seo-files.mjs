@@ -4,6 +4,7 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { buildProductSeo } from '../src/app/core/products/product-seo.ts';
+import { buildServiceSeo } from '../src/app/core/site-services/site-service-seo.ts';
 import { PUBLIC_PAGES } from '../src/app/core/seo/public-pages.ts';
 import { buildRobotsTxt, buildSitemapXml } from '../src/app/core/seo/seo-files.ts';
 import { SITE_URL } from '../src/app/core/seo/site-url.ts';
@@ -18,7 +19,14 @@ const { products } = JSON.parse(
   readFileSync(new URL('../src/app/core/products/products.json', import.meta.url), 'utf8'),
 );
 const productPages = products.map(buildProductSeo);
-const pages = [...Object.values(PUBLIC_PAGES), ...productPages];
+const { services } = JSON.parse(
+  readFileSync(
+    new URL('../src/app/core/site-services/site-services.json', import.meta.url),
+    'utf8',
+  ),
+);
+const servicePages = services.map(buildServiceSeo);
+const pages = [...Object.values(PUBLIC_PAGES), ...productPages, ...servicePages];
 
 const errors = [];
 const escapeHtml = (s) =>
@@ -57,6 +65,18 @@ for (const product of products) {
     }
   }
 }
+// Lo mismo para los servicios: nombre, imagen, descripción y notas en el HTML estático.
+for (const service of services) {
+  const file = join(outDir, 'servicios', service.slug, 'index.html');
+  if (!existsSync(file)) continue; // ya registrado arriba
+  const html = readFileSync(file, 'utf8');
+  const texts = [service.name, service.description, service.image.alt, ...(service.notes ?? [])];
+  for (const text of texts) {
+    if (!html.includes(text.replace(/&/g, '&amp;').replace(/</g, '&lt;'))) {
+      errors.push(`/servicios/${service.slug}: falta "${text}" en el HTML`);
+    }
+  }
+}
 if (errors.length) {
   console.error(`Prerenderizado incompleto:\n  ${errors.join('\n  ')}`);
   process.exit(1);
@@ -75,5 +95,5 @@ if (SITE_URL) {
 }
 console.log(
   `OK: ${pages.length} páginas prerenderizadas con título, descripción y un <h1> ` +
-    `(${products.length} de producto).`,
+    `(${products.length} de producto y ${services.length} de servicio).`,
 );

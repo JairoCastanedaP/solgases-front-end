@@ -215,20 +215,12 @@ describe('Navegación del catálogo al detalle', () => {
     });
   }
 
-  it('en el inicio enlaza los productos, pero los servicios siguen sin enlace', async () => {
+  it('en el inicio enlaza los 20 productos destacados', async () => {
     setup();
     const page = await open('/');
 
-    expect(page.querySelectorAll('a.today-special__link').length).toBe(20);
+    expect(page.querySelectorAll('a.today-special__link[href^="/productos/"]').length).toBe(20);
     expect(page.querySelectorAll('.today-special .column').length).toBe(32);
-  });
-
-  it('en /servicios no hay enlaces de detalle', async () => {
-    setup();
-    const page = await open('/servicios');
-
-    expect(page.querySelectorAll('a.today-special__link').length).toBe(0);
-    expect(page.querySelectorAll('.today-special .column').length).toBe(18);
   });
 
   it('al hacer clic en una tarjeta navega al detalle del producto', async () => {
