@@ -48,6 +48,13 @@
   font-size: 1.1em;
 }
 
+/* Reserva la altura del precio, que aparece al cargar en el navegador: el contenido no salta.
+   Con el precio de 1,5em, rótulo y valor suman 3,375em; se añaden sus 25 px de margen. */
+.product-detail__price-slot {
+  display: flow-root;
+  min-height: calc(3.375em + 25px);
+}
+
 .product-detail__price {
   margin: 15px 0 10px;
 }
@@ -155,7 +162,12 @@
   font-size: 1.1em;
 }
 
+/* base.css usa aquí un precio de 1,8em: la reserva crece en la misma proporción. */
 @media screen and (min-width: 1024px) {
+  .product-detail__price-slot {
+    min-height: calc(4.05em + 25px);
+  }
+
   .product-detail {
     padding-inline: 0;
   }

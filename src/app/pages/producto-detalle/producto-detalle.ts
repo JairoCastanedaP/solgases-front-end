@@ -1,5 +1,12 @@
 import { NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  afterNextRender,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
@@ -36,6 +43,11 @@ export class ProductoDetallePage {
     const product = this.product();
     return product && findCategory(product.categoryId);
   });
+  /**
+   * El precio es ficticio y no debe quedar en el HTML estático: el prerenderizado no ejecuta
+   * `afterNextRender`, que además espera a la hidratación para no alterar el DOM recibido.
+   */
+  protected readonly showPrice = signal(false);
   protected readonly price = computed(() => {
     const product = this.product();
     return product && formatPrice(product.price);
@@ -47,4 +59,8 @@ export class ProductoDetallePage {
       message: `Hola, quisiera consultar sobre el producto: ${this.product()?.name}.`,
     }),
   );
+
+  constructor() {
+    afterNextRender(() => this.showPrice.set(true));
+  }
 }

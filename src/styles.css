@@ -52,6 +52,22 @@ app-contacto-page {
   margin: 10px 0;
 }
 
+/* Catálogo filtrado: una fila incompleta se alinea a la izquierda en vez de separar sus tarjetas.
+   Los huecos completan el 100 % con los anchos de .column--50-25 (49 % y 24,5 %). */
+.catalog-results .today-special .container--flex {
+  justify-content: flex-start;
+}
+@media screen and (min-width: 480px) {
+  .catalog-results .today-special .container--flex {
+    column-gap: 2%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .catalog-results .today-special .container--flex {
+    column-gap: 0.66%;
+  }
+}
+
 /* Oculta visualmente un texto sin quitarlo a lectores de pantalla ni buscadores
    (p. ej. el <h1> de Nosotros, cuyo banner no tiene texto visible). */
 .visually-hidden {

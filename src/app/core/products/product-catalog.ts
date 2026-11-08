@@ -19,6 +19,10 @@ export function findProductBySlug(slug: string | null): Product | undefined {
   return slug === null ? undefined : productsBySlug.get(slug);
 }
 
+export function findProductById(id: string): Product | undefined {
+  return productsById.get(id);
+}
+
 export function findCategory(id: string): ProductCategory | undefined {
   return categoriesById.get(id);
 }

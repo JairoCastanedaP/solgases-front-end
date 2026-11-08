@@ -1,0 +1,122 @@
+.catalog-tools {
+  padding: 0 16px;
+}
+
+.catalog-tools .group__title {
+  margin: 25px 0 15px;
+}
+
+.catalog-tools__form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+.catalog-tools__field label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: bold;
+}
+
+/* 16 px evita que iOS acerque la página al enfocar; 44 px es un área táctil cómoda. */
+.catalog-tools__field input,
+.catalog-tools__field select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 44px;
+  padding: 8px 10px;
+  border: 1px solid #767676;
+  border-radius: 0;
+  background: #fff;
+  color: #222;
+  font: inherit;
+  font-size: 16px;
+}
+
+.catalog-tools__field input::placeholder {
+  color: #595959;
+  opacity: 1;
+}
+
+.catalog-tools input:focus-visible,
+.catalog-tools select:focus-visible,
+.catalog-tools__button:focus-visible {
+  outline: 3px solid #111;
+  outline-offset: 2px;
+}
+
+.catalog-tools__summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px 20px;
+  margin-top: 15px;
+}
+
+.catalog-tools__status {
+  margin: 0;
+  font-weight: bold;
+}
+
+.catalog-tools__button {
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 2px solid #111;
+  background: #fff;
+  color: #111;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.catalog-tools__button:hover:enabled {
+  background: #111;
+  color: #fff;
+}
+
+.catalog-tools__button:disabled {
+  border-color: #767676;
+  color: #595959;
+  cursor: not-allowed;
+}
+
+.catalog-tools__notice {
+  margin: 15px 0 0;
+  padding: 10px 12px;
+  border-left: 5px solid #de423a;
+  background: #f4f4f4;
+  color: #222;
+  font-size: 0.9em;
+}
+
+.catalog-empty {
+  box-sizing: border-box;
+  padding: 40px 16px;
+  text-align: center;
+  font-size: 1.1em;
+}
+
+.catalog-empty p {
+  margin-top: 0;
+}
+
+.catalog-results {
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 700px) {
+  .catalog-tools__form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .catalog-tools {
+    padding-inline: 0;
+  }
+
+  .catalog-tools__form {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr) minmax(0, 0.9fr) minmax(0, 1.4fr);
+  }
+}

@@ -14,8 +14,113 @@
     <h2 class="group__title">Te asesoramos según tus necesidades y la normativa</h2>
   </app-image-gallery>
 
-  @for (category of categories; track category.title) {
-    <app-intro-section [attr.id]="category.id" [title]="category.title" />
-    <app-product-grid [items]="category.items" />
+  <section class="catalog-tools" aria-labelledby="catalogo-titulo">
+    <div class="container">
+      <h2 id="catalogo-titulo" class="group__title">Encuentra tu producto</h2>
+
+      <form
+        class="catalog-tools__form"
+        role="search"
+        aria-labelledby="catalogo-titulo"
+        autocomplete="off"
+        (submit)="$event.preventDefault(); update({})"
+      >
+        <div class="catalog-tools__field catalog-tools__field--search">
+          <label for="catalogo-busqueda">Buscar</label>
+          <input
+            #searchInput
+            id="catalogo-busqueda"
+            name="q"
+            type="search"
+            placeholder="Ej.: guante, casco, 3M"
+            [attr.maxlength]="searchMaxLength"
+            [value]="searchText()"
+            (input)="onSearchInput(searchInput.value)"
+          />
+        </div>
+
+        <div class="catalog-tools__field">
+          <label for="catalogo-categoria">Categoría</label>
+          <select
+            #categorySelect
+            id="catalogo-categoria"
+            name="categoria"
+            (change)="onCategoryChange(categorySelect.value)"
+          >
+            <option value="" [selected]="!query().category">Todas las categorías</option>
+            @for (option of categoryOptions; track option.value) {
+              <option [value]="option.value" [selected]="option.value === query().category">
+                {{ option.label }}
+              </option>
+            }
+          </select>
+        </div>
+
+        <div class="catalog-tools__field">
+          <label for="catalogo-marca">Marca o línea</label>
+          <select
+            #brandSelect
+            id="catalogo-marca"
+            name="marca"
+            (change)="onBrandChange(brandSelect.value)"
+          >
+            <option value="" [selected]="!query().brand">Todas las marcas</option>
+            @for (brand of brandOptions; track brand) {
+              <option [value]="brand" [selected]="brand === query().brand">{{ brand }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="catalog-tools__field">
+          <label for="catalogo-orden">Ordenar</label>
+          <select
+            #sortSelect
+            id="catalogo-orden"
+            name="orden"
+            (change)="onSortChange(sortSelect.value)"
+          >
+            @for (option of sortOptions; track option.value) {
+              <option [value]="option.value" [selected]="option.value === query().sort">
+                {{ option.label }}
+              </option>
+            }
+          </select>
+        </div>
+      </form>
+
+      <div class="catalog-tools__summary">
+        <p class="catalog-tools__status" role="status" aria-atomic="true">{{ status() }}</p>
+        <button
+          type="button"
+          class="catalog-tools__button"
+          [disabled]="!canClear()"
+          (click)="clear()"
+        >
+          Limpiar búsqueda y filtros
+        </button>
+      </div>
+
+      @if (showsPrices()) {
+        <p class="catalog-tools__notice" role="note">{{ notice }}</p>
+      }
+    </div>
+  </section>
+
+  @if (results().total === 0) {
+    <div class="container catalog-empty">
+      <p>No encontramos productos con esos criterios. Prueba otra palabra o quita algún filtro.</p>
+      <button type="button" class="catalog-tools__button" (click)="clear()">Limpiar filtros</button>
+    </div>
+  } @else {
+    <div class="catalog-results">
+      @if (results().sorted; as sorted) {
+        <app-product-grid heading="Resultados" [items]="sorted" />
+      } @else {
+        @for (category of results().sections; track category.title) {
+          <app-intro-section [attr.id]="category.id" [title]="category.title" />
+          <app-product-grid [items]="category.items" />
+        }
+      }
+    </div>
   }
 </main>
