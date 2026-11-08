@@ -23,6 +23,7 @@ describe('App', () => {
     expect(el.querySelectorAll('.menu__link').length).toBe(6);
     expect(el.querySelector('.main-footer')?.textContent).toContain('solgases@gmail.com');
     expect(el.querySelector('.main-header')?.textContent).toContain('(038) 772 86 66');
+    expect(el.querySelectorAll('app-whatsapp-button').length).toBe(1);
   });
 
   const pages: [path: string, banner: string, title: string][] = [
