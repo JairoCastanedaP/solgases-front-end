@@ -81,7 +81,7 @@ describe('ProductoDetallePage', () => {
     expect(img.getAttribute('fetchpriority')).toBe('high');
   });
 
-  it('marca el precio como ficticio, con su unidad y el aviso visible', async () => {
+  it('tras cargar en el cliente, marca el precio como ficticio, con su unidad y el aviso visible', async () => {
     setup();
     const page = await open('/productos/guante-kodiak');
     const price = text(page.querySelector('.product-detail__price'));
@@ -197,7 +197,7 @@ describe('ProductoDetallePage', () => {
 
 describe('Navegación del catálogo al detalle', () => {
   for (const [path, count] of [
-    ['/productos', 76],
+    ['/productos', 94],
     ['/bioseguridad', 20],
   ] as const) {
     it(`en ${path}, cada tarjeta es un enlace nativo a un producto existente`, async () => {

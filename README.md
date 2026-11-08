@@ -130,7 +130,7 @@ Criterios usados:
 | ------------------ | ---------------------------- | --------------------------------------------- | --------------------------------------- |
 | `/`                | `index.html`                 | Solgases \| Seguridad industrial en Sogamoso  | Productos y servicios relevantes        |
 | `/nosotros`        | `nosotros.html`              | Nosotros \| Solgases                          | Equipo, resumen de servicios, marcas    |
-| `/productos`       | `productos.html`             | Productos de seguridad industrial \| Solgases | Galería con modal y 10 categorías (76)  |
+| `/productos`       | `productos.html`             | Productos de seguridad industrial \| Solgases | Galería, búsqueda y 11 categorías (94)  |
 | `/productos/:slug` | Nueva (`products.json`)      | `<Nombre> \| Solgases`                        | Detalle de cada uno de los 94 productos |
 | `/servicios`       | `servicios.html`             | Recarga de extintores y gases \| Solgases     | 18 servicios                            |
 | `/servicios/:slug` | Nueva (`site-services.json`) | `<Nombre> \| Solgases`                        | Detalle de cada uno de los 18 servicios |
@@ -205,6 +205,35 @@ existencias no aporta y podría confundirse con información real.
 La ruta de detalle, el prerenderizado, el título, la descripción y el sitemap (con dominio
 confirmado) se generan a partir del JSON, sin tocar otro archivo.
 
+### Búsqueda, filtros y orden
+
+`/productos` cubre los 94 productos. `product-catalog-search.ts` obtiene las opciones del JSON, así
+que un producto o una categoría nuevos aparecen sin tocar código:
+
+| Control   | Parámetro   | De dónde sale                                                                                      |
+| --------- | ----------- | -------------------------------------------------------------------------------------------------- |
+| Buscar    | `q`         | Nombre, texto de tarjeta, categorías, descripciones, características y valores de especificaciones |
+| Categoría | `categoria` | `categories`, incluidos los productos de sus `items`                                               |
+| Marca     | `marca`     | Especificación "Marca o línea en el catálogo"                                                      |
+| Ordenar   | `orden`     | `nombre-asc`, `nombre-desc`, `precio-asc` o `precio-desc`                                          |
+
+- **Búsqueda:** ignora mayúsculas y tildes y exige todas las palabras. Mantiene el orden del JSON,
+  sin puntuar la relevancia. No usa `recommendations`, porque son frases genéricas.
+- **Sin criterios o sin orden:** los productos se agrupan por categoría y conservan las anclas
+  (`/productos#guantes`). Cada listado muestra un producto una sola vez. En la vista completa
+  (94 tarjetas), un producto de varias categorías sale en la primera. Por eso la sección Bioseguridad
+  de esa vista tiene 18 tarjetas: Gel Antibacterial y el tapabocas N95 salen en Otros y en Mascarillas.
+  Filtrar por Bioseguridad muestra su lista completa de 20, igual que la página `/bioseguridad`. Con
+  un orden elegido, todo pasa a una sola lista.
+- **Campos ausentes:** un producto sin marca (68 de 94) sigue en el catálogo y solo se oculta al
+  filtrar por marca. Un precio no numérico queda al final en ambos sentidos.
+- **Precios:** solo aparecen en las tarjetas al ordenar por precio, rotulados como ficticios y con el
+  aviso `notice`. **Al cargar precios reales**, cambia también el texto de las opciones en
+  `SORT_OPTIONS`.
+- **URL:** un valor desconocido se ignora. Filtrar reemplaza la entrada del historial, así que "Atrás"
+  va del detalle al catálogo filtrado. El enlace "Volver a <categoría>" del detalle sigue llevando a
+  la categoría, sin los filtros.
+
 ### Verificar las imágenes
 
 `npm run check:assets` comprueba que cada ruta de `products.json` exista en `public/` y tenga versión
@@ -216,6 +245,9 @@ esa revisión es visual, y el `alt` debe describir lo que realmente se ve.
 
 - En el JSON: `"dataStatus": "demo"` en la raíz y `"isDemo": true` en cada precio.
 - En la página: el rótulo "Precio ficticio de demostración" junto al valor y el aviso `notice`.
+- En el HTML estático: el detalle no incluye el precio, que aparece al cargar Angular en el navegador.
+  `npm run build` falla si lo encuentra. Sin JavaScript no se ve el precio; el JSON sigue en los
+  archivos JS públicos.
 - Fuera de la página: el precio no aparece en los metadatos SEO ni hay datos estructurados `Product`.
 
 Los textos solo usan lo que ya estaba en el sitio (nombre y categoría) y lo que se ve en la foto.

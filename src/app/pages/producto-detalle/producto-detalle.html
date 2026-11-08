@@ -33,13 +33,17 @@
       <div class="column column--50">
         <p class="product-detail__lead">{{ product.shortDescription }}</p>
 
-        <p class="today-special__price product-detail__price">
-          @if (product.price.isDemo) {
-            <span class="product-detail__price-label">Precio ficticio de demostración:</span>
+        <div class="product-detail__price-slot">
+          @if (showPrice()) {
+            <p class="today-special__price product-detail__price">
+              @if (product.price.isDemo) {
+                <span class="product-detail__price-label">Precio ficticio de demostración:</span>
+              }
+              {{ price() }}
+              <span class="product-detail__unit">por {{ product.price.unit }}</span>
+            </p>
           }
-          {{ price() }}
-          <span class="product-detail__unit">por {{ product.price.unit }}</span>
-        </p>
+        </div>
         @if (product.price.isDemo) {
           <p class="product-detail__notice" role="note">{{ notice }}</p>
         }

@@ -7,6 +7,8 @@ export interface CatalogItem {
   readonly alt?: string;
   /** Ruta de detalle: si existe, la tarjeta es un enlace. */
   readonly link?: string;
+  /** Línea adicional bajo el título, p. ej. el precio ficticio al ordenar por precio. */
+  readonly note?: string;
 }
 
 /** Bloque de catálogo con encabezado (p. ej. una categoría de productos). */

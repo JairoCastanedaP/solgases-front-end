@@ -73,7 +73,7 @@ describe('App', () => {
   it('cuenta los productos y servicios migrados por página', async () => {
     const counts: Record<string, number> = {
       '/': 32,
-      '/productos': 76,
+      '/productos': 94,
       '/servicios': 18,
       '/bioseguridad': 20,
     };

@@ -15,7 +15,7 @@ if (!existsSync(join(outDir, 'index.html'))) {
   process.exit(1);
 }
 
-const { products } = JSON.parse(
+const { notice, products } = JSON.parse(
   readFileSync(new URL('../src/app/core/products/products.json', import.meta.url), 'utf8'),
 );
 const productPages = products.map(buildProductSeo);
@@ -48,7 +48,8 @@ for (const page of pages) {
     errors.push(`/${page.path}: debe tener exactamente un <h1>`);
   }
 }
-// El detalle debe llegar en el HTML estático: nombre, imagen, descripción y aviso de demostración.
+// El detalle debe llegar en el HTML estático (nombre, imagen, descripción y aviso de demostración),
+// pero nunca su precio ficticio, que solo se muestra después de cargar en el navegador.
 const productFile = (product) => join(outDir, 'productos', product.slug, 'index.html');
 for (const product of products) {
   if (!existsSync(productFile(product))) continue; // ya registrado arriba
@@ -57,12 +58,15 @@ for (const product of products) {
     nombre: product.name,
     descripción: product.description,
     'texto alternativo': product.image.alt,
-    'aviso de demostración': 'Precio ficticio de demostración',
+    'aviso de demostración': notice,
   };
   for (const [label, text] of Object.entries(expected)) {
     if (!html.includes(text.replace(/&/g, '&amp;').replace(/</g, '&lt;'))) {
       errors.push(`/productos/${product.slug}: falta ${label} en el HTML`);
     }
+  }
+  if (/COP|Precio ficticio de demostración|product-detail__unit"/.test(html)) {
+    errors.push(`/productos/${product.slug}: el HTML estático contiene el precio ficticio`);
   }
 }
 // Lo mismo para los servicios: nombre, imagen, descripción y notas en el HTML estático.

@@ -9,6 +9,8 @@ import { CatalogItem } from '../../models/catalog-item';
  * El contenido proyectado (p. ej. el botón de contacto) se muestra antes de la cuadrícula.
  * Las imágenes usan NgOptimizedImage: WebP con dimensiones reales y carga diferida.
  * Los elementos con `link` son enlaces nativos: funcionan con teclado y en una pestaña nueva.
+ * El `@for` sigue cada objeto: NgOptimizedImage no admite cambiar `width` o `height` de una imagen
+ * ya creada, así que una lista filtrada debe crear o mover tarjetas, no reutilizarlas por posición.
  */
 @Component({
   selector: 'app-product-grid',
@@ -24,6 +26,9 @@ import { CatalogItem } from '../../models/catalog-item';
         class="today-special__img"
       />
       <div class="today-special__title">{{ item.title }}</div>
+      @if (item.note) {
+        <div class="today-special__note">{{ item.note }}</div>
+      }
     </ng-template>
 
     <section class="group today-special">
@@ -32,13 +37,15 @@ import { CatalogItem } from '../../models/catalog-item';
       }
       <ng-content />
       <div class="container container--flex">
-        @for (item of items(); track $index) {
+        @for (item of items(); track item) {
           <div class="column column--50-25">
             @if (item.link) {
               <a
                 class="today-special__link"
                 [routerLink]="item.link"
-                [attr.aria-label]="'Ver detalle de ' + item.title"
+                [attr.aria-label]="
+                  'Ver detalle de ' + item.title + (item.note ? '. ' + item.note : '')
+                "
               >
                 <ng-container
                   [ngTemplateOutlet]="card"
@@ -70,6 +77,16 @@ import { CatalogItem } from '../../models/catalog-item';
     .today-special__link:focus-visible {
       outline: 3px solid #111;
       outline-offset: 2px;
+    }
+
+    .today-special__title:has(+ .today-special__note) {
+      padding-bottom: 5px;
+    }
+
+    .today-special__note {
+      padding-bottom: 20px;
+      color: #333;
+      font-size: 0.85em;
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
