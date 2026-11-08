@@ -1,0 +1,146 @@
+@if (product(); as product) {
+  <app-page-banner class="banner--compact" [image]="banner" [text]="product.name" />
+
+  <main class="main product-detail">
+    <nav class="breadcrumbs container" aria-label="Migas de pan">
+      <ol class="breadcrumbs__list">
+        <li><a routerLink="/">Inicio</a></li>
+        @if (category(); as category) {
+          @if (category.fragment) {
+            <li><a routerLink="/productos">Productos</a></li>
+          }
+          <li>
+            <a [routerLink]="category.path" [fragment]="category.fragment">{{ category.name }}</a>
+          </li>
+        }
+        <li aria-current="page">{{ product.name }}</li>
+      </ol>
+    </nav>
+
+    <div class="container container--flex product-detail__summary">
+      <div class="column column--50">
+        @let img = product.image.src | optimizedImage;
+        <img
+          class="product-detail__img"
+          [ngSrc]="img.src"
+          [width]="img.width"
+          [height]="img.height"
+          [alt]="product.image.alt"
+          priority
+        />
+      </div>
+
+      <div class="column column--50">
+        <p class="product-detail__lead">{{ product.shortDescription }}</p>
+
+        <p class="today-special__price product-detail__price">
+          @if (product.price.isDemo) {
+            <span class="product-detail__price-label">Precio ficticio de demostración:</span>
+          }
+          {{ price() }}
+          <span class="product-detail__unit">por {{ product.price.unit }}</span>
+        </p>
+        @if (product.price.isDemo) {
+          <p class="product-detail__notice" role="note">{{ notice }}</p>
+        }
+
+        @if (whatsAppUrl(); as url) {
+          <a
+            class="product-detail__whatsapp"
+            [href]="url"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Consultar por WhatsApp
+            <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+          </a>
+        } @else {
+          <button
+            type="button"
+            class="product-detail__whatsapp product-detail__whatsapp--pending"
+            aria-disabled="true"
+            aria-describedby="producto-whatsapp-pendiente"
+          >
+            Consultar por WhatsApp
+          </button>
+          <p id="producto-whatsapp-pendiente" class="product-detail__pending">
+            Número de WhatsApp pendiente de configurar
+          </p>
+          <app-contact-button class="product-detail__contact" />
+        }
+
+        @if (category(); as category) {
+          <a
+            class="product-detail__back"
+            [routerLink]="category.path"
+            [fragment]="category.fragment"
+            >Volver a {{ category.name }}</a
+          >
+        }
+      </div>
+    </div>
+
+    <div class="container product-detail__info">
+      <section aria-labelledby="producto-descripcion">
+        <h2 id="producto-descripcion" class="product-detail__heading">Descripción</h2>
+        <p>{{ product.description }}</p>
+      </section>
+
+      <section aria-labelledby="producto-caracteristicas">
+        <h2 id="producto-caracteristicas" class="product-detail__heading">Características</h2>
+        <ul>
+          @for (feature of product.features; track feature) {
+            <li>{{ feature }}</li>
+          }
+        </ul>
+      </section>
+
+      <section aria-labelledby="producto-especificaciones">
+        <h2 id="producto-especificaciones" class="product-detail__heading">Especificaciones</h2>
+        <dl class="product-detail__specs">
+          @for (spec of product.specifications; track spec.label) {
+            <div>
+              <dt>{{ spec.label }}</dt>
+              <dd>{{ spec.value }}</dd>
+            </div>
+          }
+        </dl>
+      </section>
+
+      <section aria-labelledby="producto-recomendaciones">
+        <h2 id="producto-recomendaciones" class="product-detail__heading">Recomendaciones</h2>
+        <ul>
+          @for (recommendation of product.recommendations; track recommendation) {
+            <li>{{ recommendation }}</li>
+          }
+        </ul>
+      </section>
+
+      @if (product.gallery?.length) {
+        <section aria-labelledby="producto-galeria">
+          <h2 id="producto-galeria" class="product-detail__heading">Más imágenes</h2>
+          <div class="product-detail__gallery">
+            @for (image of product.gallery; track image.src) {
+              @let extra = image.src | optimizedImage;
+              <img
+                [ngSrc]="extra.src"
+                [width]="extra.width"
+                [height]="extra.height"
+                [alt]="image.alt"
+              />
+            }
+          </div>
+        </section>
+      }
+    </div>
+  </main>
+} @else {
+  <app-page-banner class="banner--compact" [image]="banner" text="Producto no encontrado" />
+
+  <main class="main product-detail">
+    <div class="container product-detail__missing" role="alert">
+      <p>El producto que buscas no existe o ya no está en el catálogo.</p>
+      <a class="product-detail__back" routerLink="/productos">Ir al catálogo de productos</a>
+    </div>
+  </main>
+}

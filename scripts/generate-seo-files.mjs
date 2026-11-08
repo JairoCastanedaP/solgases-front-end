@@ -3,6 +3,7 @@
 // - comprueba que cada página pública se haya prerenderizado con su título y descripción.
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { buildProductSeo } from '../src/app/core/products/product-seo.ts';
 import { PUBLIC_PAGES } from '../src/app/core/seo/public-pages.ts';
 import { buildRobotsTxt, buildSitemapXml } from '../src/app/core/seo/seo-files.ts';
 import { SITE_URL } from '../src/app/core/seo/site-url.ts';
@@ -13,10 +14,16 @@ if (!existsSync(join(outDir, 'index.html'))) {
   process.exit(1);
 }
 
+const { products } = JSON.parse(
+  readFileSync(new URL('../src/app/core/products/products.json', import.meta.url), 'utf8'),
+);
+const productPages = products.map(buildProductSeo);
+const pages = [...Object.values(PUBLIC_PAGES), ...productPages];
+
 const errors = [];
 const escapeHtml = (s) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-for (const page of Object.values(PUBLIC_PAGES)) {
+for (const page of pages) {
   const file = join(outDir, page.path, 'index.html');
   if (!existsSync(file)) {
     errors.push(`/${page.path}: falta el HTML prerenderizado (${file})`);
@@ -33,6 +40,23 @@ for (const page of Object.values(PUBLIC_PAGES)) {
     errors.push(`/${page.path}: debe tener exactamente un <h1>`);
   }
 }
+// El detalle debe llegar en el HTML estático: nombre, imagen, descripción y aviso de demostración.
+const productFile = (product) => join(outDir, 'productos', product.slug, 'index.html');
+for (const product of products) {
+  if (!existsSync(productFile(product))) continue; // ya registrado arriba
+  const html = readFileSync(productFile(product), 'utf8');
+  const expected = {
+    nombre: product.name,
+    descripción: product.description,
+    'texto alternativo': product.image.alt,
+    'aviso de demostración': 'Precio ficticio de demostración',
+  };
+  for (const [label, text] of Object.entries(expected)) {
+    if (!html.includes(text.replace(/&/g, '&amp;').replace(/</g, '&lt;'))) {
+      errors.push(`/productos/${product.slug}: falta ${label} en el HTML`);
+    }
+  }
+}
 if (errors.length) {
   console.error(`Prerenderizado incompleto:\n  ${errors.join('\n  ')}`);
   process.exit(1);
@@ -40,7 +64,7 @@ if (errors.length) {
 
 writeFileSync(join(outDir, 'robots.txt'), buildRobotsTxt(SITE_URL));
 if (SITE_URL) {
-  const paths = Object.values(PUBLIC_PAGES).map((p) => p.path);
+  const paths = pages.map((p) => p.path);
   writeFileSync(join(outDir, 'sitemap.xml'), buildSitemapXml(SITE_URL, paths));
   console.log(`OK: robots.txt y sitemap.xml (${paths.length} URL) generados para ${SITE_URL}.`);
 } else {
@@ -50,5 +74,6 @@ if (SITE_URL) {
   );
 }
 console.log(
-  `OK: ${Object.keys(PUBLIC_PAGES).length} páginas prerenderizadas con título, descripción y un <h1>.`,
+  `OK: ${pages.length} páginas prerenderizadas con título, descripción y un <h1> ` +
+    `(${products.length} de producto).`,
 );

@@ -15,6 +15,8 @@ export interface PageSeo {
   /** Imagen para compartir (1200×630, en public/), generada por scripts/optimize-images.mjs. */
   readonly image: string;
   readonly imageAlt: string;
+  /** Página que no debe indexarse (p. ej. un producto inexistente): sin URL canónica. */
+  readonly noindex?: boolean;
 }
 
 export const PUBLIC_PAGES = {

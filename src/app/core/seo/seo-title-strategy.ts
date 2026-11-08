@@ -35,9 +35,10 @@ export class SeoTitleStrategy extends TitleStrategy {
   }
 
   private applyPageSeo(seo: PageSeo, title: string): void {
-    const pageUrl = this.absoluteUrl(seo.path);
+    const pageUrl = seo.noindex ? null : this.absoluteUrl(seo.path);
     const imageUrl = this.absoluteUrl(seo.image);
 
+    this.setTag('name', 'robots', seo.noindex ? 'noindex' : null);
     this.setTag('name', 'description', seo.description);
     this.setTag('property', 'og:type', 'website');
     this.setTag('property', 'og:site_name', SITE_NAME);

@@ -15,7 +15,7 @@
   </app-image-gallery>
 
   @for (category of categories; track category.title) {
-    <app-intro-section [title]="category.title" />
+    <app-intro-section [attr.id]="category.id" [title]="category.title" />
     <app-product-grid [items]="category.items" />
   }
 </main>
