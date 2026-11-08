@@ -59,6 +59,21 @@ describe('SeoTitleStrategy', () => {
     expect(content('name="twitter:card"')).toBe('summary');
   });
 
+  it('con dominio, el detalle de un producto tiene su canónica; uno inexistente no', async () => {
+    const { content, canonical } = setup('https://example.test');
+    const harness = await RouterTestingHarness.create('/productos/cono');
+
+    expect(canonical()).toBe('https://example.test/productos/cono');
+    expect(content('property="og:url"')).toBe('https://example.test/productos/cono');
+    expect(content('property="og:image"')).toBe('https://example.test/img/og/productos.jpg');
+    expect(content('name="robots"')).toBeNull();
+
+    await harness.navigateByUrl('/productos/no-existe');
+    expect(canonical()).toBeNull();
+    expect(content('property="og:url"')).toBeNull();
+    expect(content('name="robots"')).toBe('noindex');
+  });
+
   it('con dominio genera canónica e imagen absolutas y las actualiza al navegar', async () => {
     const { content, canonical } = setup('https://example.test');
     const harness = await RouterTestingHarness.create('/productos');

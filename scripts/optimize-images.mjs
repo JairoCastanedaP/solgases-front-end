@@ -38,7 +38,8 @@ function* sourceFiles(dir) {
   for (const name of readdirSync(dir)) {
     const path = join(dir, name);
     if (statSync(path).isDirectory()) yield* sourceFiles(path);
-    else if (/\.(ts|html)$/.test(name) && !name.endsWith('.spec.ts')) yield path;
+    else if (/\.(ts|html|json)$/.test(name) && !name.endsWith('.spec.ts') && path !== manifestPath)
+      yield path;
   }
 }
 

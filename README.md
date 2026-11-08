@@ -92,6 +92,7 @@ npm start           # terminal 2
         ├── app.ts, app.config.ts, app.routes.ts
         ├── app.config.server.ts, app.routes.server.ts   # Prerenderizado
         ├── core/                # Datos del sitio (contacto), navegación, destino del formulario
+        │   └── products/        # products.json (catálogo), su modelo, consultas y SEO por producto
         │   └── seo/             # public-pages.ts (títulos/descripciones), site-url.ts (dominio),
         │                        # seo-title-strategy.ts (metadatos), seo-files.ts (robots/sitemap)
         │   └── whatsapp.config.ts   # Número y mensaje del botón de WhatsApp
@@ -102,7 +103,7 @@ npm start           # terminal 2
         │   └── components/      # Banner, franja de título, cuadrícula de productos,
         │                        # galería con modal y botón "Contáctanos"
         └── pages/               # Una carpeta por página, con sus datos (*.data.ts) y estilos
-            ├── home/  nosotros/  productos/  servicios/  bioseguridad/  contacto/
+            ├── home/  nosotros/  productos/  producto-detalle/  servicios/  bioseguridad/  contacto/
 ```
 
 Criterios usados:
@@ -111,6 +112,9 @@ Criterios usados:
   automáticamente del HTML original a archivos `*.data.ts`, con los mismos textos, el mismo orden
   y las mismas imágenes. Se renderizan con un único componente, `ProductGrid`, en lugar de
   repetir el marcado.
+- **Productos en un único JSON.** Inicio, Productos, Bioseguridad y el detalle leen
+  `core/products/products.json` (ver [Catálogo de productos](#catálogo-de-productos)). Los servicios
+  no son productos: siguen en `servicios.data.ts` y en `home.data.ts`, y sus tarjetas no son enlaces.
 - **No hay servicios Angular de datos.** El contenido es estático y no hay API, así que un
   servicio solo envolvería constantes. Si en el futuro el contenido viene de un backend, el lugar
   natural para añadir ese servicio es `core/`, y las páginas no tendrían que cambiar su plantilla.
@@ -120,18 +124,122 @@ Criterios usados:
 
 ## Páginas y rutas
 
-| Ruta            | Origen              | Título (`<title>`)                            | Notas                                   |
-| --------------- | ------------------- | --------------------------------------------- | --------------------------------------- |
-| `/`             | `index.html`        | Solgases \| Seguridad industrial en Sogamoso  | Productos y servicios relevantes        |
-| `/nosotros`     | `nosotros.html`     | Nosotros \| Solgases                          | Equipo, resumen de servicios, marcas    |
-| `/productos`    | `productos.html`    | Productos de seguridad industrial \| Solgases | Galería con modal y 10 categorías (76)  |
-| `/servicios`    | `servicios.html`    | Recarga de extintores y gases \| Solgases     | 18 servicios                            |
-| `/bioseguridad` | `bioseguridad.html` | Productos de bioseguridad \| Solgases         | 20 productos                            |
-| `/contacto`     | `contacto.html`     | Contacto \| Solgases                          | Horario, mapa y formulario (POST a PHP) |
+| Ruta               | Origen                  | Título (`<title>`)                            | Notas                                   |
+| ------------------ | ----------------------- | --------------------------------------------- | --------------------------------------- |
+| `/`                | `index.html`            | Solgases \| Seguridad industrial en Sogamoso  | Productos y servicios relevantes        |
+| `/nosotros`        | `nosotros.html`         | Nosotros \| Solgases                          | Equipo, resumen de servicios, marcas    |
+| `/productos`       | `productos.html`        | Productos de seguridad industrial \| Solgases | Galería con modal y 10 categorías (76)  |
+| `/productos/:slug` | Nueva (`products.json`) | `<Nombre> \| Solgases`                        | Detalle de cada uno de los 94 productos |
+| `/servicios`       | `servicios.html`        | Recarga de extintores y gases \| Solgases     | 18 servicios                            |
+| `/bioseguridad`    | `bioseguridad.html`     | Productos de bioseguridad \| Solgases         | 20 productos                            |
+| `/contacto`        | `contacto.html`         | Contacto \| Solgases                          | Horario, mapa y formulario (POST a PHP) |
 
 Las URLs antiguas (`/productos.html`, etc.) redirigen a las nuevas (ver
 [Rutas heredadas](#rutas-heredadas-html)). `galeria.html` estaba vacío (0 bytes) y no tenía
-enlaces, así que no se migró. Cualquier ruta desconocida redirige al inicio en el navegador.
+enlaces, así que no se migró. Cualquier ruta desconocida redirige al inicio en el navegador, salvo
+`/productos/<slug inexistente>`, que muestra "Producto no encontrado" con un enlace al catálogo.
+
+## Catálogo de productos
+
+> **Todos los precios, unidades, descripciones, características y recomendaciones de
+> `products.json` son datos ficticios de demostración.** Todavía no hay base de datos ni backend
+> integrado. Hay que reemplazarlos por información confirmada antes de publicar el sitio.
+
+Fuente única: `src/app/core/products/products.json` (94 productos). `product-catalog.ts` lo importa
+y ofrece las consultas. Las plantillas no repiten datos de productos.
+
+### Formato del JSON
+
+```jsonc
+{
+  "dataStatus": "demo", // "demo" mientras los datos sean ficticios
+  "notice": "Información de demostración: ...", // aviso que se muestra en el detalle
+  "categories": [
+    {
+      "id": "guantes",
+      "name": "Guantes",
+      "path": "/productos", // página que lista la categoría
+      "fragment": "guantes", // ancla en esa página; se omite si la categoría tiene página propia
+      "items": [
+        // Orden de las tarjetas. `label` conserva un texto de tarjeta distinto del nombre.
+        { "productId": "guantes-altas-temperaturas", "label": "Altas temperaturas" },
+      ],
+    },
+  ],
+  "featured": [{ "productId": "cono" }], // destacados del inicio; admite `label`
+  "products": [
+    {
+      "id": "guante-kodiak", // estable: las listas lo referencian, no cambiarlo
+      "slug": "guante-kodiak", // único: /productos/guante-kodiak
+      "name": "Guante Kodiak", // título principal; "<name> | Solgases" (máximo 60 caracteres)
+      "categoryId": "guantes", // categoría principal: migas de pan y enlace de regreso
+      "shortDescription": "...", // la descripción SEO añade "Consulta en Solgases, Sogamoso."
+      "description": "...",
+      "price": { "amount": 30000, "currency": "COP", "unit": "par", "isDemo": true },
+      "image": { "src": "img/productos/guante-kodiak.jpg", "alt": "..." },
+      "gallery": [{ "src": "img/productos/...", "alt": "..." }], // opcional
+      "features": ["..."],
+      "specifications": [{ "label": "Tipo", "value": "Guante" }],
+      "recommendations": ["..."],
+    },
+  ],
+}
+```
+
+Un producto puede aparecer en varias listas, como Gel Antibacterial en Otros y Bioseguridad, pero
+tiene un solo registro y una sola URL. La disponibilidad no se incluye: un dato ficticio de
+existencias no aporta y podría confundirse con información real.
+
+### Agregar un producto
+
+1. Copia la imagen en `public/img/productos/`.
+2. Añade el registro a `products` con `id` y `slug` nuevos (minúsculas, números y guiones).
+3. Añade `{ "productId": "<id>" }` a los `items` de su categoría y, si es destacado, a `featured`.
+4. Genera la versión WebP y el manifiesto: `npm run optimize:images`.
+5. Comprueba todo con `npm run verify`.
+
+La ruta de detalle, el prerenderizado, el título, la descripción y el sitemap (con dominio
+confirmado) se generan a partir del JSON, sin tocar otro archivo.
+
+### Verificar las imágenes
+
+`npm run check:assets` comprueba que cada ruta de `products.json` exista en `public/` y tenga versión
+optimizada; también falla si un archivo del manifiesto no existe. Las pruebas exigen además un texto
+alternativo propio en cada imagen. Ningún comando puede saber si la foto corresponde al producto:
+esa revisión es visual, y el `alt` debe describir lo que realmente se ve.
+
+### Distinguir los datos ficticios
+
+- En el JSON: `"dataStatus": "demo"` en la raíz y `"isDemo": true` en cada precio.
+- En la página: el rótulo "Precio ficticio de demostración" junto al valor y el aviso `notice`.
+- Fuera de la página: el precio no aparece en los metadatos SEO ni hay datos estructurados `Product`.
+
+Los textos solo usan lo que ya estaba en el sitio (nombre y categoría) y lo que se ve en la foto.
+Los campos "Marca o línea", "Referencia" y "Capacidad" salen del nombre del catálogo, y "Color" de
+la imagen. No se añadieron certificaciones, garantías ni propiedades técnicas. Denominaciones como
+"Dieléctricas" o "N95" provienen del catálogo original y se remiten a la ficha del fabricante.
+
+**Al cargar datos reales:** cambia cada `isDemo` a `false` y `dataStatus`. El aviso del detalle
+desaparece solo. La prueba "identifica como demostración..." de `product-catalog.spec.ts` fallará a
+propósito y debe actualizarse.
+
+### Diferencias con el catálogo original
+
+- **94 productos, ninguno omitido.** Los 116 elementos de Productos (76), Bioseguridad (20) e Inicio
+  (20) corresponden a 94 productos únicos: Inicio repite productos de las otras dos páginas, y en
+  Bioseguridad se repiten Gel Antibacterial y el tapabocas N95, que allí conserva el texto
+  "Mascarilla N95".
+- **Nombres repetidos, ahora distintos** (mismo texto para dos productos en dos URL):
+  Botas Workman Seguridad Negras y Blancas; Botas Ingeniero Terrano Café y Miel; Botas Ingeniero
+  Steel Series y Steel Series para Dama (según el nombre del archivo); Guantes de Látex Negros y
+  Verdes.
+- **Ortografía corregida:** Overol Enterizo (Eterizo), Tapaoídos Casco (Tapaiodios), Mascarilla 3M
+  Elastómero, Guantes de Látex, Overol Dos Piezas (Overol Piezas, según el nombre del archivo).
+- **Visor Guadañar** tenía dos fotos. Ahora la de Productos es la principal, también en la tarjeta
+  del inicio, y la otra pasa a su galería. Es el único producto con galería: las demás imágenes
+  sin usar son escenas generales o corresponden a servicios.
+- Algunos textos de tarjeta originales se conservan con `label` (p. ej. "Chaleco Periodista" en el
+  inicio, cuyo producto es Chaleco Acolchado).
 
 ## SEO
 
@@ -139,6 +247,10 @@ Fuente única: `src/app/core/seo/public-pages.ts`. Contiene el título, la descr
 para compartir de cada página, y lo usan las rutas, el prerenderizado, el sitemap y las pruebas.
 Los textos se redactaron a partir del contenido existente, sin añadir datos nuevos.
 
+- **Productos.** Título y descripción se generan a partir del JSON (`core/products/product-seo.ts`)
+  y llegan a `SeoTitleStrategy` por `data.seo`, mediante un resolver. La imagen para compartir es la
+  general del catálogo, porque las fotos de producto no son de 1200×630. Un producto inexistente
+  recibe `noindex` y no tiene URL canónica.
 - **Títulos y descripciones únicos por ruta.** Las pruebas verifican que no se repitan, que el
   título tenga como máximo 60 caracteres y que la descripción tenga entre 70 y 160.
 - **Metadatos.** `SeoTitleStrategy` (un `TitleStrategy` del router con `Title` y `Meta` de
@@ -154,11 +266,12 @@ Los textos se redactaron a partir del contenido existente, sin añadir datos nue
   aspecto.
 - **Textos `alt`.**
   - Las imágenes informativas tienen `alt` descriptivo: fotos de la galería, del equipo y de
-    Sogamoso, logos (nombre de la marca) y productos (su nombre).
+    Sogamoso, logos (nombre de la marca) y productos (descripción de la foto, en `products.json`).
   - Los banners usan `alt=""` porque son decorativos y su texto equivalente es el `<h1>`.
 - **`robots.txt`.** Se genera en el build. Permite todo salvo `/php/`, el script del formulario,
   que no es una página. Solo incluye `Sitemap:` cuando hay dominio.
-- **`sitemap.xml`.** Solo se genera si hay dominio. Contiene las 6 páginas públicas, sin rutas
+- **`sitemap.xml`.** Solo se genera si hay dominio. Contiene las 6 páginas públicas y los 94
+  productos, sin rutas
   heredadas, sin PHP y sin `lastmod` (no hay fechas fiables). Las pruebas verifican que cada URL
   corresponde a una página real y prerenderizada.
 - **Datos estructurados (`LocalBusiness`): no se añadieron.** Ver
@@ -193,11 +306,18 @@ Salida de `npm run build` en `dist/solgases/browser/`, que es la carpeta que se 
 | `index.html`                                | `/` prerenderizado                                               |
 | `<ruta>/index.html`                         | `nosotros`, `productos`, `servicios`, `bioseguridad`, `contacto` |
 | `<pagina>.html/index.html`                  | Redirección `meta refresh` desde cada URL heredada (5)           |
+| `productos/<slug>/index.html`               | Detalle de cada producto de `products.json` (94)                 |
 | `index.csr.html`                            | Shell sin prerenderizar para rutas desconocidas (fallback)       |
 | `robots.txt`, `sitemap.xml` (con dominio)   | Generados por `scripts/generate-seo-files.mjs`                   |
 | `img/`, `icons/`, `media/`, `*.js`, `*.css` | Recursos                                                         |
 
-`dist/solgases/prerendered-routes.json` lista las 11 rutas prerenderizadas.
+`dist/solgases/prerendered-routes.json` lista las 105 rutas prerenderizadas.
+`scripts/generate-seo-files.mjs` falla si a una página de producto le falta el título, la
+descripción, el `<h1>`, el contenido principal o el aviso de demostración.
+
+Un producto inexistente no tiene HTML propio: lo atiende el fallback `index.csr.html`, que muestra
+el aviso en el navegador. El hosting estático responde entonces 200, no 404; por eso la página pide
+`noindex`.
 
 Cada HTML contiene el contenido completo de la página, su `<title>` y sus metadatos, el CSS crítico
 en línea (Angular lo extrae automáticamente), precargas de fuentes y de la imagen del banner, y el
@@ -229,7 +349,10 @@ renderiza en el servidor de desarrollo.
   - La fuente de iconos usa solo WOFF y TTF, y `font-display: block` para no mostrar letras en
     lugar de iconos.
 - **Carga por ruta.** Las páginas siguen cargándose de forma diferida (`loadComponent`). El
-  manifiesto de imágenes está en un chunk diferido compartido, no en `main`.
+  manifiesto de imágenes y `products.json` (unos 12 kB comprimidos, junto con otros módulos del
+  chunk) están en un chunk diferido compartido, no en `main`.
+- **Detalle de producto.** La imagen principal usa `priority`, como el banner, porque ambas se ven al
+  cargar. La galería usa carga diferida. Los WebP y sus dimensiones reales son los del manifiesto.
 - No se añadieron CDN ni servicios externos. El único recurso externo sigue siendo el mapa de Google
   en Contacto.
 
@@ -357,6 +480,12 @@ export const WHATSAPP_CONFIG: WhatsAppConfig = {
 - **`message`:** el texto inicial de la conversación. Se puede cambiar libremente; se codifica
   automáticamente en la URL.
 
+### Consulta desde el detalle de un producto
+
+La vista de detalle usa la misma configuración y la misma validación (`buildWhatsAppUrl`), con un
+mensaje que nombra el producto, sin precio. Con `phone: null` muestra un botón `aria-disabled`, el
+texto "Número de WhatsApp pendiente de configurar" y el botón "Contáctanos".
+
 ## Backend PHP (`php/`)
 
 Se mantiene separado y no está integrado con ningún otro backend. Cambios realizados:
@@ -397,6 +526,10 @@ repositorio.
 
 ## Datos pendientes por confirmar
 
+- **Datos reales del catálogo.** Precios, unidades, textos y fichas son ficticios. Ver
+  [Catálogo de productos](#catálogo-de-productos).
+- **Fotos por revisar:** Maleta Alfombra muestra un logotipo de Renault; Guante Kodiak lleva impresa
+  otra marca en el puño; Eslingas y Manómetro son fotos de contexto, no del producto aislado.
 - **Número de WhatsApp.** `phone: null` en `src/app/core/whatsapp.config.ts`; el botón está
   desactivado hasta definirlo. Ver [Botón flotante de WhatsApp](#botón-flotante-de-whatsapp).
 - **Dominio público.** Sin él no hay canónica, `og:url`, `og:image` ni `sitemap.xml`. Ver

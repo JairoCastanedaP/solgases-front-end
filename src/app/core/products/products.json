@@ -1,0 +1,3696 @@
+{
+  "dataStatus": "demo",
+  "notice": "Información de demostración: el precio, la unidad de venta, la descripción, las características y las recomendaciones son ejemplos ficticios. No constituyen una cotización, una oferta ni una ficha técnica.",
+  "categories": [
+    {
+      "id": "calzado-caucho",
+      "name": "Calzado Caucho",
+      "path": "/productos",
+      "fragment": "calzado-caucho",
+      "items": [
+        {
+          "productId": "botas-croydon-argyll-amarillo"
+        },
+        {
+          "productId": "botas-croydon-machita-azul"
+        },
+        {
+          "productId": "botas-croydon-seguridad"
+        },
+        {
+          "productId": "botas-workman-seguridad-negras"
+        },
+        {
+          "productId": "botas-workman-seguridad-blancas"
+        },
+        {
+          "productId": "botas-croydon-machita-negra"
+        },
+        {
+          "productId": "botas-croydon-argyll-rojo"
+        },
+        {
+          "productId": "botas-robusta-seguridad"
+        }
+      ]
+    },
+    {
+      "id": "calzado-cuero-sintetico",
+      "name": "Calzado Cuero - Sintético",
+      "path": "/productos",
+      "fragment": "calzado-cuero-sintetico",
+      "items": [
+        {
+          "productId": "botas-kondor-soldador"
+        },
+        {
+          "productId": "botas-kondor-dielectricas"
+        },
+        {
+          "productId": "botas-ingeniero-steel-series"
+        },
+        {
+          "productId": "botas-ingeniero-terrano-cafe"
+        },
+        {
+          "productId": "botas-saga-seguridad"
+        },
+        {
+          "productId": "botas-ingeniero-steel-series-dama"
+        },
+        {
+          "productId": "botas-ingeniero-saga"
+        },
+        {
+          "productId": "botas-ingeniero-terrano-miel"
+        }
+      ]
+    },
+    {
+      "id": "seguridad-vial",
+      "name": "Seguridad Vial",
+      "path": "/productos",
+      "fragment": "seguridad-vial",
+      "items": [
+        {
+          "productId": "extintor-5-libras"
+        },
+        {
+          "productId": "chaleco-reflectivo"
+        },
+        {
+          "productId": "cono"
+        },
+        {
+          "productId": "botiquin-basico"
+        },
+        {
+          "productId": "linterna-varta"
+        },
+        {
+          "productId": "kit-carretera"
+        },
+        {
+          "productId": "soporte-extintor"
+        },
+        {
+          "productId": "maleta-alfombra"
+        }
+      ]
+    },
+    {
+      "id": "overoles-ropa",
+      "name": "Overoles - Ropa",
+      "path": "/productos",
+      "fragment": "overoles-ropa",
+      "items": [
+        {
+          "productId": "camisa-jean-caballero"
+        },
+        {
+          "productId": "camisa-azul-caballero"
+        },
+        {
+          "productId": "camisa-jean-dama"
+        },
+        {
+          "productId": "conjunto-impermeable"
+        },
+        {
+          "productId": "pantalon-jean"
+        },
+        {
+          "productId": "overol-dos-piezas"
+        },
+        {
+          "productId": "chaleco-acolchado"
+        },
+        {
+          "productId": "overol-enterizo"
+        }
+      ]
+    },
+    {
+      "id": "guantes",
+      "name": "Guantes",
+      "path": "/productos",
+      "fragment": "guantes",
+      "items": [
+        {
+          "productId": "guantes-latex-negros"
+        },
+        {
+          "productId": "guante-vaqueta"
+        },
+        {
+          "productId": "guante-carnaza"
+        },
+        {
+          "productId": "guante-kodiak"
+        },
+        {
+          "productId": "guante-lana"
+        },
+        {
+          "productId": "guante-nitrilo"
+        },
+        {
+          "productId": "guantes-altas-temperaturas",
+          "label": "Altas temperaturas"
+        },
+        {
+          "productId": "guante-mosquetero"
+        }
+      ]
+    },
+    {
+      "id": "mascarillas-respiradores-filtros",
+      "name": "Mascarillas - Respiradores - Filtros",
+      "path": "/productos",
+      "fragment": "mascarillas-respiradores-filtros",
+      "items": [
+        {
+          "productId": "mascarilla-economica"
+        },
+        {
+          "productId": "mascarilla-3m-elastomero"
+        },
+        {
+          "productId": "tapabocas-3m-desechable-n95"
+        },
+        {
+          "productId": "respirador-well-done"
+        },
+        {
+          "productId": "respirador-3m-7501"
+        },
+        {
+          "productId": "filtro-3m-6003"
+        },
+        {
+          "productId": "filtro-3m-2097"
+        },
+        {
+          "productId": "filtro-3m-7093-c"
+        }
+      ]
+    },
+    {
+      "id": "cascos",
+      "name": "Cascos",
+      "path": "/productos",
+      "fragment": "cascos",
+      "items": [
+        {
+          "productId": "casco-de-seguridad"
+        },
+        {
+          "productId": "casco-minero"
+        },
+        {
+          "productId": "casco-alturas"
+        },
+        {
+          "productId": "casco-prevencion",
+          "label": "Casco prevención"
+        },
+        {
+          "productId": "casco-safari"
+        },
+        {
+          "productId": "visor-guadanar"
+        },
+        {
+          "productId": "barbuquejo-3-puntos"
+        },
+        {
+          "productId": "tapaoidos-casco"
+        }
+      ]
+    },
+    {
+      "id": "caretas",
+      "name": "Caretas",
+      "path": "/productos",
+      "fragment": "caretas",
+      "items": [
+        {
+          "productId": "careta-pulir"
+        },
+        {
+          "productId": "careta-corriente"
+        },
+        {
+          "productId": "careta-arco"
+        },
+        {
+          "productId": "careta-inteligente"
+        }
+      ]
+    },
+    {
+      "id": "gafas",
+      "name": "Gafas",
+      "path": "/productos",
+      "fragment": "gafas",
+      "items": [
+        {
+          "productId": "monogafa-clara"
+        },
+        {
+          "productId": "gafas-de-seguridad"
+        },
+        {
+          "productId": "gafas-nemesis"
+        },
+        {
+          "productId": "gafas-ambar"
+        },
+        {
+          "productId": "gafas-radians"
+        },
+        {
+          "productId": "gafas-top-gun"
+        },
+        {
+          "productId": "gafas-laboratorio"
+        },
+        {
+          "productId": "gafas-malla"
+        }
+      ]
+    },
+    {
+      "id": "otros",
+      "name": "Otros",
+      "path": "/productos",
+      "fragment": "otros",
+      "items": [
+        {
+          "productId": "manometro"
+        },
+        {
+          "productId": "gel-antibacterial"
+        },
+        {
+          "productId": "eslingas"
+        },
+        {
+          "productId": "senalizacion-pvc",
+          "label": "Señalización PVC"
+        },
+        {
+          "productId": "arnes"
+        },
+        {
+          "productId": "botiquin-metalico"
+        },
+        {
+          "productId": "pinza-de-masa"
+        },
+        {
+          "productId": "manguera-oxicorte"
+        }
+      ]
+    },
+    {
+      "id": "bioseguridad",
+      "name": "Bioseguridad",
+      "path": "/bioseguridad",
+      "items": [
+        {
+          "productId": "senalizacion-desinfeccion",
+          "label": "Señalización"
+        },
+        {
+          "productId": "desinfectante"
+        },
+        {
+          "productId": "careta-acrilico"
+        },
+        {
+          "productId": "gel-antibacterial"
+        },
+        {
+          "productId": "guantes-latex-verdes"
+        },
+        {
+          "productId": "mascarilla"
+        },
+        {
+          "productId": "overol-desechable"
+        },
+        {
+          "productId": "tapabocas-3m-desechable-n95",
+          "label": "Mascarilla N95"
+        },
+        {
+          "productId": "termometro-clasico"
+        },
+        {
+          "productId": "dispensador-gel-antibacterial"
+        },
+        {
+          "productId": "gafas-proteccion-lateral",
+          "label": "Gafas protección lateral"
+        },
+        {
+          "productId": "amonio-cuaternario"
+        },
+        {
+          "productId": "gafas-anti-fog"
+        },
+        {
+          "productId": "guantes-caucho"
+        },
+        {
+          "productId": "tapete"
+        },
+        {
+          "productId": "cinta-de-peligro"
+        },
+        {
+          "productId": "termometro-digital"
+        },
+        {
+          "productId": "tapabocas-sencillo",
+          "label": "Tapabocas sencillo"
+        },
+        {
+          "productId": "fumigadora"
+        },
+        {
+          "productId": "alcohol"
+        }
+      ]
+    }
+  ],
+  "featured": [
+    {
+      "productId": "botiquin-basico"
+    },
+    {
+      "productId": "extintor-5-libras"
+    },
+    {
+      "productId": "chaleco-acolchado",
+      "label": "Chaleco Periodista"
+    },
+    {
+      "productId": "pantalon-jean"
+    },
+    {
+      "productId": "botas-kondor-soldador",
+      "label": "Botas Soldador"
+    },
+    {
+      "productId": "guantes-latex-verdes"
+    },
+    {
+      "productId": "careta-inteligente"
+    },
+    {
+      "productId": "cono"
+    },
+    {
+      "productId": "casco-de-seguridad"
+    },
+    {
+      "productId": "botas-kondor-dielectricas",
+      "label": "Botas Dieléctricas"
+    },
+    {
+      "productId": "guante-vaqueta"
+    },
+    {
+      "productId": "manometro"
+    },
+    {
+      "productId": "gafas-de-seguridad"
+    },
+    {
+      "productId": "gel-antibacterial"
+    },
+    {
+      "productId": "eslingas"
+    },
+    {
+      "productId": "visor-guadanar"
+    },
+    {
+      "productId": "mascarilla-3m-elastomero"
+    },
+    {
+      "productId": "tapabocas-3m-desechable-n95"
+    },
+    {
+      "productId": "senalizacion-pvc",
+      "label": "Señalización en PVC"
+    },
+    {
+      "productId": "camisa-jean-dama"
+    }
+  ],
+  "products": [
+    {
+      "id": "botas-croydon-argyll-amarillo",
+      "slug": "botas-croydon-argyll-amarillo",
+      "name": "Botas Croydon Argyll Amarillo",
+      "categoryId": "calzado-caucho",
+      "shortDescription": "Botas de caucho Croydon Argyll, negras y de caña alta, con borde, puntera y suela en color amarillo.",
+      "description": "Botas de caucho Croydon Argyll, negras y de caña alta, con borde, puntera y suela en color amarillo. Los detalles amarillos contrastan con el cuerpo negro de la bota. Hace parte de la línea de calzado de caucho que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 60000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/botas-caucho-argyll.jpg",
+        "alt": "Par de botas de caucho negras de caña alta con borde, puntera y suela amarillos"
+      },
+      "features": ["Caña alta", "Cuerpo negro con detalles amarillos", "Suela con labrado visible"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Bota de caucho"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Croydon"
+        },
+        {
+          "label": "Referencia",
+          "value": "Argyll"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro y amarillo"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y el tipo de labor con un asesor antes de elegir el par.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "botas-croydon-machita-azul",
+      "slug": "botas-croydon-machita-azul",
+      "name": "Botas Croydon Machita Azul",
+      "categoryId": "calzado-caucho",
+      "shortDescription": "Bota de caucho Croydon Machita de color azul, con caña alta y suela gris de labrado marcado.",
+      "description": "Bota de caucho Croydon Machita de color azul, con caña alta y suela gris de labrado marcado. El azul cubre toda la caña y la capellada, mientras la suela se distingue en gris. Hace parte de la línea de calzado de caucho que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 40000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/bota-croydon-machita.jpg",
+        "alt": "Bota de caucho azul de caña alta con suela gris labrada"
+      },
+      "features": ["Caña alta", "Color azul", "Suela gris labrada"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Bota de caucho"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Croydon"
+        },
+        {
+          "label": "Referencia",
+          "value": "Machita"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Azul con suela gris"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y el tipo de labor con un asesor antes de elegir el par.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "botas-croydon-seguridad",
+      "slug": "botas-croydon-seguridad",
+      "name": "Botas Croydon Seguridad",
+      "categoryId": "calzado-caucho",
+      "shortDescription": "Bota de caucho Croydon en color amarillo, de caña alta y suela negra, para dotación de trabajo.",
+      "description": "Bota de caucho Croydon en color amarillo, de caña alta y suela negra, para dotación de trabajo. Su color amarillo cubre la caña y la capellada, con una suela negra de contraste. Hace parte de la línea de calzado de caucho que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 50000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/bota-caucho-amarilla.jpg",
+        "alt": "Bota de caucho amarilla de caña alta con suela negra"
+      },
+      "features": ["Caña alta", "Color amarillo", "Suela negra"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Bota de caucho"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Croydon"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Amarillo con suela negra"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y el tipo de labor con un asesor antes de elegir el par.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "botas-workman-seguridad-negras",
+      "slug": "botas-workman-seguridad-negras",
+      "name": "Botas Workman Seguridad Negras",
+      "categoryId": "calzado-caucho",
+      "shortDescription": "Bota de caucho Workman negra de acabado brillante y caña alta, con una suela de tono claro.",
+      "description": "Bota de caucho Workman negra de acabado brillante y caña alta, con una suela de tono claro. Se presenta en una sola pieza de color negro, con la franja de la suela en tono claro. Hace parte de la línea de calzado de caucho que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 45000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/botas-macha-negra.jpg",
+        "alt": "Bota de caucho negra brillante de caña alta con suela clara"
+      },
+      "features": ["Caña alta", "Acabado brillante", "Suela de tono claro"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Bota de caucho"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Workman"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y el tipo de labor con un asesor antes de elegir el par.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "botas-workman-seguridad-blancas",
+      "slug": "botas-workman-seguridad-blancas",
+      "name": "Botas Workman Seguridad Blancas",
+      "categoryId": "calzado-caucho",
+      "shortDescription": "Bota de caucho Workman de color blanco y caña alta, una alternativa clara dentro de la línea.",
+      "description": "Bota de caucho Workman de color blanco y caña alta, una alternativa clara dentro de la línea. La bota es blanca de la caña a la suela, sin franjas de otro color. Hace parte de la línea de calzado de caucho que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 45000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/botas-caucho-blancas.jpg",
+        "alt": "Bota de caucho blanca de caña alta"
+      },
+      "features": ["Caña alta", "Color blanco en toda la bota"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Bota de caucho"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Workman"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Blanco"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y el tipo de labor con un asesor antes de elegir el par.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "botas-croydon-machita-negra",
+      "slug": "botas-croydon-machita-negra",
+      "name": "Botas Croydon Machita Negra",
+      "categoryId": "calzado-caucho",
+      "shortDescription": "Bota de caucho Croydon Machita en tono oscuro, de caña alta y suela color café.",
+      "description": "Bota de caucho Croydon Machita en tono oscuro, de caña alta y suela color café. Comparte la referencia Machita con la versión azul y cambia la combinación de colores. Hace parte de la línea de calzado de caucho que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 40000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/bota-machita-negra.jpg",
+        "alt": "Bota de caucho oscura de caña alta con suela café"
+      },
+      "features": ["Caña alta", "Tono oscuro", "Suela café"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Bota de caucho"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Croydon"
+        },
+        {
+          "label": "Referencia",
+          "value": "Machita"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro con suela café"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y el tipo de labor con un asesor antes de elegir el par.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "botas-croydon-argyll-rojo",
+      "slug": "botas-croydon-argyll-rojo",
+      "name": "Botas Croydon Argyll Rojo",
+      "categoryId": "calzado-caucho",
+      "shortDescription": "Bota de caucho Croydon Argyll negra, de caña alta, que se distingue por su borde superior rojo.",
+      "description": "Bota de caucho Croydon Argyll negra, de caña alta, que se distingue por su borde superior rojo. Es la variante de la referencia Argyll con el borde de la caña en rojo. Hace parte de la línea de calzado de caucho que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 60000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/bota-caucho-argyll-rojo.jpg",
+        "alt": "Bota de caucho negra de caña alta con borde superior rojo"
+      },
+      "features": ["Caña alta", "Borde superior rojo", "Cuerpo negro"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Bota de caucho"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Croydon"
+        },
+        {
+          "label": "Referencia",
+          "value": "Argyll"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro y rojo"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y el tipo de labor con un asesor antes de elegir el par.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "botas-robusta-seguridad",
+      "slug": "botas-robusta-seguridad",
+      "name": "Botas Robusta Seguridad",
+      "categoryId": "calzado-caucho",
+      "shortDescription": "Bota de caucho Robusta de color negro, con caña alta y una suela amarilla que resalta.",
+      "description": "Bota de caucho Robusta de color negro, con caña alta y una suela amarilla que resalta. La franja amarilla de la suela contrasta con el cuerpo negro brillante. Hace parte de la línea de calzado de caucho que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 45000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/bota-caucho-negra.jpg",
+        "alt": "Bota de caucho negra con caña alta y suela amarilla"
+      },
+      "features": ["Caña alta", "Cuerpo negro brillante", "Suela amarilla"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Bota de caucho"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Robusta"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro con suela amarilla"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y el tipo de labor con un asesor antes de elegir el par.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "botas-kondor-soldador",
+      "slug": "botas-kondor-soldador",
+      "name": "Botas Kondor Soldador",
+      "categoryId": "calzado-cuero-sintetico",
+      "shortDescription": "Bota Kondor para soldador, de caña alta en cuero gris oscuro, con entrada sin cordones visibles.",
+      "description": "Bota Kondor para soldador, de caña alta en cuero gris oscuro, con entrada sin cordones visibles. La caña alta y la tira superior son los rasgos más visibles de este modelo en la fotografía. Hace parte de la línea de calzado de cuero y sintético que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 120000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/bota-kondor-soldar.jpg",
+        "alt": "Bota alta de cuero gris oscuro con suela gris y sin cordones visibles"
+      },
+      "features": ["Caña alta", "Sin cordones visibles", "Tira superior para calzarla"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Calzado de cuero o sintético"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Kondor"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Gris oscuro"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y el tipo de labor con un asesor antes de elegir el par.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "botas-kondor-dielectricas",
+      "slug": "botas-kondor-dielectricas",
+      "name": "Botas Kondor Dieléctricas",
+      "categoryId": "calzado-cuero-sintetico",
+      "shortDescription": "Bota Kondor tipo tenis en naranja y negro, con cordones y suela café, presentada como dieléctrica.",
+      "description": "Bota Kondor tipo tenis en naranja y negro, con cordones y suela café, presentada como dieléctrica. La denominación dieléctrica proviene del catálogo actual; confirma sus valores en la ficha del fabricante. Hace parte de la línea de calzado de cuero y sintético que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 130000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/bota kondor teni amarilla.PNG",
+        "alt": "Bota tipo tenis naranja y negra con cordones y suela café"
+      },
+      "features": ["Estilo tipo tenis", "Cierre con cordones", "Combinación naranja y negro"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Calzado de cuero o sintético"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Kondor"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Naranja y negro"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y el tipo de labor con un asesor antes de elegir el par.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "botas-ingeniero-steel-series",
+      "slug": "botas-ingeniero-steel-series",
+      "name": "Botas Ingeniero Steel Series",
+      "categoryId": "calzado-cuero-sintetico",
+      "shortDescription": "Botas de estilo ingeniero Steel Series, negras y de caña media, con cordones y costuras visibles.",
+      "description": "Botas de estilo ingeniero Steel Series, negras y de caña media, con cordones y costuras visibles. Las costuras claras destacan sobre el acabado negro del par. Hace parte de la línea de calzado de cuero y sintético que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 110000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/botas-ingeniero-seguridad.jpg",
+        "alt": "Par de botas negras de caña media con cordones y costuras claras"
+      },
+      "features": ["Caña media", "Cierre con cordones", "Costuras visibles"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Calzado de cuero o sintético"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Steel Series"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y el tipo de labor con un asesor antes de elegir el par.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "botas-ingeniero-terrano-cafe",
+      "slug": "botas-ingeniero-terrano-cafe",
+      "name": "Botas Ingeniero Terrano Café",
+      "categoryId": "calzado-cuero-sintetico",
+      "shortDescription": "Bota de estilo ingeniero Terrano en color café, con puntera negra, cordones y suela negra.",
+      "description": "Bota de estilo ingeniero Terrano en color café, con puntera negra, cordones y suela negra. La puntera negra da contraste con el tono café de la capellada. Hace parte de la línea de calzado de cuero y sintético que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 115000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/bota-terrano-ingeniero.jpg",
+        "alt": "Bota café con puntera negra, cordones y suela negra"
+      },
+      "features": ["Puntera de color negro", "Cierre con cordones", "Suela negra"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Calzado de cuero o sintético"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Terrano"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Café y negro"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y el tipo de labor con un asesor antes de elegir el par.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "botas-saga-seguridad",
+      "slug": "botas-saga-seguridad",
+      "name": "Botas Saga Seguridad",
+      "categoryId": "calzado-cuero-sintetico",
+      "shortDescription": "Calzado Saga negro de caña baja, con cordones y una franja gris que recorre la suela.",
+      "description": "Calzado Saga negro de caña baja, con cordones y una franja gris que recorre la suela. Su corte más bajo lo diferencia de los modelos de caña media de la misma categoría. Hace parte de la línea de calzado de cuero y sintético que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 95000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/bota-saga-seguridad.jpg",
+        "alt": "Zapato de seguridad negro de caña baja con franja gris en la suela"
+      },
+      "features": ["Caña baja", "Cierre con cordones", "Suela con franja gris"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Calzado de cuero o sintético"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Saga"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro y gris"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y el tipo de labor con un asesor antes de elegir el par.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "botas-ingeniero-steel-series-dama",
+      "slug": "botas-ingeniero-steel-series-dama",
+      "name": "Botas Ingeniero Steel Series para Dama",
+      "categoryId": "calzado-cuero-sintetico",
+      "shortDescription": "Par de botas de estilo ingeniero Steel Series para dama, de tono oscuro y caña media con cordones.",
+      "description": "Par de botas de estilo ingeniero Steel Series para dama, de tono oscuro y caña media con cordones. Comparte línea con el modelo Steel Series y se identifica en el repositorio como versión para dama. Hace parte de la línea de calzado de cuero y sintético que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 110000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/bota-ingeniera-dama.jpg",
+        "alt": "Par de botas oscuras de caña media con cordones"
+      },
+      "features": ["Caña media", "Cierre con cordones", "Tono oscuro"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Calzado de cuero o sintético"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Steel Series"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Café oscuro"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y el tipo de labor con un asesor antes de elegir el par.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "botas-ingeniero-saga",
+      "slug": "botas-ingeniero-saga",
+      "name": "Botas Ingeniero Saga",
+      "categoryId": "calzado-cuero-sintetico",
+      "shortDescription": "Bota de estilo ingeniero Saga en café y negro, con cordones y pequeños detalles de color naranja.",
+      "description": "Bota de estilo ingeniero Saga en café y negro, con cordones y pequeños detalles de color naranja. La combinación de tonos y los detalles naranja son sus rasgos más visibles. Hace parte de la línea de calzado de cuero y sintético que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 100000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/bota-saga-ingeniero.jpg",
+        "alt": "Bota café y negra con cordones y detalles naranja"
+      },
+      "features": ["Caña media", "Cierre con cordones", "Detalles naranja"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Calzado de cuero o sintético"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Saga"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Café, negro y naranja"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y el tipo de labor con un asesor antes de elegir el par.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "botas-ingeniero-terrano-miel",
+      "slug": "botas-ingeniero-terrano-miel",
+      "name": "Botas Ingeniero Terrano Miel",
+      "categoryId": "calzado-cuero-sintetico",
+      "shortDescription": "Bota de estilo ingeniero Terrano en color miel, con cordones y suela negra de labrado marcado.",
+      "description": "Bota de estilo ingeniero Terrano en color miel, con cordones y suela negra de labrado marcado. Es la variante clara de la línea Terrano dentro de este catálogo. Hace parte de la línea de calzado de cuero y sintético que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 115000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/botas-terrano-ingeniero.jpg",
+        "alt": "Bota color miel con cordones y suela negra"
+      },
+      "features": ["Color miel", "Cierre con cordones", "Suela negra labrada"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Calzado de cuero o sintético"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Terrano"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Miel y negro"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y el tipo de labor con un asesor antes de elegir el par.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "extintor-5-libras",
+      "slug": "extintor-5-libras",
+      "name": "Extintor 5 libras",
+      "categoryId": "seguridad-vial",
+      "shortDescription": "Extintor amarillo de 5 libras con manija, manómetro y un rótulo de químico seco en el cilindro.",
+      "description": "Extintor amarillo de 5 libras con manija, manómetro y un rótulo de químico seco en el cilindro. El peso proviene del catálogo; el agente y la vigencia deben confirmarse en la etiqueta del equipo. Forma parte de los elementos de seguridad vial que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 60000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/extintor 5 libras.jfif",
+        "alt": "Extintor amarillo con rótulo de químico seco, manija negra y manómetro"
+      },
+      "features": ["Cilindro amarillo", "Manija y manómetro visibles", "Rótulo con instrucciones"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Extintor"
+        },
+        {
+          "label": "Capacidad en el catálogo",
+          "value": "5 libras"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Amarillo"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué elementos necesitas según tu vehículo y la normativa vigente.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "chaleco-reflectivo",
+      "slug": "chaleco-reflectivo",
+      "name": "Chaleco Reflectivo",
+      "categoryId": "seguridad-vial",
+      "shortDescription": "Chaleco de alta visibilidad con bandas reflectivas; la imagen lo muestra en naranja y verde limón.",
+      "description": "Chaleco de alta visibilidad con bandas reflectivas; la imagen lo muestra en naranja y verde limón. Las bandas grises recorren el pecho y el contorno del chaleco en ambos colores. Forma parte de los elementos de seguridad vial que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 15000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/chaleco-reflectivo.jpg",
+        "alt": "Dos chalecos, uno naranja y otro verde limón, con bandas reflectivas grises"
+      },
+      "features": [
+        "Bandas reflectivas",
+        "Sin mangas",
+        "Colores naranja y verde limón en la imagen"
+      ],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Chaleco"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Naranja o verde limón"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué elementos necesitas según tu vehículo y la normativa vigente.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "cono",
+      "slug": "cono",
+      "name": "Cono",
+      "categoryId": "seguridad-vial",
+      "shortDescription": "Cono vial naranja con una franja blanca en la parte superior y base cuadrada para apoyarlo.",
+      "description": "Cono vial naranja con una franja blanca en la parte superior y base cuadrada para apoyarlo. Su forma y color lo hacen un elemento habitual para señalizar un área. Forma parte de los elementos de seguridad vial que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 25000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/cono.jpg",
+        "alt": "Cono vial naranja con franja reflectiva blanca sobre una base"
+      },
+      "features": ["Color naranja", "Franja blanca", "Base cuadrada"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Cono de señalización"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Naranja y blanco"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué elementos necesitas según tu vehículo y la normativa vigente.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "botiquin-basico",
+      "slug": "botiquin-basico",
+      "name": "Botiquín Básico",
+      "categoryId": "seguridad-vial",
+      "shortDescription": "Botiquín básico en estuche de tela rojo con la inscripción de primeros auxilios impresa al frente.",
+      "description": "Botiquín básico en estuche de tela rojo con la inscripción de primeros auxilios impresa al frente. El contenido exacto debe confirmarse con un asesor antes de comprarlo. Forma parte de los elementos de seguridad vial que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 35000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/BOTIQUIN-25-elementos.jpg",
+        "alt": "Estuche de tela rojo con la inscripción botiquín primeros auxilios"
+      },
+      "features": ["Estuche de tela", "Color rojo", "Inscripción de primeros auxilios"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Botiquín"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Rojo"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué elementos necesitas según tu vehículo y la normativa vigente.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "linterna-varta",
+      "slug": "linterna-varta",
+      "name": "Linterna Varta",
+      "categoryId": "seguridad-vial",
+      "shortDescription": "Linterna Varta de cuerpo negro, presentada en su empaque de la marca en amarillo y azul.",
+      "description": "Linterna Varta de cuerpo negro, presentada en su empaque de la marca en amarillo y azul. El empaque de la fotografía menciona LED y recargable; confirma el modelo disponible con un asesor. Forma parte de los elementos de seguridad vial que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 30000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/linterna-varta.jpg",
+        "alt": "Linterna negra Varta dentro de su empaque amarillo y azul"
+      },
+      "features": ["Cuerpo negro", "Empaque de la marca", "Empaque con la mención LED"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Linterna"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Varta"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué elementos necesitas según tu vehículo y la normativa vigente.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "kit-carretera",
+      "slug": "kit-carretera",
+      "name": "Kit Carretera",
+      "categoryId": "seguridad-vial",
+      "shortDescription": "Kit de carretera; la imagen muestra extintor, dos conos, dos tacos, botiquín rojo y un estuche negro.",
+      "description": "Kit de carretera; la imagen muestra extintor, dos conos, dos tacos, botiquín rojo y un estuche negro. El contenido corresponde a lo visible en la fotografía y debe confirmarse antes de la compra. Forma parte de los elementos de seguridad vial que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 120000,
+        "currency": "COP",
+        "unit": "kit",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/kit-carretera-automovil.jpg",
+        "alt": "Kit con extintor, dos conos, dos tacos, botiquín rojo y estuche negro"
+      },
+      "features": ["Extintor", "Dos conos", "Dos tacos", "Botiquín y estuche"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Kit de carretera"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué elementos necesitas según tu vehículo y la normativa vigente.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "soporte-extintor",
+      "slug": "soporte-extintor",
+      "name": "Soporte Extintor",
+      "categoryId": "seguridad-vial",
+      "shortDescription": "Soporte metálico negro con dos aros y un gancho superior para ubicar un extintor.",
+      "description": "Soporte metálico negro con dos aros y un gancho superior para ubicar un extintor. Confirma con un asesor si corresponde al tamaño del extintor que ya tienes. Forma parte de los elementos de seguridad vial que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 20000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/soporte-extintor.jpg",
+        "alt": "Soporte metálico negro con dos aros para sujetar un extintor"
+      },
+      "features": ["Material de aspecto metálico", "Dos aros de sujeción", "Gancho superior"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Soporte para extintor"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué elementos necesitas según tu vehículo y la normativa vigente.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "maleta-alfombra",
+      "slug": "maleta-alfombra",
+      "name": "Maleta Alfombra",
+      "categoryId": "seguridad-vial",
+      "shortDescription": "Maleta de tela azul oscura para el vehículo, con asa superior y ribete gris en los bordes.",
+      "description": "Maleta de tela azul oscura para el vehículo, con asa superior y ribete gris en los bordes. La unidad de la fotografía lleva un logotipo de vehículo; confirma las opciones disponibles con un asesor. Forma parte de los elementos de seguridad vial que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 50000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/maleta-alfombra-carro.jpg",
+        "alt": "Maleta de tela azul oscura con asa, ribete gris y logotipo Renault"
+      },
+      "features": ["Asa superior", "Ribete gris", "Tela azul oscura"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Maleta para vehículo"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Azul oscuro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué elementos necesitas según tu vehículo y la normativa vigente.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "camisa-jean-caballero",
+      "slug": "camisa-jean-caballero",
+      "name": "Camisa Jean para Caballero",
+      "categoryId": "overoles-ropa",
+      "shortDescription": "Camisa jean azul para caballero, de manga larga y con dos bolsillos al pecho.",
+      "description": "Camisa jean azul para caballero, de manga larga y con dos bolsillos al pecho. Los bolsillos con tapa y el cierre de botones son sus rasgos más visibles. Hace parte de la línea de ropa de trabajo que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 50000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/camisa-jean-hombre-somgamoso.jpg",
+        "alt": "Camisa jean azul de manga larga para caballero con dos bolsillos al pecho"
+      },
+      "features": ["Manga larga", "Dos bolsillos al pecho", "Cierre con botones"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Camisa"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Azul jean"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y las opciones de dotación con un asesor antes de elegir la prenda.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "camisa-azul-caballero",
+      "slug": "camisa-azul-caballero",
+      "name": "Camisa Azul Caballero",
+      "categoryId": "overoles-ropa",
+      "shortDescription": "Camisa azul claro para caballero, de manga larga, con cuello clásico y cierre de botones.",
+      "description": "Camisa azul claro para caballero, de manga larga, con cuello clásico y cierre de botones. Su tono claro la diferencia de las camisas en tela jean de esta categoría. Hace parte de la línea de ropa de trabajo que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 45000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/camisa-azul.jpg",
+        "alt": "Camisa azul claro de manga larga para caballero con cuello y botones"
+      },
+      "features": ["Manga larga", "Cuello clásico", "Color azul claro"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Camisa"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Azul claro"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y las opciones de dotación con un asesor antes de elegir la prenda.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "camisa-jean-dama",
+      "slug": "camisa-jean-dama",
+      "name": "Camisa Jean para Dama",
+      "categoryId": "overoles-ropa",
+      "shortDescription": "Camisa jean azul para dama, de manga larga, con bolsillos al pecho y cierre al frente.",
+      "description": "Camisa jean azul para dama, de manga larga, con bolsillos al pecho y cierre al frente. La fotografía la muestra puesta, lo que permite apreciar su corte. Hace parte de la línea de ropa de trabajo que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 50000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/camisa jean sogamoso.jpg",
+        "alt": "Mujer con camisa jean azul de manga larga y bolsillos al pecho"
+      },
+      "features": ["Manga larga", "Bolsillos al pecho", "Cierre frontal"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Camisa"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Azul jean"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y las opciones de dotación con un asesor antes de elegir la prenda.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "conjunto-impermeable",
+      "slug": "conjunto-impermeable",
+      "name": "Conjunto Impermeable",
+      "categoryId": "overoles-ropa",
+      "shortDescription": "Conjunto impermeable amarillo de chaqueta con capucha y pantalón, visto de frente y de espalda.",
+      "description": "Conjunto impermeable amarillo de chaqueta con capucha y pantalón, visto de frente y de espalda. Se muestra como un conjunto de dos prendas del mismo color. Hace parte de la línea de ropa de trabajo que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 55000,
+        "currency": "COP",
+        "unit": "conjunto",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/conjunto-impermeable.jpg",
+        "alt": "Conjunto amarillo de chaqueta con capucha y pantalón, de frente y de espalda"
+      },
+      "features": ["Chaqueta con capucha", "Pantalón", "Color amarillo"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Conjunto de chaqueta y pantalón"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Amarillo"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y las opciones de dotación con un asesor antes de elegir la prenda.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "pantalon-jean",
+      "slug": "pantalon-jean",
+      "name": "Pantalón Jean",
+      "categoryId": "overoles-ropa",
+      "shortDescription": "Pantalón jean azul oscuro de bota recta, para complementar la dotación de trabajo.",
+      "description": "Pantalón jean azul oscuro de bota recta, para complementar la dotación de trabajo. Combina con las camisas jean de la misma categoría. Hace parte de la línea de ropa de trabajo que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 55000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/pantalón jean sogamoso.jpg",
+        "alt": "Pantalón jean azul oscuro de bota recta"
+      },
+      "features": ["Tono azul oscuro", "Bota recta", "Bolsillos frontales"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Pantalón"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Azul oscuro"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y las opciones de dotación con un asesor antes de elegir la prenda.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "overol-dos-piezas",
+      "slug": "overol-dos-piezas",
+      "name": "Overol Dos Piezas",
+      "categoryId": "overoles-ropa",
+      "shortDescription": "Overol verde de dotación con capucha y cierre frontal, identificado en el catálogo como de piezas.",
+      "description": "Overol verde de dotación con capucha y cierre frontal, identificado en el catálogo como de piezas. Confirma con un asesor la composición de las piezas y la tela disponible. Hace parte de la línea de ropa de trabajo que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 90000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/overol-drill-dos-piezas.jpg",
+        "alt": "Prenda de trabajo verde con capucha y cierre frontal"
+      },
+      "features": ["Color verde", "Capucha", "Cierre frontal"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Overol"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Verde"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y las opciones de dotación con un asesor antes de elegir la prenda.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "chaleco-acolchado",
+      "slug": "chaleco-acolchado",
+      "name": "Chaleco Acolchado",
+      "categoryId": "overoles-ropa",
+      "shortDescription": "Chaleco acolchado negro de cuello alto, con varios bolsillos al frente y cierre central.",
+      "description": "Chaleco acolchado negro de cuello alto, con varios bolsillos al frente y cierre central. Sus bolsillos frontales son el rasgo más visible de la prenda. Hace parte de la línea de ropa de trabajo que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 70000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/chaleco acolchado.jpg",
+        "alt": "Chaleco negro acolchado con varios bolsillos al frente y cuello alto"
+      },
+      "features": ["Varios bolsillos frontales", "Cuello alto", "Sin mangas"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Chaleco"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y las opciones de dotación con un asesor antes de elegir la prenda.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "overol-enterizo",
+      "slug": "overol-enterizo",
+      "name": "Overol Enterizo",
+      "categoryId": "overoles-ropa",
+      "shortDescription": "Overol enterizo azul oscuro con franjas claras en piernas y brazos, visto de frente y de espalda.",
+      "description": "Overol enterizo azul oscuro con franjas claras en piernas y brazos, visto de frente y de espalda. Se presenta en una sola pieza, con franjas claras en piernas y brazos. Hace parte de la línea de ropa de trabajo que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 95000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/overol-drill-enterizo.jpg",
+        "alt": "Overol enterizo azul oscuro con franjas reflectivas, de frente y de espalda"
+      },
+      "features": ["Una sola pieza", "Franjas claras", "Manga larga"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Overol"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Azul oscuro"
+        }
+      ],
+      "recommendations": [
+        "Confirma la talla y las opciones de dotación con un asesor antes de elegir la prenda.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "guantes-latex-negros",
+      "slug": "guantes-latex-negros",
+      "name": "Guantes de Látex Negros",
+      "categoryId": "guantes",
+      "shortDescription": "Par de guantes de látex negros de ajuste ceñido y puño corto.",
+      "description": "Par de guantes de látex negros de ajuste ceñido y puño corto. El material corresponde al nombre del catálogo actual. Hace parte de la línea de guantes que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 10000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/guante-latex-negro.jpg",
+        "alt": "Par de guantes de látex negros y ajustados"
+      },
+      "features": ["Color negro", "Puño corto", "Ajuste ceñido"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Guante"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué tipo de guante conviene para tu tarea y qué talla necesitas.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "guante-vaqueta",
+      "slug": "guante-vaqueta",
+      "name": "Guante Vaqueta",
+      "categoryId": "guantes",
+      "shortDescription": "Par de guantes de vaqueta en color amarillo claro, con un ribete negro en el puño.",
+      "description": "Par de guantes de vaqueta en color amarillo claro, con un ribete negro en el puño. La tonalidad clara y el ribete oscuro son sus rasgos más visibles. Hace parte de la línea de guantes que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 15000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/guantes vaqueta.jpg",
+        "alt": "Par de guantes de vaqueta amarillos con borde negro en el puño"
+      },
+      "features": ["Color amarillo claro", "Ribete negro", "Puño corto"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Guante"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Amarillo claro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué tipo de guante conviene para tu tarea y qué talla necesitas.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "guante-carnaza",
+      "slug": "guante-carnaza",
+      "name": "Guante Carnaza",
+      "categoryId": "guantes",
+      "shortDescription": "Par de guantes largos de carnaza en color claro, con un puño que cubre parte del antebrazo.",
+      "description": "Par de guantes largos de carnaza en color claro, con un puño que cubre parte del antebrazo. El largo del puño lo diferencia de los guantes cortos de esta categoría. Hace parte de la línea de guantes que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 20000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/guante-carnaza-sogamoso.jpg",
+        "alt": "Par de guantes largos de carnaza blanca"
+      },
+      "features": ["Color claro", "Puño largo"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Guante"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Blanco"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué tipo de guante conviene para tu tarea y qué talla necesitas.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "guante-kodiak",
+      "slug": "guante-kodiak",
+      "name": "Guante Kodiak",
+      "categoryId": "guantes",
+      "shortDescription": "Par de guantes Kodiak largos de color naranja, con costuras visibles y estampado en el puño.",
+      "description": "Par de guantes Kodiak largos de color naranja, con costuras visibles y estampado en el puño. El color naranja y el estampado del puño lo hacen fácil de identificar. Hace parte de la línea de guantes que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 30000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/guante-kodiak.jpg",
+        "alt": "Par de guantes largos naranja con estampado en el puño"
+      },
+      "features": ["Color naranja", "Puño largo", "Estampado en el puño"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Guante"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Kodiak"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Naranja"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué tipo de guante conviene para tu tarea y qué talla necesitas.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "guante-lana",
+      "slug": "guante-lana",
+      "name": "Guante Lana",
+      "categoryId": "guantes",
+      "shortDescription": "Par de guantes tejidos color crema con la palma y los dedos recubiertos en verde.",
+      "description": "Par de guantes tejidos color crema con la palma y los dedos recubiertos en verde. El tejido queda a la vista en el dorso y el recubrimiento verde en la palma. Hace parte de la línea de guantes que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 8000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/guante-lana.jpg",
+        "alt": "Par de guantes tejidos color crema con palma recubierta en verde"
+      },
+      "features": ["Tejido color crema", "Recubrimiento verde", "Puño tejido"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Guante"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Crema y verde"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué tipo de guante conviene para tu tarea y qué talla necesitas.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "guante-nitrilo",
+      "slug": "guante-nitrilo",
+      "name": "Guante Nitrilo",
+      "categoryId": "guantes",
+      "shortDescription": "Par de guantes de nitrilo azul oscuro con un puño de tela clara.",
+      "description": "Par de guantes de nitrilo azul oscuro con un puño de tela clara. El material corresponde al nombre del catálogo actual. Hace parte de la línea de guantes que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 12000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/guantes-nitrilo.jpg",
+        "alt": "Par de guantes azul oscuro recubiertos, con puño de tela clara"
+      },
+      "features": ["Recubrimiento azul oscuro", "Puño de tela clara"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Guante"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Azul oscuro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué tipo de guante conviene para tu tarea y qué talla necesitas.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "guantes-altas-temperaturas",
+      "slug": "guantes-altas-temperaturas",
+      "name": "Guantes para Altas Temperaturas",
+      "categoryId": "guantes",
+      "shortDescription": "Guantes largos de acabado plateado con palma café, listados en el catálogo para altas temperaturas.",
+      "description": "Guantes largos de acabado plateado con palma café, listados en el catálogo para altas temperaturas. Confirma el rango de temperatura en la ficha técnica del fabricante. Hace parte de la línea de guantes que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 90000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/guante-altas-temperaturas.jpg",
+        "alt": "Par de guantes largos plateados con la palma de cuero café"
+      },
+      "features": ["Acabado plateado", "Palma café", "Puño largo"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Guante"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Plateado y café"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué tipo de guante conviene para tu tarea y qué talla necesitas.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "guante-mosquetero",
+      "slug": "guante-mosquetero",
+      "name": "Guante Mosquetero",
+      "categoryId": "guantes",
+      "shortDescription": "Par de guantes negros de tipo mosquetero, con caña larga que cubre gran parte del antebrazo.",
+      "description": "Par de guantes negros de tipo mosquetero, con caña larga que cubre gran parte del antebrazo. Su largo es el rasgo más visible de este modelo. Hace parte de la línea de guantes que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 25000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/guantes-mosquetero.jpg",
+        "alt": "Par de guantes largos negros tipo mosquetero"
+      },
+      "features": ["Color negro", "Caña larga"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Guante"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué tipo de guante conviene para tu tarea y qué talla necesitas.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "mascarilla-economica",
+      "slug": "mascarilla-economica",
+      "name": "Mascarilla Económica",
+      "categoryId": "mascarillas-respiradores-filtros",
+      "shortDescription": "Mascarilla negra de malla, con forma de copa y banda elástica, de la línea económica del catálogo.",
+      "description": "Mascarilla negra de malla, con forma de copa y banda elástica, de la línea económica del catálogo. La forma de copa y la malla son sus rasgos más visibles. Hace parte de la línea de mascarillas, respiradores y filtros que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 5000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/mascarilla-economica.jpg",
+        "alt": "Mascarilla negra de malla con forma de copa y banda elástica"
+      },
+      "features": ["Forma de copa", "Malla negra", "Banda elástica"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Mascarilla"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor cuál opción corresponde a tu actividad y sigue la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "mascarilla-3m-elastomero",
+      "slug": "mascarilla-3m-elastomero",
+      "name": "Mascarilla 3M Elastómero",
+      "categoryId": "mascarillas-respiradores-filtros",
+      "shortDescription": "Mascarilla 3M de media cara en elastómero gris, mostrada con dos filtros laterales.",
+      "description": "Mascarilla 3M de media cara en elastómero gris, mostrada con dos filtros laterales. Los filtros y su uso deben confirmarse en la ficha técnica del fabricante. Hace parte de la línea de mascarillas, respiradores y filtros que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 90000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/mascarilla 3m elastomero.PNG",
+        "alt": "Mascarilla 3M gris de media cara con dos filtros laterales"
+      },
+      "features": ["Media cara", "Dos filtros en la imagen", "Color gris"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Mascarilla reutilizable"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "3M"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Gris"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor cuál opción corresponde a tu actividad y sigue la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "tapabocas-3m-desechable-n95",
+      "slug": "tapabocas-3m-desechable-n95",
+      "name": "Tapabocas 3M Desechable N95",
+      "categoryId": "mascarillas-respiradores-filtros",
+      "shortDescription": "Tapabocas 3M blanco en forma de copa, con bandas amarillas, listado en el catálogo como N95.",
+      "description": "Tapabocas 3M blanco en forma de copa, con bandas amarillas, listado en el catálogo como N95. La denominación N95 proviene del catálogo actual; confirma la referencia en el empaque del fabricante. Hace parte de la línea de mascarillas, respiradores y filtros que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 10000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/tapabocas 3m.jpg",
+        "alt": "Tapabocas 3M blanco en forma de copa con bandas elásticas amarillas"
+      },
+      "features": ["Forma de copa", "Bandas amarillas", "Desechable según el catálogo"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Tapabocas"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "3M"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Blanco"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor cuál opción corresponde a tu actividad y sigue la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "respirador-well-done",
+      "slug": "respirador-well-done",
+      "name": "Respirador Well Done",
+      "categoryId": "mascarillas-respiradores-filtros",
+      "shortDescription": "Respirador Well Done negro de media cara, con dos cartuchos redondos de color amarillo.",
+      "description": "Respirador Well Done negro de media cara, con dos cartuchos redondos de color amarillo. Consulta con un asesor los cartuchos disponibles para este modelo. Hace parte de la línea de mascarillas, respiradores y filtros que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 60000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/mascarilla-well-done.jpg",
+        "alt": "Respirador negro de media cara con dos filtros amarillos"
+      },
+      "features": ["Media cara", "Dos cartuchos", "Bandas de ajuste"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Respirador"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Well Done"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro y amarillo"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor cuál opción corresponde a tu actividad y sigue la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "respirador-3m-7501",
+      "slug": "respirador-3m-7501",
+      "name": "Respirador 3M 7501",
+      "categoryId": "mascarillas-respiradores-filtros",
+      "shortDescription": "Respirador 3M referencia 7501 de media cara, en tono azul grisáceo y con bandas de ajuste.",
+      "description": "Respirador 3M referencia 7501 de media cara, en tono azul grisáceo y con bandas de ajuste. Los filtros compatibles deben confirmarse en la ficha técnica del fabricante. Hace parte de la línea de mascarillas, respiradores y filtros que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 85000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/respirador-7501.jpg",
+        "alt": "Respirador 3M azul grisáceo de media cara con bandas de ajuste"
+      },
+      "features": ["Media cara", "Bandas de ajuste", "Tono azul grisáceo"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Respirador"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "3M"
+        },
+        {
+          "label": "Referencia",
+          "value": "7501"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor cuál opción corresponde a tu actividad y sigue la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "filtro-3m-6003",
+      "slug": "filtro-3m-6003",
+      "name": "Filtro 3M 6003",
+      "categoryId": "mascarillas-respiradores-filtros",
+      "shortDescription": "Filtro 3M referencia 6003, presentado en una bolsa plástica con instrucciones impresas.",
+      "description": "Filtro 3M referencia 6003, presentado en una bolsa plástica con instrucciones impresas. Su compatibilidad y el contaminante al que aplica deben confirmarse con el fabricante. Hace parte de la línea de mascarillas, respiradores y filtros que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 40000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/filtro-6003.jpg",
+        "alt": "Filtro 3M dentro de una bolsa plástica transparente con instrucciones impresas"
+      },
+      "features": ["Empaque plástico", "Instrucciones impresas"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Filtro"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "3M"
+        },
+        {
+          "label": "Referencia",
+          "value": "6003"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor cuál opción corresponde a tu actividad y sigue la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "filtro-3m-2097",
+      "slug": "filtro-3m-2097",
+      "name": "Filtro 3M 2097",
+      "categoryId": "mascarillas-respiradores-filtros",
+      "shortDescription": "Par de filtros 3M referencia 2097, redondos y de color rosado, junto a su empaque.",
+      "description": "Par de filtros 3M referencia 2097, redondos y de color rosado, junto a su empaque. Su compatibilidad y el contaminante al que aplica deben confirmarse con el fabricante. Hace parte de la línea de mascarillas, respiradores y filtros que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 35000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/filtro-2097.jpg",
+        "alt": "Par de filtros 3M redondos de color rosado junto a su empaque"
+      },
+      "features": ["Forma redonda", "Color rosado", "Se muestra el empaque"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Filtro"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "3M"
+        },
+        {
+          "label": "Referencia",
+          "value": "2097"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Rosado"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor cuál opción corresponde a tu actividad y sigue la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "filtro-3m-7093-c",
+      "slug": "filtro-3m-7093-c",
+      "name": "Filtro 3M 7093-C",
+      "categoryId": "mascarillas-respiradores-filtros",
+      "shortDescription": "Par de filtros 3M referencia 7093-C, rectangulares y grises, con etiqueta rosada y amarilla.",
+      "description": "Par de filtros 3M referencia 7093-C, rectangulares y grises, con etiqueta rosada y amarilla. Su compatibilidad y el contaminante al que aplica deben confirmarse con el fabricante. Hace parte de la línea de mascarillas, respiradores y filtros que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 45000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/filtro-3M-7093C.jpg",
+        "alt": "Par de filtros 3M rectangulares grises con etiqueta rosada y amarilla"
+      },
+      "features": ["Forma rectangular", "Carcasa gris", "Etiqueta de colores"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Filtro"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "3M"
+        },
+        {
+          "label": "Referencia",
+          "value": "7093-C"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Gris"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor cuál opción corresponde a tu actividad y sigue la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "casco-de-seguridad",
+      "slug": "casco-de-seguridad",
+      "name": "Casco de Seguridad",
+      "categoryId": "cascos",
+      "shortDescription": "Casco de seguridad azul de acabado brillante, con ala frontal y nervaduras en la parte superior.",
+      "description": "Casco de seguridad azul de acabado brillante, con ala frontal y nervaduras en la parte superior. Se muestra en color azul; consulta los demás colores con un asesor. Hace parte de la línea de cascos y accesorios que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 25000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/casco de seguridad sogamoso.jpg",
+        "alt": "Casco de seguridad azul brillante con ala frontal"
+      },
+      "features": ["Color azul", "Ala frontal", "Nervaduras superiores"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Casco"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Azul"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor si el casco o accesorio corresponde a tu actividad y a tu equipo actual.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "casco-minero",
+      "slug": "casco-minero",
+      "name": "Casco Minero",
+      "categoryId": "cascos",
+      "shortDescription": "Casco minero de color verde, con ala frontal y un soporte en el frente de la copa.",
+      "description": "Casco minero de color verde, con ala frontal y un soporte en el frente de la copa. El soporte frontal es el rasgo que lo distingue en la fotografía. Hace parte de la línea de cascos y accesorios que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 35000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/casco-minero-armadura.jpg",
+        "alt": "Casco verde de ala corta con soporte frontal"
+      },
+      "features": ["Color verde", "Soporte frontal", "Ala frontal"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Casco"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Verde"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor si el casco o accesorio corresponde a tu actividad y a tu equipo actual.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "casco-alturas",
+      "slug": "casco-alturas",
+      "name": "Casco Alturas",
+      "categoryId": "cascos",
+      "shortDescription": "Casco para alturas de color gris claro, con aberturas en la copa y barbuquejo oscuro.",
+      "description": "Casco para alturas de color gris claro, con aberturas en la copa y barbuquejo oscuro. La denominación proviene del catálogo; confirma su uso con la ficha del fabricante. Hace parte de la línea de cascos y accesorios que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 90000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/casco-alturas-sogamoso.jpg",
+        "alt": "Casco gris claro con aberturas superiores y barbuquejo oscuro"
+      },
+      "features": ["Aberturas en la copa", "Barbuquejo", "Color gris claro"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Casco"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Gris claro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor si el casco o accesorio corresponde a tu actividad y a tu equipo actual.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "casco-prevencion",
+      "slug": "casco-prevencion",
+      "name": "Casco Prevención",
+      "categoryId": "cascos",
+      "shortDescription": "Casco de prevención gris y liso, con ala frontal, de la línea económica del catálogo.",
+      "description": "Casco de prevención gris y liso, con ala frontal, de la línea económica del catálogo. Su diseño sencillo es el rasgo más visible en la fotografía. Hace parte de la línea de cascos y accesorios que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 18000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/casco-economico-sogamoso.jpg",
+        "alt": "Casco gris liso con ala frontal"
+      },
+      "features": ["Color gris", "Diseño liso", "Ala frontal"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Casco"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Gris"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor si el casco o accesorio corresponde a tu actividad y a tu equipo actual.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "casco-safari",
+      "slug": "casco-safari",
+      "name": "Casco Safari",
+      "categoryId": "cascos",
+      "shortDescription": "Casco safari amarillo, con ala ancha que rodea toda la copa.",
+      "description": "Casco safari amarillo, con ala ancha que rodea toda la copa. El ala completa lo diferencia de los cascos de ala frontal. Hace parte de la línea de cascos y accesorios que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 30000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/casco-safari-sogamoso.jpg",
+        "alt": "Casco amarillo de ala ancha alrededor de toda la copa"
+      },
+      "features": ["Color amarillo", "Ala completa"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Casco"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Amarillo"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor si el casco o accesorio corresponde a tu actividad y a tu equipo actual.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "visor-guadanar",
+      "slug": "visor-guadanar",
+      "name": "Visor Guadañar",
+      "categoryId": "cascos",
+      "shortDescription": "Visor de malla negra para guadañar, mostrado sobre un casco amarillo.",
+      "description": "Visor de malla negra para guadañar, mostrado sobre un casco amarillo. La galería incluye otra fotografía con un casco naranja y protectores auditivos. Hace parte de la línea de cascos y accesorios que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 45000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/casco-visor-sogamoso.jpg",
+        "alt": "Casco amarillo con visor de malla negra abatible"
+      },
+      "features": ["Visor de malla", "Montado sobre casco", "Marco negro"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Visor"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor si el casco o accesorio corresponde a tu actividad y a tu equipo actual.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ],
+      "gallery": [
+        {
+          "src": "img/productos/careta guadañar.jpg",
+          "alt": "Casco naranja con visor de malla y protectores auditivos amarillos sobre un follaje"
+        }
+      ]
+    },
+    {
+      "id": "barbuquejo-3-puntos",
+      "slug": "barbuquejo-3-puntos",
+      "name": "Barbuquejo 3pts",
+      "categoryId": "cascos",
+      "shortDescription": "Barbuquejo negro de tres puntos, con correas y mentonera para complementar el casco.",
+      "description": "Barbuquejo negro de tres puntos, con correas y mentonera para complementar el casco. Confirma con un asesor la compatibilidad con tu casco. Hace parte de la línea de cascos y accesorios que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 15000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/barbuquejo-3-puntos.jpg",
+        "alt": "Barbuquejo negro de tres puntos con correas ajustables y mentonera"
+      },
+      "features": ["Tres puntos", "Correas negras", "Mentonera"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Barbuquejo"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor si el casco o accesorio corresponde a tu actividad y a tu equipo actual.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "tapaoidos-casco",
+      "slug": "tapaoidos-casco",
+      "name": "Tapaoídos Casco",
+      "categoryId": "cascos",
+      "shortDescription": "Tapaoídos amarillo tipo copa, mostrado montado en el costado de un casco blanco.",
+      "description": "Tapaoídos amarillo tipo copa, mostrado montado en el costado de un casco blanco. Confirma con un asesor la compatibilidad con tu casco y los datos del fabricante. Hace parte de la línea de cascos y accesorios que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 55000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/tapaoidos-casco.jpg",
+        "alt": "Protector auditivo amarillo montado en el costado de un casco blanco"
+      },
+      "features": ["Copa amarilla", "Montaje en casco", "Brazo negro"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Protector auditivo"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Amarillo"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor si el casco o accesorio corresponde a tu actividad y a tu equipo actual.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "careta-pulir",
+      "slug": "careta-pulir",
+      "name": "Careta Pulir",
+      "categoryId": "caretas",
+      "shortDescription": "Careta para pulir con visor transparente curvo y un soporte amarillo para la cabeza.",
+      "description": "Careta para pulir con visor transparente curvo y un soporte amarillo para la cabeza. El visor transparente permite ver el soporte superior en la fotografía. Hace parte de la línea de caretas que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 35000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/careta-pulir-sogamoso.jpg",
+        "alt": "Careta con visor transparente curvo y soporte amarillo para la cabeza"
+      },
+      "features": ["Visor transparente", "Soporte amarillo", "Ajuste a la cabeza"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Careta"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Amarillo y transparente"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué careta conviene para tu proceso y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "careta-corriente",
+      "slug": "careta-corriente",
+      "name": "Careta Corriente",
+      "categoryId": "caretas",
+      "shortDescription": "Careta para soldar corriente de color negro, con una ventana rectangular al frente.",
+      "description": "Careta para soldar corriente de color negro, con una ventana rectangular al frente. Confirma con un asesor el vidrio y el proceso de soldadura para el que la necesitas. Hace parte de la línea de caretas que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 30000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/Careta-soldar-corriente.jpg",
+        "alt": "Careta para soldar negra con una ventana rectangular"
+      },
+      "features": ["Color negro", "Ventana rectangular", "Arnés de cabeza"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Careta"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué careta conviene para tu proceso y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "careta-arco",
+      "slug": "careta-arco",
+      "name": "Careta Arco",
+      "categoryId": "caretas",
+      "shortDescription": "Careta de arco con visor verde oscuro de gran tamaño y soporte negro para la cabeza.",
+      "description": "Careta de arco con visor verde oscuro de gran tamaño y soporte negro para la cabeza. La denominación proviene del catálogo; confirma el grado del visor con el fabricante. Hace parte de la línea de caretas que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 60000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/careta-altas-temperaturas.jpg",
+        "alt": "Careta con visor verde oscuro y soporte negro para la cabeza"
+      },
+      "features": ["Visor verde oscuro", "Soporte negro", "Ajuste a la cabeza"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Careta"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Verde oscuro y negro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué careta conviene para tu proceso y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "careta-inteligente",
+      "slug": "careta-inteligente",
+      "name": "Careta Inteligente",
+      "categoryId": "caretas",
+      "shortDescription": "Careta para soldar inteligente con gráfico de calavera y llamas, y visor rectangular.",
+      "description": "Careta para soldar inteligente con gráfico de calavera y llamas, y visor rectangular. Confirma con un asesor sus funciones y el proceso de soldadura al que aplica. Hace parte de la línea de caretas que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 180000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/careta-soldar-inteligente-calabera.jpg",
+        "alt": "Careta para soldar con gráfico de calavera y llamas y visor rectangular"
+      },
+      "features": ["Gráfico de calavera y llamas", "Visor rectangular"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Careta"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro, rojo y naranja"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué careta conviene para tu proceso y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "monogafa-clara",
+      "slug": "monogafa-clara",
+      "name": "Monogafa Clara",
+      "categoryId": "gafas",
+      "shortDescription": "Monogafa de lente claro con montura negra y banda elástica ajustable.",
+      "description": "Monogafa de lente claro con montura negra y banda elástica ajustable. La banda elástica reemplaza las patillas de las gafas tradicionales. Hace parte de la línea de gafas que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 15000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/monogafa-everest.jpg",
+        "alt": "Monogafa de lente claro con montura negra y banda elástica"
+      },
+      "features": ["Lente claro", "Banda elástica", "Montura negra"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Gafas"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Transparente y negro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué lente o montura conviene para tu tarea y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "gafas-de-seguridad",
+      "slug": "gafas-de-seguridad",
+      "name": "Gafas de Seguridad",
+      "categoryId": "gafas",
+      "shortDescription": "Gafas de seguridad de lente transparente con patillas negras.",
+      "description": "Gafas de seguridad de lente transparente con patillas negras. Su lente claro y su montura delgada son los rasgos más visibles. Hace parte de la línea de gafas que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 8000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/gafas de seguridad sogamoso.jpg",
+        "alt": "Gafas de lente transparente con patillas negras"
+      },
+      "features": ["Lente transparente", "Patillas negras"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Gafas"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Transparente y negro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué lente o montura conviene para tu tarea y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "gafas-nemesis",
+      "slug": "gafas-nemesis",
+      "name": "Gafas Nemesis",
+      "categoryId": "gafas",
+      "shortDescription": "Gafas Nemesis de lente oscuro y montura negra, mostradas con un cordón para sujetarlas.",
+      "description": "Gafas Nemesis de lente oscuro y montura negra, mostradas con un cordón para sujetarlas. El lente oscuro es el rasgo que las diferencia de los modelos transparentes. Hace parte de la línea de gafas que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 25000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/gafa-nemesis.jpg",
+        "alt": "Gafas de lente oscuro y montura negra con cordón"
+      },
+      "features": ["Lente oscuro", "Montura negra", "Cordón de sujeción"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Gafas"
+        },
+        {
+          "label": "Referencia",
+          "value": "Nemesis"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro y gris"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué lente o montura conviene para tu tarea y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "gafas-ambar",
+      "slug": "gafas-ambar",
+      "name": "Gafas Ámbar",
+      "categoryId": "gafas",
+      "shortDescription": "Gafas de lente ámbar amarillo, con montura y patillas en negro y gris.",
+      "description": "Gafas de lente ámbar amarillo, con montura y patillas en negro y gris. Su lente de color ámbar es el rasgo más visible del modelo. Hace parte de la línea de gafas que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 12000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/gafa-ambar-amarilla.jpg",
+        "alt": "Gafas de lente amarillo ámbar con montura negra y gris"
+      },
+      "features": ["Lente color ámbar", "Montura negra y gris"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Gafas"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Ámbar y negro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué lente o montura conviene para tu tarea y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "gafas-radians",
+      "slug": "gafas-radians",
+      "name": "Gafas Radians",
+      "categoryId": "gafas",
+      "shortDescription": "Gafas Radians de lente gris oscuro en una sola pieza, con patillas del mismo tono.",
+      "description": "Gafas Radians de lente gris oscuro en una sola pieza, con patillas del mismo tono. El lente de una sola pieza recorre todo el frente de la gafa. Hace parte de la línea de gafas que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 15000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/gafa-radians-negra.jpg",
+        "alt": "Gafas de lente gris oscuro de una sola pieza con patillas grises"
+      },
+      "features": ["Lente gris oscuro", "Una sola pieza"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Gafas"
+        },
+        {
+          "label": "Marca o línea en el catálogo",
+          "value": "Radians"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Gris oscuro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué lente o montura conviene para tu tarea y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "gafas-top-gun",
+      "slug": "gafas-top-gun",
+      "name": "Gafas Top-Gun",
+      "categoryId": "gafas",
+      "shortDescription": "Gafas Top-Gun de lente transparente, con montura superior y patillas en azul oscuro.",
+      "description": "Gafas Top-Gun de lente transparente, con montura superior y patillas en azul oscuro. La montura azul contrasta con el lente transparente. Hace parte de la línea de gafas que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 10000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/gafa-top-gun.jpg",
+        "alt": "Gafas de lente transparente con montura superior azul oscuro"
+      },
+      "features": ["Lente transparente", "Montura azul oscuro"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Gafas"
+        },
+        {
+          "label": "Referencia",
+          "value": "Top-Gun"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Transparente y azul"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué lente o montura conviene para tu tarea y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "gafas-laboratorio",
+      "slug": "gafas-laboratorio",
+      "name": "Gafas Laboratorio",
+      "categoryId": "gafas",
+      "shortDescription": "Gafas de laboratorio totalmente transparentes, de frente amplio y patillas del mismo material.",
+      "description": "Gafas de laboratorio totalmente transparentes, de frente amplio y patillas del mismo material. Su frente amplio es el rasgo más visible en la fotografía. Hace parte de la línea de gafas que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 7000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/gafa-laboratorio.jpg",
+        "alt": "Gafas amplias totalmente transparentes con patillas"
+      },
+      "features": ["Totalmente transparentes", "Frente amplio"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Gafas"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Transparente"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué lente o montura conviene para tu tarea y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "gafas-malla",
+      "slug": "gafas-malla",
+      "name": "Gafas Malla",
+      "categoryId": "gafas",
+      "shortDescription": "Gafas con visor de malla oscura y banda elástica en rojo y gris.",
+      "description": "Gafas con visor de malla oscura y banda elástica en rojo y gris. La malla ocupa el lugar del lente en este modelo. Hace parte de la línea de gafas que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 18000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/gafa-kim-malla.jpg",
+        "alt": "Gafas con visor de malla metálica y banda elástica roja y gris"
+      },
+      "features": ["Visor de malla", "Banda elástica"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Gafas"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro, rojo y gris"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor qué lente o montura conviene para tu tarea y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "manometro",
+      "slug": "manometro",
+      "name": "Manómetro",
+      "categoryId": "otros",
+      "shortDescription": "Manómetro de carátula blanca; la fotografía muestra dos unidades sobre un regulador de bronce.",
+      "description": "Manómetro de carátula blanca; la fotografía muestra dos unidades sobre un regulador de bronce. Confirma la escala y la conexión con un asesor antes de elegirlo. Forma parte de otros elementos que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 45000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/manometro.jpg",
+        "alt": "Dos manómetros de carátula blanca sobre un cuerpo de regulador en bronce"
+      },
+      "features": ["Carátula blanca", "Aro metálico", "Se muestra instalado"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Manómetro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor si este elemento corresponde a tu equipo o tarea y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "gel-antibacterial",
+      "slug": "gel-antibacterial",
+      "name": "Gel Antibacterial",
+      "categoryId": "otros",
+      "shortDescription": "Gel antibacterial en botella transparente con dosificador de bomba y etiqueta al frente.",
+      "description": "Gel antibacterial en botella transparente con dosificador de bomba y etiqueta al frente. Confirma la presentación disponible y las instrucciones en la etiqueta. Forma parte de otros elementos que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 18000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/gel sogamoso.jpg",
+        "alt": "Botella transparente con dosificador y gel antibacterial"
+      },
+      "features": ["Botella transparente", "Dosificador de bomba", "Etiqueta frontal"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Gel antibacterial"
+        },
+        {
+          "label": "Presentación en la imagen",
+          "value": "Botella con dosificador"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor si este elemento corresponde a tu equipo o tarea y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "eslingas",
+      "slug": "eslingas",
+      "name": "Eslingas",
+      "categoryId": "otros",
+      "shortDescription": "Eslinga para trabajo en alturas; la fotografía muestra cuerda roja y conectores metálicos.",
+      "description": "Eslinga para trabajo en alturas; la fotografía muestra cuerda roja y conectores metálicos. Elige la longitud y los conectores con un asesor, según el sistema que ya utilizas. Forma parte de otros elementos que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 85000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/eslinga.jpg",
+        "alt": "Cuerdas rojas y conectores metálicos junto a un equipo para trabajo en alturas"
+      },
+      "features": ["Cuerda roja", "Conectores metálicos"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Eslinga"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Rojo"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor si este elemento corresponde a tu equipo o tarea y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "senalizacion-pvc",
+      "slug": "senalizacion-pvc",
+      "name": "Señalización PVC",
+      "categoryId": "otros",
+      "shortDescription": "Señalización en PVC; la imagen muestra una señal verde de salida con flecha y figura corriendo.",
+      "description": "Señalización en PVC; la imagen muestra una señal verde de salida con flecha y figura corriendo. Consulta con un asesor los mensajes y tamaños que requiere tu espacio. Forma parte de otros elementos que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 20000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/señalización.PNG",
+        "alt": "Señal verde de salida con una flecha blanca y una figura corriendo"
+      },
+      "features": ["Pictograma de salida", "Fondo verde", "Flecha blanca"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Señal"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Verde y blanco"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor si este elemento corresponde a tu equipo o tarea y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "arnes",
+      "slug": "arnes",
+      "name": "Arnés",
+      "categoryId": "otros",
+      "shortDescription": "Arnés de cuerpo con correas verde limón y negras, con argollas metálicas.",
+      "description": "Arnés de cuerpo con correas verde limón y negras, con argollas metálicas. Confirma el uso, la talla y la ficha del fabricante con un asesor. Forma parte de otros elementos que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 140000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/arnés.jpg",
+        "alt": "Arnés de cuerpo con correas verde limón y negras y argollas metálicas"
+      },
+      "features": ["Correas verde limón y negras", "Argollas metálicas"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Arnés"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Verde limón y negro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor si este elemento corresponde a tu equipo o tarea y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "botiquin-metalico",
+      "slug": "botiquin-metalico",
+      "name": "Botiquín Metálico",
+      "categoryId": "otros",
+      "shortDescription": "Botiquín metálico blanco, con ventana frontal, cruz verde y cerradura con llave.",
+      "description": "Botiquín metálico blanco, con ventana frontal, cruz verde y cerradura con llave. El contenido no se muestra en la imagen y debe confirmarse con un asesor. Forma parte de otros elementos que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 95000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/botiquin-metalico.jpg",
+        "alt": "Botiquín blanco de pared con ventana, cruz verde y cerradura con llave"
+      },
+      "features": ["Color blanco", "Ventana frontal", "Cerradura con llave"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Botiquín"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Blanco"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor si este elemento corresponde a tu equipo o tarea y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "pinza-de-masa",
+      "slug": "pinza-de-masa",
+      "name": "Pinza de Masa",
+      "categoryId": "otros",
+      "shortDescription": "Pinza de masa metálica en tono bronce, con resorte y mandíbula de apertura.",
+      "description": "Pinza de masa metálica en tono bronce, con resorte y mandíbula de apertura. Confirma el tamaño y la capacidad con un asesor, según tu equipo de soldadura. Forma parte de otros elementos que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 25000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/pinza-masa.jpg",
+        "alt": "Pinza metálica de masa de color bronce con resorte"
+      },
+      "features": ["Tono bronce", "Resorte visible"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Pinza de masa"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor si este elemento corresponde a tu equipo o tarea y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "manguera-oxicorte",
+      "slug": "manguera-oxicorte",
+      "name": "Manguera Oxicorte",
+      "categoryId": "otros",
+      "shortDescription": "Manguera doble para oxicorte en verde y rojo, enrollada y con conexiones en bronce.",
+      "description": "Manguera doble para oxicorte en verde y rojo, enrollada y con conexiones en bronce. Confirma el largo y las conexiones con un asesor, según tu equipo. Forma parte de otros elementos que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 100000,
+        "currency": "COP",
+        "unit": "rollo",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/manguera-oxicorte.jpg",
+        "alt": "Rollo de manguera doble verde y roja con conexiones de bronce"
+      },
+      "features": ["Doble línea verde y roja", "Conexiones en bronce", "Presentación en rollo"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Manguera"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Verde y rojo"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor si este elemento corresponde a tu equipo o tarea y revisa la ficha del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "senalizacion-desinfeccion",
+      "slug": "senalizacion-desinfeccion",
+      "name": "Señalización de Desinfección",
+      "categoryId": "bioseguridad",
+      "shortDescription": "Aviso de bioseguridad azul y blanco con el mensaje de desinfectar el calzado antes de entrar.",
+      "description": "Aviso de bioseguridad azul y blanco con el mensaje de desinfectar el calzado antes de entrar. Consulta con un asesor otros mensajes y tamaños disponibles. Hace parte de los productos de bioseguridad que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 15000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/avisos de desinfección.jpg",
+        "alt": "Aviso azul y blanco con el texto desinfectar el calzado antes de entrar"
+      },
+      "features": ["Mensaje impreso", "Colores azul y blanco", "Pictograma de calzado"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Aviso"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Azul y blanco"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor la presentación disponible y sigue las instrucciones del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "desinfectante",
+      "slug": "desinfectante",
+      "name": "Desinfectante",
+      "categoryId": "bioseguridad",
+      "shortDescription": "Desinfectante en botella azul con dosificador blanco de bomba y etiqueta impresa.",
+      "description": "Desinfectante en botella azul con dosificador blanco de bomba y etiqueta impresa. Consulta su composición y modo de uso en la etiqueta del producto. Hace parte de los productos de bioseguridad que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 25000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/desinfectante.jpg",
+        "alt": "Botella azul con dosificador blanco sobre un fondo negro"
+      },
+      "features": ["Botella azul", "Dosificador de bomba"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Desinfectante"
+        },
+        {
+          "label": "Presentación en la imagen",
+          "value": "Botella con dosificador"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor la presentación disponible y sigue las instrucciones del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "careta-acrilico",
+      "slug": "careta-acrilico",
+      "name": "Careta Acrílico",
+      "categoryId": "bioseguridad",
+      "shortDescription": "Careta transparente de acrílico con soporte azul para la frente, mostrada en uso con tapabocas.",
+      "description": "Careta transparente de acrílico con soporte azul para la frente, mostrada en uso con tapabocas. El material corresponde al nombre del catálogo actual. Hace parte de los productos de bioseguridad que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 12000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/careta acrilico.jpg",
+        "alt": "Mujer con tapabocas y careta transparente con soporte azul en la frente"
+      },
+      "features": ["Visor transparente", "Soporte azul"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Careta"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Transparente y azul"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor la presentación disponible y sigue las instrucciones del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "guantes-latex-verdes",
+      "slug": "guantes-latex-verdes",
+      "name": "Guantes de Látex Verdes",
+      "categoryId": "bioseguridad",
+      "shortDescription": "Guantes de látex verdes, mostrados junto a su caja de empaque.",
+      "description": "Guantes de látex verdes, mostrados junto a su caja de empaque. La marca y la cantidad por caja deben confirmarse con un asesor. Hace parte de los productos de bioseguridad que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 30000,
+        "currency": "COP",
+        "unit": "caja",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/guantes_latex_sogamoso.jpg",
+        "alt": "Guantes de látex verdes sobre su caja de empaque"
+      },
+      "features": ["Color verde", "Se muestran con su caja"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Guante"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Verde"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor la presentación disponible y sigue las instrucciones del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "mascarilla",
+      "slug": "mascarilla",
+      "name": "Mascarilla",
+      "categoryId": "bioseguridad",
+      "shortDescription": "Mascarilla color turquesa en forma de copa, con bandas elásticas blancas.",
+      "description": "Mascarilla color turquesa en forma de copa, con bandas elásticas blancas. Confirma el tipo y la referencia con un asesor antes de elegirla. Hace parte de los productos de bioseguridad que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 6000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/mascarilla.jpg",
+        "alt": "Mascarilla turquesa en forma de copa sobre un fondo blanco"
+      },
+      "features": ["Forma de copa", "Color turquesa", "Bandas elásticas"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Mascarilla"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Turquesa"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor la presentación disponible y sigue las instrucciones del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "overol-desechable",
+      "slug": "overol-desechable",
+      "name": "Overol Desechable",
+      "categoryId": "bioseguridad",
+      "shortDescription": "Overol blanco con capucha, mostrado en uso junto con mascarilla y guantes.",
+      "description": "Overol blanco con capucha, mostrado en uso junto con mascarilla y guantes. Confirma las tallas y el material con un asesor. Hace parte de los productos de bioseguridad que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 20000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/overol desechable.jpg",
+        "alt": "Persona con overol blanco con capucha, mascarilla y guantes"
+      },
+      "features": ["Color blanco", "Capucha", "Desechable según el catálogo"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Overol"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Blanco"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor la presentación disponible y sigue las instrucciones del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "termometro-clasico",
+      "slug": "termometro-clasico",
+      "name": "Termómetro Clásico",
+      "categoryId": "bioseguridad",
+      "shortDescription": "Termómetro blanco de punta, con pequeña pantalla y extremo azul.",
+      "description": "Termómetro blanco de punta, con pequeña pantalla y extremo azul. Sigue las instrucciones del fabricante para su uso. Hace parte de los productos de bioseguridad que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 15000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/termometro sogamoso.jpg",
+        "alt": "Termómetro blanco de punta con pantalla y botón azul"
+      },
+      "features": ["Pantalla", "Extremo azul", "Formato de punta"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Termómetro"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Blanco y azul"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor la presentación disponible y sigue las instrucciones del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "dispensador-gel-antibacterial",
+      "slug": "dispensador-gel-antibacterial",
+      "name": "Dispensador de Gel Antibacterial",
+      "categoryId": "bioseguridad",
+      "shortDescription": "Dispensador de gel antibacterial sobre un soporte de pie, con botella y avisos a un lado.",
+      "description": "Dispensador de gel antibacterial sobre un soporte de pie, con botella y avisos a un lado. Confirma con un asesor qué elementos incluye la presentación disponible. Hace parte de los productos de bioseguridad que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 150000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/dispensador de gel.jpg",
+        "alt": "Dispensador de gel sobre un soporte metálico de pie, con avisos a un lado"
+      },
+      "features": ["Soporte de pie", "Base metálica"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Dispensador"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Blanco"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor la presentación disponible y sigue las instrucciones del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "gafas-proteccion-lateral",
+      "slug": "gafas-proteccion-lateral",
+      "name": "Gafas Protección Lateral",
+      "categoryId": "bioseguridad",
+      "shortDescription": "Gafas transparentes con patillas negras, fotografiadas sobre tapabocas azules.",
+      "description": "Gafas transparentes con patillas negras, fotografiadas sobre tapabocas azules. La denominación proviene del catálogo actual; consulta la ficha del fabricante. Hace parte de los productos de bioseguridad que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 9000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/gafas bioseguridad.jpg",
+        "alt": "Gafas transparentes con patillas negras sobre tapabocas azules"
+      },
+      "features": ["Lente transparente", "Patillas negras"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Gafas"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Transparente y negro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor la presentación disponible y sigue las instrucciones del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "amonio-cuaternario",
+      "slug": "amonio-cuaternario",
+      "name": "Amonio Cuaternario",
+      "categoryId": "bioseguridad",
+      "shortDescription": "Amonio cuaternario en garrafa plástica con tapa azul, cuya etiqueta indica 5 litros.",
+      "description": "Amonio cuaternario en garrafa plástica con tapa azul, cuya etiqueta indica 5 litros. Consulta la concentración y el modo de uso en la etiqueta del producto. Hace parte de los productos de bioseguridad que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 60000,
+        "currency": "COP",
+        "unit": "garrafa",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/amonio cuaternario.jpg",
+        "alt": "Garrafa plástica de 5 litros con etiqueta de amonio cuaternario"
+      },
+      "features": ["Garrafa plástica", "Tapa azul", "Etiqueta frontal"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Desinfectante"
+        },
+        {
+          "label": "Presentación en la imagen",
+          "value": "Garrafa de 5 litros, según la etiqueta"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor la presentación disponible y sigue las instrucciones del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "gafas-anti-fog",
+      "slug": "gafas-anti-fog",
+      "name": "Gafas Anti-fog",
+      "categoryId": "bioseguridad",
+      "shortDescription": "Monogafas transparentes con borde azul y banda elástica, listadas como anti-fog.",
+      "description": "Monogafas transparentes con borde azul y banda elástica, listadas como anti-fog. La denominación anti-fog proviene del catálogo actual; consulta la ficha del fabricante. Hace parte de los productos de bioseguridad que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 22000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/gafas anti fog.jpg",
+        "alt": "Monogafas transparentes con borde azul y banda elástica"
+      },
+      "features": ["Borde azul", "Banda elástica"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Monogafas"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Transparente y azul"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor la presentación disponible y sigue las instrucciones del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "guantes-caucho",
+      "slug": "guantes-caucho",
+      "name": "Guantes Caucho",
+      "categoryId": "bioseguridad",
+      "shortDescription": "Par de guantes de caucho negros, de puño largo que cubre parte del antebrazo.",
+      "description": "Par de guantes de caucho negros, de puño largo que cubre parte del antebrazo. Confirma la talla y el calibre con un asesor. Hace parte de los productos de bioseguridad que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 10000,
+        "currency": "COP",
+        "unit": "par",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/guantes caucho.jpg",
+        "alt": "Par de guantes de caucho negros de puño largo"
+      },
+      "features": ["Color negro", "Puño largo"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Guante"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor la presentación disponible y sigue las instrucciones del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "tapete",
+      "slug": "tapete",
+      "name": "Tapete",
+      "categoryId": "bioseguridad",
+      "shortDescription": "Tapete de dos secciones, con una bandeja negra de relieve y un área de felpa azul.",
+      "description": "Tapete de dos secciones, con una bandeja negra de relieve y un área de felpa azul. Consulta con un asesor las medidas disponibles. Hace parte de los productos de bioseguridad que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 70000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/tapete covid.jpg",
+        "alt": "Tapete doble con una bandeja negra y un área de felpa azul"
+      },
+      "features": ["Dos secciones", "Bandeja negra", "Área de felpa azul"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Tapete"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Negro y azul"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor la presentación disponible y sigue las instrucciones del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "cinta-de-peligro",
+      "slug": "cinta-de-peligro",
+      "name": "Cinta de Peligro",
+      "categoryId": "bioseguridad",
+      "shortDescription": "Cinta amarilla con franjas negras y la palabra peligro impresa, presentada en rollo.",
+      "description": "Cinta amarilla con franjas negras y la palabra peligro impresa, presentada en rollo. Consulta con un asesor el largo y el ancho disponibles. Hace parte de los productos de bioseguridad que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 20000,
+        "currency": "COP",
+        "unit": "rollo",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/cinta de peligro.jpg",
+        "alt": "Rollo de cinta amarilla con franjas negras y la palabra peligro"
+      },
+      "features": ["Palabra peligro impresa", "Franjas negras", "Presentación en rollo"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Cinta de señalización"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Amarillo y negro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor la presentación disponible y sigue las instrucciones del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "termometro-digital",
+      "slug": "termometro-digital",
+      "name": "Termómetro Digital",
+      "categoryId": "bioseguridad",
+      "shortDescription": "Termómetro digital blanco y azul de mano, con pantalla y botones al frente.",
+      "description": "Termómetro digital blanco y azul de mano, con pantalla y botones al frente. Sigue las instrucciones del fabricante para su uso. Hace parte de los productos de bioseguridad que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 80000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/termometro digital.jpg",
+        "alt": "Termómetro digital blanco y azul de mano con pantalla y botones"
+      },
+      "features": ["Pantalla", "Botones frontales", "Formato de mano"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Termómetro"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Blanco y azul"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor la presentación disponible y sigue las instrucciones del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "tapabocas-sencillo",
+      "slug": "tapabocas-sencillo",
+      "name": "Tapabocas Sencillo",
+      "categoryId": "bioseguridad",
+      "shortDescription": "Tapabocas sencillo blanco y plisado, con elásticos para las orejas.",
+      "description": "Tapabocas sencillo blanco y plisado, con elásticos para las orejas. Consulta con un asesor la presentación por unidad o por caja. Hace parte de los productos de bioseguridad que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 1000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/tapabocas sencillo.jpg",
+        "alt": "Tapabocas blanco plisado con elásticos sobre un fondo verde"
+      },
+      "features": ["Color blanco", "Plisado", "Elásticos para las orejas"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Tapabocas"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Blanco"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor la presentación disponible y sigue las instrucciones del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "fumigadora",
+      "slug": "fumigadora",
+      "name": "Fumigadora",
+      "categoryId": "bioseguridad",
+      "shortDescription": "Fumigadora manual naranja, con tapa negra, manija y boquilla de salida.",
+      "description": "Fumigadora manual naranja, con tapa negra, manija y boquilla de salida. Consulta con un asesor la capacidad disponible y los productos con los que se puede usar. Hace parte de los productos de bioseguridad que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 40000,
+        "currency": "COP",
+        "unit": "unidad",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/fumigadora.jpg",
+        "alt": "Fumigadora manual naranja con tapa negra y boquilla"
+      },
+      "features": ["Tanque naranja", "Manija negra", "Boquilla de salida"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Fumigadora"
+        },
+        {
+          "label": "Color en la imagen",
+          "value": "Naranja y negro"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor la presentación disponible y sigue las instrucciones del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    },
+    {
+      "id": "alcohol",
+      "slug": "alcohol",
+      "name": "Alcohol",
+      "categoryId": "bioseguridad",
+      "shortDescription": "Alcohol en garrafa plástica blanca con tapa roja y etiqueta frontal.",
+      "description": "Alcohol en garrafa plástica blanca con tapa roja y etiqueta frontal. Consulta la concentración y el contenido en la etiqueta del producto. Hace parte de los productos de bioseguridad que ofrece Solgases en Sogamoso.",
+      "price": {
+        "amount": 35000,
+        "currency": "COP",
+        "unit": "garrafa",
+        "isDemo": true
+      },
+      "image": {
+        "src": "img/productos/alcohol.jpg",
+        "alt": "Garrafa blanca con tapa roja y etiqueta de alcohol"
+      },
+      "features": ["Garrafa plástica", "Tapa roja", "Etiqueta frontal"],
+      "specifications": [
+        {
+          "label": "Tipo",
+          "value": "Alcohol"
+        },
+        {
+          "label": "Presentación en la imagen",
+          "value": "Garrafa"
+        }
+      ],
+      "recommendations": [
+        "Consulta con un asesor la presentación disponible y sigue las instrucciones del fabricante.",
+        "Revisa la ficha del fabricante para conocer las especificaciones reales."
+      ]
+    }
+  ]
+}

@@ -22,10 +22,33 @@ app-contact-button,
 app-home-page,
 app-nosotros-page,
 app-productos-page,
+app-producto-detalle-page,
 app-servicios-page,
 app-bioseguridad-page,
 app-contacto-page {
   display: block;
+}
+
+/* Banner más bajo para que el contenido de la página quede a la vista. El encabezado y el menú
+   se superponen al banner, por eso el texto se centra en la parte que queda visible. */
+.banner--compact .banner__img {
+  height: 280px;
+}
+.banner--compact .banner__content {
+  top: calc(50% + 30px);
+}
+@media screen and (min-width: 480px) {
+  .banner--compact .banner__img {
+    height: 440px;
+  }
+  .banner--compact .banner__content {
+    top: calc(50% + 95px);
+  }
+}
+
+/* El botón "Contáctanos" está centrado; en el detalle se alinea con el resto de la columna. */
+.product-detail__contact .btn {
+  margin: 10px 0;
 }
 
 /* Oculta visualmente un texto sin quitarlo a lectores de pantalla ni buscadores

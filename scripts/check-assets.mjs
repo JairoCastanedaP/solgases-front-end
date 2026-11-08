@@ -1,4 +1,4 @@
-// Verifica que toda ruta de imagen referenciada en el código fuente (img/...)
+// Verifica que toda ruta de imagen referenciada en el código fuente y en products.json (img/...)
 // exista en public/ y tenga su versión optimizada (manifiesto de optimize-images.mjs). Las imágenes tienen espacios, tildes y extensiones mixtas
 // (.PNG, .jfif), por lo que es fácil romper una ruta al migrar o renombrar.
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
@@ -7,13 +7,16 @@ import { join, relative } from 'node:path';
 const root = new URL('..', import.meta.url).pathname;
 const sources = [join(root, 'src')];
 const publicDir = join(root, 'public');
+// El manifiesto se valida aparte: es la salida de optimize-images.mjs, no una fuente.
+const MANIFEST_NAME = 'optimized-images.json';
 const pattern = /["'`](img\/[^"'`]+?\.(?:jpe?g|png|gif|webp|jfif|svg))["'`]/gi;
 
 function* walk(dir) {
   for (const name of readdirSync(dir)) {
     const path = join(dir, name);
     if (statSync(path).isDirectory()) yield* walk(path);
-    else if (/\.(ts|html)$/.test(name) && !name.endsWith('.spec.ts')) yield path;
+    else if (/\.(ts|html|json)$/.test(name) && !name.endsWith('.spec.ts') && name !== MANIFEST_NAME)
+      yield path;
   }
 }
 
