@@ -53,6 +53,14 @@
   line-height: 1.5;
 }
 
+.our-team__txt:has(+ .our-team__delivery) {
+  padding-bottom: 10px;
+}
+
+.our-team__delivery {
+  margin: 0 16px 16px;
+}
+
 /* Por qué contratar con nosotros */
 .why-us {
   margin-bottom: 20px;

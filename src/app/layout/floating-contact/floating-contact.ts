@@ -4,9 +4,12 @@ import { WHATSAPP_CONFIG_TOKEN, buildWhatsAppUrl } from '../../core/whatsapp.con
 import { WhatsAppIcon } from '../../shared/components/whatsapp-icon/whatsapp-icon';
 
 /**
- * Pila de contacto de la esquina inferior derecha; la pestaña amarilla de asesoría sigue a media
- * altura. WhatsApp usa la misma configuración que el resto del sitio: sin número válido, explica que
- * está pendiente y no abre nada. El teléfono de llamadas es fijo y nunca se usa como WhatsApp.
+ * Tres accesos fijos: asesoría (amarillo), WhatsApp (verde) y llamada. Van fuera del área de contenido:
+ * en el margen lateral si cabe y, si no, en una barra inferior para la que `styles.css` reserva espacio
+ * al final de la página.
+ *
+ * Asesoría y WhatsApp usan la configuración central: sin un número válido no abren nada. El teléfono de
+ * llamadas es fijo y nunca se usa como WhatsApp.
  */
 @Component({
   selector: 'app-floating-contact',

@@ -41,8 +41,9 @@
         }
       ],
       "notes": [
-        "Para el transporte de tanques o gran cantidad de mercancía ofrecemos el domicilio sin ningún costo adicional siempre y cuando sea dentro del municipio"
-      ]
+        "Para el transporte de tanques o gran cantidad de mercancía ofrecemos servicio de domicilio."
+      ],
+      "freeDelivery": true
     },
     {
       "id": "llenado-oxigeno-industrial",
@@ -65,8 +66,9 @@
         }
       ],
       "notes": [
-        "Para el transporte de tanques o gran cantidad de mercancía ofrecemos el domicilio sin ningún costo adicional siempre y cuando sea dentro del municipio"
-      ]
+        "Para el transporte de tanques o gran cantidad de mercancía ofrecemos servicio de domicilio."
+      ],
+      "freeDelivery": true
     },
     {
       "id": "recarga-extintor-5-libras",
@@ -211,8 +213,9 @@
         }
       ],
       "notes": [
-        "Para el transporte de tanques o gran cantidad de mercancía ofrecemos el domicilio sin ningún costo adicional siempre y cuando sea dentro del municipio"
-      ]
+        "Para el transporte de tanques o gran cantidad de mercancía ofrecemos servicio de domicilio."
+      ],
+      "freeDelivery": true
     },
     {
       "id": "recarga-extintor-20-libras",
@@ -279,8 +282,9 @@
         }
       ],
       "notes": [
-        "Para el transporte de tanques o gran cantidad de mercancía ofrecemos el domicilio sin ningún costo adicional siempre y cuando sea dentro del municipio"
-      ]
+        "Para el transporte de tanques o gran cantidad de mercancía ofrecemos servicio de domicilio."
+      ],
+      "freeDelivery": true
     },
     {
       "id": "recarga-extintor-satelite",
@@ -387,8 +391,9 @@
         }
       ],
       "notes": [
-        "Para el transporte de tanques o gran cantidad de mercancía ofrecemos el domicilio sin ningún costo adicional siempre y cuando sea dentro del municipio"
-      ]
+        "Para el transporte de tanques o gran cantidad de mercancía ofrecemos servicio de domicilio."
+      ],
+      "freeDelivery": true
     },
     {
       "id": "alquiler-cilindros",
@@ -407,8 +412,9 @@
         }
       ],
       "notes": [
-        "Para el transporte de tanques o gran cantidad de mercancía ofrecemos el domicilio sin ningún costo adicional siempre y cuando sea dentro del municipio"
-      ]
+        "Para el transporte de tanques o gran cantidad de mercancía ofrecemos servicio de domicilio."
+      ],
+      "freeDelivery": true
     }
   ]
 }

@@ -101,17 +101,16 @@ describe('ProductoDetallePage', () => {
     const info = page.querySelector('.product-detail__info')!;
 
     expect(info.textContent).toContain(product.description);
-    expect(Array.from(info.querySelectorAll('h2')).map(text)).toEqual([
+    expect(Array.from(info.querySelectorAll('h2')).map(text)).toEqual(['Detalles del producto']);
+    expect(Array.from(info.querySelectorAll('.product-details dt')).map(text)).toEqual([
       'Descripción',
       'Características',
-      'Especificaciones',
+      ...product.specifications.map(({ label }) => label),
       'Recomendaciones',
     ]);
     for (const value of [...product.features, ...product.recommendations]) {
       expect(info.textContent).toContain(value);
     }
-    const specs = Array.from(info.querySelectorAll('dt')).map(text);
-    expect(specs).toEqual(product.specifications.map((s) => s.label));
     expect(info.textContent).toContain('7501');
   });
 
@@ -247,5 +246,36 @@ describe('Navegación del catálogo al detalle', () => {
         expect(text(page.querySelector(`[id="${fragment}"] h2`)), fragment).toBe(name);
       }
     }
+  });
+
+  describe('Detalles y aviso de confirmación', () => {
+    it('conserva cada valor, en orden, en celdas de nombre y valor', async () => {
+      setup();
+      const page = await open('/productos/guante-kodiak');
+      const product = findProductBySlug('guante-kodiak')!;
+      const cells = Array.from(page.querySelectorAll('.product-details__cell'));
+      const items = (cell: Element) => Array.from(cell.querySelectorAll('li')).map(text);
+
+      expect(text(cells[0].querySelector('dd'))).toBe(product.description);
+      expect(items(cells[1])).toEqual([...product.features]);
+      expect(cells.slice(2, -1).map((cell) => text(cell.querySelector('dd')))).toEqual(
+        product.specifications.map(({ value }) => value),
+      );
+      expect(items(cells.at(-1)!)).toEqual([...product.recommendations]);
+    });
+
+    it('el aviso va junto al botón, sin alterar su comportamiento', async () => {
+      setup();
+      const page = await open('/productos/guante-kodiak');
+      const cta = page.querySelector('.product-detail__cta')!;
+      const button = cta.querySelector<HTMLButtonElement>('.product-detail__whatsapp')!;
+
+      expect(text(cta.querySelector('.product-detail__confirm'))).toBe(
+        'Comunícate con nosotros para confirmar stock, precio actual y descuentos especiales.',
+      );
+      expect(text(button)).toBe('Consultar por WhatsApp');
+      expect(button.getAttribute('aria-disabled')).toBe('true');
+      expect(page.querySelector(`#${button.getAttribute('aria-describedby')}`)).not.toBeNull();
+    });
   });
 });

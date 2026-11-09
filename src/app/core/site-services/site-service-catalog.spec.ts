@@ -67,9 +67,16 @@ describe('Catálogo de servicios (site-services.json)', () => {
     }
   });
 
-  it('las notas conservan la condición de domicilio del sitio original', () => {
+  it('el domicilio gratis solo figura en los servicios que ya lo mencionaban', () => {
     const delivery =
-      'Para el transporte de tanques o gran cantidad de mercancía ofrecemos el domicilio sin ningún costo adicional siempre y cuando sea dentro del municipio';
+      'Para el transporte de tanques o gran cantidad de mercancía ofrecemos servicio de domicilio.';
+
+    expect(services.filter((s) => s.freeDelivery).map((s) => s.slug)).toEqual(
+      services.filter((s) => s.notes).map((s) => s.slug),
+    );
+    for (const service of services) {
+      expect(JSON.stringify(service), service.slug).not.toMatch(/sin ningún costo|municipio/i);
+    }
     const withNotes = services.filter((s) => s.notes);
 
     expect(withNotes.map((s) => s.slug)).toEqual([

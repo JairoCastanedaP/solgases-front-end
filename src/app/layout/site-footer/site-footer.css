@@ -79,17 +79,28 @@
 }
 
 .site-footer__badge {
-  padding: 4px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 56px;
+  height: 52px;
+  padding: 4px 8px;
   border-radius: 4px;
   background: #fff;
   color: #222;
   font-weight: bold;
 }
 
-/* El espacio inferior deja el copyright por encima de los botones flotantes al final de la página. */
+/* `contain` y ancho automático: cada logo conserva su proporción dentro de la misma altura. */
+.site-footer__logo {
+  width: auto;
+  max-width: 88px;
+  height: 44px;
+  object-fit: contain;
+}
+
 .site-footer__bottom {
   margin-top: 16px;
-  padding-bottom: 56px;
   padding-top: 14px;
   border-top: 1px solid #5a5a5a;
 }
@@ -114,10 +125,6 @@
 @media screen and (min-width: 1024px) {
   .site-footer__payments {
     padding-inline: 0;
-  }
-
-  .site-footer__bottom {
-    padding-bottom: 0;
   }
 
   .site-footer__grid {

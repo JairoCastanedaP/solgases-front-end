@@ -353,7 +353,9 @@ describe('ProductosPage: búsqueda, filtros y orden', () => {
 
       expect(page().querySelector('app-image-gallery')).toBeNull();
       expect(page().textContent).not.toContain('Te asesoramos');
-      expect(text(intro.querySelector('h2'))).toBe('Elementos de Protección Personal');
+      expect(text(intro.querySelector('h2'))).toBe(
+        'Elementos de Protección Personal en Sogamoso, Boyacá',
+      );
       expect(results.contains(intro)).toBe(false);
       expect(
         results.compareDocumentPosition(intro) & Node.DOCUMENT_POSITION_FOLLOWING,

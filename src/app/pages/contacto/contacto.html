@@ -53,16 +53,36 @@
     <h2 class="group__title">Contáctanos</h2>
     <div class="container container--flex">
       <div class="contact-information column column--50">
-        <h3 class="column__title">Horario de atención</h3>
-        <p class="column__txt"><strong>Lunes a viernes :</strong> 8am a 12pm y 2pm a 6:30pm</p>
-        <p class="column__txt"><strong>Sabados:</strong> 8am a 6pm (jornada continua)</p>
-        <p class="column__txt"><strong>Ubicanos con Google Maps</strong></p>
-        <div class="map">
-          <iframe
-            title="Ubicación de Solgases en Google Maps"
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.9770567258524!2d-72.93533518523334!3d5.716442982443358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6a45d9f304ae27%3A0xa4ae2930f21c257b!2sSolgases!5e0!3m2!1ses!2sco!4v1568474095913!5m2!1ses!2sco"
-          ></iframe>
-        </div>
+        <section class="contact-card">
+          <h3 class="contact-card__title">Horario de atención</h3>
+          <dl class="contact-hours">
+            <div>
+              <dt>Lunes a viernes</dt>
+              <dd>8am a 12pm y 2pm a 6:30pm</dd>
+            </div>
+            <div>
+              <dt>Sábados</dt>
+              <dd>8am a 6pm (jornada continua)</dd>
+            </div>
+          </dl>
+        </section>
+        <section class="contact-card">
+          <h3 class="contact-card__title">Dirección</h3>
+          <p class="contact-card__address">
+            <span class="icon-location" aria-hidden="true"></span>
+            {{ site.address }}, {{ site.region }}
+          </p>
+        </section>
+        <section class="contact-card">
+          <h3 class="contact-card__title">Ubícanos con Google Maps</h3>
+          <div class="map">
+            <iframe
+              #map
+              title="Ubicación de Solgases en Google Maps"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3969.9770567258524!2d-72.93533518523334!3d5.716442982443358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e6a45d9f304ae27%3A0xa4ae2930f21c257b!2sSolgases!5e0!3m2!1ses!2sco!4v1568474095913!5m2!1ses!2sco"
+            ></iframe>
+          </div>
+        </section>
       </div>
 
       <form [action]="formAction" method="POST" class="formulario column--50 column">

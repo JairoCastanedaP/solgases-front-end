@@ -5,6 +5,8 @@ export interface TeamHighlight {
   readonly image: string;
   readonly imageAlt: string;
   readonly text: string;
+  /** Añade el aviso de domicilio gratis y su condición debajo del texto. */
+  readonly freeDelivery?: boolean;
 }
 
 export const TEAM_HIGHLIGHTS: readonly TeamHighlight[] = [
@@ -24,14 +26,15 @@ export const TEAM_HIGHLIGHTS: readonly TeamHighlight[] = [
     title: 'Domicilio',
     image: 'img/camioneta2.jpg',
     imageAlt: 'Camioneta para domicilios',
-    text: 'Para el transporte de tanques o gran cantidad de mercancía ofrecemos servicio de domicilio. Consulta con nosotros las condiciones.',
+    text: 'Para el transporte de tanques o gran cantidad de mercancía ofrecemos servicio de domicilio.',
+    freeDelivery: true,
   },
 ];
 
 /** Cada punto se apoya en lo que el sitio ya publica: sin certificaciones, garantías ni cifras nuevas. */
 export const WHY_US = {
   title: 'Por qué contratar con nosotros',
-  text: 'Somos una empresa sogamoseña con más de dos décadas de experiencia en seguridad industrial. Colaboramos con la protección personal de los trabajadores y la prevención de riesgos viales y laborales.',
+  text: 'Somos una empresa de Sogamoso, Boyacá, con más de dos décadas de experiencia en seguridad industrial. Colaboramos con la protección personal de los trabajadores y la prevención de riesgos viales y laborales.',
   points: [
     'Experiencia en seguridad industrial en Sogamoso.',
     'Dotaciones, calzado, guantes, cascos, gafas, caretas y mascarillas.',

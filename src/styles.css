@@ -109,6 +109,26 @@ app-contacto-page {
   }
 }
 
+/* Barra de contacto inferior (ver FloatingContact): la página reserva su altura al final, y el foco
+   de teclado no queda debajo. Sin barra, cuando sus accesos caben en el margen lateral. */
+:root {
+  --contact-bar: 60px;
+}
+html {
+  scroll-padding-bottom: calc(var(--contact-bar) + 8px);
+}
+body {
+  padding-bottom: calc(var(--contact-bar) + env(safe-area-inset-bottom, 0px));
+}
+@media screen and (min-width: 1200px) and (min-height: 600px) {
+  html {
+    scroll-padding-bottom: 0;
+  }
+  body {
+    padding-bottom: 0;
+  }
+}
+
 /* Oculta visualmente un texto sin quitarlo a lectores de pantalla ni buscadores
    (p. ej. el <h1> de Nosotros, cuyo banner no tiene texto visible). */
 .visually-hidden {

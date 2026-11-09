@@ -126,16 +126,16 @@ Criterios usados:
 
 ## Páginas y rutas
 
-| Ruta               | Origen                       | Título (`<title>`)                            | Notas                                   |
-| ------------------ | ---------------------------- | --------------------------------------------- | --------------------------------------- |
-| `/`                | `index.html`                 | Solgases \| Seguridad industrial en Sogamoso  | Portafolio, collage y carruseles        |
-| `/nosotros`        | `nosotros.html`              | Nosotros \| Solgases                          | Equipo, resumen de servicios, marcas    |
-| `/productos`       | `productos.html`             | Productos de seguridad industrial \| Solgases | Catálogo: búsqueda y 11 categorías (94) |
-| `/productos/:slug` | Nueva (`products.json`)      | `<Nombre> \| Solgases`                        | Detalle de cada uno de los 94 productos |
-| `/servicios`       | `servicios.html`             | Recarga de extintores y gases \| Solgases     | Catálogo: búsqueda y filtro (18)        |
-| `/servicios/:slug` | Nueva (`site-services.json`) | `<Nombre> \| Solgases`                        | Detalle de cada uno de los 18 servicios |
-| `/bioseguridad`    | `bioseguridad.html`          | Productos de bioseguridad \| Solgases         | 20 productos                            |
-| `/contacto`        | `contacto.html`              | Contacto \| Solgases                          | Horario, mapa y formulario (POST a PHP) |
+| Ruta               | Origen                       | Título (`<title>`)                                        | Notas                                   |
+| ------------------ | ---------------------------- | --------------------------------------------------------- | --------------------------------------- |
+| `/`                | `index.html`                 | Solgases \| Seguridad industrial en Sogamoso, Boyacá      | Portafolio, collage y carruseles        |
+| `/nosotros`        | `nosotros.html`              | Nosotros \| Empresa de Sogamoso, Boyacá \| Solgases       | Equipo, resumen de servicios, marcas    |
+| `/productos`       | `productos.html`             | Productos de seguridad industrial en Sogamoso \| Solgases | Catálogo: búsqueda y 11 categorías (94) |
+| `/productos/:slug` | Nueva (`products.json`)      | `<Nombre> \| Solgases`                                    | Detalle de cada uno de los 94 productos |
+| `/servicios`       | `servicios.html`             | Recarga de extintores y gases en Sogamoso \| Solgases     | Catálogo: búsqueda y filtro (18)        |
+| `/servicios/:slug` | Nueva (`site-services.json`) | `<Nombre> \| Solgases`                                    | Detalle de cada uno de los 18 servicios |
+| `/bioseguridad`    | `bioseguridad.html`          | Productos de bioseguridad \| Solgases                     | 20 productos                            |
+| `/contacto`        | `contacto.html`              | Contacto en Sogamoso, Boyacá \| Solgases                  | Horario, mapa y formulario (POST a PHP) |
 
 Composición visual y datos sin confirmar:
 
@@ -155,17 +155,17 @@ Composición visual y datos sin confirmar:
 - Los carruseles de Inicio no duplican tarjetas: las reciclan con la propiedad CSS `order`, de modo
   que cada enlace existe una vez y el orden del DOM no cambia. La dirección automática está en
   `AUTO_DIRECTION` (`card-carousel/carousel-motion.ts`).
-- "Iniciar sesión" y "Crear cuenta" son botones desactivados, rotulados "Próximamente": no hay
-  rutas ni flujo de cuenta.
 - El teléfono y la dirección viven solo en `SITE_INFO` (`core/site-info.ts`); de ahí salen el botón
   "Llamar" (`tel:+576087728666`) y el de ubicación, que pregunta antes de abrir Google Maps buscando
   la dirección, sin coordenadas. El teléfono de llamadas no es el número de WhatsApp.
-- Los botones flotantes son la pestaña amarilla (`app-whatsapp-button`) y la pila de la esquina
-  (`app-floating-contact`: llamada y WhatsApp verde). En móvil y tablet el texto del verde es solo su
-  nombre accesible, para no tapar contenido.
-- **Por confirmar:** Nosotros ya no promete domicilio sin costo, pero las notas de los 6 servicios
-  de llenado y alquiler en `site-services.json` conservan el texto original.
-- Los medios de pago (`SITE_INFO.paymentMethods`) se muestran como texto: no hay logos aprobados.
+- Los accesos fijos (`app-floating-contact`) son tres: asesoría (amarillo), WhatsApp (verde, con ondas)
+  y llamada. No tapan contenido al detenerse: desde 1200 px de ancho y 600 px de alto van en el margen
+  derecho; si no, en una barra inferior para la que `styles.css` reserva la altura de `--contact-bar`.
+  Sin número válido, asesoría y WhatsApp no abren nada y no muestran ningún aviso.
+- "Domicilio gratis" se redacta solo en `FreeDelivery`, siempre con su condición. Aparece en Nosotros
+  y en los servicios con `freeDelivery: true`: los 6 que ya mencionaban el domicilio.
+- Los medios de pago (`PAYMENT_METHODS`, `core/site-info.ts`) usan los logos de `public/icons`; Nequi
+  no tiene archivo y se muestra como texto. `Davivienda.webp` contiene el logo de Daviplata.
 - El pie de página solo usa datos de `SITE_INFO` y rutas existentes. El HTML no lleva el año del
   copyright: el navegador pone el actual, sin necesidad de un nuevo build.
 - `/servicios` comparte composición, estilos, cuadrícula y vista rápida con `/productos`. Filtra por
@@ -373,7 +373,8 @@ generan a partir del JSON.
 - **`description`:** el resumen más, cuando existe, la frase correspondiente del resumen de servicios
   del sitio (`SERVICES_SUMMARY`). Argón, mezcla y alquiler de cilindros no aparecen en ese texto, así
   que su descripción se limita al resumen.
-- **`notes`:** la condición de domicilio del sitio original, en los servicios de llenado y alquiler. Una
+- **`notes` y `freeDelivery`:** el domicilio, en los servicios de llenado y alquiler; el aviso de
+  "Domicilio gratis" con su condición lo muestra `FreeDelivery`. Una
   prueba verifica que siga siendo idéntica al texto de Nosotros.
 
 ### Diferencias con el sitio anterior
@@ -605,10 +606,9 @@ location / {
 
 ## Botón flotante de WhatsApp
 
-`app-whatsapp-button` se incluye una sola vez en el componente raíz (`app.ts`), así que aparece en
-todas las rutas, también en el HTML prerenderizado. Es una pestaña amarilla con el texto "Escríbenos
-para asesorarte", fija a media altura del borde derecho, por encima del contenido y por debajo del
-modal de la galería, y no ocupa espacio en el layout. Es un
+`app-floating-contact` se incluye una sola vez en el componente raíz (`app.ts`), así que aparece en
+todas las rutas, también en el HTML prerenderizado. Muestra "Escríbenos por WhatsApp", por debajo del
+modal de la galería y sin tapar contenido. Es un
 enlace o botón nativo: se puede usar con teclado, tiene foco y hover visibles y su icono SVG está en
 línea, sin dependencias. **No requiere backend**: solo abre `https://wa.me/...`.
 
@@ -622,8 +622,7 @@ export const WHATSAPP_CONFIG: WhatsAppConfig = {
 ```
 
 - **`phone`:** mientras sea `null`, o no tenga entre 8 y 15 dígitos sin `+`, espacios ni guiones,
-  el botón lleva un borde punteado y `aria-disabled="true"`, no abre ninguna conversación y explica
-  "Número de WhatsApp pendiente de configurar" (al pasar el cursor, enfocar o tocar). No se usó el
+  los botones siguen visibles con `aria-disabled="true"` y no abren ninguna conversación. No se usó el
   teléfono fijo del sitio.
 - **Para activarlo:** escribe el número confirmado, por ejemplo `phone: '57XXXXXXXXXX'`, y ejecuta
   `npm run build`. El botón pasa a ser un enlace `https://wa.me/{phone}?text={mensaje codificado}`

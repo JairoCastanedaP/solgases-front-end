@@ -26,44 +26,21 @@ describe('App', () => {
     expect(el.querySelectorAll('.menu__link').length).toBe(6);
     expect(el.querySelector('.main-footer')?.textContent).toContain('solgases@gmail.com');
     expect(el.querySelector('.main-header')?.textContent).toContain('(608) 772 86 66');
-    expect(el.querySelectorAll('app-whatsapp-button').length).toBe(1);
     expect(el.querySelectorAll('app-floating-contact').length).toBe(1);
   });
 
-  describe('accesos de cuenta', () => {
-    it('se presentan como próximos, desactivados y sin enlace', async () => {
-      const fixture = TestBed.createComponent(App);
-      await fixture.whenStable();
-      const el = fixture.nativeElement as HTMLElement;
-      const group = el.querySelector('.main-header [role="group"]')!;
-      const buttons = Array.from(group.querySelectorAll('button'));
+  it('no hay accesos ni rutas de cuenta de usuario', async () => {
+    const fixture = TestBed.createComponent(App);
+    await fixture.whenStable();
+    const el = fixture.nativeElement as HTMLElement;
 
-      expect(group.getAttribute('aria-label')).toContain('próximamente');
-      expect(group.textContent).toContain('Próximamente');
-      expect(buttons.map((b) => b.textContent?.trim())).toEqual(['Iniciar sesión', 'Crear cuenta']);
-      expect(buttons.every((b) => b.disabled)).toBe(true);
-      expect(group.querySelector('a')).toBeNull();
-    });
-
-    it('no navegan al pulsarlos y no existen rutas de cuenta', async () => {
-      const harness = await RouterTestingHarness.create('/productos');
-      const router = TestBed.inject(Router);
-      const app = TestBed.createComponent(App);
-      await app.whenStable();
-
-      for (const button of Array.from(
-        (app.nativeElement as HTMLElement).querySelectorAll<HTMLButtonElement>('.account button'),
-      )) {
-        button.click();
-      }
-      await harness.fixture.whenStable();
-
-      expect(router.url).toBe('/productos');
-      const paths = routes.map((r) => r.path);
-      for (const path of ['login', 'iniciar-sesion', 'registro', 'crear-cuenta']) {
-        expect(paths).not.toContain(path);
-      }
-    });
+    expect(el.textContent).not.toMatch(/Iniciar sesión|Crear cuenta|Próximamente/);
+    expect(el.querySelector('.account')).toBeNull();
+    expect(el.querySelectorAll('.menu__link').length).toBe(6);
+    const paths = routes.map((r) => r.path);
+    for (const path of ['login', 'iniciar-sesion', 'registro', 'crear-cuenta', 'cuenta']) {
+      expect(paths).not.toContain(path);
+    }
   });
 
   describe('pie de página', () => {
@@ -107,15 +84,29 @@ describe('App', () => {
       expect(el.textContent).toContain(SITE_INFO.copyright);
     });
 
-    it('muestra Nequi y Bre-B como medios de pago, en texto y sin enlaces', async () => {
+    it('muestra los cuatro logos de public/icons y Nequi, sin enlaces', async () => {
       const section = (await footer()).querySelector('[aria-labelledby="pie-pagos"]')!;
+      const images = Array.from(section.querySelectorAll('img'));
 
       expect(section.querySelector('h2')?.textContent).toBe('Medios de pago');
-      expect(Array.from(section.querySelectorAll('li')).map((li) => li.textContent)).toEqual([
-        'Nequi',
-        'Bre-B',
+      expect(images.map((i) => i.getAttribute('src'))).toEqual([
+        'icons/Bre-B.webp',
+        'icons/BANCOLOMBIA.webp',
+        'icons/Davivienda.webp',
+        'icons/money-cash-icon-png.webp',
       ]);
-      expect(section.querySelector('a, img')).toBeNull();
+      expect(images.map((i) => i.getAttribute('alt'))).toEqual([
+        'Logo de Bre-B',
+        'Logo de Bancolombia',
+        'Logo de Daviplata',
+        'Fajo de billetes: pago en efectivo',
+      ]);
+      for (const image of images) {
+        expect(image.getAttribute('width')).toMatch(/^\d+$/);
+        expect(image.getAttribute('height')).toMatch(/^\d+$/);
+      }
+      expect(section.querySelector('li:not(:has(img))')?.textContent?.trim()).toBe('Nequi');
+      expect(section.querySelector('a')).toBeNull();
     });
 
     it('el año del copyright es el actual, sin build de por medio', async () => {
@@ -135,7 +126,7 @@ describe('App', () => {
   });
 
   const pages: [path: string, banner: string, title: string][] = [
-    ['/', 'Su mejor opción en Seguridad Industrial en Sogamoso', PUBLIC_PAGES.home.title],
+    ['/', 'Su mejor opción en Seguridad Industrial en Sogamoso, Boyacá', PUBLIC_PAGES.home.title],
     ['/nosotros', '', PUBLIC_PAGES.nosotros.title],
     ['/productos', 'Nuestros Productos', PUBLIC_PAGES.productos.title],
     ['/servicios', 'Nuestros Servicios', PUBLIC_PAGES.servicios.title],

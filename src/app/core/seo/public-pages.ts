@@ -22,33 +22,33 @@ export interface PageSeo {
 export const PUBLIC_PAGES = {
   home: {
     path: '',
-    title: 'Solgases | Seguridad industrial en Sogamoso',
+    title: 'Solgases | Seguridad industrial en Sogamoso, Boyacá',
     description:
-      'Protección personal, extintores, llenado de gases industriales y asesoría en seguridad industrial en Sogamoso, con más de dos décadas de experiencia.',
+      'Protección personal, extintores, llenado de gases industriales y asesoría en seguridad industrial en Sogamoso, Boyacá, con más de dos décadas de experiencia.',
     image: 'img/og/inicio.jpg',
     imageAlt: 'Soldador trabajando con careta y guantes de protección',
   },
   nosotros: {
     path: 'nosotros',
-    title: 'Nosotros | Solgases',
+    title: 'Nosotros | Empresa de Sogamoso, Boyacá | Solgases',
     description:
-      'Empresa sogamoseña con más de dos décadas en protección personal y prevención de riesgos viales y laborales. Conoce nuestras instalaciones, equipo y marcas.',
+      'Empresa de Sogamoso, Boyacá, con más de dos décadas en protección personal y prevención de riesgos viales y laborales. Conoce instalaciones, equipo y marcas.',
     image: 'img/og/nosotros.jpg',
     imageAlt: 'Interior del almacén de Solgases con elementos de seguridad',
   },
   productos: {
     path: 'productos',
-    title: 'Productos de seguridad industrial | Solgases',
+    title: 'Productos de seguridad industrial en Sogamoso | Solgases',
     description:
-      'Calzado de seguridad, guantes, cascos, caretas, gafas, mascarillas, ropa de trabajo, seguridad vial y repuestos para equipos de corte y soldadura en Sogamoso.',
+      'Calzado de seguridad, guantes, cascos, caretas, gafas, mascarillas, ropa de trabajo y repuestos para equipos de corte y soldadura en Sogamoso, Boyacá.',
     image: 'img/og/productos.jpg',
     imageAlt: 'Cascos de seguridad colgados',
   },
   servicios: {
     path: 'servicios',
-    title: 'Recarga de extintores y gases | Solgases',
+    title: 'Recarga de extintores y gases en Sogamoso | Solgases',
     description:
-      'Recarga de extintores ABC, CO2, Solkaflam y tipo K; llenado de oxígeno, nitrógeno, argón y acetileno; reparación de reguladores y equipos de soldadura.',
+      'En Sogamoso, Boyacá: recarga de extintores ABC, CO2, Solkaflam y tipo K; llenado de oxígeno, nitrógeno, argón y acetileno; reparación de reguladores.',
     image: 'img/og/servicios.jpg',
     imageAlt: 'Grupo de extintores',
   },
@@ -62,9 +62,9 @@ export const PUBLIC_PAGES = {
   },
   contacto: {
     path: 'contacto',
-    title: 'Contacto | Solgases',
+    title: 'Contacto en Sogamoso, Boyacá | Solgases',
     description:
-      'Contáctanos en Sogamoso: consulta el horario de atención y la ubicación en el mapa, o envíanos un mensaje desde el formulario.',
+      'Contáctanos en Sogamoso, Boyacá: consulta el horario de atención y la ubicación en el mapa, o envíanos un mensaje desde el formulario.',
     image: 'img/og/contacto.jpg',
     imageAlt: 'Guantes de seguridad exhibidos',
   },

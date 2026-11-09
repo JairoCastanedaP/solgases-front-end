@@ -17,6 +17,9 @@ async function page() {
   return harness.routeNativeElement as HTMLElement;
 }
 
+const FREE_DELIVERY_CONDITION =
+  'Sujeto a cobertura y condiciones del servicio. Confirma con nosotros si aplica para tu ubicación y servicio antes de solicitarlo.';
+
 describe('NosotrosPage: tarjetas', () => {
   const card = (el: HTMLElement, title: string) =>
     Array.from(el.querySelectorAll('.our-team__card')).find(
@@ -51,11 +54,20 @@ describe('NosotrosPage: tarjetas', () => {
     }
   });
 
-  it('Domicilio no promete entrega gratuita ni una cobertura', async () => {
-    const text = card(await page(), 'Domicilio').textContent!;
+  it('Domicilio destaca "Domicilio gratis" con su condición, sin reglas de cobertura', async () => {
+    const domicilio = card(await page(), 'Domicilio');
+    const text = domicilio.textContent!.replace(/\s+/g, ' ');
 
-    expect(text).toContain('domicilio');
-    expect(text).not.toMatch(/costo|gratis|gratuit|municipio/i);
+    expect(domicilio.querySelector('.free-delivery__tag')?.textContent).toBe('Domicilio gratis');
+    expect(text).toContain(FREE_DELIVERY_CONDITION);
+    expect(text).not.toMatch(/sin ningún costo|municipio/i);
+  });
+
+  it('solo Domicilio lleva el aviso', async () => {
+    const el = await page();
+
+    expect(el.querySelectorAll('app-free-delivery').length).toBe(1);
+    expect(card(el, 'Instalaciones').querySelector('app-free-delivery')).toBeNull();
   });
 });
 

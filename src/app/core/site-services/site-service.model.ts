@@ -20,6 +20,8 @@ export interface SiteService {
   readonly details: readonly ProductSpecification[];
   /** Condiciones publicadas en otra página del sitio; se omite si no hay ninguna. */
   readonly notes?: readonly string[];
+  /** Muestra el aviso de domicilio gratis y su condición. Solo donde el sitio ya lo publicaba. */
+  readonly freeDelivery?: boolean;
 }
 
 export interface SiteServiceCatalog {
