@@ -1,0 +1,144 @@
+:host {
+  display: block;
+}
+
+.carousel__stage {
+  position: relative;
+}
+
+/* `overflow-anchor` evita que el navegador corrija el desplazamiento al reordenar las tarjetas. */
+.carousel__track {
+  display: flex;
+  gap: 8px;
+  margin: 0;
+  padding: 4px;
+  overflow-x: auto;
+  overflow-anchor: none;
+  overscroll-behavior-x: contain;
+  /* Una tarjeta enfocada no queda debajo de las flechas. */
+  scroll-padding-inline: 52px;
+  scrollbar-width: none;
+  list-style: none;
+}
+
+.carousel__track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Dos tarjetas y parte de la siguiente: deja ver que la lista continúa. */
+.today-special .carousel__slide {
+  flex: 0 0 calc((100% - 16px) / 2.2);
+  width: auto;
+  margin: 0;
+  padding: 5px;
+  border: 3px solid #ddd;
+}
+
+.today-special__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.today-special__link:hover .today-special__title {
+  text-decoration: underline;
+}
+
+.today-special__link:focus-visible,
+.carousel__arrow:focus-visible,
+.carousel__pause:focus-visible {
+  outline: 3px solid #111;
+  outline-offset: 2px;
+}
+
+.today-special__img {
+  width: 100%;
+  max-width: none;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.today-special__title {
+  padding: 8px 2px 4px;
+  font-size: 0.95em;
+  overflow-wrap: anywhere;
+}
+
+.carousel__arrow {
+  position: absolute;
+  top: 50%;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 2px solid #111;
+  border-radius: 50%;
+  background: #fff;
+  color: #111;
+  font: inherit;
+  font-size: 1.8em;
+  line-height: 1;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+
+.carousel__arrow:hover {
+  background: #111;
+  color: #fff;
+}
+
+.carousel__arrow--back {
+  left: 4px;
+}
+
+.carousel__arrow--next {
+  right: 4px;
+}
+
+.carousel__controls {
+  display: flex;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: 10px;
+}
+
+.carousel__pause {
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 2px solid #111;
+  background: #fff;
+  color: #111;
+  font: inherit;
+  font-size: 0.9em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.carousel__pause:hover {
+  background: #111;
+  color: #fff;
+}
+
+@media screen and (min-width: 600px) {
+  .today-special .carousel__slide {
+    flex-basis: calc((100% - 24px) / 3.2);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .today-special .carousel__slide {
+    flex-basis: calc((100% - 24px) / 4);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .today-special__title {
+    font-size: 1.05em;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .today-special .carousel__slide {
+    flex-basis: calc((100% - 32px) / 5);
+  }
+}

@@ -236,12 +236,14 @@ describe('Navegación del catálogo al detalle', () => {
     expect(text(detail.querySelector('h1'))).toBe('Guante Kodiak');
   });
 
-  it('cada categoría del catálogo tiene el ancla a la que apunta su enlace de regreso', async () => {
+  it('el enlace de regreso abre su categoría, con el ancla a la que apunta', async () => {
     setup();
-    const page = await open('/productos');
+    const harness = await RouterTestingHarness.create('/productos');
 
     for (const { fragment, name } of PRODUCT_CATALOG.categories) {
       if (fragment) {
+        await harness.navigateByUrl(`/productos#${fragment}`);
+        const page = harness.routeNativeElement as HTMLElement;
         expect(text(page.querySelector(`[id="${fragment}"] h2`)), fragment).toBe(name);
       }
     }

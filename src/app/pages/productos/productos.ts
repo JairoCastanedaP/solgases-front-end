@@ -6,6 +6,7 @@ import {
   computed,
   inject,
   linkedSignal,
+  signal,
   viewChild,
 } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -19,17 +20,16 @@ import {
   CatalogQuery,
   EMPTY_CATALOG_QUERY,
   SORT_OPTIONS,
+  categoryFromFragment,
   isCatalogQueryActive,
   parseCatalogQuery,
   searchCatalog,
   toCatalogParams,
 } from '../../core/products/product-catalog-search';
-import { ContactButton } from '../../shared/components/contact-button/contact-button';
-import { ImageGallery } from '../../shared/components/image-gallery/image-gallery';
 import { IntroSection } from '../../shared/components/intro-section/intro-section';
 import { PageBanner } from '../../shared/components/page-banner/page-banner';
-import { ProductGrid } from '../../shared/components/product-grid/product-grid';
-import { PRODUCT_GALLERY } from './productos.data';
+import { CatalogDirectory } from './catalog-directory/catalog-directory';
+import { CatalogGrid } from './catalog-grid/catalog-grid';
 
 /** Espera tras la última tecla antes de escribir en la URL y anunciar el resultado. */
 const SEARCH_DEBOUNCE_MS = 250;
@@ -40,7 +40,7 @@ const SEARCH_DEBOUNCE_MS = 250;
  */
 @Component({
   selector: 'app-productos-page',
-  imports: [PageBanner, IntroSection, ImageGallery, ContactButton, ProductGrid],
+  imports: [PageBanner, IntroSection, CatalogDirectory, CatalogGrid],
   templateUrl: './productos.html',
   styleUrl: './productos.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -49,22 +49,36 @@ export class ProductosPage {
   private readonly route = inject(ActivatedRoute);
   private readonly router = inject(Router);
   private readonly params = toSignal(this.route.queryParamMap, { requireSync: true });
+  private readonly fragment = toSignal(this.route.fragment, {
+    initialValue: this.route.snapshot.fragment,
+  });
   private readonly searchInput = viewChild.required<ElementRef<HTMLInputElement>>('searchInput');
+  private readonly filtersToggle =
+    viewChild.required<ElementRef<HTMLButtonElement>>('filtersToggle');
   private searchTimer?: ReturnType<typeof setTimeout>;
 
-  protected readonly gallery = PRODUCT_GALLERY;
   protected readonly notice = PRODUCT_CATALOG.notice;
   protected readonly categoryOptions = CATEGORY_OPTIONS;
   protected readonly brandOptions = BRAND_OPTIONS;
   protected readonly sortOptions = SORT_OPTIONS;
   protected readonly searchMaxLength = CATALOG_SEARCH_MAX_LENGTH;
 
-  protected readonly query = computed(() => parseCatalogQuery(this.params()));
+  /** Solo afecta a móvil y tablet: en escritorio el panel es la columna lateral, siempre visible. */
+  protected readonly filtersOpen = signal(false);
+  protected readonly query = computed(() => {
+    const query = parseCatalogQuery(this.params());
+    return query.category
+      ? query
+      : { ...query, category: categoryFromFragment(this.fragment() ?? null) };
+  });
   /** Lo escrito en el campo, que se adelanta a la URL mientras dura la espera. */
   protected readonly searchText = linkedSignal(() => this.query().q);
   protected readonly results = computed(() => searchCatalog(this.query()));
   protected readonly canClear = computed(() =>
     isCatalogQueryActive({ ...this.query(), q: this.searchText() }),
+  );
+  protected readonly activeFilters = computed(
+    () => Number(Boolean(this.query().category)) + Number(Boolean(this.query().brand)),
   );
   protected readonly showsPrices = computed(() => this.query().sort.startsWith('precio'));
   protected readonly status = computed(() => {
@@ -97,6 +111,16 @@ export class ProductosPage {
 
   protected onSortChange(sort: string): void {
     this.update({ sort: sort as CatalogQuery['sort'] });
+  }
+
+  protected toggleFilters(): void {
+    this.filtersOpen.update((open) => !open);
+  }
+
+  /** El botón que se pulsó queda oculto con el panel: el foco vuelve al que lo abrió. */
+  protected closeFilters(): void {
+    this.filtersOpen.set(false);
+    this.filtersToggle().nativeElement.focus();
   }
 
   /** El botón puede desaparecer o desactivarse: el foco pasa al buscador para no perderse. */

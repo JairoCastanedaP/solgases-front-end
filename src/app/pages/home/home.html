@@ -35,6 +35,11 @@
     </div>
   </section>
 
-  <app-product-grid heading="Productos Relevantes" [items]="featuredProducts" />
-  <app-product-grid heading="Servicios Relevantes" [items]="featuredServices" />
+  <app-image-gallery class="home-collage" [columns]="gallery">
+    <app-contact-button />
+    <h2 class="group__title">Te asesoramos según tus necesidades y la normativa</h2>
+  </app-image-gallery>
+
+  <app-card-carousel heading="Productos Relevantes" [items]="featuredProducts" />
+  <app-card-carousel heading="Servicios Relevantes" [items]="featuredServices" />
 </main>

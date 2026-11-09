@@ -26,9 +26,6 @@ import { CatalogItem } from '../../models/catalog-item';
         class="today-special__img"
       />
       <div class="today-special__title">{{ item.title }}</div>
-      @if (item.note) {
-        <div class="today-special__note">{{ item.note }}</div>
-      }
     </ng-template>
 
     <section class="group today-special">
@@ -43,9 +40,7 @@ import { CatalogItem } from '../../models/catalog-item';
               <a
                 class="today-special__link"
                 [routerLink]="item.link"
-                [attr.aria-label]="
-                  'Ver detalle de ' + item.title + (item.note ? '. ' + item.note : '')
-                "
+                [attr.aria-label]="'Ver detalle de ' + item.title"
               >
                 <ng-container
                   [ngTemplateOutlet]="card"
@@ -77,16 +72,6 @@ import { CatalogItem } from '../../models/catalog-item';
     .today-special__link:focus-visible {
       outline: 3px solid #111;
       outline-offset: 2px;
-    }
-
-    .today-special__title:has(+ .today-special__note) {
-      padding-bottom: 5px;
-    }
-
-    .today-special__note {
-      padding-bottom: 20px;
-      color: #333;
-      font-size: 0.85em;
     }
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

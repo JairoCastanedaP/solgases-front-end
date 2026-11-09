@@ -1,7 +1,7 @@
 import { GalleryImage } from '../../shared/models/gallery-image';
 
-/** Galería superior de la página (columnas con imagen grande y pequeña). */
-export const PRODUCT_GALLERY: readonly (readonly GalleryImage[])[] = [
+/** Collage de la sección de asesoría (columnas con imagen grande y pequeña). */
+export const HOME_GALLERY: readonly (readonly GalleryImage[])[] = [
   [
     {
       src: 'img/productos/construccion.jpg',

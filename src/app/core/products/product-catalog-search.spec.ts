@@ -1,12 +1,13 @@
-import { CatalogItem } from '../../shared/models/catalog-item';
 import { PRODUCT_CATALOG } from './product-catalog';
 import {
   BRAND_OPTIONS,
   CATALOG_TOTAL,
+  CatalogCard,
   CATEGORY_OPTIONS,
   CatalogQuery,
   EMPTY_CATALOG_QUERY,
   SORT_OPTIONS,
+  categoryFromFragment,
   isCatalogQueryActive,
   parseCatalogQuery,
   searchCatalog,
@@ -15,10 +16,7 @@ import {
 
 const search = (query: Partial<CatalogQuery>) =>
   searchCatalog({ ...EMPTY_CATALOG_QUERY, ...query });
-const cards = (query: Partial<CatalogQuery>): readonly CatalogItem[] => {
-  const { sections, sorted } = search(query);
-  return sorted ?? sections.flatMap((section) => section.items);
-};
+const cards = (query: Partial<CatalogQuery>): readonly CatalogCard[] => search(query).items;
 const titles = (query: Partial<CatalogQuery>) => cards(query).map((card) => card.title);
 const params = (values: Record<string, string>) => new URLSearchParams(values);
 
@@ -33,12 +31,45 @@ describe('Búsqueda del catálogo de productos', () => {
       expect(new Set(links).size).toBe(94);
     });
 
-    it('agrupa por categoría, con el orden y las anclas del JSON', () => {
-      const { sections, sorted } = search({});
+    it('intercala las categorías: sin agrupar y sin dos seguidas iguales', () => {
+      const categoryOf = (card: CatalogCard) =>
+        PRODUCT_CATALOG.categories.find((c) =>
+          c.items.some((i) => `/productos/${i.productId}` === card.link),
+        )!.id;
+      const order = cards({}).map(categoryOf);
 
-      expect(sorted).toBeNull();
-      expect(sections.map((s) => s.title)).toEqual(PRODUCT_CATALOG.categories.map((c) => c.name));
-      expect(sections[4].id).toBe('guantes');
+      expect(search({}).heading).toBe('Todos los productos');
+      for (let i = 1; i < order.length; i++) {
+        expect(order[i], `posición ${i}`).not.toBe(order[i - 1]);
+      }
+    });
+
+    it('el orden es estable y difiere del orden del JSON', () => {
+      const links = cards({}).map((card) => card.link);
+      const json = PRODUCT_CATALOG.categories
+        .flatMap((c) => c.items)
+        .map((i) => `/productos/${i.productId}`);
+
+      expect(cards({}).map((card) => card.link)).toEqual(links);
+      expect(cards({})[0]).toBe(cards({})[0]);
+      expect(links).not.toEqual([...new Set(json)]);
+    });
+
+    it('filtrar conserva el orden mezclado: no baraja de nuevo', () => {
+      const all = cards({}).map((card) => card.link);
+      const filtered = cards({ q: 'guante' }).map((card) => card.link);
+
+      expect(filtered.length).toBeGreaterThan(1);
+      expect(filtered).toEqual(all.filter((link) => filtered.includes(link)));
+    });
+
+    it('una categoría elegida conserva el orden del JSON y su ancla', () => {
+      const { items, heading, anchor } = search({ category: 'guantes' });
+      const json = PRODUCT_CATALOG.categories.find((c) => c.id === 'guantes')!.items;
+
+      expect(heading).toBe('Guantes');
+      expect(anchor).toBe('guantes');
+      expect(items.map((card) => card.link)).toEqual(json.map((i) => `/productos/${i.productId}`));
     });
 
     it('conserva imagen, texto alternativo y enlace de cada tarjeta', () => {
@@ -55,9 +86,9 @@ describe('Búsqueda del catálogo de productos', () => {
 
   describe('búsqueda de texto', () => {
     it('encuentra por nombre sin distinguir mayúsculas ni tildes', () => {
-      expect(titles({ q: 'KONDOR' })).toEqual([
-        'Botas Kondor Soldador',
+      expect([...titles({ q: 'KONDOR' })].sort()).toEqual([
         'Botas Kondor Dieléctricas',
+        'Botas Kondor Soldador',
       ]);
       expect(titles({ q: 'dielectricas' })).toContain('Botas Kondor Dieléctricas');
       expect(titles({ q: 'señalización' })).toEqual(titles({ q: 'senalizacion' }));
@@ -140,10 +171,9 @@ describe('Búsqueda del catálogo de productos', () => {
     const es = new Intl.Collator('es', { sensitivity: 'base', numeric: true });
 
     it('ordena por nombre en ambos sentidos, en una sola lista', () => {
-      const asc = search({ sort: 'nombre-asc' });
       const names = titles({ sort: 'nombre-asc' });
 
-      expect(asc.sections).toEqual([]);
+      expect(search({ sort: 'nombre-asc' }).heading).toBe('Resultados');
       expect(names.length).toBe(94);
       expect(names).toEqual([...names].sort(es.compare));
       expect(titles({ sort: 'nombre-desc' })).toEqual([...names].reverse());
@@ -187,6 +217,63 @@ describe('Búsqueda del catálogo de productos', () => {
 
       expect(asc.length).toBe(4);
       expect(titles({ category: 'caretas', sort: 'nombre-desc' })).toEqual([...asc].reverse());
+    });
+  });
+
+  describe('datos de la tarjeta', () => {
+    const card = (slug: string) => cards({}).find((c) => c.slug === slug)!;
+
+    it('muestra la marca y el tipo que confirma el JSON', () => {
+      const boots = card('botas-croydon-argyll-amarillo');
+
+      expect(boots.brand).toBe('Croydon');
+      expect(boots.productType).toBe('Bota de caucho');
+      expect(boots.name).toBe('Botas Croydon Argyll Amarillo');
+    });
+
+    it('no inventa marca para los productos que no la tienen', () => {
+      const brandless = PRODUCT_CATALOG.products.filter(
+        (p) => !p.specifications.some(({ label }) => label === 'Marca o línea en el catálogo'),
+      );
+
+      expect(brandless.length).toBe(68);
+      for (const { slug } of brandless) {
+        expect(card(slug).brand, slug).toBeUndefined();
+        expect(card(slug).ariaLabel, slug).not.toContain('Marca:');
+      }
+    });
+
+    it('cada tarjeta tiene tipo y, sin reseñas reales, dice "Sin calificaciones"', () => {
+      for (const c of cards({})) {
+        expect(c.productType, c.slug).toBeTruthy();
+        expect(c.rating.label, c.slug).toBe('Sin calificaciones');
+        expect(c.ariaLabel, c.slug).toContain('Sin calificaciones');
+      }
+    });
+
+    it('el nombre accesible incluye el nombre completo y el texto visible', () => {
+      const n95 = cards({ category: 'bioseguridad' }).find(
+        (c) => c.slug === 'tapabocas-3m-desechable-n95',
+      )!;
+
+      expect(n95.title).toBe('Mascarilla N95');
+      expect(n95.ariaLabel).toContain('Mascarilla N95');
+      expect(n95.ariaLabel).toContain('Tapabocas 3M Desechable N95');
+    });
+
+    it('sin ordenar por precio, ni la tarjeta ni su resumen llevan un precio', () => {
+      for (const c of cards({})) {
+        expect(c.note).toBeUndefined();
+        expect(`${c.ariaLabel} ${c.summary}`, c.slug).not.toMatch(/COP|Precio/);
+      }
+    });
+  });
+
+  describe('anclas de categoría', () => {
+    it('convierte un ancla conocida en su categoría e ignora las demás', () => {
+      expect(categoryFromFragment('guantes')).toBe('guantes');
+      expect(categoryFromFragment('no-existe')).toBe('');
+      expect(categoryFromFragment(null)).toBe('');
     });
   });
 

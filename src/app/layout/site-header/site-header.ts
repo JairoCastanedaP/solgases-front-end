@@ -4,6 +4,7 @@ import { SITE_INFO } from '../../core/site-info';
 @Component({
   selector: 'app-site-header',
   templateUrl: './site-header.html',
+  styleUrl: './site-header.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SiteHeader {

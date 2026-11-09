@@ -1,0 +1,80 @@
+<section class="group today-special">
+  @if (heading()) {
+    <h2 class="group__title">{{ heading() }}</h2>
+  }
+  <div class="container container--flex">
+    @for (item of items(); track item) {
+      @let img = item.image | optimizedImage;
+      @let open = openSlug() === item.slug;
+      <div
+        #card
+        class="column column--50-25"
+        [attr.data-slug]="item.slug"
+        (pointerenter)="onPointerEnter($event, item.slug)"
+        (pointerleave)="onPointerLeave($event)"
+        (focusout)="onFocusOut($event, card)"
+      >
+        <a
+          class="today-special__link"
+          [routerLink]="item.link"
+          [attr.aria-label]="item.ariaLabel"
+          [attr.aria-describedby]="open ? 'vista-rapida-' + item.slug : null"
+          (focusin)="onLinkFocus($event, item.slug)"
+        >
+          <img
+            [ngSrc]="img.src"
+            [width]="img.width"
+            [height]="img.height"
+            [alt]="item.alt ?? item.title"
+            class="today-special__img"
+          />
+          <div
+            class="catalog-card__meta"
+            [attr.title]="(item.brand ? item.brand + ' | ' : '') + item.productType"
+          >
+            <span class="catalog-card__meta-text">
+              @if (item.brand) {
+                <span class="catalog-card__brand">{{ item.brand }}</span>
+                <span aria-hidden="true"> | </span>
+              }
+              <span>{{ item.productType }}</span>
+            </span>
+          </div>
+          <div class="today-special__title" [attr.title]="item.name">{{ item.title }}</div>
+          <div class="catalog-card__rating">
+            <span class="catalog-card__stars" aria-hidden="true">{{ item.rating.stars }}</span>
+            <span>{{ item.rating.label }}</span>
+          </div>
+          @if (item.note) {
+            <div class="today-special__note">{{ item.note }}</div>
+          }
+        </a>
+
+        <button
+          type="button"
+          class="catalog-card__quick"
+          [attr.aria-label]="'Vista rápida de ' + item.name"
+          [attr.aria-expanded]="open"
+          [attr.aria-controls]="open ? 'vista-rapida-' + item.slug : null"
+          (click)="toggle(item.slug)"
+        >
+          Vista rápida
+        </button>
+
+        @if (open) {
+          <div class="catalog-card__popup" role="tooltip" [id]="'vista-rapida-' + item.slug">
+            <p class="catalog-card__popup-name">{{ item.name }}</p>
+            <p class="catalog-card__popup-meta">Categoría: {{ item.categoryName }}</p>
+            @if (item.brand) {
+              <p class="catalog-card__popup-meta">Marca: {{ item.brand }}</p>
+            }
+            <p class="catalog-card__popup-summary">{{ item.summary }}</p>
+            <p class="catalog-card__popup-demo">
+              Descripción de demostración: no es una ficha técnica.
+            </p>
+          </div>
+        }
+      </div>
+    }
+  </div>
+</section>
