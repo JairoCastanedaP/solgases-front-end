@@ -48,23 +48,64 @@ app-contacto-page {
 }
 
 /* El botón "Contáctanos" está centrado; en el detalle se alinea con el resto de la columna. */
-.product-detail__contact .btn {
+.product-detail__contact .btn,
+.home-about__contact .btn {
   margin: 10px 0;
 }
 
-/* Catálogo filtrado: una fila incompleta se alinea a la izquierda en vez de separar sus tarjetas.
-   Los huecos completan el 100 % con los anchos de .column--50-25 (49 % y 24,5 %). */
-.catalog-results .today-special .container--flex {
-  justify-content: flex-start;
+/* Banner mínimo del catálogo: deja a la vista el título y lleva pronto a los controles. */
+.banner--catalog .banner__img {
+  height: 150px;
+}
+.banner--catalog .banner__content {
+  top: calc(50% + 30px);
+  font-size: 1.3em;
 }
 @media screen and (min-width: 480px) {
-  .catalog-results .today-special .container--flex {
-    column-gap: 2%;
+  .banner--catalog .banner__img {
+    height: 290px;
+  }
+  .banner--catalog .banner__content {
+    top: calc(50% + 95px);
+    font-size: 1.7em;
+  }
+}
+
+/* Collage de Inicio: en pantallas pequeñas, dos columnas y fotos más bajas para no alargar la página. */
+.home-collage .gallery .container--flex {
+  padding-inline: 10px;
+}
+.home-collage .gallery .column--50-25 {
+  width: 49%;
+}
+.home-collage .gallery .gallery__img--big {
+  height: 220px;
+}
+.home-collage .gallery .gallery__img--small {
+  height: 110px;
+}
+@media screen and (min-width: 480px) {
+  .home-collage .gallery .gallery__img--big {
+    height: 300px;
+  }
+  .home-collage .gallery .gallery__img--small {
+    height: 150px;
   }
 }
 @media screen and (min-width: 768px) {
-  .catalog-results .today-special .container--flex {
-    column-gap: 0.66%;
+  .home-collage .gallery .column--50-25 {
+    width: 24.5%;
+  }
+  .home-collage .gallery .gallery__img--big {
+    height: 400px;
+  }
+  .home-collage .gallery .gallery__img--small {
+    height: 200px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .home-collage .gallery .container--flex {
+    padding-inline: 0;
   }
 }
 

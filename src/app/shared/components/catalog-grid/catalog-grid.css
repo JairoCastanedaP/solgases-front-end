@@ -1,0 +1,222 @@
+:host {
+  display: block;
+}
+
+.group__title {
+  margin: 0 0 12px;
+  padding-bottom: 6px;
+  border-bottom: 3px solid #de423a;
+  font-size: 1.5em;
+  text-align: left;
+}
+
+/* Una fila incompleta queda a la izquierda y todas las filas alinean imagen, datos y estrellas. */
+.today-special .container--flex {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  align-items: stretch;
+  width: 100%;
+}
+
+.today-special .column {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #ddd;
+  text-align: left;
+  transition: border-color 0.15s;
+}
+
+.today-special .column:hover {
+  border-color: #de423a;
+}
+
+.today-special__link {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 8px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.today-special__link:hover .today-special__title {
+  text-decoration: underline;
+}
+
+.today-special__link:focus-visible,
+.catalog-card__quick:focus-visible {
+  outline: 3px solid #111;
+  outline-offset: 2px;
+}
+
+.today-special__img {
+  width: 100%;
+  max-width: none;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+/* Dos líneas reservadas, pegadas al nombre: con una o dos líneas, este empieza a la misma altura. */
+.catalog-card__meta {
+  display: flex;
+  align-items: flex-end;
+  min-height: 2.8em;
+  margin-top: 8px;
+  color: #595959;
+  font-size: 0.72em;
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+
+.catalog-card__meta-text {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.catalog-card__brand {
+  color: #222;
+  font-weight: bold;
+}
+
+.today-special__title {
+  display: -webkit-box;
+  min-height: calc(2.7em + 2px);
+  padding: 2px 0 0;
+  overflow: hidden;
+  font-size: 0.95em;
+  font-weight: bold;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.catalog-card__rating {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0 6px;
+  margin-top: auto;
+  padding-top: 6px;
+  color: #595959;
+  font-size: 0.72em;
+}
+
+.catalog-card__stars {
+  color: #767676;
+  font-size: 1.25em;
+  letter-spacing: 1px;
+  line-height: 1.2;
+}
+
+.today-special__note {
+  padding-top: 6px;
+  color: #333;
+  font-size: 0.8em;
+}
+
+.catalog-card__quick {
+  min-height: 40px;
+  margin: 0 8px 8px;
+  border: 1px solid #222;
+  background: #fff;
+  color: #222;
+  font: inherit;
+  font-size: 0.85em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Con puntero, la vista se abre al pasar por encima o al enfocar el enlace con el teclado. */
+@media (hover: hover) and (pointer: fine) {
+  .catalog-card__quick {
+    display: none;
+  }
+}
+
+/* Sin eventos de puntero: un clic atraviesa la vista y sigue abriendo el detalle. */
+.catalog-card__popup {
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  left: -1px;
+  z-index: 10;
+  padding: 10px;
+  border: 1px solid #222;
+  border-top: 4px solid #de423a;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  color: #222;
+  font-size: 0.8em;
+  line-height: 1.35;
+  pointer-events: none;
+}
+
+.catalog-card__popup p {
+  margin: 0 0 4px;
+}
+
+.catalog-card__popup-img {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 6px;
+  object-fit: contain;
+}
+
+.catalog-card__popup .catalog-card__popup-name {
+  font-weight: bold;
+}
+
+.catalog-card__popup .catalog-card__popup-summary {
+  margin-top: 6px;
+}
+
+.catalog-card__popup .catalog-card__popup-demo {
+  margin: 6px 0 0;
+  color: #595959;
+  font-size: 0.9em;
+}
+
+/* Con puntero, deja a la vista la imagen del producto; en táctil, el botón para cerrarla. */
+@media (hover: hover) and (pointer: fine) {
+  .catalog-card__popup {
+    top: auto;
+    bottom: -1px;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .today-special .container--flex {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .today-special .container--flex {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* Desde aquí la columna lateral ocupa parte del ancho. */
+@media screen and (min-width: 1024px) {
+  .today-special .container--flex {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .today-special .container--flex {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}

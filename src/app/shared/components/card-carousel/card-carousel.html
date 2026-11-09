@@ -1,0 +1,71 @@
+<section
+  #section
+  class="group today-special carousel"
+  aria-roledescription="carrusel"
+  [attr.aria-labelledby]="headingId()"
+  [attr.data-motion]="motionState()"
+  (pointerenter)="onPointerEnter($event)"
+  (pointerleave)="onPointerLeave($event)"
+  (focusin)="onFocusIn($event)"
+  (focusout)="onFocusOut($event, section)"
+>
+  <h2 class="group__title" [id]="headingId()">{{ heading() }}</h2>
+
+  <div class="container carousel__stage">
+    <ul #track class="carousel__track">
+      <!-- Por posición: la lista del JSON puede repetir un destacado a propósito (ver README). -->
+      @for (item of items(); track $index) {
+        @let img = item.image | optimizedImage;
+        <li class="column carousel__slide">
+          <a
+            class="today-special__link"
+            [routerLink]="item.link"
+            [attr.aria-label]="'Ver detalle de ' + item.title"
+          >
+            <img
+              [ngSrc]="img.src"
+              [width]="img.width"
+              [height]="img.height"
+              [alt]="item.alt ?? item.title"
+              class="today-special__img"
+            />
+            <div class="today-special__title">{{ item.title }}</div>
+          </a>
+        </li>
+      }
+    </ul>
+
+    @if (ready()) {
+      <button
+        type="button"
+        class="carousel__arrow carousel__arrow--back"
+        [attr.aria-label]="'Retroceder en ' + heading()"
+        (click)="retreat()"
+      >
+        <span aria-hidden="true">‹</span>
+      </button>
+      <button
+        type="button"
+        class="carousel__arrow carousel__arrow--next"
+        [attr.aria-label]="'Avanzar en ' + heading()"
+        (click)="advance()"
+      >
+        <span aria-hidden="true">›</span>
+      </button>
+    }
+  </div>
+
+  <!-- Espacio reservado: el botón aparece al hidratar sin mover la página. -->
+  <div class="carousel__controls">
+    @if (ready() && !reducedMotion()) {
+      <button
+        type="button"
+        class="carousel__pause"
+        [attr.aria-pressed]="userPaused()"
+        (click)="togglePause()"
+      >
+        {{ userPaused() ? 'Reanudar movimiento' : 'Pausar movimiento' }}
+      </button>
+    }
+  </div>
+</section>

@@ -47,6 +47,10 @@ for (const page of pages) {
   if ((html.match(/<h1[\s>]/g) ?? []).length !== 1) {
     errors.push(`/${page.path}: debe tener exactamente un <h1>`);
   }
+  // El navegador pone el año: si quedara en el HTML, no cambiaría hasta el siguiente build.
+  if (/\d{4}\s*\|\s*(<[^>]*>\s*)*Todos los derechos/.test(html)) {
+    errors.push(`/${page.path}: el año del copyright quedó fijo en el HTML`);
+  }
 }
 // El detalle debe llegar en el HTML estático (nombre, imagen, descripción y aviso de demostración),
 // pero nunca su precio ficticio, que solo se muestra después de cargar en el navegador.

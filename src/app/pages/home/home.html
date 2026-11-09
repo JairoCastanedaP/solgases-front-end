@@ -11,9 +11,9 @@
     ]"
   />
 
-  <section class="group main__about__description">
-    <div class="container container--flex">
-      <div class="column column--50">
+  <section class="group home-about">
+    <div class="container home-about__layout">
+      <div class="home-about__media">
         @let sogamoso = 'img/sogamoso.jpg' | optimizedImage;
         <img
           [ngSrc]="sogamoso.src"
@@ -22,19 +22,28 @@
           alt="Iglesia y plaza en el centro de Sogamoso"
         />
       </div>
-      <div class="column column--50">
-        <h3 class="column__title">
-          Contamos con más de dos decadas de experiencia en seguridad Industrial en Sogamoso
+      <div class="home-about__body">
+        <h3 class="home-about__title">
+          Contamos con <span class="home-about__accent">más de dos décadas</span> de experiencia en
+          seguridad Industrial en Sogamoso
         </h3>
-        <p class="column__txt">
-          Nuestro objetivo es brindarle a nuestros clientes las mejores opciones para la prevención
-          de accidentes, seguridad en el trabajo y cumplimiento de las normas.
+        <p class="home-about__lead">
+          Nuestro objetivo es brindarle a nuestros clientes las mejores opciones para:
         </p>
-        <app-contact-button />
+        <ul class="home-about__goals">
+          <li>la prevención de accidentes,</li>
+          <li>la seguridad en el trabajo y</li>
+          <li>el cumplimiento de las normas.</li>
+        </ul>
+        <app-contact-button class="home-about__contact" />
       </div>
     </div>
   </section>
 
-  <app-product-grid heading="Productos Relevantes" [items]="featuredProducts" />
-  <app-product-grid heading="Servicios Relevantes" [items]="featuredServices" />
+  <app-image-gallery class="home-collage" [columns]="gallery">
+    <h2 class="group__title">Te asesoramos según tus necesidades y la normativa</h2>
+  </app-image-gallery>
+
+  <app-card-carousel heading="Productos Relevantes" [items]="featuredProducts" />
+  <app-card-carousel heading="Servicios Relevantes" [items]="featuredServices" />
 </main>

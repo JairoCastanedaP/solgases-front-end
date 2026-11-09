@@ -1,5 +1,15 @@
-import { CatalogItem, CatalogSection } from '../../shared/models/catalog-item';
-import { PRODUCT_CATALOG, findProductById, formatPrice, toCatalogItems } from './product-catalog';
+import { CatalogCard } from '../../shared/models/catalog-card';
+import { CatalogItem } from '../../shared/models/catalog-item';
+import { SEARCH_MAX_LENGTH, SPANISH_COLLATOR, normalizeText, searchWords } from '../catalog-text';
+import { interleavedOrder } from './interleaved-order';
+import {
+  PRODUCT_CATALOG,
+  findCategory,
+  findProductById,
+  formatPrice,
+  toCatalogItems,
+} from './product-catalog';
+import { productRatingView } from './product-rating';
 import { Product } from './product.model';
 
 /** Criterios del catálogo. Viven en la URL: `?q=&categoria=&marca=&orden=`. */
@@ -15,18 +25,18 @@ export interface CatalogQuery {
 
 export interface CatalogResults {
   readonly total: number;
-  /** Orden del JSON: tarjetas agrupadas por categoría. Vacío si hay un orden elegido. */
-  readonly sections: readonly CatalogSection[];
-  /** Orden elegido: lista única, porque las categorías partirían la secuencia. */
-  readonly sorted: readonly CatalogItem[] | null;
+  readonly heading: string;
+  /** Ancla de la categoría elegida, para los enlaces `/productos#guantes`. */
+  readonly anchor?: string;
+  readonly items: readonly CatalogCard[];
 }
 
 export const EMPTY_CATALOG_QUERY: CatalogQuery = { q: '', category: '', brand: '', sort: '' };
 
-export const CATALOG_SEARCH_MAX_LENGTH = 100;
+export const CATALOG_SEARCH_MAX_LENGTH = SEARCH_MAX_LENGTH;
 
 export const SORT_OPTIONS: readonly { readonly value: CatalogSort; readonly label: string }[] = [
-  { value: '', label: 'Por categoría' },
+  { value: '', label: 'Orden predeterminado' },
   { value: 'nombre-asc', label: 'Nombre: de A a Z' },
   { value: 'nombre-desc', label: 'Nombre: de Z a A' },
   { value: 'precio-asc', label: 'Precio ficticio: menor a mayor' },
@@ -35,16 +45,19 @@ export const SORT_OPTIONS: readonly { readonly value: CatalogSort; readonly labe
 
 /** Única especificación fiable para filtrar: su valor siempre sale del nombre del producto. */
 const BRAND_LABEL = 'Marca o línea en el catálogo';
+const TYPE_LABEL = 'Tipo';
 
-const collator = new Intl.Collator('es', { sensitivity: 'base', numeric: true });
+/** Fija el orden mezclado de "Todas las categorías". Cambiarla da otro orden, igual de estable. */
+const MIXED_ORDER_SEED = 94;
 
-/** Sin mayúsculas ni tildes: "NITRILO" y "dieléctricas" encuentran "Nitrilo" y "Dielectricas". */
-function normalize(text: string): string {
-  return text.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
+const collator = SPANISH_COLLATOR;
+
+function specification(product: Product, name: string): string | undefined {
+  return product.specifications.find(({ label }) => label === name)?.value;
 }
 
 function productBrand(product: Product): string | undefined {
-  return product.specifications.find(({ label }) => label === BRAND_LABEL)?.value;
+  return specification(product, BRAND_LABEL);
 }
 
 /** Categorías y textos de tarjeta de todas las listas donde aparece cada producto. */
@@ -62,7 +75,7 @@ function listingTexts(): ReadonlyMap<string, readonly string[]> {
 
 /** Sin `recommendations`: son frases genéricas que harían coincidir casi todo el catálogo. */
 function searchableText(product: Product, listing: readonly string[]): string {
-  return normalize(
+  return normalizeText(
     [
       product.name,
       ...listing,
@@ -78,8 +91,47 @@ interface CatalogEntry {
   readonly categoryId: string;
   readonly product: Product;
   readonly text: string;
-  readonly card: CatalogItem;
-  readonly pricedCard: CatalogItem;
+  readonly card: CatalogCard;
+  readonly pricedCard: CatalogCard;
+}
+
+/** Si el texto de la tarjeta difiere del nombre, se anuncian los dos: nunca falta lo visible. */
+function cardAriaLabel(item: CatalogItem, card: Omit<CatalogCard, 'ariaLabel'>): string {
+  const sameText = item.title.toLowerCase() === card.name.toLowerCase();
+  return [
+    `Ver detalle de ${sameText ? card.name : `${item.title} (${card.name})`}`,
+    card.brand && `Marca: ${card.brand}`,
+    `Tipo: ${card.kind}`,
+    card.rating?.label,
+    card.note,
+  ]
+    .filter(Boolean)
+    .join('. ');
+}
+
+function toCatalogCard(item: CatalogItem, product: Product, note?: string): CatalogCard {
+  const categoryName = findCategory(product.categoryId)?.name ?? '';
+  const brand = productBrand(product);
+  const card = {
+    ...item,
+    link: item.link!,
+    slug: product.slug,
+    name: product.name,
+    brand,
+    // Todos los productos tienen "Tipo"; la categoría cubre uno nuevo que aún no lo tenga.
+    kind: specification(product, TYPE_LABEL) ?? categoryName,
+    summary: product.shortDescription,
+    rating: productRatingView(product.id),
+    note,
+    quickView: {
+      facts: [
+        { label: 'Categoría', value: categoryName },
+        ...(brand ? [{ label: 'Marca', value: brand }] : []),
+      ],
+      notice: 'Descripción de demostración: no es una ficha técnica.',
+    },
+  };
+  return { ...card, ariaLabel: cardAriaLabel(item, card) };
 }
 
 /**
@@ -88,19 +140,21 @@ interface CatalogEntry {
  */
 const listings = listingTexts();
 const ENTRIES: readonly CatalogEntry[] = PRODUCT_CATALOG.categories.flatMap((category) => {
-  const cards = toCatalogItems(category.items);
+  const items = toCatalogItems(category.items);
   return category.items.map(({ productId }, index) => {
     const product = findProductById(productId)!;
     const { isDemo, unit } = product.price;
+    const label = isDemo ? 'Precio ficticio' : 'Precio';
     return {
       categoryId: category.id,
       product,
       text: searchableText(product, listings.get(productId) ?? []),
-      card: cards[index],
-      pricedCard: {
-        ...cards[index],
-        note: `${isDemo ? 'Precio ficticio' : 'Precio'}: ${formatPrice(product.price)} por ${unit}`,
-      },
+      card: toCatalogCard(items[index], product),
+      pricedCard: toCatalogCard(
+        items[index],
+        product,
+        `${label}: ${formatPrice(product.price)} por ${unit}`,
+      ),
     };
   });
 });
@@ -109,6 +163,12 @@ const ENTRIES: readonly CatalogEntry[] = PRODUCT_CATALOG.categories.flatMap((cat
 const UNIQUE_ENTRIES = ENTRIES.filter(
   (entry, index) => ENTRIES.findIndex((e) => e.product.id === entry.product.id) === index,
 );
+
+/**
+ * Orden de "Todas las categorías". Filtrar conserva este orden en vez de barajar de nuevo, y nada de
+ * él depende de la URL. Ver `interleavedOrder`: es igual en el servidor y en el navegador.
+ */
+const MIXED_ENTRIES = interleavedOrder(UNIQUE_ENTRIES, (e) => e.categoryId, MIXED_ORDER_SEED);
 
 const CATEGORY_IDS = new Set(PRODUCT_CATALOG.categories.map(({ id }) => id));
 
@@ -150,6 +210,11 @@ export function toCatalogParams({ q, category, brand, sort }: CatalogQuery) {
   };
 }
 
+/** Los enlaces `/productos#guantes` de los detalles y de favoritos abren esa categoría. */
+export function categoryFromFragment(fragment: string | null): string {
+  return PRODUCT_CATALOG.categories.find((c) => c.fragment === fragment)?.id ?? '';
+}
+
 export function isCatalogQueryActive({ q, category, brand, sort }: CatalogQuery): boolean {
   return Boolean(q.trim() || category || brand || sort);
 }
@@ -182,23 +247,20 @@ function comparator(sort: CatalogSort) {
 }
 
 /** Busca palabra por palabra, en cualquier orden: "croydon negra" encuentra "Machita Negra". */
-export function searchCatalog({ q, category, brand, sort }: CatalogQuery): CatalogResults {
-  const words = normalize(q).split(/\s+/).filter(Boolean);
-  const matches = (category ? ENTRIES.filter((e) => e.categoryId === category) : UNIQUE_ENTRIES)
+export function searchCatalog(query: CatalogQuery): CatalogResults {
+  const { q, category, brand, sort } = query;
+  const words = searchWords(q);
+  const matches = (category ? ENTRIES.filter((e) => e.categoryId === category) : MIXED_ENTRIES)
     .filter((e) => !brand || productBrand(e.product) === brand)
     .filter((e) => words.every((word) => e.text.includes(word)));
 
-  if (sort) {
-    const priced = sort.startsWith('precio');
-    const sorted = [...matches]
-      .sort(comparator(sort))
-      .map((entry) => (priced ? entry.pricedCard : entry.card));
-    return { total: matches.length, sections: [], sorted };
-  }
-
-  const sections = PRODUCT_CATALOG.categories.flatMap(({ id, fragment, name }) => {
-    const items = matches.filter((e) => e.categoryId === id).map((e) => e.card);
-    return items.length ? [{ id: fragment, title: name, items }] : [];
-  });
-  return { total: matches.length, sections, sorted: null };
+  const ordered = sort ? [...matches].sort(comparator(sort)) : matches;
+  const priced = sort.startsWith('precio');
+  const selected = category ? findCategory(category) : undefined;
+  return {
+    total: matches.length,
+    heading: selected?.name ?? (isCatalogQueryActive(query) ? 'Resultados' : 'Todos los productos'),
+    anchor: selected?.fragment,
+    items: ordered.map((entry) => (priced ? entry.pricedCard : entry.card)),
+  };
 }

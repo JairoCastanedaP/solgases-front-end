@@ -128,14 +128,48 @@ Criterios usados:
 
 | Ruta               | Origen                       | Título (`<title>`)                            | Notas                                   |
 | ------------------ | ---------------------------- | --------------------------------------------- | --------------------------------------- |
-| `/`                | `index.html`                 | Solgases \| Seguridad industrial en Sogamoso  | Productos y servicios relevantes        |
+| `/`                | `index.html`                 | Solgases \| Seguridad industrial en Sogamoso  | Collage y carruseles de destacados      |
 | `/nosotros`        | `nosotros.html`              | Nosotros \| Solgases                          | Equipo, resumen de servicios, marcas    |
-| `/productos`       | `productos.html`             | Productos de seguridad industrial \| Solgases | Galería, búsqueda y 11 categorías (94)  |
+| `/productos`       | `productos.html`             | Productos de seguridad industrial \| Solgases | Catálogo: búsqueda y 11 categorías (94) |
 | `/productos/:slug` | Nueva (`products.json`)      | `<Nombre> \| Solgases`                        | Detalle de cada uno de los 94 productos |
-| `/servicios`       | `servicios.html`             | Recarga de extintores y gases \| Solgases     | 18 servicios                            |
+| `/servicios`       | `servicios.html`             | Recarga de extintores y gases \| Solgases     | Catálogo: búsqueda y filtro (18)        |
 | `/servicios/:slug` | Nueva (`site-services.json`) | `<Nombre> \| Solgases`                        | Detalle de cada uno de los 18 servicios |
 | `/bioseguridad`    | `bioseguridad.html`          | Productos de bioseguridad \| Solgases         | 20 productos                            |
 | `/contacto`        | `contacto.html`              | Contacto \| Solgases                          | Horario, mapa y formulario (POST a PHP) |
+
+Composición visual y datos sin confirmar:
+
+- `/productos` es un catálogo de tienda: buscador y orden arriba, categorías y marca en una columna
+  lateral (desde 1024 px) o en un panel desplegable (móvil y tablet), y resultados a la derecha. El
+  texto "Elementos de Protección Personal" y la sección "Encuentra todo en Solgases" van al final.
+- "Todas las categorías" muestra una sola lista intercalada, sin agrupar. El orden usa una semilla
+  fija (`MIXED_ORDER_SEED`): el servidor y el navegador calculan el mismo, por lo que no hay errores
+  de hidratación ni se baraja de nuevo; es igual para todos hasta que se cambie la semilla. Las
+  anclas antiguas (`/productos#guantes`), que usan los detalles, abren esa categoría.
+- Las tarjetas del catálogo muestran `MARCA | TIPO` y el nombre. La marca sale de "Marca o línea en
+  el catálogo" (26 de 94 productos) y, si falta, se omite. El tipo sale de "Tipo".
+- Las estrellas son vacías y dicen "Sin calificaciones": no hay reseñas. Las valoraciones reales se
+  añaden en `AUTHENTIC_RATINGS` (`core/products/product-rating.ts`); no uses valores de ejemplo.
+- La vista rápida solo existe en el DOM mientras está abierta y no incluye precios. Avisa que la
+  descripción es de demostración, como declara `notice` en el JSON.
+- Los carruseles de Inicio no duplican tarjetas: las reciclan con la propiedad CSS `order`, de modo
+  que cada enlace existe una vez y el orden del DOM no cambia. La dirección automática está en
+  `AUTO_DIRECTION` (`card-carousel/carousel-motion.ts`).
+- "Iniciar sesión" y "Crear cuenta" son botones desactivados, rotulados "Próximamente": no hay
+  rutas ni flujo de cuenta.
+- El pie de página solo usa datos de `SITE_INFO` y rutas existentes. El teléfono y la dirección son
+  texto, porque no hay un enlace de llamada o de mapa verificado. El HTML no lleva el año del
+  copyright: el navegador pone el actual, sin necesidad de un nuevo build.
+- `/servicios` comparte composición, estilos, cuadrícula y vista rápida con `/productos`. Filtra por
+  "Tipo de servicio", el único dato presente en los 18; en la URL: `?q=&tipo=&orden=`.
+- Los iconos del menú abren una ventana con el dato de contacto. **Pendiente:** Facebook e Instagram
+  dicen "pendiente de configurar" porque ninguna cuenta oficial está identificada; al confirmarlas,
+  se añaden en `SOCIAL_PROFILES` (`core/site-info.ts`) y la ventana muestra el enlace.
+- Los atajos a categorías del pie (`CATALOG_SHORTCUTS`) son una copia para no llevar
+  `products.json` al paquete inicial; una prueba exige que coincidan con el JSON.
+
+Las pruebas se ejecutan aisladas por archivo (`isolate` en `angular.json`): las de prerenderizado
+sustituyen clases globales del DOM y, sin aislar, otras fallaban según el orden de los archivos.
 
 Las URLs antiguas (`/productos.html`, etc.) redirigen a las nuevas (ver
 [Rutas heredadas](#rutas-heredadas-html)). `galeria.html` estaba vacío (0 bytes) y no tenía

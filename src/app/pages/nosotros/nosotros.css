@@ -16,3 +16,96 @@
 @media screen and (min-width:1600px){
     .our-team__img{width: 420px;height: 420px;}
 }
+
+/* Marcas: los logos conservan su proporción y sus colores; solo se anima la tarjeta. */
+.brands__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-block: 0 20px;
+  padding: 0 12px;
+  list-style: none;
+}
+
+.brands__item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 10px 10px;
+  border: 1px solid #ddd;
+  border-bottom: 3px solid #ddd;
+  background: #fff;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+
+.brands__logo {
+  width: 100%;
+  height: 90px;
+  object-fit: contain;
+}
+
+.brands__name {
+  color: #444;
+  font-size: 0.85em;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media screen and (min-width: 600px) {
+  .brands__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .brands__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .brands__logo {
+    height: 110px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .brands__grid {
+    padding: 0;
+  }
+}
+
+/* Movimiento solo para quien no pidió reducirlo. Sin soporte de la línea de tiempo por desplazamiento,
+   las tarjetas simplemente ya están visibles: ningún logo depende de la animación. */
+@media (prefers-reduced-motion: no-preference) {
+  .brands__item:hover {
+    border-bottom-color: #de423a;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+  }
+
+  @supports (animation-timeline: view()) {
+    .brands__item {
+      animation: brands-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 70%;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brands__item {
+    transition: none;
+  }
+
+  .brands__item:hover {
+    border-bottom-color: #de423a;
+  }
+}
+
+@keyframes brands-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}

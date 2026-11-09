@@ -1,0 +1,122 @@
+/* Móvil: los accesos comparten fila con el logo para no empujar el menú hacia abajo. */
+.logo-container {
+  flex: 0 0 auto;
+  width: auto;
+}
+
+.account {
+  flex: 0 1 auto;
+  margin-left: auto;
+  padding: 4px 10px 4px 0;
+  text-align: right;
+}
+
+.account__soon {
+  display: block;
+  margin-bottom: 3px;
+  color: #595959;
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.account__options {
+  display: flex;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+/* El borde punteado y la ausencia de hover los distinguen de un enlace o botón disponible. */
+.account__option {
+  padding: 4px 6px;
+  border: 1px dashed #767676;
+  border-radius: 0;
+  background: #f4f4f4;
+  color: #4a4a4a;
+  font: inherit;
+  font-size: 12px;
+  white-space: nowrap;
+  cursor: not-allowed;
+}
+
+.main-header__contactInfo {
+  width: 100%;
+}
+
+@media screen and (max-width: 359px) {
+  .account {
+    padding-right: 6px;
+  }
+
+  .account__option {
+    padding: 3px 4px;
+    font-size: 11px;
+  }
+}
+
+/* El encabezado queda sobre el banner: mientras quepa en 190 px, el banner lo sigue cubriendo. */
+@media screen and (min-width: 480px) {
+  .logo-container,
+  .main-header__contactInfo {
+    width: 49%;
+  }
+
+  .account {
+    display: flex;
+    flex: 1 0 100%;
+    order: 3;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    padding: 0 10px 6px;
+  }
+
+  .account__soon {
+    margin-bottom: 0;
+    color: #fff;
+    font-size: 12px;
+  }
+
+  .account__option {
+    border-color: #fff;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .main-header__row {
+    flex-wrap: nowrap;
+  }
+
+  .logo-container,
+  .main-header__contactInfo {
+    width: auto;
+  }
+
+  .main-header__contactInfo {
+    flex: 0 0 auto;
+    margin-left: 20px;
+  }
+
+  .account {
+    flex: 0 1 auto;
+    flex-direction: column;
+    align-items: flex-end;
+    order: 0;
+    gap: 3px;
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .account {
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .account__option {
+    padding: 5px 10px;
+    font-size: 13px;
+  }
+}

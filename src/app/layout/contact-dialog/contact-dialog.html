@@ -1,0 +1,50 @@
+<dialog
+  #dialog
+  class="contact-dialog"
+  aria-labelledby="contacto-titulo"
+  (click)="onDialogClick($event)"
+  (close)="onClosed()"
+>
+  @if (topic(); as current) {
+    <div class="contact-dialog__body">
+      <h2 id="contacto-titulo" class="contact-dialog__title">{{ titles[current] }}</h2>
+
+      @switch (current) {
+        @case ('email') {
+          <p>
+            <a class="contact-dialog__link" [attr.href]="'mailto:' + site.email">{{
+              site.email
+            }}</a>
+          </p>
+        }
+        @case ('address') {
+          <p>{{ site.address }}</p>
+        }
+        @case ('phone') {
+          <p>{{ site.phone }}</p>
+        }
+        @default {
+          @if (profiles[current]; as url) {
+            <p>
+              <a
+                class="contact-dialog__link"
+                [attr.href]="url"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Ver {{ titles[current] }} de {{ site.name }} (se abre en una pestaña nueva)</a
+              >
+            </p>
+          } @else {
+            <p>
+              El perfil de {{ titles[current] }} de {{ site.name }} está pendiente de configurar.
+            </p>
+          }
+        }
+      }
+
+      <button type="button" class="contact-dialog__close" autofocus (click)="close()">
+        Cerrar
+      </button>
+    </div>
+  }
+</dialog>

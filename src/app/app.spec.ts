@@ -4,7 +4,10 @@ import { provideRouter, Router, withInMemoryScrolling } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { App } from './app';
 import { routes } from './app.routes';
+import { CATALOG_SHORTCUTS, NAV_ITEMS } from './core/navigation';
+import { PRODUCT_CATALOG } from './core/products/product-catalog';
 import { PUBLIC_PAGES } from './core/seo/public-pages';
+import { SITE_INFO } from './core/site-info';
 
 describe('App', () => {
   beforeEach(() => {
@@ -24,6 +27,99 @@ describe('App', () => {
     expect(el.querySelector('.main-footer')?.textContent).toContain('solgases@gmail.com');
     expect(el.querySelector('.main-header')?.textContent).toContain('(038) 772 86 66');
     expect(el.querySelectorAll('app-whatsapp-button').length).toBe(1);
+  });
+
+  describe('accesos de cuenta', () => {
+    it('se presentan como próximos, desactivados y sin enlace', async () => {
+      const fixture = TestBed.createComponent(App);
+      await fixture.whenStable();
+      const el = fixture.nativeElement as HTMLElement;
+      const group = el.querySelector('.main-header [role="group"]')!;
+      const buttons = Array.from(group.querySelectorAll('button'));
+
+      expect(group.getAttribute('aria-label')).toContain('próximamente');
+      expect(group.textContent).toContain('Próximamente');
+      expect(buttons.map((b) => b.textContent?.trim())).toEqual(['Iniciar sesión', 'Crear cuenta']);
+      expect(buttons.every((b) => b.disabled)).toBe(true);
+      expect(group.querySelector('a')).toBeNull();
+    });
+
+    it('no navegan al pulsarlos y no existen rutas de cuenta', async () => {
+      const harness = await RouterTestingHarness.create('/productos');
+      const router = TestBed.inject(Router);
+      const app = TestBed.createComponent(App);
+      await app.whenStable();
+
+      for (const button of Array.from(
+        (app.nativeElement as HTMLElement).querySelectorAll<HTMLButtonElement>('.account button'),
+      )) {
+        button.click();
+      }
+      await harness.fixture.whenStable();
+
+      expect(router.url).toBe('/productos');
+      const paths = routes.map((r) => r.path);
+      for (const path of ['login', 'iniciar-sesion', 'registro', 'crear-cuenta']) {
+        expect(paths).not.toContain(path);
+      }
+    });
+  });
+
+  describe('pie de página', () => {
+    const footer = async () => {
+      const fixture = TestBed.createComponent(App);
+      await fixture.whenStable();
+      return (fixture.nativeElement as HTMLElement).querySelector('.main-footer')!;
+    };
+
+    it('enlaza cada página del menú y cada categoría del catálogo', async () => {
+      const hrefs = Array.from((await footer()).querySelectorAll('a')).map((a) =>
+        a.getAttribute('href'),
+      );
+
+      for (const { path } of NAV_ITEMS) {
+        expect(hrefs, path).toContain(path);
+      }
+      for (const { id } of PRODUCT_CATALOG.categories) {
+        expect(hrefs, id).toContain(`/productos?categoria=${id}`);
+      }
+    });
+
+    it('los atajos coinciden con las categorías del JSON', () => {
+      expect(CATALOG_SHORTCUTS).toEqual(
+        PRODUCT_CATALOG.categories.map(({ id, name }) => ({ id, label: name })),
+      );
+    });
+
+    it('todo enlace tiene destino y texto, y el contacto usa los datos del sitio', async () => {
+      const el = await footer();
+
+      for (const link of Array.from(el.querySelectorAll('a'))) {
+        expect(link.getAttribute('href'), link.textContent!).toBeTruthy();
+        expect(link.textContent?.trim()).toBeTruthy();
+      }
+      expect(el.querySelector('a[href^="mailto:"]')?.getAttribute('href')).toBe(
+        `mailto:${SITE_INFO.email}`,
+      );
+      expect(el.textContent).toContain(SITE_INFO.phone);
+      expect(el.textContent).toContain(SITE_INFO.address);
+      expect(el.textContent).toContain(SITE_INFO.copyright);
+    });
+
+    it('el año del copyright es el actual, sin build de por medio', async () => {
+      vi.useFakeTimers({ toFake: ['Date'] });
+      try {
+        for (const year of [2031, 2032]) {
+          vi.setSystemTime(new Date(year, 5, 15));
+          const el = await footer();
+          expect(el.querySelector('.copy')!.textContent!.replace(/\s+/g, ' ').trim()).toBe(
+            `${year} | Todos los derechos reservados`,
+          );
+        }
+      } finally {
+        vi.useRealTimers();
+      }
+    });
   });
 
   const pages: [path: string, banner: string, title: string][] = [

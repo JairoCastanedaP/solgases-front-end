@@ -1,53 +1,51 @@
-import { GalleryImage } from '../../shared/models/gallery-image';
+import { PRODUCT_CATALOG, toCatalogItems } from '../../core/products/product-catalog';
+import { BRAND_OPTIONS, CATEGORY_OPTIONS } from '../../core/products/product-catalog-search';
+import { featuredServiceCards } from '../../core/site-services/site-service-catalog';
+import {
+  DirectoryGroup,
+  DirectoryLink,
+} from '../../shared/components/catalog-directory/catalog-directory';
+import { CatalogItem } from '../../shared/models/catalog-item';
 
-/** Galería superior de la página (columnas con imagen grande y pequeña). */
-export const PRODUCT_GALLERY: readonly (readonly GalleryImage[])[] = [
-  [
-    {
-      src: 'img/productos/construccion.jpg',
-      size: 'big',
-      alt: 'Trabajador con casco, chaleco reflectivo y arnés de seguridad',
-    },
-    {
-      src: 'img/productos/reguladores.jfif',
-      size: 'small',
-      alt: 'Regulador de gas con manómetros',
-    },
-  ],
-  [
-    {
-      src: 'img/productos/2.jpg',
-      size: 'small',
-      alt: 'Trabajadora con protectores auditivos y gafas de seguridad',
-    },
-    {
-      src: 'img/productos/3.jpg',
-      size: 'big',
-      alt: 'Persona con overol, respirador y guantes manipulando productos químicos',
-    },
-  ],
-  [
-    {
-      src: 'img/galeria/galeria1.jpg',
-      size: 'big',
-      alt: 'Trabajador puliendo metal con careta y overol de protección',
-    },
-    {
-      src: 'img/productos/equipo victor.jfif',
-      size: 'small',
-      alt: 'Equipo de oxicorte Victor',
-    },
-  ],
-  [
-    {
-      src: 'img/productos/nipleria.jpg',
-      size: 'small',
-      alt: 'Niples, uniones y accesorios de bronce para reguladores',
-    },
-    {
-      src: 'img/productos/5.jpg',
-      size: 'big',
-      alt: 'Soldador con careta de soldar',
-    },
-  ],
+/** Selección corta: la lista completa está a un enlace, al final de cada grupo. */
+const FEATURED_LINKS = 8;
+
+/** Sin repetidos: `featured` de los servicios incluye un `id` dos veces a propósito (ver README). */
+function shortList(items: readonly CatalogItem[]): readonly DirectoryLink[] {
+  const unique = new Map(items.map(({ title, link }) => [link!, title]));
+  return [...unique].slice(0, FEATURED_LINKS).map(([path, label]) => ({ label, path }));
+}
+
+/** Solo categorías, marcas, productos y servicios que ya existen en los datos del sitio. */
+export const PRODUCTS_DIRECTORY: readonly DirectoryGroup[] = [
+  {
+    title: 'Categorías',
+    links: CATEGORY_OPTIONS.map(({ value, label }) => ({
+      label,
+      path: '/productos',
+      queryParams: { categoria: value },
+    })),
+  },
+  {
+    title: 'Marcas y líneas',
+    links: BRAND_OPTIONS.map((brand) => ({
+      label: brand,
+      path: '/productos',
+      queryParams: { marca: brand },
+    })),
+  },
+  {
+    title: 'Productos relevantes',
+    links: [
+      ...shortList(toCatalogItems(PRODUCT_CATALOG.featured)),
+      { label: 'Ver todos los productos', path: '/productos' },
+    ],
+  },
+  {
+    title: 'Servicios',
+    links: [
+      ...shortList(featuredServiceCards()),
+      { label: 'Ver todos los servicios', path: '/servicios' },
+    ],
+  },
 ];

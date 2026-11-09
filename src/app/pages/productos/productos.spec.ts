@@ -3,6 +3,8 @@ import { Router, provideRouter } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { routes } from '../../app.routes';
 import { PRODUCT_CATALOG } from '../../core/products/product-catalog';
+import { BRAND_OPTIONS, CATEGORY_OPTIONS } from '../../core/products/product-catalog-search';
+import { SITE_SERVICE_CATALOG } from '../../core/site-services/site-service-catalog';
 
 const text = (element: Element | null | undefined) =>
   element?.textContent?.replace(/\s+/g, ' ').trim();
@@ -28,6 +30,12 @@ async function open(url: string) {
       input.form!.dispatchEvent(new Event('submit', { bubbles: true, cancelable: true }));
       await harness.fixture.whenStable();
     },
+    async category(value: string) {
+      page().querySelector<HTMLInputElement>(`input[name="categoria"][value="${value}"]`)!.click();
+      await harness.fixture.whenStable();
+    },
+    checkedCategory: () =>
+      page().querySelector<HTMLInputElement>('input[name="categoria"]:checked')?.value,
     async select(id: string, value: string) {
       const select = page().querySelector<HTMLSelectElement>(id)!;
       select.value = value;
@@ -48,7 +56,6 @@ describe('ProductosPage: búsqueda, filtros y orden', () => {
 
       for (const [id, label] of [
         ['catalogo-busqueda', 'Buscar'],
-        ['catalogo-categoria', 'Categoría'],
         ['catalogo-marca', 'Marca o línea'],
         ['catalogo-orden', 'Ordenar'],
       ]) {
@@ -56,14 +63,20 @@ describe('ProductosPage: búsqueda, filtros y orden', () => {
         expect(text(page().querySelector(`label[for="${id}"]`))).toBe(label);
       }
       expect(page().querySelector('form[role="search"]')).not.toBeNull();
+      expect(text(page().querySelector('.catalog-filters fieldset legend'))).toBe('Categoría');
+      for (const radio of Array.from(page().querySelectorAll('input[name="categoria"]'))) {
+        expect(text(radio.closest('label'))).toBeTruthy();
+      }
     });
 
-    it('sin criterios conserva las categorías y anuncia el total', async () => {
+    it('sin criterios muestra una sola lista mezclada y anuncia el total', async () => {
       const { page, status, links } = await open('/productos');
 
       expect(status()).toBe('Mostrando los 94 productos');
       expect(links().length).toBe(94);
-      expect(page().querySelector('#guantes h2')).not.toBeNull();
+      expect(page().querySelectorAll('app-catalog-grid').length).toBe(1);
+      expect(text(page().querySelector('app-catalog-grid h2'))).toBe('Todos los productos');
+      expect(page().querySelector('#guantes')).toBeNull();
       expect(page().querySelector('.catalog-tools__button')!.hasAttribute('disabled')).toBe(true);
     });
   });
@@ -74,9 +87,9 @@ describe('ProductosPage: búsqueda, filtros y orden', () => {
     await search('kondor');
 
     expect(status()).toBe('Mostrando 2 de 94 productos');
-    expect(links()).toEqual([
-      '/productos/botas-kondor-soldador',
+    expect([...links()].sort()).toEqual([
       '/productos/botas-kondor-dielectricas',
+      '/productos/botas-kondor-soldador',
     ]);
     expect(url()).toBe('/productos?q=kondor');
   });
@@ -98,9 +111,11 @@ describe('ProductosPage: búsqueda, filtros y orden', () => {
   });
 
   it('filtra por categoría y conserva las tarjetas de esa categoría', async () => {
-    const { page, select, status, url } = await open('/productos');
+    const { page, category, checkedCategory, status, url } = await open('/productos');
 
-    await select('#catalogo-categoria', 'caretas');
+    await category('caretas');
+
+    expect(checkedCategory()).toBe('caretas');
 
     expect(url()).toBe('/productos?categoria=caretas');
     expect(status()).toBe('Mostrando 4 de 94 productos');
@@ -109,9 +124,9 @@ describe('ProductosPage: búsqueda, filtros y orden', () => {
   });
 
   it('combina búsqueda, categoría, marca y orden en la URL', async () => {
-    const { search, select, links, status, url } = await open('/productos');
+    const { search, select, category, links, status, url } = await open('/productos');
 
-    await select('#catalogo-categoria', 'calzado-caucho');
+    await category('calzado-caucho');
     await select('#catalogo-marca', 'Croydon');
     await search('machita');
     await select('#catalogo-orden', 'nombre-desc');
@@ -131,7 +146,7 @@ describe('ProductosPage: búsqueda, filtros y orden', () => {
 
     await select('#catalogo-orden', 'nombre-asc');
 
-    expect(page().querySelectorAll('app-product-grid').length).toBe(1);
+    expect(page().querySelectorAll('app-catalog-grid').length).toBe(1);
     expect(page().querySelector('.today-special__note')).toBeNull();
     expect(page().querySelector('.catalog-tools__notice')).toBeNull();
   });
@@ -178,7 +193,7 @@ describe('ProductosPage: búsqueda, filtros y orden', () => {
   });
 
   it('el botón general limpia búsqueda, filtros y orden, incluido un texto aún sin aplicar', async () => {
-    const { page, click, url, status, harness } = await open(
+    const { page, click, checkedCategory, url, status, harness } = await open(
       '/productos?categoria=cascos&marca=3M&orden=precio-asc',
     );
     const input = page().querySelector<HTMLInputElement>('#catalogo-busqueda')!;
@@ -191,7 +206,8 @@ describe('ProductosPage: búsqueda, filtros y orden', () => {
     expect(url()).toBe('/productos');
     expect(status()).toBe('Mostrando los 94 productos');
     expect(input.value).toBe('');
-    for (const id of ['#catalogo-categoria', '#catalogo-marca', '#catalogo-orden']) {
+    expect(checkedCategory()).toBe('');
+    for (const id of ['#catalogo-marca', '#catalogo-orden']) {
       expect(page().querySelector<HTMLSelectElement>(id)!.value, id).toBe('');
     }
     await new Promise((resolve) => setTimeout(resolve, 300));
@@ -200,14 +216,14 @@ describe('ProductosPage: búsqueda, filtros y orden', () => {
 
   describe('URL', () => {
     it('una URL compartida restaura los controles y el resultado', async () => {
-      const { page, status, links } = await open(
+      const { page, status, links, checkedCategory } = await open(
         '/productos?q=machita&categoria=calzado-caucho&marca=Croydon&orden=nombre-asc',
       );
       const value = (id: string) =>
         page().querySelector<HTMLInputElement | HTMLSelectElement>(id)!.value;
 
       expect(value('#catalogo-busqueda')).toBe('machita');
-      expect(value('#catalogo-categoria')).toBe('calzado-caucho');
+      expect(checkedCategory()).toBe('calzado-caucho');
       expect(value('#catalogo-marca')).toBe('Croydon');
       expect(value('#catalogo-orden')).toBe('nombre-asc');
       expect(status()).toBe('Mostrando 2 de 94 productos');
@@ -215,13 +231,13 @@ describe('ProductosPage: búsqueda, filtros y orden', () => {
     });
 
     it('los parámetros inválidos muestran el catálogo completo, sin errores', async () => {
-      const { page, status } = await open(
+      const { page, links, status, checkedCategory } = await open(
         '/productos?categoria=no-existe&marca=Acme&orden=azar&otro=1',
       );
 
       expect(status()).toBe('Mostrando los 94 productos');
-      expect(page().querySelector('#guantes')).not.toBeNull();
-      expect(page().querySelector<HTMLSelectElement>('#catalogo-categoria')!.value).toBe('');
+      expect(links().length).toBe(94);
+      expect(checkedCategory()).toBe('');
       expect(page().querySelector('.catalog-tools__button')!.hasAttribute('disabled')).toBe(true);
     });
 
@@ -278,14 +294,10 @@ describe('ProductosPage: búsqueda, filtros y orden', () => {
       expect(status()?.match(/\d+/)?.[0], label).toBe(String(expected));
     }
 
-    it('la vista completa tiene los 94 productos; la sección Bioseguridad, los 18 no listados antes', async () => {
+    it('la vista completa tiene los 94 productos, una tarjeta por producto', async () => {
       const view = await open('/productos');
 
       expectExactCount(view, 94, 'vista completa');
-      const sections = Array.from(view.page().querySelectorAll('app-intro-section')).slice(1);
-      const bioseguridad = sections.find((s) => text(s.querySelector('h2')) === 'Bioseguridad')!;
-      const grid = bioseguridad.nextElementSibling!;
-      expect(grid.querySelectorAll('a.today-special__link').length).toBe(18);
     });
 
     it('un producto de dos categorías aparece una vez en cada listado', async () => {
@@ -295,11 +307,11 @@ describe('ProductosPage: búsqueda, filtros y orden', () => {
       const times = (href: string) => view.links().filter((link) => link === href).length;
 
       for (const category of ['', 'otros', 'bioseguridad']) {
-        await view.select('#catalogo-categoria', category);
+        await view.category(category);
         expect(times(gel), category).toBe(1);
       }
       for (const category of ['', 'mascarillas-respiradores-filtros', 'bioseguridad']) {
-        await view.select('#catalogo-categoria', category);
+        await view.category(category);
         expect(times(n95), category).toBe(1);
       }
     });
@@ -308,7 +320,7 @@ describe('ProductosPage: búsqueda, filtros y orden', () => {
       const view = await open('/productos');
 
       for (const { id, items } of PRODUCT_CATALOG.categories) {
-        await view.select('#catalogo-categoria', id);
+        await view.category(id);
         await view.select('#catalogo-orden', '');
         expectExactCount(view, items.length, id);
         await view.select('#catalogo-orden', 'precio-asc');
@@ -330,6 +342,302 @@ describe('ProductosPage: búsqueda, filtros y orden', () => {
         await view.search(q);
         expectExactCount(view, expected, q);
       }
+    });
+  });
+
+  describe('composición de tienda', () => {
+    it('no muestra el collage y deja el texto introductorio después de los resultados', async () => {
+      const { page } = await open('/productos');
+      const results = page().querySelector('.catalog-results')!;
+      const intro = page().querySelector('app-intro-section')!;
+
+      expect(page().querySelector('app-image-gallery')).toBeNull();
+      expect(page().textContent).not.toContain('Te asesoramos');
+      expect(text(intro.querySelector('h2'))).toBe('Elementos de Protección Personal');
+      expect(results.contains(intro)).toBe(false);
+      expect(
+        results.compareDocumentPosition(intro) & Node.DOCUMENT_POSITION_FOLLOWING,
+      ).toBeTruthy();
+    });
+
+    it('el control de filtros abre y cierra el panel, y devuelve el foco al cerrar', async () => {
+      const { page, harness, category } = await open('/productos');
+      const toggle = page().querySelector<HTMLButtonElement>('.catalog-filters__toggle')!;
+      const panel = page().querySelector(`#${toggle.getAttribute('aria-controls')}`)!;
+
+      expect(toggle.getAttribute('aria-expanded')).toBe('false');
+
+      toggle.click();
+      await harness.fixture.whenStable();
+      expect(toggle.getAttribute('aria-expanded')).toBe('true');
+      expect(panel.classList).toContain('catalog-filters__panel--open');
+
+      await category('guantes');
+      expect(toggle.getAttribute('aria-expanded')).toBe('true');
+      expect(text(toggle)).toContain('1 activo');
+      expect(text(page().querySelector('.catalog-filters__close'))).toBe('Ver resultados (8)');
+
+      page().querySelector<HTMLButtonElement>('.catalog-filters__close')!.click();
+      await harness.fixture.whenStable();
+      expect(toggle.getAttribute('aria-expanded')).toBe('false');
+      expect(document.activeElement).toBe(toggle);
+    });
+  });
+
+  describe('tarjetas', () => {
+    it('muestran marca, tipo, nombre y estrellas sin calificación', async () => {
+      const { page } = await open('/productos?q=argyll%20amarillo');
+      const card = page().querySelector('app-catalog-grid .column')!;
+
+      expect(text(card.querySelector('.catalog-card__meta'))).toBe('Croydon | Bota de caucho');
+      expect(text(card.querySelector('.today-special__title'))).toBe(
+        'Botas Croydon Argyll Amarillo',
+      );
+      expect(text(card.querySelector('.catalog-card__rating'))).toContain('Sin calificaciones');
+      expect(card.querySelector('.catalog-card__stars')!.getAttribute('aria-hidden')).toBe('true');
+      expect(card.querySelector('.catalog-card__stars')!.textContent).not.toContain('★');
+    });
+
+    it('sin marca omiten el separador y el dato', async () => {
+      const { page } = await open('/productos?q=cono');
+      const card = Array.from(page().querySelectorAll('app-catalog-grid .column')).find(
+        (c) => c.getAttribute('data-slug') === 'cono',
+      )!;
+
+      expect(text(card.querySelector('.catalog-card__meta'))).toBe('Cono de señalización');
+      expect(card.querySelector('.catalog-card__brand')).toBeNull();
+    });
+  });
+
+  describe('vista rápida', () => {
+    const SLUG = 'botas-croydon-argyll-amarillo';
+    async function card() {
+      const view = await open('/productos?q=argyll%20amarillo');
+      const el = view.page().querySelector<HTMLElement>(`[data-slug="${SLUG}"]`)!;
+      return {
+        ...view,
+        el,
+        settle: () => view.harness.fixture.whenStable(),
+        popup: () => el.querySelector('[role="tooltip"]'),
+        link: el.querySelector<HTMLAnchorElement>('a')!,
+        button: el.querySelector<HTMLButtonElement>('.catalog-card__quick')!,
+      };
+    }
+    const pointer = (type: string, pointerType: string) =>
+      Object.assign(new MouseEvent(type), { pointerType });
+    const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    it('no forma parte del HTML hasta abrirse', async () => {
+      const { popup } = await card();
+
+      expect(popup()).toBeNull();
+    });
+
+    it('con el puntero se abre tras un retraso, sin diálogo, y se cierra al salir', async () => {
+      const { el, popup, settle, link } = await card();
+
+      el.dispatchEvent(pointer('pointerenter', 'mouse'));
+      await settle();
+      expect(popup()).toBeNull();
+
+      await wait(450);
+      await settle();
+      expect(text(popup())).toContain('Botas Croydon Argyll Amarillo');
+      expect(text(popup())).toContain('Categoría: Calzado Caucho');
+      expect(text(popup())).toContain('Marca: Croydon');
+      expect(text(popup())).toContain('Descripción de demostración');
+      expect(link.getAttribute('aria-describedby')).toBe(popup()!.id);
+      expect(el.querySelector('[role="dialog"]')).toBeNull();
+
+      el.dispatchEvent(pointer('pointerleave', 'mouse'));
+      await settle();
+      expect(popup()).toBeNull();
+    });
+
+    it('salir antes del retraso cancela la apertura', async () => {
+      const { el, popup, settle } = await card();
+
+      el.dispatchEvent(pointer('pointerenter', 'mouse'));
+      el.dispatchEvent(pointer('pointerleave', 'mouse'));
+      await wait(450);
+      await settle();
+
+      expect(popup()).toBeNull();
+    });
+
+    it('un toque no la abre: en táctil se usa el botón', async () => {
+      const { el, popup, settle, button } = await card();
+
+      el.dispatchEvent(pointer('pointerenter', 'touch'));
+      await wait(450);
+      await settle();
+      expect(popup()).toBeNull();
+
+      expect(button.getAttribute('aria-expanded')).toBe('false');
+      button.click();
+      await settle();
+      expect(popup()).not.toBeNull();
+      expect(button.getAttribute('aria-expanded')).toBe('true');
+      expect(button.getAttribute('aria-controls')).toBe(popup()!.id);
+
+      button.click();
+      await settle();
+      expect(popup()).toBeNull();
+    });
+
+    it('se abre al enfocar con teclado, se cierra al salir y con Escape', async () => {
+      const { popup, settle, link } = await card();
+      vi.spyOn(link, 'matches').mockReturnValue(true);
+
+      link.dispatchEvent(new FocusEvent('focusin', { bubbles: true }));
+      await settle();
+      expect(popup()).not.toBeNull();
+
+      link.dispatchEvent(new FocusEvent('focusout', { bubbles: true, relatedTarget: null }));
+      await settle();
+      expect(popup()).toBeNull();
+
+      link.dispatchEvent(new FocusEvent('focusin', { bubbles: true }));
+      await settle();
+      document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+      await settle();
+      expect(popup()).toBeNull();
+    });
+
+    it('tocar fuera la cierra; abrir otra deja una sola abierta', async () => {
+      const { page, popup, settle, button } = await open('/productos?q=croydon').then(async (v) => {
+        const el = v.page().querySelector<HTMLElement>('app-catalog-grid .column')!;
+        return {
+          ...v,
+          settle: () => v.harness.fixture.whenStable(),
+          popup: () => el.querySelector('[role="tooltip"]'),
+          button: el.querySelector<HTMLButtonElement>('.catalog-card__quick')!,
+        };
+      });
+
+      button.click();
+      await settle();
+      expect(popup()).not.toBeNull();
+
+      page().querySelectorAll<HTMLButtonElement>('.catalog-card__quick')[1].click();
+      await settle();
+      expect(page().querySelectorAll('[role="tooltip"]').length).toBe(1);
+
+      document.body.click();
+      await settle();
+      expect(page().querySelectorAll('[role="tooltip"]').length).toBe(0);
+    });
+
+    it('no muestra precios y no intercepta el enlace al detalle', async () => {
+      const { popup, settle, button, link, url } = await card();
+
+      button.click();
+      await settle();
+      expect(text(popup())).not.toMatch(/COP|\$|Precio/);
+
+      link.click();
+      await settle();
+      expect(url()).toBe(`/productos/${SLUG}`);
+    });
+  });
+
+  describe('enlaces antiguos con ancla', () => {
+    it('/productos#guantes abre esa categoría, y elegir otra quita el ancla', async () => {
+      const { page, status, checkedCategory, category, url } = await open('/productos#guantes');
+
+      expect(status()).toBe('Mostrando 8 de 94 productos');
+      expect(checkedCategory()).toBe('guantes');
+      expect(text(page().querySelector('#guantes h2'))).toBe('Guantes');
+
+      await category('');
+      expect(url()).toBe('/productos');
+      expect(status()).toBe('Mostrando los 94 productos');
+    });
+
+    it('un ancla desconocida no filtra', async () => {
+      const { status } = await open('/productos#no-existe');
+
+      expect(status()).toBe('Mostrando los 94 productos');
+    });
+  });
+
+  describe('Encuentra todo en Solgases', () => {
+    const groups = (page: HTMLElement) =>
+      new Map(
+        Array.from(page.querySelectorAll('app-catalog-directory h3')).map((h3) => [
+          text(h3),
+          Array.from(h3.parentElement!.querySelectorAll('a')),
+        ]),
+      );
+
+    it('queda al final de la página, después del catálogo y del texto', async () => {
+      const { page } = await open('/productos');
+      const main = page().querySelector('main')!;
+
+      expect(main.lastElementChild!.tagName).toBe('APP-CATALOG-DIRECTORY');
+      expect(text(page().querySelector('app-catalog-directory h2'))).toBe(
+        'Encuentra todo en Solgases',
+      );
+    });
+
+    it('enlaza solo categorías, marcas, productos y servicios reales', async () => {
+      const { page } = await open('/productos');
+      const found = groups(page());
+      const hrefs = (name: string) => found.get(name)!.map((a) => a.getAttribute('href')!);
+      const slugs = new Set(PRODUCT_CATALOG.products.map((p) => `/productos/${p.slug}`));
+      const services = new Set(SITE_SERVICE_CATALOG.services.map((s) => `/servicios/${s.slug}`));
+
+      expect([...found.keys()]).toEqual([
+        'Categorías',
+        'Marcas y líneas',
+        'Productos relevantes',
+        'Servicios',
+      ]);
+      expect(hrefs('Categorías')).toEqual(
+        CATEGORY_OPTIONS.map((c) => `/productos?categoria=${c.value}`),
+      );
+      expect(hrefs('Marcas y líneas')).toEqual(
+        BRAND_OPTIONS.map((b) => `/productos?marca=${encodeURIComponent(b)}`),
+      );
+      const [viewAllProducts, ...products] = hrefs('Productos relevantes').reverse();
+      expect(viewAllProducts).toBe('/productos');
+      expect(products.every((href) => slugs.has(href))).toBe(true);
+      const [viewAllServices, ...siteServices] = hrefs('Servicios').reverse();
+      expect(viewAllServices).toBe('/servicios');
+      expect(siteServices.every((href) => services.has(href))).toBe(true);
+    });
+
+    it('no repite ningún enlace dentro de un grupo', async () => {
+      const { page } = await open('/productos');
+
+      for (const [name, links] of groups(page())) {
+        const hrefs = links.map((a) => a.getAttribute('href'));
+        expect(new Set(hrefs).size, name!).toBe(hrefs.length);
+      }
+    });
+
+    it('usa selecciones cortas y no promete promociones ni tendencias', async () => {
+      const { page } = await open('/productos');
+      const section = page().querySelector('app-catalog-directory')!;
+
+      for (const [name, links] of groups(page())) {
+        expect(links.length, name!).toBeLessThanOrEqual(12);
+      }
+      expect(text(section)).not.toMatch(/promoci|tendencia|favorit|del mes|oferta|COP/i);
+    });
+
+    it('sus enlaces aplican el filtro en el catálogo', async () => {
+      const { page, harness, status, checkedCategory } = await open('/productos');
+
+      page()
+        .querySelector<HTMLAnchorElement>(
+          'app-catalog-directory a[href="/productos?categoria=caretas"]',
+        )!
+        .click();
+      await harness.fixture.whenStable();
+
+      expect(checkedCategory()).toBe('caretas');
+      expect(status()).toBe('Mostrando 4 de 94 productos');
     });
   });
 
@@ -361,7 +669,8 @@ describe('ProductosPage: búsqueda, filtros y orden', () => {
         expect(cards(page).length, path).toBe(count);
         expect(cards(page), path).toEqual(before[index]);
         expect(page.querySelector('.today-special__note'), path).toBeNull();
-        expect(page.querySelector('.catalog-tools'), path).toBeNull();
+        // Servicios tiene sus propios controles: lo que no puede aparecer son los de Productos.
+        expect(page.querySelector('#catalogo-busqueda'), path).toBeNull();
       }
     });
   });

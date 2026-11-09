@@ -1,23 +1,58 @@
 <footer class="main-footer">
-  <div class="container container--flex">
-    <div class="column column--33">
-      <h2 class="column__title">Correo</h2>
-      <p class="columns__txt">
-        <a class="icon-mail"> {{ site.email }}</a>
+  <div class="container site-footer__grid">
+    <section class="site-footer__section site-footer__about">
+      <p class="site-footer__brand">{{ site.name }}</p>
+      <p>
+        Nuestro objetivo es brindarle a nuestros clientes las mejores opciones para la prevención de
+        accidentes, seguridad en el trabajo y cumplimiento de las normas.
       </p>
-    </div>
-    <div class="column column--33">
-      <h2 class="column__title">Teléfono</h2>
-      <p class="columns__txt">
-        <a class="icon-phone">{{ site.phone }}</a>
-      </p>
-    </div>
-    <div class="column column--33">
-      <h2 class="column__title">Dirección</h2>
-      <p class="columns__txt">
-        <a class="icon-location">{{ site.address }}</a>
-      </p>
-    </div>
-    <p class="copy">{{ site.copyright }}</p>
+    </section>
+
+    <nav class="site-footer__section" aria-labelledby="pie-navegacion">
+      <h2 id="pie-navegacion" class="site-footer__title">Navegación</h2>
+      <ul class="site-footer__list">
+        @for (item of navItems; track item.path) {
+          <li>
+            <a class="site-footer__link" [routerLink]="item.path">{{ item.label }}</a>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <nav class="site-footer__section site-footer__catalog" aria-labelledby="pie-catalogo">
+      <h2 id="pie-catalogo" class="site-footer__title">Catálogo</h2>
+      <ul class="site-footer__list site-footer__list--columns">
+        @for (category of categories; track category.id) {
+          <li>
+            <a
+              class="site-footer__link"
+              routerLink="/productos"
+              [queryParams]="{ categoria: category.id }"
+              >{{ category.label }}</a
+            >
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <section class="site-footer__section" aria-labelledby="pie-contacto">
+      <h2 id="pie-contacto" class="site-footer__title">Contacto</h2>
+      <ul class="site-footer__list">
+        <li>
+          <a class="site-footer__link icon-mail" [attr.href]="'mailto:' + site.email">
+            {{ site.email }}</a
+          >
+        </li>
+        <li class="icon-phone">{{ site.phone }}</li>
+        <li class="icon-location">{{ site.address }}</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="container site-footer__bottom">
+    <p class="copy">
+      <span class="copy__year">{{ year() ? year() + ' | ' : '' }}</span
+      >{{ site.copyright }}
+    </p>
   </div>
 </footer>

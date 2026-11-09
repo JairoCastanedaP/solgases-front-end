@@ -1,21 +1,13 @@
-<app-page-banner image="img/architecture-blur-bright-1329061 (1).jpg" text="Nuestros Productos" />
+<app-page-banner
+  class="banner--catalog"
+  image="img/architecture-blur-bright-1329061 (1).jpg"
+  text="Nuestros Productos"
+/>
 
 <main class="main">
-  <app-intro-section
-    title="Elementos de Protección Personal"
-    [paragraphs]="[
-      'Manejamos las mejores marcas y los mejores precios en dotaciones, botas de caucho y cuero , guantes, tapaiodios, gafas, caretas y mascarillas',
-      'También tenemos repuestos para equipos de corte, reguladores, flujometros Tuercas, Niples, Uniones dobles, Válvulas de aguja “Y” doble, “Y” sencilla, Cuerpos para reguladores, Asientos, Resortes para válvula, Palanca alta presión, Cabezales, Filtros para reguladores, Diafragmas, Perillas, Acoples y añadiduras especiales',
-    ]"
-  />
-
-  <app-image-gallery [columns]="gallery">
-    <app-contact-button />
-    <h2 class="group__title">Te asesoramos según tus necesidades y la normativa</h2>
-  </app-image-gallery>
-
-  <section class="catalog-tools" aria-labelledby="catalogo-titulo">
-    <div class="container">
+  <!-- El orden del DOM es el visual en todos los tamaños: arriba, izquierda, derecha. -->
+  <div class="container catalog">
+    <section class="catalog-tools" aria-labelledby="catalogo-titulo">
       <h2 id="catalogo-titulo" class="group__title">Encuentra tu producto</h2>
 
       <form
@@ -25,7 +17,7 @@
         autocomplete="off"
         (submit)="$event.preventDefault(); update({})"
       >
-        <div class="catalog-tools__field catalog-tools__field--search">
+        <div class="catalog-tools__field">
           <label for="catalogo-busqueda">Buscar</label>
           <input
             #searchInput
@@ -37,38 +29,6 @@
             [value]="searchText()"
             (input)="onSearchInput(searchInput.value)"
           />
-        </div>
-
-        <div class="catalog-tools__field">
-          <label for="catalogo-categoria">Categoría</label>
-          <select
-            #categorySelect
-            id="catalogo-categoria"
-            name="categoria"
-            (change)="onCategoryChange(categorySelect.value)"
-          >
-            <option value="" [selected]="!query().category">Todas las categorías</option>
-            @for (option of categoryOptions; track option.value) {
-              <option [value]="option.value" [selected]="option.value === query().category">
-                {{ option.label }}
-              </option>
-            }
-          </select>
-        </div>
-
-        <div class="catalog-tools__field">
-          <label for="catalogo-marca">Marca o línea</label>
-          <select
-            #brandSelect
-            id="catalogo-marca"
-            name="marca"
-            (change)="onBrandChange(brandSelect.value)"
-          >
-            <option value="" [selected]="!query().brand">Todas las marcas</option>
-            @for (brand of brandOptions; track brand) {
-              <option [value]="brand" [selected]="brand === query().brand">{{ brand }}</option>
-            }
-          </select>
         </div>
 
         <div class="catalog-tools__field">
@@ -87,7 +47,80 @@
           </select>
         </div>
       </form>
+    </section>
 
+    <aside class="catalog-filters" aria-label="Categorías y filtros">
+      <button
+        #filtersToggle
+        type="button"
+        class="catalog-filters__toggle"
+        aria-controls="catalogo-filtros"
+        [attr.aria-expanded]="filtersOpen()"
+        (click)="toggleFilters()"
+      >
+        <span>Categorías y filtros</span>
+        @if (activeFilters(); as active) {
+          <span class="catalog-filters__badge">
+            {{ active }} {{ active === 1 ? 'activo' : 'activos' }}
+          </span>
+        }
+      </button>
+
+      <div
+        id="catalogo-filtros"
+        class="catalog-filters__panel"
+        [class.catalog-filters__panel--open]="filtersOpen()"
+      >
+        <fieldset class="catalog-filters__group">
+          <legend class="catalog-filters__legend">Categoría</legend>
+          <div class="catalog-filters__options">
+            <label class="catalog-filters__option">
+              <input
+                type="radio"
+                name="categoria"
+                value=""
+                [checked]="!query().category"
+                (change)="onCategoryChange('')"
+              />
+              <span>Todas las categorías</span>
+            </label>
+            @for (option of categoryOptions; track option.value) {
+              <label class="catalog-filters__option">
+                <input
+                  type="radio"
+                  name="categoria"
+                  [value]="option.value"
+                  [checked]="option.value === query().category"
+                  (change)="onCategoryChange(option.value)"
+                />
+                <span>{{ option.label }}</span>
+              </label>
+            }
+          </div>
+        </fieldset>
+
+        <div class="catalog-tools__field catalog-filters__brand">
+          <label for="catalogo-marca">Marca o línea</label>
+          <select
+            #brandSelect
+            id="catalogo-marca"
+            name="marca"
+            (change)="onBrandChange(brandSelect.value)"
+          >
+            <option value="" [selected]="!query().brand">Todas las marcas</option>
+            @for (brand of brandOptions; track brand) {
+              <option [value]="brand" [selected]="brand === query().brand">{{ brand }}</option>
+            }
+          </select>
+        </div>
+
+        <button type="button" class="catalog-filters__close" (click)="closeFilters()">
+          Ver resultados ({{ results().total }})
+        </button>
+      </div>
+    </aside>
+
+    <section class="catalog-main" aria-label="Resultados del catálogo">
       <div class="catalog-tools__summary">
         <p class="catalog-tools__status" role="status" aria-atomic="true">{{ status() }}</p>
         <button
@@ -103,24 +136,35 @@
       @if (showsPrices()) {
         <p class="catalog-tools__notice" role="note">{{ notice }}</p>
       }
-    </div>
-  </section>
 
-  @if (results().total === 0) {
-    <div class="container catalog-empty">
-      <p>No encontramos productos con esos criterios. Prueba otra palabra o quita algún filtro.</p>
-      <button type="button" class="catalog-tools__button" (click)="clear()">Limpiar filtros</button>
-    </div>
-  } @else {
-    <div class="catalog-results">
-      @if (results().sorted; as sorted) {
-        <app-product-grid heading="Resultados" [items]="sorted" />
+      @if (results().total === 0) {
+        <div class="catalog-empty">
+          <p>
+            No encontramos productos con esos criterios. Prueba otra palabra o quita algún filtro.
+          </p>
+          <button type="button" class="catalog-tools__button" (click)="clear()">
+            Limpiar filtros
+          </button>
+        </div>
       } @else {
-        @for (category of results().sections; track category.title) {
-          <app-intro-section [attr.id]="category.id" [title]="category.title" />
-          <app-product-grid [items]="category.items" />
-        }
+        <div class="catalog-results">
+          <app-catalog-grid
+            [attr.id]="results().anchor"
+            [heading]="results().heading"
+            [items]="results().items"
+          />
+        </div>
       }
-    </div>
-  }
+    </section>
+  </div>
+
+  <app-intro-section
+    title="Elementos de Protección Personal"
+    [paragraphs]="[
+      'Manejamos las mejores marcas y los mejores precios en dotaciones, botas de caucho y cuero , guantes, tapaiodios, gafas, caretas y mascarillas',
+      'También tenemos repuestos para equipos de corte, reguladores, flujometros Tuercas, Niples, Uniones dobles, Válvulas de aguja “Y” doble, “Y” sencilla, Cuerpos para reguladores, Asientos, Resortes para válvula, Palanca alta presión, Cabezales, Filtros para reguladores, Diafragmas, Perillas, Acoples y añadiduras especiales',
+    ]"
+  />
+
+  <app-catalog-directory [groups]="directory" />
 </main>

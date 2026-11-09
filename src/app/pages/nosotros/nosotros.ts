@@ -17,5 +17,5 @@ import { BRAND_LOGO_COLUMNS, TEAM_HIGHLIGHTS } from './nosotros.data';
 export class NosotrosPage {
   protected readonly summary = SERVICES_SUMMARY;
   protected readonly highlights = TEAM_HIGHLIGHTS;
-  protected readonly brandColumns = BRAND_LOGO_COLUMNS;
+  protected readonly brands = BRAND_LOGO_COLUMNS.flat();
 }
