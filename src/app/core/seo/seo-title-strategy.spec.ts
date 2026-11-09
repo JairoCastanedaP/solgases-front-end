@@ -126,4 +126,25 @@ describe('PUBLIC_PAGES', () => {
       expect(p.image, p.path).toMatch(/^img\/og\/.+\.jpg$/);
     }
   });
+
+  describe('referencias regionales', () => {
+    const pages = Object.values(PUBLIC_PAGES);
+
+    it('Inicio, Nosotros, Productos, Servicios y Contacto nombran Sogamoso, Boyacá', () => {
+      const { home, nosotros, productos, servicios, contacto } = PUBLIC_PAGES;
+
+      for (const page of [home, nosotros, productos, servicios, contacto]) {
+        expect(page.description, page.path).toContain('Sogamoso, Boyacá');
+      }
+      expect(home.title).toContain('Sogamoso, Boyacá');
+    });
+
+    it('no repite Boyacá ni promete cobertura en el departamento u otras ciudades', () => {
+      for (const { title, description } of pages) {
+        const text = `${title} ${description}`;
+        expect((text.match(/Boyacá/g) ?? []).length, title).toBeLessThanOrEqual(2);
+        expect(text).not.toMatch(/todo Boyacá|en toda|Tunja|Duitama|Paipa|a nivel/i);
+      }
+    });
+  });
 });

@@ -28,6 +28,9 @@
             <h3 class="our-team__title">{{ highlight.title }}</h3>
           </div>
           <p class="our-team__txt">{{ highlight.text }}</p>
+          @if (highlight.freeDelivery) {
+            <app-free-delivery class="our-team__delivery" />
+          }
         </li>
       }
     </ul>

@@ -4,17 +4,15 @@ import { FloatingContact } from './layout/floating-contact/floating-contact';
 import { MainNav } from './layout/main-nav/main-nav';
 import { SiteFooter } from './layout/site-footer/site-footer';
 import { SiteHeader } from './layout/site-header/site-header';
-import { WhatsAppButton } from './layout/whatsapp-button/whatsapp-button';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, SiteHeader, MainNav, SiteFooter, WhatsAppButton, FloatingContact],
+  imports: [RouterOutlet, SiteHeader, MainNav, SiteFooter, FloatingContact],
   template: `
     <app-site-header />
     <app-main-nav />
     <router-outlet />
     <app-site-footer />
-    <app-whatsapp-button />
     <app-floating-contact />
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

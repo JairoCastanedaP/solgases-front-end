@@ -1,34 +1,51 @@
-<a
-  class="float-call"
-  [attr.href]="site.phoneHref"
-  [attr.aria-label]="'Llamar a ' + site.name + ': ' + site.phone"
->
-  <span class="icon-phone" aria-hidden="true"></span>
-</a>
-
 @if (whatsAppUrl; as url) {
   <a
-    class="float-wa"
+    class="float-action float-advice"
+    [attr.href]="url"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Escríbenos para asesorarte por WhatsApp (se abre en una pestaña nueva)"
+  >
+    <span class="float-action__icon"><app-whatsapp-icon /></span>
+    <span class="float-action__text">Escríbenos para asesorarte</span>
+  </a>
+  <a
+    class="float-action float-wa"
     [attr.href]="url"
     target="_blank"
     rel="noopener noreferrer"
     aria-label="Escríbenos por WhatsApp (se abre en una pestaña nueva)"
   >
-    <span class="float-wa__label">Escríbenos por WhatsApp</span>
-    <span class="float-wa__circle"><app-whatsapp-icon class="float-wa__icon" /></span>
+    <span class="float-action__icon float-wa__waves"><app-whatsapp-icon /></span>
+    <span class="float-action__text">Escríbenos por WhatsApp</span>
   </a>
 } @else {
+  <!-- Sin número válido no abren nada: siguen enfocables y su nombre accesible lo indica. -->
   <button
     type="button"
-    class="float-wa float-wa--pending"
+    class="float-action float-advice float-action--inert"
     aria-disabled="true"
-    aria-label="Escríbenos por WhatsApp"
-    aria-describedby="whatsapp-flotante-pendiente"
+    aria-label="Escríbenos para asesorarte por WhatsApp (no disponible por ahora)"
   >
-    <span class="float-wa__label">Escríbenos por WhatsApp</span>
-    <span class="float-wa__circle"><app-whatsapp-icon class="float-wa__icon" /></span>
-    <span id="whatsapp-flotante-pendiente" class="float-wa__tooltip">
-      Número de WhatsApp pendiente de configurar
-    </span>
+    <span class="float-action__icon"><app-whatsapp-icon /></span>
+    <span class="float-action__text">Escríbenos para asesorarte</span>
+  </button>
+  <button
+    type="button"
+    class="float-action float-wa float-action--inert"
+    aria-disabled="true"
+    aria-label="Escríbenos por WhatsApp (no disponible por ahora)"
+  >
+    <span class="float-action__icon float-wa__waves"><app-whatsapp-icon /></span>
+    <span class="float-action__text">Escríbenos por WhatsApp</span>
   </button>
 }
+
+<a
+  class="float-action float-call"
+  [attr.href]="site.phoneHref"
+  [attr.aria-label]="'Llamar a ' + site.name + ': ' + site.phone"
+>
+  <span class="float-action__icon icon-phone" aria-hidden="true"></span>
+  <span class="float-action__text">Llamar</span>
+</a>

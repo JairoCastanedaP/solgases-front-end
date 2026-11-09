@@ -66,4 +66,54 @@ describe('ContactoPage: presentación y canales', () => {
     expect(link.getAttribute('href')).toBe('https://wa.me/573001234567?text=Hola');
     expect(link.getAttribute('rel')).toBe('noopener noreferrer');
   });
+
+  describe('horario, dirección y mapa', () => {
+    const cards = async () => Array.from((await render()).querySelectorAll('.contact-card'));
+    const clean = (el: Element | null | undefined) => el?.textContent?.replace(/\s+/g, ' ').trim();
+
+    it('los presenta en tres tarjetas con título', async () => {
+      expect((await cards()).map((c) => clean(c.querySelector('h3')))).toEqual([
+        'Horario de atención',
+        'Dirección',
+        'Ubícanos con Google Maps',
+      ]);
+    });
+
+    it('mantiene los horarios y la dirección', async () => {
+      const [hours, address] = await cards();
+
+      expect(Array.from(hours.querySelectorAll('dt, dd')).map(clean)).toEqual([
+        'Lunes a viernes',
+        '8am a 12pm y 2pm a 6:30pm',
+        'Sábados',
+        '8am a 6pm (jornada continua)',
+      ]);
+      expect(clean(address.querySelector('p'))).toBe('Cra 16 #10 48, Sogamoso, Boyacá');
+    });
+
+    it('al entrar el foco en el mapa lo lleva a la vista; con otro foco no mueve la página', async () => {
+      const el = await render();
+      document.body.appendChild(el);
+      const frame = el.querySelector('iframe')!;
+      const reveal = vi.fn();
+      frame.scrollIntoView = reveal;
+
+      window.dispatchEvent(new Event('blur'));
+      expect(reveal).not.toHaveBeenCalled();
+
+      vi.spyOn(document, 'activeElement', 'get').mockReturnValue(frame);
+      window.dispatchEvent(new Event('blur'));
+      expect(reveal).toHaveBeenCalledWith({ block: 'nearest' });
+      vi.restoreAllMocks();
+    });
+
+    it('no cambia el destino del mapa', async () => {
+      const [, , map] = await cards();
+      const frame = map.querySelector('iframe')!;
+
+      expect(frame.getAttribute('title')).toBe('Ubicación de Solgases en Google Maps');
+      expect(frame.getAttribute('src')).toContain('!2sSolgases!');
+      expect(frame.getAttribute('src')).toContain('0x8e6a45d9f304ae27');
+    });
+  });
 });

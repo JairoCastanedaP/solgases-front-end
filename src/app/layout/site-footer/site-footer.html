@@ -44,7 +44,7 @@
           >
         </li>
         <li class="icon-phone">{{ site.phone }}</li>
-        <li class="icon-location">{{ site.address }}</li>
+        <li class="icon-location">{{ site.address }}, {{ site.region }}</li>
       </ul>
     </section>
   </div>
@@ -52,8 +52,20 @@
   <section class="container site-footer__payments" aria-labelledby="pie-pagos">
     <h2 id="pie-pagos" class="site-footer__payments-title">Medios de pago</h2>
     <ul class="site-footer__badges">
-      @for (method of site.paymentMethods; track method) {
-        <li class="site-footer__badge">{{ method }}</li>
+      @for (method of paymentMethods; track method.name) {
+        <li class="site-footer__badge">
+          @if (method.logo; as logo) {
+            <img
+              class="site-footer__logo"
+              [ngSrc]="logo.src"
+              [width]="logo.width"
+              [height]="logo.height"
+              [alt]="method.alt"
+            />
+          } @else {
+            {{ method.name }}
+          }
+        </li>
       }
     </ul>
   </section>

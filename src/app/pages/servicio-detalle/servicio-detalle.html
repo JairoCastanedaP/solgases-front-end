@@ -77,6 +77,9 @@
       @if (service.notes?.length) {
         <section aria-labelledby="servicio-notas">
           <h2 id="servicio-notas" class="product-detail__heading">Información adicional</h2>
+          @if (service.freeDelivery) {
+            <app-free-delivery />
+          }
           <ul>
             @for (note of service.notes; track note) {
               <li>{{ note }}</li>

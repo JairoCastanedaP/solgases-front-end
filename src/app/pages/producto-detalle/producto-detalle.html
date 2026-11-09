@@ -48,25 +48,33 @@
           <p class="product-detail__notice" role="note">{{ notice }}</p>
         }
 
-        @if (whatsAppUrl(); as url) {
-          <a
-            class="product-detail__whatsapp"
-            [href]="url"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Consultar por WhatsApp
-            <span class="visually-hidden">(se abre en una pestaña nueva)</span>
-          </a>
-        } @else {
-          <button
-            type="button"
-            class="product-detail__whatsapp product-detail__whatsapp--pending"
-            aria-disabled="true"
-            aria-describedby="producto-whatsapp-pendiente"
-          >
-            Consultar por WhatsApp
-          </button>
+        @let hasWhatsApp = !!whatsAppUrl();
+        <div class="product-detail__cta">
+          @if (whatsAppUrl(); as url) {
+            <a
+              class="product-detail__whatsapp"
+              [href]="url"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Consultar por WhatsApp
+              <span class="visually-hidden">(se abre en una pestaña nueva)</span>
+            </a>
+          } @else {
+            <button
+              type="button"
+              class="product-detail__whatsapp product-detail__whatsapp--pending"
+              aria-disabled="true"
+              aria-describedby="producto-whatsapp-pendiente"
+            >
+              Consultar por WhatsApp
+            </button>
+          }
+          <p class="product-detail__confirm" role="note">
+            Comunícate con nosotros para confirmar stock, precio actual y descuentos especiales.
+          </p>
+        </div>
+        @if (!hasWhatsApp) {
           <p id="producto-whatsapp-pendiente" class="product-detail__pending">
             Número de WhatsApp pendiente de configurar
           </p>
@@ -85,39 +93,40 @@
     </div>
 
     <div class="container product-detail__info">
-      <section aria-labelledby="producto-descripcion">
-        <h2 id="producto-descripcion" class="product-detail__heading">Descripción</h2>
-        <p>{{ product.description }}</p>
-      </section>
-
-      <section aria-labelledby="producto-caracteristicas">
-        <h2 id="producto-caracteristicas" class="product-detail__heading">Características</h2>
-        <ul>
-          @for (feature of product.features; track feature) {
-            <li>{{ feature }}</li>
-          }
-        </ul>
-      </section>
-
-      <section aria-labelledby="producto-especificaciones">
-        <h2 id="producto-especificaciones" class="product-detail__heading">Especificaciones</h2>
-        <dl class="product-detail__specs">
+      <section aria-labelledby="producto-detalles">
+        <h2 id="producto-detalles" class="product-details__title">Detalles del producto</h2>
+        <dl class="product-details">
+          <div class="product-details__cell product-details__cell--full">
+            <dt>Descripción</dt>
+            <dd>{{ product.description }}</dd>
+          </div>
+          <div class="product-details__cell product-details__cell--half">
+            <dt>Características</dt>
+            <dd>
+              <ul>
+                @for (feature of product.features; track feature) {
+                  <li>{{ feature }}</li>
+                }
+              </ul>
+            </dd>
+          </div>
           @for (spec of product.specifications; track spec.label) {
-            <div>
+            <div class="product-details__cell">
               <dt>{{ spec.label }}</dt>
               <dd>{{ spec.value }}</dd>
             </div>
           }
+          <div class="product-details__cell product-details__cell--full">
+            <dt>Recomendaciones</dt>
+            <dd>
+              <ul>
+                @for (recommendation of product.recommendations; track recommendation) {
+                  <li>{{ recommendation }}</li>
+                }
+              </ul>
+            </dd>
+          </div>
         </dl>
-      </section>
-
-      <section aria-labelledby="producto-recomendaciones">
-        <h2 id="producto-recomendaciones" class="product-detail__heading">Recomendaciones</h2>
-        <ul>
-          @for (recommendation of product.recommendations; track recommendation) {
-            <li>{{ recommendation }}</li>
-          }
-        </ul>
       </section>
 
       @if (product.gallery?.length) {

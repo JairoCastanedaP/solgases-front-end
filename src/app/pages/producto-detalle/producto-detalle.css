@@ -100,11 +100,29 @@
   background: #05463e;
 }
 
-/* Mismo criterio que el botón flotante: gris, sin acción y enfocable. */
+/* Gris, sin acción y enfocable, para poder leer por qué no está disponible. */
 .product-detail__whatsapp--pending,
 .product-detail__whatsapp--pending:hover {
   background: #5f6368;
   cursor: not-allowed;
+}
+
+.product-detail__cta {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Aviso destacado junto al botón; debajo de él en móvil. */
+.product-detail__confirm {
+  margin: 0;
+  padding: 10px 12px;
+  border-left: 5px solid #de423a;
+  background: #fff4cc;
+  color: #222;
+  font-size: 0.9em;
+  font-weight: bold;
+  line-height: 1.35;
 }
 
 .product-detail__pending {
@@ -152,6 +170,60 @@
   margin: 0;
 }
 
+/* Detalles del producto: celdas de nombre y valor, sin desbordar en ningún ancho. */
+.product-details__title {
+  margin: 25px 0 12px;
+  padding: 10px 14px;
+  background: #f4f4f4;
+  font-size: 1.15em;
+  font-weight: bold;
+}
+
+.product-details {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+  margin: 0;
+}
+
+.product-details__cell {
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid #e2e2e2;
+  border-radius: 6px;
+  overflow-wrap: anywhere;
+}
+
+.product-details__cell:nth-child(odd) {
+  background: #f4f4f4;
+}
+
+.product-details dt {
+  font-size: 0.85em;
+  font-weight: bold;
+}
+
+.product-details dd {
+  margin: 2px 0 0;
+  font-size: 0.9em;
+}
+
+.product-details ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+@media screen and (min-width: 600px) {
+  .product-details {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .product-details__cell--full,
+  .product-details__cell--half {
+    grid-column: 1 / -1;
+  }
+}
+
 .product-detail__gallery img {
   max-width: 480px;
 }
@@ -170,5 +242,22 @@
 
   .product-detail {
     padding-inline: 0;
+  }
+
+  .product-detail__cta {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .product-detail__cta .product-detail__whatsapp {
+    flex: 0 0 45%;
+  }
+
+  .product-details {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .product-details__cell--half {
+    grid-column: span 2;
   }
 }

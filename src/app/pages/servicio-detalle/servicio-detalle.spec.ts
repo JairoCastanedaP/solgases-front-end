@@ -82,6 +82,24 @@ describe('ServicioDetallePage', () => {
     expect(page.querySelector('.product-detail__notice')).toBeNull();
   });
 
+  it('destaca "Domicilio gratis" con su condición donde los datos lo indican', async () => {
+    setup();
+    const info = (await open('/servicios/llenado-argon')).querySelector('.product-detail__info')!;
+
+    expect(info.querySelector('.free-delivery__tag')?.textContent).toBe('Domicilio gratis');
+    expect(text(info.querySelector('.free-delivery__condition'))).toBe(
+      'Sujeto a cobertura y condiciones del servicio. Confirma con nosotros si aplica para tu ubicación y servicio antes de solicitarlo.',
+    );
+  });
+
+  it('un servicio sin la oferta confirmada en los datos no muestra el aviso', async () => {
+    setup();
+    const page = await open('/servicios/recarga-extintor-co2');
+
+    expect(page.querySelector('app-free-delivery')).toBeNull();
+    expect(page.textContent).not.toContain('Domicilio gratis');
+  });
+
   it('muestra las notas y la galería solo en los servicios que las tienen', async () => {
     setup();
     const page = await open('/servicios/llenado-nitrogeno');

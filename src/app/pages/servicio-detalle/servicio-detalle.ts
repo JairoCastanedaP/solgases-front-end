@@ -5,6 +5,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { map } from 'rxjs';
 import { findServiceBySlug } from '../../core/site-services/site-service-catalog';
 import { WHATSAPP_CONFIG_TOKEN, buildWhatsAppUrl } from '../../core/whatsapp.config';
+import { FreeDelivery } from '../../shared/components/free-delivery/free-delivery';
 import { ContactButton } from '../../shared/components/contact-button/contact-button';
 import { PageBanner } from '../../shared/components/page-banner/page-banner';
 import { OptimizedImagePipe } from '../../shared/images/optimized-image';
@@ -15,7 +16,14 @@ import { OptimizedImagePipe } from '../../shared/images/optimized-image';
  */
 @Component({
   selector: 'app-servicio-detalle-page',
-  imports: [ContactButton, NgOptimizedImage, OptimizedImagePipe, PageBanner, RouterLink],
+  imports: [
+    ContactButton,
+    NgOptimizedImage,
+    OptimizedImagePipe,
+    PageBanner,
+    RouterLink,
+    FreeDelivery,
+  ],
   templateUrl: './servicio-detalle.html',
   styleUrl: '../producto-detalle/producto-detalle.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

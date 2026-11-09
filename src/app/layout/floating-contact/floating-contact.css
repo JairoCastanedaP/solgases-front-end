@@ -1,130 +1,101 @@
-/* El propio host es el elemento fijo: no ocupa espacio en el flujo, así que no altera el layout. */
+/*
+ * Barra inferior: ocupa todo el ancho y `body` reserva su altura (ver --contact-bar en styles.css),
+ * así que el final de la página nunca queda debajo.
+ */
 :host {
   position: fixed;
-  right: max(10px, env(safe-area-inset-right));
-  bottom: max(12px, env(safe-area-inset-bottom));
+  right: 0;
+  bottom: 0;
+  left: 0;
   /* Por encima del menú (2000) y el banner (1500); por debajo del modal de la galería (1000000). */
   z-index: 3000;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+  height: calc(var(--contact-bar) + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  box-sizing: border-box;
+  background: #fff;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.25);
 }
 
-.float-call,
-.float-wa__circle {
+.float-action {
   display: flex;
-  flex: none;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  color: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+  gap: 8px;
+  box-sizing: border-box;
+  min-width: 0;
+  padding: 4px 8px;
+  border: 0;
+  font: inherit;
+  font-size: 0.8em;
+  font-weight: bold;
+  line-height: 1.15;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.float-action__icon {
+  position: relative;
+  flex: none;
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.float-action:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: -6px;
+}
+
+.float-action--inert {
+  cursor: not-allowed;
+}
+
+/* Amarillo con texto casi negro: contraste superior a 12:1. */
+.float-advice {
+  background: #ffc400;
+  color: #111;
+}
+
+.float-advice:hover {
+  background: #ffb000;
+}
+
+.float-advice:focus-visible {
+  outline-color: #111;
 }
 
 .float-call {
   background: #b92d26;
-  font-size: 1.2em;
-  text-decoration: none;
+  color: #fff;
 }
 
 .float-call:hover {
   background: #8f201b;
 }
 
+/* Verde más oscuro que el de la marca: con texto blanco pequeño, llega al contraste de 4,5:1. */
 .float-wa {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 0;
-  border: 0;
-  background: none;
-  color: #111;
-  font: inherit;
-  text-decoration: none;
-  cursor: pointer;
+  background: #0a6e63;
+  color: #fff;
 }
 
-/* Verde oscuro de WhatsApp: el verde claro no llega a 3:1 con el icono blanco. */
-.float-wa__circle {
-  position: relative;
-  background: #128c7e;
-}
-
-.float-wa:hover .float-wa__circle {
+.float-wa:hover {
   background: #075e54;
 }
 
-.float-wa__icon {
-  width: 26px;
-  height: 26px;
-}
-
-/* En móvil y tablet el texto taparía las tarjetas: queda como nombre accesible del botón. */
-.float-wa__label {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
-.float-wa--pending {
-  cursor: not-allowed;
-}
-
-.float-wa--pending .float-wa__circle {
-  outline: 2px dashed #fff;
-  outline-offset: -5px;
-}
-
-.float-wa__tooltip {
-  position: absolute;
-  right: calc(100% + 8px);
-  bottom: 4px;
-  width: max-content;
-  max-width: min(220px, calc(100vw - 80px));
-  padding: 6px 10px;
-  border-radius: 4px;
-  background: #222;
-  color: #fff;
-  font-size: 0.8rem;
-  line-height: 1.3;
-  text-align: left;
-  white-space: normal;
-  pointer-events: none;
-  opacity: 0;
-  visibility: hidden;
-}
-
-.float-wa:hover .float-wa__tooltip,
-.float-wa:focus-visible .float-wa__tooltip,
-/* En pantallas táctiles no hay hover: al tocar el botón pendiente se muestra la explicación. */
-.float-wa--pending:focus .float-wa__tooltip {
-  opacity: 1;
-  visibility: visible;
-}
-
-.float-call:focus-visible,
-.float-wa:focus-visible .float-wa__circle {
-  outline: 3px solid #111;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 2px #fff;
-}
-
-/* Ondas sutiles: solo se animan si la persona no pidió reducir el movimiento. */
+/* Ondas sutiles, solo si no se pidió reducir el movimiento. */
 @media (prefers-reduced-motion: no-preference) {
-  .float-wa__circle::before {
+  .float-wa__waves::before {
     content: '';
     position: absolute;
-    inset: 0;
-    z-index: -1;
+    inset: -2px;
+    border: 2px solid #fff;
     border-radius: 50%;
-    background: #128c7e;
     opacity: 0;
     animation: float-wa-wave 3s ease-out infinite;
   }
@@ -132,7 +103,7 @@
 
 @keyframes float-wa-wave {
   0% {
-    opacity: 0.35;
+    opacity: 0.6;
     transform: scale(1);
   }
 
@@ -143,48 +114,40 @@
   }
 }
 
-/* Teléfono en horizontal: en fila, para no chocar con la pestaña amarilla de media altura. */
-@media screen and (max-height: 500px) {
+/*
+ * Columna en el margen derecho: el contenido mide como máximo el ancho total menos 200 px, de modo
+ * que estos 88 px más su separación de 6 px no lo alcanzan. Los 600 px de alto mantienen la columna
+ * debajo del título del banner. Mismas medidas en styles.css.
+ */
+@media screen and (min-width: 1200px) and (min-height: 600px) {
   :host {
-    flex-direction: row;
-    align-items: center;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  :host {
-    right: 16px;
+    right: 6px;
     bottom: 16px;
-    gap: 10px;
-  }
-
-  .float-call,
-  .float-wa__circle {
-    width: 52px;
-    height: 52px;
-  }
-
-  .float-wa__icon {
-    width: 30px;
-    height: 30px;
-  }
-
-  .float-wa__label {
-    position: static;
-    width: auto;
+    left: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 88px;
     height: auto;
-    padding: 6px 12px;
-    overflow: visible;
-    clip-path: none;
-    border-radius: 16px;
-    background: #fff;
-    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
-    font-size: 0.9em;
-    font-weight: bold;
+    padding: 0;
+    background: none;
+    box-shadow: none;
   }
 
-  .float-wa__tooltip {
-    right: 0;
-    bottom: calc(100% + 8px);
+  .float-action {
+    flex-direction: column;
+    gap: 6px;
+    padding: 10px 6px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);
+    font-size: 0.75em;
+    text-align: center;
+  }
+
+  .float-action__icon {
+    width: 28px;
+    height: 28px;
+    font-size: 26px;
+    line-height: 28px;
   }
 }
