@@ -40,6 +40,31 @@
     </div>
   </section>
 
+  <section class="group portfolio" aria-labelledby="portafolio-titulo">
+    <h2 id="portafolio-titulo" class="group__title">Portafolio de productos y soluciones</h2>
+    <ul class="container portfolio__grid">
+      @for (card of portfolio; track card.title) {
+        @let img = card.image.src | optimizedImage;
+        <li class="portfolio__item">
+          <a class="portfolio__card" [routerLink]="card.path" [queryParams]="card.queryParams">
+            <img
+              [ngSrc]="img.src"
+              [width]="img.width"
+              [height]="img.height"
+              [alt]="card.image.alt"
+              class="portfolio__img"
+            />
+            <div class="portfolio__body">
+              <h3 class="portfolio__title">{{ card.title }}</h3>
+              <span class="portfolio__text">{{ card.description }}</span>
+              <span class="portfolio__link">{{ card.linkText }}</span>
+            </div>
+          </a>
+        </li>
+      }
+    </ul>
+  </section>
+
   <app-image-gallery class="home-collage" [columns]="gallery">
     <h2 class="group__title">Te asesoramos según tus necesidades y la normativa</h2>
   </app-image-gallery>

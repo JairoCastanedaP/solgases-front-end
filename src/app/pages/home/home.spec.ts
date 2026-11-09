@@ -2,9 +2,13 @@ import { TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { routes } from '../../app.routes';
-import { PRODUCT_CATALOG, toCatalogItems } from '../../core/products/product-catalog';
-import { featuredServiceCards } from '../../core/site-services/site-service-catalog';
-import { HOME_GALLERY } from './home.data';
+import { PRODUCT_CATALOG, findCategory, toCatalogItems } from '../../core/products/product-catalog';
+import {
+  SITE_SERVICE_CATALOG,
+  featuredServiceCards,
+} from '../../core/site-services/site-service-catalog';
+import { servicesOfType } from '../../core/site-services/site-service-search';
+import { HOME_GALLERY, HOME_PORTFOLIO } from './home.data';
 
 const TITLE = 'Te asesoramos según tus necesidades y la normativa';
 
@@ -39,6 +43,77 @@ describe('HomePage: carruseles', () => {
     for (const item of [...toCatalogItems(PRODUCT_CATALOG.featured), ...featuredServiceCards()]) {
       const card = page.querySelector(`a[href="${item.link}"]`)!;
       expect(card.querySelector('img')!.getAttribute('alt'), item.link).toBe(item.alt);
+    }
+  });
+});
+
+describe('HomePage: portafolio', () => {
+  const cards = (page: HTMLElement) => Array.from(page.querySelectorAll('.portfolio__card'));
+
+  it('queda encima de "Te asesoramos", con cuatro tarjetas en el orden pedido', async () => {
+    const page = await home();
+    const section = page.querySelector('.portfolio')!;
+    const collage = page.querySelector('app-image-gallery')!;
+
+    expect(section.querySelector('h2')?.textContent).toBe('Portafolio de productos y soluciones');
+    expect(
+      section.compareDocumentPosition(collage) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+    expect(cards(page).map((c) => c.querySelector('h3')?.textContent)).toEqual([
+      'Equipos contra incendio',
+      'Venta de gases industriales',
+      'Dotaciones',
+      'Equipos de carretera',
+    ]);
+  });
+
+  it('enlaza a filtros y páginas que existen, y cada filtro da resultados reales', async () => {
+    const page = await home();
+    const hrefs = cards(page).map((c) => c.getAttribute('href'));
+
+    expect(hrefs).toEqual([
+      '/servicios?tipo=Recarga%20de%20extintores',
+      '/servicios?tipo=Llenado%20de%20gases',
+      '/productos',
+      '/productos?categoria=seguridad-vial',
+    ]);
+    expect(servicesOfType('Recarga de extintores').length).toBeGreaterThan(0);
+    expect(servicesOfType('Llenado de gases').length).toBeGreaterThan(0);
+    expect(findCategory('seguridad-vial')).toBeDefined();
+  });
+
+  it('las imágenes son del catálogo, con su texto alternativo', async () => {
+    const page = await home();
+
+    for (const { image } of HOME_PORTFOLIO) {
+      const known = [
+        ...PRODUCT_CATALOG.products.map((p) => p.image.src),
+        ...SITE_SERVICE_CATALOG.services.map((s) => s.image.src),
+      ];
+      expect(known).toContain(image.src);
+      expect(page.querySelector(`.portfolio img[alt="${image.alt}"]`), image.src).not.toBeNull();
+    }
+  });
+
+  it('lo que describe cada tarjeta existe en los datos', () => {
+    const names = (re: RegExp) => PRODUCT_CATALOG.products.filter((p) => re.test(p.name)).length;
+    const services = (re: RegExp) =>
+      SITE_SERVICE_CATALOG.services.filter((s) => re.test(s.name)).length;
+
+    for (const [label, count] of [
+      ['extintores', names(/extintor/i)],
+      ['soportes', names(/soporte/i)],
+      ['camisas', names(/camisa/i)],
+      ['guantes', names(/guante/i)],
+      ['botas', names(/botas/i)],
+      ['conos', names(/cono/i)],
+      ['señalización', names(/señal/i)],
+      ['recarga', services(/recarga de extintor/i)],
+    ] as const) {
+      expect(count, label).toBeGreaterThan(0);
+    }
+    for (const gas of [/nitr/i, /ox[ií]geno/i, /acetileno/i, /arg[oó]n/i, /mezcla/i]) {
+      expect(services(gas), gas.source).toBeGreaterThan(0);
     }
   });
 });

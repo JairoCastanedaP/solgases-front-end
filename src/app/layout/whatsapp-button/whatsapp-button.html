@@ -22,20 +22,21 @@
     [href]="url"
     target="_blank"
     rel="noopener noreferrer"
-    aria-label="Escribir a Solgases por WhatsApp (se abre en una pestaña nueva)"
+    aria-label="Escríbenos para asesorarte por WhatsApp (se abre en una pestaña nueva)"
   >
     <ng-container [ngTemplateOutlet]="icon" />
-    <span class="whatsapp__tooltip" aria-hidden="true">Escríbenos por WhatsApp</span>
+    <span class="whatsapp__label">Escríbenos para asesorarte</span>
   </a>
 } @else {
   <button
     type="button"
     class="whatsapp whatsapp--pending"
     aria-disabled="true"
-    aria-label="Contactar por WhatsApp"
+    aria-label="Escríbenos para asesorarte por WhatsApp"
     aria-describedby="whatsapp-pendiente"
   >
     <ng-container [ngTemplateOutlet]="icon" />
+    <span class="whatsapp__label">Escríbenos para asesorarte</span>
     <span id="whatsapp-pendiente" class="whatsapp__tooltip">
       Número de WhatsApp pendiente de configurar
     </span>

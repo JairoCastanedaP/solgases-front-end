@@ -61,10 +61,8 @@
   border-top: 1px solid #5a5a5a;
 }
 
-/* El botón flotante de WhatsApp no debe tapar el texto legal en pantallas pequeñas. */
 .copy {
   margin: 0 auto;
-  padding-inline: 70px;
 }
 
 /* Reserva el ancho del año, para que el texto no se mueva cuando aparece. */

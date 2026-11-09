@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { SITE_INFO } from '../../core/site-info';
 import {
   WHATSAPP_CONFIG,
   WHATSAPP_CONFIG_TOKEN,
@@ -30,7 +31,8 @@ describe('WhatsAppButton', () => {
     expect(el.querySelector('a')).toBeNull();
     expect(button.getAttribute('aria-disabled')).toBe('true');
     expect(button.hasAttribute('disabled')).toBe(false); // sigue siendo enfocable
-    expect(button.getAttribute('aria-label')).toBe('Contactar por WhatsApp');
+    expect(button.getAttribute('aria-label')).toBe('Escríbenos para asesorarte por WhatsApp');
+    expect(button.textContent).toContain('Escríbenos para asesorarte');
     const description = el.querySelector(`#${button.getAttribute('aria-describedby')}`);
     expect(description?.textContent?.trim()).toBe('Número de WhatsApp pendiente de configurar');
     expect(el.querySelector('svg')?.getAttribute('aria-hidden')).toBe('true');
@@ -49,7 +51,14 @@ describe('WhatsAppButton', () => {
     );
     expect(link.getAttribute('target')).toBe('_blank');
     expect(link.getAttribute('rel')).toBe('noopener noreferrer');
+    expect(link.getAttribute('aria-label')).toContain('Escríbenos para asesorarte');
     expect(link.getAttribute('aria-label')).toContain('WhatsApp');
+    expect(link.textContent).toContain('Escríbenos para asesorarte');
+  });
+
+  it('el teléfono de llamadas no se usa como WhatsApp', () => {
+    expect(WHATSAPP_CONFIG.phone ?? '').not.toContain(SITE_INFO.phone.replace(/\D/g, ''));
+    expect(buildWhatsAppUrl(WHATSAPP_CONFIG)).toBeNull();
   });
 
   it('no genera enlace si el número no tiene solo dígitos con código de país', () => {

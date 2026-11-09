@@ -91,3 +91,101 @@
     font-size: 1.1em;
   }
 }
+
+/* Móvil: imagen a la izquierda, para que las cuatro tarjetas no alarguen la página. */
+.portfolio__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  margin-block: 0;
+  padding: 0 12px;
+  list-style: none;
+}
+
+.portfolio__card {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 12px;
+  align-items: center;
+  height: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-top: 4px solid #de423a;
+  color: #222;
+  text-decoration: none;
+  transition: box-shadow 0.2s;
+}
+
+.portfolio__card:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
+}
+
+.portfolio__card:hover .portfolio__link {
+  text-decoration: underline;
+}
+
+.portfolio__card:focus-visible {
+  outline: 3px solid #111;
+  outline-offset: 2px;
+}
+
+.portfolio__img {
+  aspect-ratio: 1;
+  object-fit: contain;
+}
+
+.portfolio__body {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.portfolio__title {
+  font-size: 1.05em;
+  line-height: 1.25;
+}
+
+.portfolio__text {
+  font-size: 0.9em;
+  line-height: 1.4;
+}
+
+/* Rojo oscuro: como texto pequeño, llega al contraste de 4,5:1. */
+.portfolio__link {
+  color: #b92d26;
+  font-size: 0.9em;
+  font-weight: bold;
+}
+
+@media screen and (min-width: 600px) {
+  .portfolio__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .portfolio__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    padding: 0;
+  }
+
+  .portfolio__card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 14px;
+  }
+
+  .portfolio__img {
+    aspect-ratio: 4 / 3;
+  }
+
+  /* El enlace queda al pie: todas las tarjetas lo alinean, sea cual sea la descripción. */
+  .portfolio__body {
+    flex: 1;
+  }
+
+  .portfolio__link {
+    margin-top: auto;
+  }
+}

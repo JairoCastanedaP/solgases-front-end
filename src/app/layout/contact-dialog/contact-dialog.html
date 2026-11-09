@@ -20,6 +20,22 @@
         @case ('address') {
           <p>{{ site.address }}</p>
         }
+        @case ('map') {
+          <p>
+            ¿Deseas abrir la ubicación de {{ site.name }} en Google Maps? Dirección:
+            {{ site.address }}.
+          </p>
+          <p>
+            <a
+              class="contact-dialog__confirm"
+              [attr.href]="site.mapsUrl"
+              target="_blank"
+              rel="noopener noreferrer"
+              (click)="close()"
+              >Abrir en Google Maps (pestaña nueva)</a
+            >
+          </p>
+        }
         @case ('phone') {
           <p>{{ site.phone }}</p>
         }
@@ -43,7 +59,7 @@
       }
 
       <button type="button" class="contact-dialog__close" autofocus (click)="close()">
-        Cerrar
+        {{ current === 'map' ? 'Cancelar' : 'Cerrar' }}
       </button>
     </div>
   }

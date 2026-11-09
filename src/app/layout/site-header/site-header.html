@@ -12,12 +12,27 @@
       </div>
     </div>
     <div class="main-header__contactInfo column column--50">
-      <p class="main-header__contactInfo__phone">
-        <span class="icon-phone">{{ site.phone }}</span>
-      </p>
-      <p class="main-header__contactInfo__address">
-        <span class="icon-location">{{ site.address }}</span>
-      </p>
+      <a
+        class="contact-action contact-action--call"
+        [attr.href]="site.phoneHref"
+        [attr.aria-label]="'Llamar: ' + site.phone + ' a ' + site.name"
+      >
+        <span class="icon-phone" aria-hidden="true"></span>
+        Llamar: {{ site.phone }}
+      </a>
+      <button
+        #mapTrigger
+        type="button"
+        class="contact-action contact-action--map"
+        aria-haspopup="dialog"
+        [attr.aria-label]="'Ubicación: ' + site.address + '. Abrir en Google Maps'"
+        (click)="dialog.open('map', mapTrigger)"
+      >
+        <span class="icon-location" aria-hidden="true"></span>
+        {{ site.address }}
+      </button>
     </div>
   </div>
 </header>
+
+<app-contact-dialog #dialog />

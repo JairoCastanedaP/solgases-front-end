@@ -1,13 +1,21 @@
 import { InjectionToken } from '@angular/core';
 
+/** Teléfono fijo confirmado, con el indicativo vigente. No es el número de WhatsApp. */
+const PHONE = '(608) 772 86 66';
+const COLOMBIA_DIALING_CODE = '57';
+const ADDRESS = 'Cra 16 #10 48, Sogamoso';
+
 /**
- * Datos de contacto del negocio tal como aparecían en el sitio estático original.
- * Centralizarlos aquí evita repetirlos en encabezado, pie de página y contacto.
+ * Datos de contacto del negocio. Centralizarlos aquí evita repetirlos en encabezado, pie de página y
+ * contacto: el enlace de llamada y el de Google Maps se derivan del teléfono y de la dirección.
  */
 export const SITE_INFO = {
   name: 'Solgases',
-  phone: '(038) 772 86 66',
-  address: 'Cra 16 #10 48 Sogamoso',
+  phone: PHONE,
+  phoneHref: `tel:+${COLOMBIA_DIALING_CODE}${PHONE.replace(/\D/g, '')}`,
+  address: ADDRESS,
+  /** Busca la dirección: el sitio no tiene coordenadas exactas confirmadas. */
+  mapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`,
   email: 'solgases@gmail.com',
   /** El año lo añade el pie de página en el navegador, para que no quede fijo en el HTML. */
   copyright: 'Todos los derechos reservados',
