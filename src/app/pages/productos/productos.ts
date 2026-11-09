@@ -28,8 +28,9 @@ import {
 } from '../../core/products/product-catalog-search';
 import { IntroSection } from '../../shared/components/intro-section/intro-section';
 import { PageBanner } from '../../shared/components/page-banner/page-banner';
-import { CatalogDirectory } from './catalog-directory/catalog-directory';
-import { CatalogGrid } from './catalog-grid/catalog-grid';
+import { CatalogDirectory } from '../../shared/components/catalog-directory/catalog-directory';
+import { CatalogGrid } from '../../shared/components/catalog-grid/catalog-grid';
+import { PRODUCTS_DIRECTORY } from './productos.data';
 
 /** Espera tras la última tecla antes de escribir en la URL y anunciar el resultado. */
 const SEARCH_DEBOUNCE_MS = 250;
@@ -58,6 +59,7 @@ export class ProductosPage {
   private searchTimer?: ReturnType<typeof setTimeout>;
 
   protected readonly notice = PRODUCT_CATALOG.notice;
+  protected readonly directory = PRODUCTS_DIRECTORY;
   protected readonly categoryOptions = CATEGORY_OPTIONS;
   protected readonly brandOptions = BRAND_OPTIONS;
   protected readonly sortOptions = SORT_OPTIONS;

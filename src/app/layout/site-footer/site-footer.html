@@ -50,6 +50,9 @@
   </div>
 
   <div class="container site-footer__bottom">
-    <p class="copy">{{ site.copyright }}</p>
+    <p class="copy">
+      <span class="copy__year">{{ year() ? year() + ' | ' : '' }}</span
+      >{{ site.copyright }}
+    </p>
   </div>
 </footer>

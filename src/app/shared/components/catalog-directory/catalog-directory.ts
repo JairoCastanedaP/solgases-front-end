@@ -1,65 +1,18 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Params, RouterLink } from '@angular/router';
-import { PRODUCT_CATALOG, toCatalogItems } from '../../../core/products/product-catalog';
-import { BRAND_OPTIONS, CATEGORY_OPTIONS } from '../../../core/products/product-catalog-search';
-import { featuredServiceCards } from '../../../core/site-services/site-service-catalog';
-import { CatalogItem } from '../../../shared/models/catalog-item';
 
-interface DirectoryLink {
+export interface DirectoryLink {
   readonly label: string;
   readonly path: string;
   readonly queryParams?: Params;
 }
 
-interface DirectoryGroup {
+export interface DirectoryGroup {
   readonly title: string;
   readonly links: readonly DirectoryLink[];
 }
 
-/** Selección corta: la lista completa está a un enlace, al final de cada grupo. */
-const FEATURED_LINKS = 8;
-
-/** Sin repetidos: `featured` de los servicios incluye un `id` dos veces a propósito (ver README). */
-function shortList(items: readonly CatalogItem[]): readonly DirectoryLink[] {
-  const unique = new Map(items.map(({ title, link }) => [link!, title]));
-  return [...unique].slice(0, FEATURED_LINKS).map(([path, label]) => ({ label, path }));
-}
-
-/** Solo categorías, marcas, productos y servicios que ya existen en los datos del sitio. */
-const GROUPS: readonly DirectoryGroup[] = [
-  {
-    title: 'Categorías',
-    links: CATEGORY_OPTIONS.map(({ value, label }) => ({
-      label,
-      path: '/productos',
-      queryParams: { categoria: value },
-    })),
-  },
-  {
-    title: 'Marcas y líneas',
-    links: BRAND_OPTIONS.map((brand) => ({
-      label: brand,
-      path: '/productos',
-      queryParams: { marca: brand },
-    })),
-  },
-  {
-    title: 'Productos relevantes',
-    links: [
-      ...shortList(toCatalogItems(PRODUCT_CATALOG.featured)),
-      { label: 'Ver todos los productos', path: '/productos' },
-    ],
-  },
-  {
-    title: 'Servicios',
-    links: [
-      ...shortList(featuredServiceCards()),
-      { label: 'Ver todos los servicios', path: '/servicios' },
-    ],
-  },
-];
-
-/** Sección de enlaces al final de la página Productos. */
+/** Sección de enlaces al final de Productos y Servicios; cada página aporta sus datos reales. */
 @Component({
   selector: 'app-catalog-directory',
   imports: [RouterLink],
@@ -68,7 +21,7 @@ const GROUPS: readonly DirectoryGroup[] = [
       <div class="container">
         <h2 id="encuentra-todo" class="group__title">Encuentra todo en Solgases</h2>
         <div class="directory__grid">
-          @for (group of groups; track group.title) {
+          @for (group of groups(); track group.title) {
             <div class="directory__group">
               <h3 class="directory__title">{{ group.title }}</h3>
               <ul class="directory__list">
@@ -159,5 +112,5 @@ const GROUPS: readonly DirectoryGroup[] = [
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CatalogDirectory {
-  protected readonly groups = GROUPS;
+  readonly groups = input.required<readonly DirectoryGroup[]>();
 }

@@ -132,7 +132,7 @@ Criterios usados:
 | `/nosotros`        | `nosotros.html`              | Nosotros \| Solgases                          | Equipo, resumen de servicios, marcas    |
 | `/productos`       | `productos.html`             | Productos de seguridad industrial \| Solgases | Catálogo: búsqueda y 11 categorías (94) |
 | `/productos/:slug` | Nueva (`products.json`)      | `<Nombre> \| Solgases`                        | Detalle de cada uno de los 94 productos |
-| `/servicios`       | `servicios.html`             | Recarga de extintores y gases \| Solgases     | 18 servicios                            |
+| `/servicios`       | `servicios.html`             | Recarga de extintores y gases \| Solgases     | Catálogo: búsqueda y filtro (18)        |
 | `/servicios/:slug` | Nueva (`site-services.json`) | `<Nombre> \| Solgases`                        | Detalle de cada uno de los 18 servicios |
 | `/bioseguridad`    | `bioseguridad.html`          | Productos de bioseguridad \| Solgases         | 20 productos                            |
 | `/contacto`        | `contacto.html`              | Contacto \| Solgases                          | Horario, mapa y formulario (POST a PHP) |
@@ -158,10 +158,18 @@ Composición visual y datos sin confirmar:
 - "Iniciar sesión" y "Crear cuenta" son botones desactivados, rotulados "Próximamente": no hay
   rutas ni flujo de cuenta.
 - El pie de página solo usa datos de `SITE_INFO` y rutas existentes. El teléfono y la dirección son
-  texto, porque no hay un enlace de llamada o de mapa verificado, y no hay redes sociales: los
-  iconos del menú no tienen destino en el sitio original.
+  texto, porque no hay un enlace de llamada o de mapa verificado. El HTML no lleva el año del
+  copyright: el navegador pone el actual, sin necesidad de un nuevo build.
+- `/servicios` comparte composición, estilos, cuadrícula y vista rápida con `/productos`. Filtra por
+  "Tipo de servicio", el único dato presente en los 18; en la URL: `?q=&tipo=&orden=`.
+- Los iconos del menú abren una ventana con el dato de contacto. **Pendiente:** Facebook e Instagram
+  dicen "pendiente de configurar" porque ninguna cuenta oficial está identificada; al confirmarlas,
+  se añaden en `SOCIAL_PROFILES` (`core/site-info.ts`) y la ventana muestra el enlace.
 - Los atajos a categorías del pie (`CATALOG_SHORTCUTS`) son una copia para no llevar
   `products.json` al paquete inicial; una prueba exige que coincidan con el JSON.
+
+Las pruebas se ejecutan aisladas por archivo (`isolate` en `angular.json`): las de prerenderizado
+sustituyen clases globales del DOM y, sin aislar, otras fallaban según el orden de los archivos.
 
 Las URLs antiguas (`/productos.html`, etc.) redirigen a las nuevas (ver
 [Rutas heredadas](#rutas-heredadas-html)). `galeria.html` estaba vacío (0 bytes) y no tenía

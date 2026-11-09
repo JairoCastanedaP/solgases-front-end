@@ -22,6 +22,7 @@ import { HOME_GALLERY } from './home.data';
     OptimizedImagePipe,
   ],
   templateUrl: './home.html',
+  styleUrl: './home.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomePage {

@@ -67,6 +67,27 @@ describe('HomePage: collage de asesoría', () => {
     expect(
       collage.compareDocumentPosition(products) & Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy();
-    expect(collage.querySelector('a[href="/contacto"]')).not.toBeNull();
+  });
+
+  it('no lleva botón de contacto encima, y el del texto de Sogamoso sigue', async () => {
+    const page = await home();
+
+    expect(page.querySelector('app-image-gallery a[href="/contacto"]')).toBeNull();
+    expect(page.querySelectorAll('a[href="/contacto"]').length).toBe(1);
+    expect(page.querySelector('.home-about a[href="/contacto"]')).not.toBeNull();
+  });
+
+  it('el texto de Sogamoso conserva su contenido, sin cifras ni premios nuevos', async () => {
+    const about = (await home()).querySelector('.home-about')!;
+    const text = about.textContent!.replace(/\s+/g, ' ');
+
+    expect(about.querySelector('h3')!.textContent!.replace(/\s+/g, ' ').trim()).toBe(
+      'Contamos con más de dos décadas de experiencia en seguridad Industrial en Sogamoso',
+    );
+    for (const goal of ['prevención de accidentes', 'seguridad en el trabajo', 'cumplimiento']) {
+      expect(text).toContain(goal);
+    }
+    expect(text.match(/\d+/g)).toBeNull();
+    expect(about.querySelector('img')!.getAttribute('alt')).toContain('Sogamoso');
   });
 });

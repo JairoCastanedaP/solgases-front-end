@@ -1,0 +1,134 @@
+<app-page-banner class="banner--catalog" image="img/extintores.jpg" text="Nuestros Servicios" />
+
+<main class="main">
+  <!-- Misma composición que Productos: el orden del DOM es el visual en todos los tamaños. -->
+  <div class="container catalog">
+    <section class="catalog-tools" aria-labelledby="servicios-titulo">
+      <h2 id="servicios-titulo" class="group__title">Encuentra tu servicio</h2>
+
+      <form
+        class="catalog-tools__form"
+        role="search"
+        aria-labelledby="servicios-titulo"
+        autocomplete="off"
+        (submit)="$event.preventDefault(); update({})"
+      >
+        <div class="catalog-tools__field">
+          <label for="servicios-busqueda">Buscar</label>
+          <input
+            #searchInput
+            id="servicios-busqueda"
+            name="q"
+            type="search"
+            placeholder="Ej.: extintor, oxígeno, regulador"
+            [attr.maxlength]="searchMaxLength"
+            [value]="searchText()"
+            (input)="onSearchInput(searchInput.value)"
+          />
+        </div>
+
+        <div class="catalog-tools__field">
+          <label for="servicios-orden">Ordenar</label>
+          <select
+            #sortSelect
+            id="servicios-orden"
+            name="orden"
+            (change)="onSortChange(sortSelect.value)"
+          >
+            @for (option of sortOptions; track option.value) {
+              <option [value]="option.value" [selected]="option.value === query().sort">
+                {{ option.label }}
+              </option>
+            }
+          </select>
+        </div>
+      </form>
+    </section>
+
+    <aside class="catalog-filters" aria-label="Filtros de servicios">
+      <button
+        #filtersToggle
+        type="button"
+        class="catalog-filters__toggle"
+        aria-controls="servicios-filtros"
+        [attr.aria-expanded]="filtersOpen()"
+        (click)="toggleFilters()"
+      >
+        <span>Tipo de servicio</span>
+        @if (query().type) {
+          <span class="catalog-filters__badge">1 activo</span>
+        }
+      </button>
+
+      <div
+        id="servicios-filtros"
+        class="catalog-filters__panel"
+        [class.catalog-filters__panel--open]="filtersOpen()"
+      >
+        <fieldset class="catalog-filters__group">
+          <legend class="catalog-filters__legend">Tipo de servicio</legend>
+          <div class="catalog-filters__options">
+            <label class="catalog-filters__option">
+              <input
+                type="radio"
+                name="tipo"
+                value=""
+                [checked]="!query().type"
+                (change)="update({ type: '' })"
+              />
+              <span>Todos los tipos</span>
+            </label>
+            @for (type of types; track type) {
+              <label class="catalog-filters__option">
+                <input
+                  type="radio"
+                  name="tipo"
+                  [value]="type"
+                  [checked]="type === query().type"
+                  (change)="update({ type })"
+                />
+                <span>{{ type }}</span>
+              </label>
+            }
+          </div>
+        </fieldset>
+
+        <button type="button" class="catalog-filters__close" (click)="closeFilters()">
+          Ver resultados ({{ results().total }})
+        </button>
+      </div>
+    </aside>
+
+    <section class="catalog-main" aria-label="Resultados de servicios">
+      <div class="catalog-tools__summary">
+        <p class="catalog-tools__status" role="status" aria-atomic="true">{{ status() }}</p>
+        <button
+          type="button"
+          class="catalog-tools__button"
+          [disabled]="!canClear()"
+          (click)="clear()"
+        >
+          Limpiar búsqueda y filtros
+        </button>
+      </div>
+
+      @if (results().total === 0) {
+        <div class="catalog-empty">
+          <p>No encontramos servicios con esos criterios. Prueba otra palabra o quita el filtro.</p>
+          <button type="button" class="catalog-tools__button" (click)="clear()">
+            Limpiar filtros
+          </button>
+        </div>
+      } @else {
+        <div class="catalog-results">
+          <app-catalog-grid [heading]="results().heading" [items]="results().items" />
+        </div>
+      }
+    </section>
+  </div>
+
+  <app-intro-section [title]="summary.title" [paragraphs]="[summary.text]" />
+  <app-contact-button />
+
+  <app-catalog-directory [groups]="directory" />
+</main>

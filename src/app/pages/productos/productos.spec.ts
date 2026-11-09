@@ -669,7 +669,8 @@ describe('ProductosPage: búsqueda, filtros y orden', () => {
         expect(cards(page).length, path).toBe(count);
         expect(cards(page), path).toEqual(before[index]);
         expect(page.querySelector('.today-special__note'), path).toBeNull();
-        expect(page.querySelector('.catalog-tools'), path).toBeNull();
+        // Servicios tiene sus propios controles: lo que no puede aparecer son los de Productos.
+        expect(page.querySelector('#catalogo-busqueda'), path).toBeNull();
       }
     });
   });

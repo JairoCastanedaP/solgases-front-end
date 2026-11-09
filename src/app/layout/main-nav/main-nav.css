@@ -1,0 +1,25 @@
+.social-icon__link {
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  cursor: pointer;
+}
+
+.social-icon__link:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Misma forma que los iconos de la fuente (`.social-icon [class*='icon-']` en base.css). */
+.icon-brand svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* En pantallas muy estrechas caben el menú y los cinco iconos sin desbordar. */
+@media screen and (max-width: 359px) {
+  .social-icon .social-icon__link + .social-icon__link {
+    margin-left: -4px;
+  }
+}

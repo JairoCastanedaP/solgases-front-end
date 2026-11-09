@@ -48,7 +48,8 @@ app-contacto-page {
 }
 
 /* El botón "Contáctanos" está centrado; en el detalle se alinea con el resto de la columna. */
-.product-detail__contact .btn {
+.product-detail__contact .btn,
+.home-about__contact .btn {
   margin: 10px 0;
 }
 

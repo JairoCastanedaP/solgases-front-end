@@ -35,27 +35,23 @@
 
   <app-intro-section [title]="summary.title" [paragraphs]="[summary.text]" />
 
-  <!--
-    En el original estos logos usaban clases gallery__img sin cargar sus estilos ni el modal,
-    por eso se muestran como imágenes simples (sin galería ni modal).
-  -->
-  <div class="group gallery">
-    <h2 class="group__title">Manejamos las mejores marcas</h2>
-    <div class="container container--flex">
-      @for (column of brandColumns; track $index) {
-        <div class="column--50-25">
-          @for (logo of column; track logo.image) {
-            @let img = logo.image | optimizedImage;
-            <img
-              [ngSrc]="img.src"
-              [width]="img.width"
-              [height]="img.height"
-              class="gallery__img gallery__img--big"
-              [alt]="logo.name"
-            />
-          }
-        </div>
+  <section class="group brands" aria-labelledby="marcas-titulo">
+    <h2 id="marcas-titulo" class="group__title">Manejamos las mejores marcas</h2>
+    <ul class="container brands__grid">
+      @for (logo of brands; track logo.image) {
+        @let img = logo.image | optimizedImage;
+        <li class="brands__item">
+          <img
+            [ngSrc]="img.src"
+            [width]="img.width"
+            [height]="img.height"
+            class="brands__logo"
+            [alt]="'Logo de ' + logo.name"
+          />
+          <!-- El nombre ya se anuncia en el texto alternativo. -->
+          <span class="brands__name" aria-hidden="true">{{ logo.name }}</span>
+        </li>
       }
-    </div>
-  </div>
+    </ul>
+  </section>
 </main>

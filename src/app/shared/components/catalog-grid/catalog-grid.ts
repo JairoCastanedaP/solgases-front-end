@@ -8,15 +8,15 @@ import {
   signal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CatalogCard } from '../../../core/products/product-catalog-search';
-import { OptimizedImagePipe } from '../../../shared/images/optimized-image';
+import { OptimizedImagePipe } from '../../images/optimized-image';
+import { CatalogCard } from '../../models/catalog-card';
 
 /** Espera con el puntero encima antes de abrir la vista rápida, para no abrirla al cruzar la lista. */
 const QUICK_VIEW_DELAY_MS = 400;
 
 /**
- * Cuadrícula de la página Productos, con marca, tipo, estrellas y vista rápida. Bioseguridad y
- * Servicios siguen usando `ProductGrid`, sin estos datos.
+ * Cuadrícula de Productos y Servicios, con tipo y vista rápida; marca y estrellas aparecen solo si
+ * la tarjeta las trae. Bioseguridad sigue usando `ProductGrid`, sin estos datos.
  *
  * La vista rápida es informativa: no atrapa el foco, se cierra al salir y con Escape, y solo existe
  * en el DOM mientras está abierta, así que no añade texto de demostración al HTML estático.

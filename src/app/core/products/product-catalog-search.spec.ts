@@ -1,8 +1,8 @@
+import { CatalogCard } from '../../shared/models/catalog-card';
 import { PRODUCT_CATALOG } from './product-catalog';
 import {
   BRAND_OPTIONS,
   CATALOG_TOTAL,
-  CatalogCard,
   CATEGORY_OPTIONS,
   CatalogQuery,
   EMPTY_CATALOG_QUERY,
@@ -227,7 +227,7 @@ describe('Búsqueda del catálogo de productos', () => {
       const boots = card('botas-croydon-argyll-amarillo');
 
       expect(boots.brand).toBe('Croydon');
-      expect(boots.productType).toBe('Bota de caucho');
+      expect(boots.kind).toBe('Bota de caucho');
       expect(boots.name).toBe('Botas Croydon Argyll Amarillo');
     });
 
@@ -245,8 +245,8 @@ describe('Búsqueda del catálogo de productos', () => {
 
     it('cada tarjeta tiene tipo y, sin reseñas reales, dice "Sin calificaciones"', () => {
       for (const c of cards({})) {
-        expect(c.productType, c.slug).toBeTruthy();
-        expect(c.rating.label, c.slug).toBe('Sin calificaciones');
+        expect(c.kind, c.slug).toBeTruthy();
+        expect(c.rating?.label, c.slug).toBe('Sin calificaciones');
         expect(c.ariaLabel, c.slug).toContain('Sin calificaciones');
       }
     });

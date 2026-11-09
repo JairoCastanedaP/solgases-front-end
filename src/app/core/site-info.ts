@@ -1,3 +1,5 @@
+import { InjectionToken } from '@angular/core';
+
 /**
  * Datos de contacto del negocio tal como aparecían en el sitio estático original.
  * Centralizarlos aquí evita repetirlos en encabezado, pie de página y contacto.
@@ -7,8 +9,26 @@ export const SITE_INFO = {
   phone: '(038) 772 86 66',
   address: 'Cra 16 #10 48 Sogamoso',
   email: 'solgases@gmail.com',
-  copyright: '2020 | Todos los derechos reservados',
+  /** El año lo añade el pie de página en el navegador, para que no quede fijo en el HTML. */
+  copyright: 'Todos los derechos reservados',
 } as const;
+
+export interface SocialProfiles {
+  readonly facebook: string | null;
+  readonly instagram: string | null;
+}
+
+/**
+ * URL de los perfiles oficiales. PENDIENTE: `null` porque el repositorio no identifica ninguna
+ * cuenta; mientras tanto, la ventana del encabezado lo indica. No poner URLs sin confirmar.
+ */
+export const SOCIAL_PROFILES: SocialProfiles = { facebook: null, instagram: null };
+
+/** Permite sustituir los perfiles en pruebas. */
+export const SOCIAL_PROFILES_TOKEN = new InjectionToken<SocialProfiles>('SOCIAL_PROFILES', {
+  providedIn: 'root',
+  factory: () => SOCIAL_PROFILES,
+});
 
 /** Resumen de servicios repetido en Nosotros, Servicios y Bioseguridad (texto original). */
 export const SERVICES_SUMMARY = {

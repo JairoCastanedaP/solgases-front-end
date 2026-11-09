@@ -166,6 +166,13 @@
   margin: 0 0 4px;
 }
 
+.catalog-card__popup-img {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 6px;
+  object-fit: contain;
+}
+
 .catalog-card__popup .catalog-card__popup-name {
   font-weight: bold;
 }

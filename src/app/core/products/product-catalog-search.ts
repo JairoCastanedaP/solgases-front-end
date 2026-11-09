@@ -1,4 +1,6 @@
+import { CatalogCard } from '../../shared/models/catalog-card';
 import { CatalogItem } from '../../shared/models/catalog-item';
+import { SEARCH_MAX_LENGTH, SPANISH_COLLATOR, normalizeText, searchWords } from '../catalog-text';
 import { interleavedOrder } from './interleaved-order';
 import {
   PRODUCT_CATALOG,
@@ -7,7 +9,7 @@ import {
   formatPrice,
   toCatalogItems,
 } from './product-catalog';
-import { RatingView, productRatingView } from './product-rating';
+import { productRatingView } from './product-rating';
 import { Product } from './product.model';
 
 /** Criterios del catálogo. Viven en la URL: `?q=&categoria=&marca=&orden=`. */
@@ -21,24 +23,6 @@ export interface CatalogQuery {
   readonly sort: CatalogSort;
 }
 
-/** Tarjeta del catálogo: solo lleva datos que existen en `products.json`. */
-export interface CatalogCard extends CatalogItem {
-  readonly link: string;
-  /** Identifica la tarjeta en la página: es el `slug` del producto. */
-  readonly slug: string;
-  /** Nombre completo, aunque la tarjeta muestre un texto más corto o lo trunque. */
-  readonly name: string;
-  /** Se omite si el producto no tiene marca confirmada. */
-  readonly brand?: string;
-  readonly productType: string;
-  readonly categoryName: string;
-  readonly summary: string;
-  readonly rating: RatingView;
-  /** Precio rotulado como ficticio: solo al ordenar por precio, nunca en el HTML estático. */
-  readonly note?: string;
-  readonly ariaLabel: string;
-}
-
 export interface CatalogResults {
   readonly total: number;
   readonly heading: string;
@@ -49,7 +33,7 @@ export interface CatalogResults {
 
 export const EMPTY_CATALOG_QUERY: CatalogQuery = { q: '', category: '', brand: '', sort: '' };
 
-export const CATALOG_SEARCH_MAX_LENGTH = 100;
+export const CATALOG_SEARCH_MAX_LENGTH = SEARCH_MAX_LENGTH;
 
 export const SORT_OPTIONS: readonly { readonly value: CatalogSort; readonly label: string }[] = [
   { value: '', label: 'Orden predeterminado' },
@@ -66,12 +50,7 @@ const TYPE_LABEL = 'Tipo';
 /** Fija el orden mezclado de "Todas las categorías". Cambiarla da otro orden, igual de estable. */
 const MIXED_ORDER_SEED = 94;
 
-const collator = new Intl.Collator('es', { sensitivity: 'base', numeric: true });
-
-/** Sin mayúsculas ni tildes: "NITRILO" y "dieléctricas" encuentran "Nitrilo" y "Dielectricas". */
-function normalize(text: string): string {
-  return text.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
-}
+const collator = SPANISH_COLLATOR;
 
 function specification(product: Product, name: string): string | undefined {
   return product.specifications.find(({ label }) => label === name)?.value;
@@ -96,7 +75,7 @@ function listingTexts(): ReadonlyMap<string, readonly string[]> {
 
 /** Sin `recommendations`: son frases genéricas que harían coincidir casi todo el catálogo. */
 function searchableText(product: Product, listing: readonly string[]): string {
-  return normalize(
+  return normalizeText(
     [
       product.name,
       ...listing,
@@ -122,8 +101,8 @@ function cardAriaLabel(item: CatalogItem, card: Omit<CatalogCard, 'ariaLabel'>):
   return [
     `Ver detalle de ${sameText ? card.name : `${item.title} (${card.name})`}`,
     card.brand && `Marca: ${card.brand}`,
-    `Tipo: ${card.productType}`,
-    card.rating.label,
+    `Tipo: ${card.kind}`,
+    card.rating?.label,
     card.note,
   ]
     .filter(Boolean)
@@ -132,18 +111,25 @@ function cardAriaLabel(item: CatalogItem, card: Omit<CatalogCard, 'ariaLabel'>):
 
 function toCatalogCard(item: CatalogItem, product: Product, note?: string): CatalogCard {
   const categoryName = findCategory(product.categoryId)?.name ?? '';
+  const brand = productBrand(product);
   const card = {
     ...item,
     link: item.link!,
     slug: product.slug,
     name: product.name,
-    brand: productBrand(product),
+    brand,
     // Todos los productos tienen "Tipo"; la categoría cubre uno nuevo que aún no lo tenga.
-    productType: specification(product, TYPE_LABEL) ?? categoryName,
-    categoryName,
+    kind: specification(product, TYPE_LABEL) ?? categoryName,
     summary: product.shortDescription,
     rating: productRatingView(product.id),
     note,
+    quickView: {
+      facts: [
+        { label: 'Categoría', value: categoryName },
+        ...(brand ? [{ label: 'Marca', value: brand }] : []),
+      ],
+      notice: 'Descripción de demostración: no es una ficha técnica.',
+    },
   };
   return { ...card, ariaLabel: cardAriaLabel(item, card) };
 }
@@ -263,7 +249,7 @@ function comparator(sort: CatalogSort) {
 /** Busca palabra por palabra, en cualquier orden: "croydon negra" encuentra "Machita Negra". */
 export function searchCatalog(query: CatalogQuery): CatalogResults {
   const { q, category, brand, sort } = query;
-  const words = normalize(q).split(/\s+/).filter(Boolean);
+  const words = searchWords(q);
   const matches = (category ? ENTRIES.filter((e) => e.categoryId === category) : MIXED_ENTRIES)
     .filter((e) => !brand || productBrand(e.product) === brand)
     .filter((e) => words.every((word) => e.text.includes(word)));

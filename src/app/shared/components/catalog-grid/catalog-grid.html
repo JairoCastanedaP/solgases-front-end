@@ -30,21 +30,23 @@
           />
           <div
             class="catalog-card__meta"
-            [attr.title]="(item.brand ? item.brand + ' | ' : '') + item.productType"
+            [attr.title]="(item.brand ? item.brand + ' | ' : '') + item.kind"
           >
             <span class="catalog-card__meta-text">
               @if (item.brand) {
                 <span class="catalog-card__brand">{{ item.brand }}</span>
                 <span aria-hidden="true"> | </span>
               }
-              <span>{{ item.productType }}</span>
+              <span>{{ item.kind }}</span>
             </span>
           </div>
           <div class="today-special__title" [attr.title]="item.name">{{ item.title }}</div>
-          <div class="catalog-card__rating">
-            <span class="catalog-card__stars" aria-hidden="true">{{ item.rating.stars }}</span>
-            <span>{{ item.rating.label }}</span>
-          </div>
+          @if (item.rating; as rating) {
+            <div class="catalog-card__rating">
+              <span class="catalog-card__stars" aria-hidden="true">{{ rating.stars }}</span>
+              <span>{{ rating.label }}</span>
+            </div>
+          }
           @if (item.note) {
             <div class="today-special__note">{{ item.note }}</div>
           }
@@ -63,15 +65,24 @@
 
         @if (open) {
           <div class="catalog-card__popup" role="tooltip" [id]="'vista-rapida-' + item.slug">
+            @if (item.quickView.image) {
+              <!-- Decorativa: el texto alternativo ya está en la imagen de la tarjeta. -->
+              <img
+                [ngSrc]="img.src"
+                [width]="img.width"
+                [height]="img.height"
+                alt=""
+                class="catalog-card__popup-img"
+              />
+            }
             <p class="catalog-card__popup-name">{{ item.name }}</p>
-            <p class="catalog-card__popup-meta">Categoría: {{ item.categoryName }}</p>
-            @if (item.brand) {
-              <p class="catalog-card__popup-meta">Marca: {{ item.brand }}</p>
+            @for (fact of item.quickView.facts; track fact.label) {
+              <p class="catalog-card__popup-meta">{{ fact.label }}: {{ fact.value }}</p>
             }
             <p class="catalog-card__popup-summary">{{ item.summary }}</p>
-            <p class="catalog-card__popup-demo">
-              Descripción de demostración: no es una ficha técnica.
-            </p>
+            @if (item.quickView.notice; as notice) {
+              <p class="catalog-card__popup-demo">{{ notice }}</p>
+            }
           </div>
         }
       </div>

@@ -105,6 +105,21 @@ describe('App', () => {
       expect(el.textContent).toContain(SITE_INFO.address);
       expect(el.textContent).toContain(SITE_INFO.copyright);
     });
+
+    it('el año del copyright es el actual, sin build de por medio', async () => {
+      vi.useFakeTimers({ toFake: ['Date'] });
+      try {
+        for (const year of [2031, 2032]) {
+          vi.setSystemTime(new Date(year, 5, 15));
+          const el = await footer();
+          expect(el.querySelector('.copy')!.textContent!.replace(/\s+/g, ' ').trim()).toBe(
+            `${year} | Todos los derechos reservados`,
+          );
+        }
+      } finally {
+        vi.useRealTimers();
+      }
+    });
   });
 
   const pages: [path: string, banner: string, title: string][] = [
