@@ -28,6 +28,23 @@ export function optimizedImage(original: string): OptimizedImage {
   return image;
 }
 
+/**
+ * Imagen de un solo tamaño para una tarjeta. Una foto registrada como banner tiene `{w}` en su ruta,
+ * que solo resuelve `bannerImageLoader`: aquí se elige la variante para que el archivo exista.
+ */
+export function cardImage(original: string, preferredWidth = 640): OptimizedImage {
+  const image = optimizedImage(original);
+  if (!image.widths) {
+    return image;
+  }
+  const width = image.widths.includes(preferredWidth) ? preferredWidth : image.widths[0];
+  return {
+    src: image.src.replace('{w}', String(width)),
+    width,
+    height: Math.round((image.height * width) / image.width),
+  };
+}
+
 /** `ngSrcset` para un banner, p. ej. "640w, 1280w, 1920w". */
 export function bannerSrcset(image: OptimizedImage): string {
   return (image.widths ?? [image.width]).map((w) => `${w}w`).join(', ');

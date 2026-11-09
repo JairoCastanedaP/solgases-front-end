@@ -1,4 +1,3 @@
-import { TEAM_HIGHLIGHTS } from '../../pages/nosotros/nosotros.data';
 import { optimizedImage } from '../../shared/images/optimized-image';
 import {
   SITE_SERVICE_CATALOG,
@@ -68,8 +67,9 @@ describe('Catálogo de servicios (site-services.json)', () => {
     }
   });
 
-  it('las notas son textuales: repiten la condición de domicilio publicada en Nosotros', () => {
-    const delivery = TEAM_HIGHLIGHTS.find((h) => h.title === 'Domicilio')!.text;
+  it('las notas conservan la condición de domicilio del sitio original', () => {
+    const delivery =
+      'Para el transporte de tanques o gran cantidad de mercancía ofrecemos el domicilio sin ningún costo adicional siempre y cuando sea dentro del municipio';
     const withNotes = services.filter((s) => s.notes);
 
     expect(withNotes.map((s) => s.slug)).toEqual([

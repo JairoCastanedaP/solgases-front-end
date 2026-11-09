@@ -27,6 +27,7 @@ describe('App', () => {
     expect(el.querySelector('.main-footer')?.textContent).toContain('solgases@gmail.com');
     expect(el.querySelector('.main-header')?.textContent).toContain('(608) 772 86 66');
     expect(el.querySelectorAll('app-whatsapp-button').length).toBe(1);
+    expect(el.querySelectorAll('app-floating-contact').length).toBe(1);
   });
 
   describe('accesos de cuenta', () => {
@@ -104,6 +105,17 @@ describe('App', () => {
       expect(el.textContent).toContain(SITE_INFO.phone);
       expect(el.textContent).toContain(SITE_INFO.address);
       expect(el.textContent).toContain(SITE_INFO.copyright);
+    });
+
+    it('muestra Nequi y Bre-B como medios de pago, en texto y sin enlaces', async () => {
+      const section = (await footer()).querySelector('[aria-labelledby="pie-pagos"]')!;
+
+      expect(section.querySelector('h2')?.textContent).toBe('Medios de pago');
+      expect(Array.from(section.querySelectorAll('li')).map((li) => li.textContent)).toEqual([
+        'Nequi',
+        'Bre-B',
+      ]);
+      expect(section.querySelector('a, img')).toBeNull();
     });
 
     it('el año del copyright es el actual, sin build de por medio', async () => {

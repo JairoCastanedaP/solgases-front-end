@@ -4,8 +4,8 @@ import { SERVICES_SUMMARY } from '../../core/site-info';
 import { ContactButton } from '../../shared/components/contact-button/contact-button';
 import { IntroSection } from '../../shared/components/intro-section/intro-section';
 import { PageBanner } from '../../shared/components/page-banner/page-banner';
-import { OptimizedImagePipe } from '../../shared/images/optimized-image';
-import { BRAND_LOGO_COLUMNS, TEAM_HIGHLIGHTS } from './nosotros.data';
+import { OptimizedImagePipe, cardImage } from '../../shared/images/optimized-image';
+import { BRAND_LOGO_COLUMNS, TEAM_HIGHLIGHTS, WHY_US } from './nosotros.data';
 
 @Component({
   selector: 'app-nosotros-page',
@@ -16,6 +16,10 @@ import { BRAND_LOGO_COLUMNS, TEAM_HIGHLIGHTS } from './nosotros.data';
 })
 export class NosotrosPage {
   protected readonly summary = SERVICES_SUMMARY;
-  protected readonly highlights = TEAM_HIGHLIGHTS;
+  protected readonly highlights = TEAM_HIGHLIGHTS.map((highlight) => ({
+    ...highlight,
+    img: cardImage(highlight.image),
+  }));
+  protected readonly whyUs = WHY_US;
   protected readonly brands = BRAND_LOGO_COLUMNS.flat();
 }

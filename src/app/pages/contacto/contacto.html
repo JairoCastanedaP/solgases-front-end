@@ -1,6 +1,54 @@
 <app-page-banner image="img/guantes.jpg" text="Dejanos un mensaje" />
 
 <main class="main">
+  <section class="group contact-hero" aria-labelledby="contacto-listos">
+    <div class="container">
+      <h2 id="contacto-listos" class="contact-hero__title">¡Estamos listos para asesorarte!</h2>
+      <p class="contact-hero__text">
+        En SOLGASES, tu seguridad y las necesidades de tu empresa son nuestra prioridad. Cuéntanos
+        qué productos o servicios estás buscando y te orientaremos sobre las opciones disponibles.
+        Completa el formulario o contáctanos por nuestros canales de atención.
+      </p>
+      <ul class="contact-channels">
+        <li>
+          @if (whatsAppUrl; as url) {
+            <a
+              class="contact-channel"
+              [attr.href]="url"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp: escríbenos (se abre en una pestaña nueva)"
+            >
+              <app-whatsapp-icon class="contact-channel__icon" />
+              <span class="contact-channel__label">WhatsApp</span>
+              <span class="contact-channel__value">Escríbenos</span>
+            </a>
+          } @else {
+            <div class="contact-channel contact-channel--pending">
+              <app-whatsapp-icon class="contact-channel__icon" />
+              <span class="contact-channel__label">WhatsApp</span>
+              <span class="contact-channel__value">Número pendiente de configurar</span>
+            </div>
+          }
+        </li>
+        <li>
+          <a class="contact-channel" [attr.href]="'mailto:' + site.email">
+            <span class="contact-channel__icon icon-mail" aria-hidden="true"></span>
+            <span class="contact-channel__label">Correo electrónico</span>
+            <span class="contact-channel__value">{{ site.email }}</span>
+          </a>
+        </li>
+        <li>
+          <a class="contact-channel" [attr.href]="site.phoneHref">
+            <span class="contact-channel__icon icon-phone" aria-hidden="true"></span>
+            <span class="contact-channel__label">Línea telefónica</span>
+            <span class="contact-channel__value">{{ site.phone }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
   <section class="group contact">
     <h2 class="group__title">Contáctanos</h2>
     <div class="container container--flex">

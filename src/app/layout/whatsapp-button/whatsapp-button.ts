@@ -1,6 +1,6 @@
-import { NgTemplateOutlet } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { WHATSAPP_CONFIG_TOKEN, buildWhatsAppUrl } from '../../core/whatsapp.config';
+import { WhatsAppIcon } from '../../shared/components/whatsapp-icon/whatsapp-icon';
 
 /**
  * Botón flotante de asesoría por WhatsApp, fijo a media altura del borde derecho en todas las páginas.
@@ -10,7 +10,7 @@ import { WHATSAPP_CONFIG_TOKEN, buildWhatsAppUrl } from '../../core/whatsapp.con
  */
 @Component({
   selector: 'app-whatsapp-button',
-  imports: [NgTemplateOutlet],
+  imports: [WhatsAppIcon],
   templateUrl: './whatsapp-button.html',
   styleUrl: './whatsapp-button.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

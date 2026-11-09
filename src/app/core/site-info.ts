@@ -17,6 +17,8 @@ export const SITE_INFO = {
   /** Busca la dirección: el sitio no tiene coordenadas exactas confirmadas. */
   mapsUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`,
   email: 'solgases@gmail.com',
+  /** Medios de pago confirmados. No hay logos aprobados en el repositorio: se muestran como texto. */
+  paymentMethods: ['Nequi', 'Bre-B'],
   /** El año lo añade el pie de página en el navegador, para que no quede fijo en el HTML. */
   copyright: 'Todos los derechos reservados',
 } as const;

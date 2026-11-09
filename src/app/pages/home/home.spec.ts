@@ -159,9 +159,14 @@ describe('HomePage: collage de asesoría', () => {
     expect(about.querySelector('h3')!.textContent!.replace(/\s+/g, ' ').trim()).toBe(
       'Contamos con más de dos décadas de experiencia en seguridad Industrial en Sogamoso',
     );
-    for (const goal of ['prevención de accidentes', 'seguridad en el trabajo', 'cumplimiento']) {
-      expect(text).toContain(goal);
-    }
+    expect(Array.from(about.querySelectorAll('li')).map((li) => li.textContent)).toEqual([
+      'Prevención de accidentes.',
+      'Seguridad en el trabajo.',
+      'Cumplimiento de las normas.',
+      'Asesoría según tus necesidades.',
+      'Elementos de protección personal, recarga de extintores y llenado de gases.',
+    ]);
+    expect(text).not.toMatch(/garant|certific|gratis|cobertura|horas|calificaci/i);
     expect(text.match(/\d+/g)).toBeNull();
     expect(about.querySelector('img')!.getAttribute('alt')).toContain('Sogamoso');
   });

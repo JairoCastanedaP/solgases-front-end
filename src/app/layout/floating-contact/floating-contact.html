@@ -1,0 +1,34 @@
+<a
+  class="float-call"
+  [attr.href]="site.phoneHref"
+  [attr.aria-label]="'Llamar a ' + site.name + ': ' + site.phone"
+>
+  <span class="icon-phone" aria-hidden="true"></span>
+</a>
+
+@if (whatsAppUrl; as url) {
+  <a
+    class="float-wa"
+    [attr.href]="url"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Escríbenos por WhatsApp (se abre en una pestaña nueva)"
+  >
+    <span class="float-wa__label">Escríbenos por WhatsApp</span>
+    <span class="float-wa__circle"><app-whatsapp-icon class="float-wa__icon" /></span>
+  </a>
+} @else {
+  <button
+    type="button"
+    class="float-wa float-wa--pending"
+    aria-disabled="true"
+    aria-label="Escríbenos por WhatsApp"
+    aria-describedby="whatsapp-flotante-pendiente"
+  >
+    <span class="float-wa__label">Escríbenos por WhatsApp</span>
+    <span class="float-wa__circle"><app-whatsapp-icon class="float-wa__icon" /></span>
+    <span id="whatsapp-flotante-pendiente" class="float-wa__tooltip">
+      Número de WhatsApp pendiente de configurar
+    </span>
+  </button>
+}

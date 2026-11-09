@@ -160,6 +160,12 @@ Composición visual y datos sin confirmar:
 - El teléfono y la dirección viven solo en `SITE_INFO` (`core/site-info.ts`); de ahí salen el botón
   "Llamar" (`tel:+576087728666`) y el de ubicación, que pregunta antes de abrir Google Maps buscando
   la dirección, sin coordenadas. El teléfono de llamadas no es el número de WhatsApp.
+- Los botones flotantes son la pestaña amarilla (`app-whatsapp-button`) y la pila de la esquina
+  (`app-floating-contact`: llamada y WhatsApp verde). En móvil y tablet el texto del verde es solo su
+  nombre accesible, para no tapar contenido.
+- **Por confirmar:** Nosotros ya no promete domicilio sin costo, pero las notas de los 6 servicios
+  de llenado y alquiler en `site-services.json` conservan el texto original.
+- Los medios de pago (`SITE_INFO.paymentMethods`) se muestran como texto: no hay logos aprobados.
 - El pie de página solo usa datos de `SITE_INFO` y rutas existentes. El HTML no lleva el año del
   copyright: el navegador pone el actual, sin necesidad de un nuevo build.
 - `/servicios` comparte composición, estilos, cuadrícula y vista rápida con `/productos`. Filtra por
@@ -367,7 +373,7 @@ generan a partir del JSON.
 - **`description`:** el resumen más, cuando existe, la frase correspondiente del resumen de servicios
   del sitio (`SERVICES_SUMMARY`). Argón, mezcla y alquiler de cilindros no aparecen en ese texto, así
   que su descripción se limita al resumen.
-- **`notes`:** la condición de domicilio de Nosotros, en los servicios de llenado y alquiler. Una
+- **`notes`:** la condición de domicilio del sitio original, en los servicios de llenado y alquiler. Una
   prueba verifica que siga siendo idéntica al texto de Nosotros.
 
 ### Diferencias con el sitio anterior
@@ -674,8 +680,8 @@ repositorio.
 - **Datos reales del catálogo.** Precios, unidades, textos y fichas son ficticios. Ver
   [Catálogo de productos](#catálogo-de-productos).
 - **Información de los servicios.** El sitio no documenta precios, tiempos, cobertura, requisitos ni
-  condiciones de cada servicio, salvo el domicilio de Nosotros, un texto del sitio original que
-  conviene confirmar. Las descripciones son breves a propósito. Cuando el negocio confirme más
+  condiciones de cada servicio, salvo el domicilio en las notas de llenado y alquiler, un texto del
+  sitio original que conviene confirmar. Las descripciones son breves a propósito. Cuando el negocio confirme más
   información, se puede añadir en `site-services.json`.
 - **Fotos por revisar:** Maleta Alfombra muestra un logotipo de Renault; Guante Kodiak lleva impresa
   otra marca en el puño; Eslingas y Manómetro son fotos de contexto, no del producto aislado.
