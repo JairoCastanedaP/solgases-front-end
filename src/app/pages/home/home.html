@@ -27,17 +27,42 @@
           Contamos con <span class="home-about__accent">más de dos décadas</span> de experiencia en
           seguridad Industrial en Sogamoso
         </h3>
-        <p class="home-about__lead">
-          Nuestro objetivo es brindarle a nuestros clientes las mejores opciones para:
-        </p>
+        <p class="home-about__lead">Nuestro objetivo es brindarte las mejores opciones en:</p>
         <ul class="home-about__goals">
-          <li>la prevención de accidentes,</li>
-          <li>la seguridad en el trabajo y</li>
-          <li>el cumplimiento de las normas.</li>
+          <li>Prevención de accidentes.</li>
+          <li>Seguridad en el trabajo.</li>
+          <li>Cumplimiento de las normas.</li>
+          <li>Asesoría según tus necesidades.</li>
+          <li>Elementos de protección personal, recarga de extintores y llenado de gases.</li>
         </ul>
         <app-contact-button class="home-about__contact" />
       </div>
     </div>
+  </section>
+
+  <section class="group portfolio" aria-labelledby="portafolio-titulo">
+    <h2 id="portafolio-titulo" class="group__title">Portafolio de productos y soluciones</h2>
+    <ul class="container portfolio__grid">
+      @for (card of portfolio; track card.title) {
+        @let img = card.image.src | optimizedImage;
+        <li class="portfolio__item">
+          <a class="portfolio__card" [routerLink]="card.path" [queryParams]="card.queryParams">
+            <img
+              [ngSrc]="img.src"
+              [width]="img.width"
+              [height]="img.height"
+              [alt]="card.image.alt"
+              class="portfolio__img"
+            />
+            <div class="portfolio__body">
+              <h3 class="portfolio__title">{{ card.title }}</h3>
+              <span class="portfolio__text">{{ card.description }}</span>
+              <span class="portfolio__link">{{ card.linkText }}</span>
+            </div>
+          </a>
+        </li>
+      }
+    </ul>
   </section>
 
   <app-image-gallery class="home-collage" [columns]="gallery">

@@ -128,7 +128,7 @@ Criterios usados:
 
 | Ruta               | Origen                       | Título (`<title>`)                            | Notas                                   |
 | ------------------ | ---------------------------- | --------------------------------------------- | --------------------------------------- |
-| `/`                | `index.html`                 | Solgases \| Seguridad industrial en Sogamoso  | Collage y carruseles de destacados      |
+| `/`                | `index.html`                 | Solgases \| Seguridad industrial en Sogamoso  | Portafolio, collage y carruseles        |
 | `/nosotros`        | `nosotros.html`              | Nosotros \| Solgases                          | Equipo, resumen de servicios, marcas    |
 | `/productos`       | `productos.html`             | Productos de seguridad industrial \| Solgases | Catálogo: búsqueda y 11 categorías (94) |
 | `/productos/:slug` | Nueva (`products.json`)      | `<Nombre> \| Solgases`                        | Detalle de cada uno de los 94 productos |
@@ -157,8 +157,16 @@ Composición visual y datos sin confirmar:
   `AUTO_DIRECTION` (`card-carousel/carousel-motion.ts`).
 - "Iniciar sesión" y "Crear cuenta" son botones desactivados, rotulados "Próximamente": no hay
   rutas ni flujo de cuenta.
-- El pie de página solo usa datos de `SITE_INFO` y rutas existentes. El teléfono y la dirección son
-  texto, porque no hay un enlace de llamada o de mapa verificado. El HTML no lleva el año del
+- El teléfono y la dirección viven solo en `SITE_INFO` (`core/site-info.ts`); de ahí salen el botón
+  "Llamar" (`tel:+576087728666`) y el de ubicación, que pregunta antes de abrir Google Maps buscando
+  la dirección, sin coordenadas. El teléfono de llamadas no es el número de WhatsApp.
+- Los botones flotantes son la pestaña amarilla (`app-whatsapp-button`) y la pila de la esquina
+  (`app-floating-contact`: llamada y WhatsApp verde). En móvil y tablet el texto del verde es solo su
+  nombre accesible, para no tapar contenido.
+- **Por confirmar:** Nosotros ya no promete domicilio sin costo, pero las notas de los 6 servicios
+  de llenado y alquiler en `site-services.json` conservan el texto original.
+- Los medios de pago (`SITE_INFO.paymentMethods`) se muestran como texto: no hay logos aprobados.
+- El pie de página solo usa datos de `SITE_INFO` y rutas existentes. El HTML no lleva el año del
   copyright: el navegador pone el actual, sin necesidad de un nuevo build.
 - `/servicios` comparte composición, estilos, cuadrícula y vista rápida con `/productos`. Filtra por
   "Tipo de servicio", el único dato presente en los 18; en la URL: `?q=&tipo=&orden=`.
@@ -365,7 +373,7 @@ generan a partir del JSON.
 - **`description`:** el resumen más, cuando existe, la frase correspondiente del resumen de servicios
   del sitio (`SERVICES_SUMMARY`). Argón, mezcla y alquiler de cilindros no aparecen en ese texto, así
   que su descripción se limita al resumen.
-- **`notes`:** la condición de domicilio de Nosotros, en los servicios de llenado y alquiler. Una
+- **`notes`:** la condición de domicilio del sitio original, en los servicios de llenado y alquiler. Una
   prueba verifica que siga siendo idéntica al texto de Nosotros.
 
 ### Diferencias con el sitio anterior
@@ -598,8 +606,9 @@ location / {
 ## Botón flotante de WhatsApp
 
 `app-whatsapp-button` se incluye una sola vez en el componente raíz (`app.ts`), así que aparece en
-todas las rutas, también en el HTML prerenderizado. Queda fijo en la esquina inferior derecha, por
-encima del contenido y por debajo del modal de la galería, y no ocupa espacio en el layout. Es un
+todas las rutas, también en el HTML prerenderizado. Es una pestaña amarilla con el texto "Escríbenos
+para asesorarte", fija a media altura del borde derecho, por encima del contenido y por debajo del
+modal de la galería, y no ocupa espacio en el layout. Es un
 enlace o botón nativo: se puede usar con teclado, tiene foco y hover visibles y su icono SVG está en
 línea, sin dependencias. **No requiere backend**: solo abre `https://wa.me/...`.
 
@@ -613,7 +622,7 @@ export const WHATSAPP_CONFIG: WhatsAppConfig = {
 ```
 
 - **`phone`:** mientras sea `null`, o no tenga entre 8 y 15 dígitos sin `+`, espacios ni guiones,
-  el botón se ve en gris con `aria-disabled="true"`, no abre ninguna conversación y explica
+  el botón lleva un borde punteado y `aria-disabled="true"`, no abre ninguna conversación y explica
   "Número de WhatsApp pendiente de configurar" (al pasar el cursor, enfocar o tocar). No se usó el
   teléfono fijo del sitio.
 - **Para activarlo:** escribe el número confirmado, por ejemplo `phone: '57XXXXXXXXXX'`, y ejecuta
@@ -671,8 +680,8 @@ repositorio.
 - **Datos reales del catálogo.** Precios, unidades, textos y fichas son ficticios. Ver
   [Catálogo de productos](#catálogo-de-productos).
 - **Información de los servicios.** El sitio no documenta precios, tiempos, cobertura, requisitos ni
-  condiciones de cada servicio, salvo el domicilio de Nosotros, un texto del sitio original que
-  conviene confirmar. Las descripciones son breves a propósito. Cuando el negocio confirme más
+  condiciones de cada servicio, salvo el domicilio en las notas de llenado y alquiler, un texto del
+  sitio original que conviene confirmar. Las descripciones son breves a propósito. Cuando el negocio confirme más
   información, se puede añadir en `site-services.json`.
 - **Fotos por revisar:** Maleta Alfombra muestra un logotipo de Renault; Guante Kodiak lleva impresa
   otra marca en el puño; Eslingas y Manómetro son fotos de contexto, no del producto aislado.
@@ -682,8 +691,6 @@ repositorio.
   [Dominio](#dominio-pendiente).
 - **Datos estructurados `LocalBusiness`.** No se publicaron porque varios datos del sitio podrían
   estar desactualizados y no hay forma de verificarlos desde el repositorio:
-  - El teléfono `(038) 772 86 66` usa el formato de marcación anterior a 2021; Colombia cambió la
-    numeración fija ese año.
   - El horario y el texto del sitio son de 2020 ("2020 | Todos los derechos reservados").
   - No hay dominio para `url`.
   - Las coordenadas del mapa embebido son el centro del mapa, no necesariamente la ubicación exacta.

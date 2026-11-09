@@ -55,16 +55,47 @@
   outline-offset: 2px;
 }
 
-.site-footer__bottom {
+.site-footer__payments {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
   margin-top: 20px;
+  padding-inline: 6px;
+  font-size: 1.1em;
+}
+
+.site-footer__payments-title {
+  font-size: 1.05em;
+}
+
+.site-footer__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer__badge {
+  padding: 4px 12px;
+  border-radius: 4px;
+  background: #fff;
+  color: #222;
+  font-weight: bold;
+}
+
+/* El espacio inferior deja el copyright por encima de los botones flotantes al final de la página. */
+.site-footer__bottom {
+  margin-top: 16px;
+  padding-bottom: 56px;
   padding-top: 14px;
   border-top: 1px solid #5a5a5a;
 }
 
-/* El botón flotante de WhatsApp no debe tapar el texto legal en pantallas pequeñas. */
 .copy {
   margin: 0 auto;
-  padding-inline: 70px;
 }
 
 /* Reserva el ancho del año, para que el texto no se mueva cuando aparece. */
@@ -81,6 +112,14 @@
 }
 
 @media screen and (min-width: 1024px) {
+  .site-footer__payments {
+    padding-inline: 0;
+  }
+
+  .site-footer__bottom {
+    padding-bottom: 0;
+  }
+
   .site-footer__grid {
     grid-template-columns:
       minmax(0, 1.2fr) minmax(0, 0.7fr) minmax(0, 1.6fr)

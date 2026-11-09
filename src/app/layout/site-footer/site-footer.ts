@@ -4,8 +4,7 @@ import { CATALOG_SHORTCUTS, NAV_ITEMS } from '../../core/navigation';
 import { SITE_INFO } from '../../core/site-info';
 
 /**
- * Pie de página. Solo usa datos ya confirmados en el sitio: sin redes, horarios ni medios de pago.
- * El teléfono y la dirección son texto: no hay enlace verificado de llamada ni de mapa.
+ * Pie de página. Solo usa datos ya confirmados en el sitio: sin redes ni horarios.
  */
 
 @Component({

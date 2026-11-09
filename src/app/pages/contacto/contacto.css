@@ -20,3 +20,99 @@
 .map {
   margin-bottom: 1em;
 }
+
+
+/* Presentación y canales de atención */
+.contact-hero {
+  padding: 24px 16px 0;
+  text-align: center;
+}
+
+.contact-hero__title {
+  font-size: 1.5em;
+}
+
+.contact-hero__text {
+  max-width: 760px;
+  margin: 12px auto 20px;
+  line-height: 1.6;
+}
+
+.contact-channels {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.contact-channel {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  gap: 0 12px;
+  align-items: center;
+  height: 100%;
+  padding: 14px 16px;
+  border-radius: 6px;
+  background: #f4f4f4;
+  color: #222;
+  text-align: left;
+  text-decoration: none;
+}
+
+a.contact-channel:hover {
+  background: #e2e2e2;
+}
+
+a.contact-channel:hover .contact-channel__value {
+  text-decoration: underline;
+}
+
+a.contact-channel:focus-visible {
+  outline: 3px solid #111;
+  outline-offset: 2px;
+}
+
+.contact-channel__icon {
+  grid-row: span 2;
+  width: 34px;
+  height: 34px;
+  color: #b92d26;
+  font-size: 1.7em;
+  line-height: 34px;
+  text-align: center;
+}
+
+.contact-channel__label {
+  font-size: 0.85em;
+}
+
+.contact-channel__value {
+  font-size: 1.1em;
+  font-weight: bold;
+  overflow-wrap: anywhere;
+}
+
+/* Sin enlace: el texto explica que aún no se puede usar. */
+.contact-channel--pending {
+  border: 2px dashed #767676;
+}
+
+.contact-channel--pending .contact-channel__value {
+  font-size: 0.95em;
+}
+
+@media screen and (min-width: 768px) {
+  .contact-hero__title {
+    font-size: 2em;
+  }
+
+  .contact-channels {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .contact-hero {
+    padding-top: 32px;
+  }
+}

@@ -42,6 +42,48 @@
   width: 100%;
 }
 
+/* En móvil, dos franjas de la misma altura que los textos a los que reemplazan: el menú no se mueve. */
+.contact-action {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 39px;
+  padding: 8px 10px;
+  border: 0;
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Rojo más oscuro que el de la marca: con texto blanco, llega al contraste de 4,5:1. */
+.contact-action--call {
+  background: #b92d26;
+  color: #fff;
+  font-weight: bold;
+}
+
+.contact-action--call:hover {
+  background: #8f201b;
+}
+
+.contact-action--map {
+  background: #f4f4f4;
+  color: #111;
+}
+
+.contact-action--map:hover {
+  background: #e2e2e2;
+  text-decoration: underline;
+}
+
+.contact-action:focus-visible {
+  outline: 3px solid #111;
+  outline-offset: -3px;
+}
+
 @media screen and (max-width: 359px) {
   .account {
     padding-right: 6px;
@@ -81,6 +123,38 @@
     background: rgba(0, 0, 0, 0.6);
     color: #fff;
   }
+
+  /* Sobre el banner: botones compactos y alineados a la derecha, dentro de la altura disponible. */
+  .main-header__contactInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 4px;
+    padding: 6px 10px;
+  }
+
+  .contact-action {
+    width: auto;
+    min-height: 30px;
+    padding: 4px 10px;
+    font-size: 14px;
+  }
+
+  .contact-action--map {
+    border: 1px solid #fff;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+  }
+
+  .contact-action--map:hover {
+    background: rgba(0, 0, 0, 0.85);
+  }
+
+  .contact-action:focus-visible {
+    outline-color: #fff;
+    outline-offset: 2px;
+  }
 }
 
 @media screen and (min-width: 700px) {
@@ -95,7 +169,8 @@
 
   .main-header__contactInfo {
     flex: 0 0 auto;
-    margin-left: 20px;
+    margin-left: 12px;
+    padding: 6px 10px 6px 0;
   }
 
   .account {
@@ -118,5 +193,9 @@
   .account__option {
     padding: 5px 10px;
     font-size: 13px;
+  }
+
+  .main-header__contactInfo {
+    padding-right: 0;
   }
 }

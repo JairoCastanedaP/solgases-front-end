@@ -14,26 +14,40 @@
     <app-contact-button />
     <h2 class="group__title">Te contamos un poco sobre nosotros</h2>
 
-    <div class="container container--flex">
+    <ul class="container our-team__grid">
       @for (highlight of highlights; track highlight.title) {
-        <div class="column--33">
-          <h3 class="our-team__title">{{ highlight.title }}</h3>
-          @let img = highlight.image | optimizedImage;
-          <img
-            [ngSrc]="img.src"
-            [width]="img.width"
-            [height]="img.height"
-            [alt]="highlight.imageAlt"
-            class="our-team__img"
-          />
-          <!-- Se conserva la clase original (our--team__txt), que no tiene estilos asociados. -->
-          <p class="our--team__txt">{{ highlight.text }}</p>
-        </div>
+        <li class="our-team__card">
+          <div class="our-team__media">
+            <img
+              [ngSrc]="highlight.img.src"
+              [width]="highlight.img.width"
+              [height]="highlight.img.height"
+              [alt]="highlight.imageAlt"
+              class="our-team__img"
+            />
+            <h3 class="our-team__title">{{ highlight.title }}</h3>
+          </div>
+          <p class="our-team__txt">{{ highlight.text }}</p>
+        </li>
       }
-    </div>
+    </ul>
   </section>
 
   <app-intro-section [title]="summary.title" [paragraphs]="[summary.text]" />
+
+  <section class="group why-us" aria-labelledby="por-que-titulo">
+    <div class="container why-us__layout">
+      <div>
+        <h2 id="por-que-titulo" class="why-us__title">{{ whyUs.title }}</h2>
+        <p class="why-us__text">{{ whyUs.text }}</p>
+      </div>
+      <ul class="why-us__list">
+        @for (point of whyUs.points; track point) {
+          <li class="why-us__point">{{ point }}</li>
+        }
+      </ul>
+    </div>
+  </section>
 
   <section class="group brands" aria-labelledby="marcas-titulo">
     <h2 id="marcas-titulo" class="group__title">Manejamos las mejores marcas</h2>

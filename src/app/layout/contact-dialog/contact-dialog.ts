@@ -9,11 +9,12 @@ import {
 } from '@angular/core';
 import { SITE_INFO, SOCIAL_PROFILES_TOKEN } from '../../core/site-info';
 
-export type ContactTopic = 'email' | 'address' | 'phone' | 'facebook' | 'instagram';
+export type ContactTopic = 'email' | 'address' | 'map' | 'phone' | 'facebook' | 'instagram';
 
 const TITLES: Readonly<Record<ContactTopic, string>> = {
   email: 'Correo',
   address: 'Dirección',
+  map: 'Ubicación en Google Maps',
   phone: 'Teléfono',
   facebook: 'Facebook',
   instagram: 'Instagram',

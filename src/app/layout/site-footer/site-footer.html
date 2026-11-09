@@ -49,6 +49,15 @@
     </section>
   </div>
 
+  <section class="container site-footer__payments" aria-labelledby="pie-pagos">
+    <h2 id="pie-pagos" class="site-footer__payments-title">Medios de pago</h2>
+    <ul class="site-footer__badges">
+      @for (method of site.paymentMethods; track method) {
+        <li class="site-footer__badge">{{ method }}</li>
+      }
+    </ul>
+  </section>
+
   <div class="container site-footer__bottom">
     <p class="copy">
       <span class="copy__year">{{ year() ? year() + ' | ' : '' }}</span

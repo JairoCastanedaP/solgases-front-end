@@ -30,6 +30,19 @@
   font-weight: bold;
 }
 
+.contact-dialog__confirm {
+  display: inline-block;
+  padding: 10px 14px;
+  background: #b92d26;
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.contact-dialog__confirm:hover {
+  background: #8f201b;
+}
+
 .contact-dialog__close {
   min-height: 44px;
   padding: 8px 18px;
@@ -42,7 +55,8 @@
 }
 
 .contact-dialog__link:focus-visible,
+.contact-dialog__confirm:focus-visible,
 .contact-dialog__close:focus-visible {
-  outline: 3px solid #de423a;
+  outline: 3px solid #111;
   outline-offset: 2px;
 }
